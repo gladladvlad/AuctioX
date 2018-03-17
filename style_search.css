@@ -1,0 +1,49 @@
+* {
+	margin: 0 0 0 0;
+	padding: 0 0 0 0;
+}
+
+.search_div {
+	border: 1px solid red;
+	height: 100%;
+	float: left;
+	overflow: hidden;
+	display: table-cell;
+}
+
+#filtre {
+	width: 15%;
+}
+
+#content {
+	width: 70%;
+}
+
+.list {
+	margin-left: 15%;
+}
+
+listheader {
+	color: red;
+}
+
+.contentList {
+}
+
+.contentItem {
+	border: 1px solid green;
+	width: 100%;
+	height: auto;
+
+	padding: 1em;
+}
+
+.itemImg {
+	max-width: 15%;
+	max-height: 15%;
+}
+
+a {
+    color: #004080;
+    font-weight: bold;
+}
