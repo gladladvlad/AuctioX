@@ -1,9 +1,10 @@
 :root {
-    --navbg: #C0C0C0;
+    --navbg: #202028;
+    --searchboxbg: #303038;
 
-    --btn1: #0080F0;
-    --btn1_hover: #0070E0;
-    --btn1_active: #0060E0;
+    --btn1: #800030;
+    --btn1_hover: #900040;
+    --btn1_active: #780028;
 
     --lnk1: #FFFFFF;
 }
@@ -17,79 +18,51 @@
 
 .navbar {
 	background-color: var(--navbg);
-	border: 1px solid;
-	height: 4em;
 	padding: 0.5em 0em 0.5em 0em;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
 
-.navbar > * {
-    height: 100%;
-    margin-left: 0.5em;
-    margin-right: 0.5em;
-    /*float: left;*/
+.navbarLeft {
+    margin-left: 0.25em;
+    display: flex;
+    flex-grow: 1;
+    flex-wrap: wrap;
+    justify-content: flex-start;
 }
 
-.navbarElementLeft {
-    float: left;
+.navbarRight {
+    margin-right: 0.25em;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
 }
 
-.navbarElementRight {
-    float: right;
+.navbarElement {
+    display: flex;
+    align-items: center;
+    min-width: 4rem;
+
+    margin: 0 0.25em 0 0.25em;
+    max-height: 3rem;
+    color: white;
 }
 
-.navbarLink {
-    padding: 0.5em 0.2em 0.5em 0.2em;
-    background: var(--btn1);
-    border: 1px solid white;
-    border-radius: 10px;
-    width: auto;
-    text-align: center;
-    min-width: 4em;
-    max-width: 6em;
-    line-height: 100%;
+.navbarLogo {
+    height: 3em;
+    min-width: auto;
 }
 
-.navbarLink > * {
-
-    display: inline-block;
-    vertical-align: middle;
-}
-
-#logo {
-	position relative;
-	max-width: 196px;
-	max-height: 100%;
-}
-
-#searchForm {
-	/*border: 1px solid white;*/
-	width: 40%;
-	padding-top: 0.15em;
-	padding-bottom: 0.15em;
-}
-
-#searchBox {
-    padding-left: 0.5em;
-	height: 100%;
-	width: 80%;
-	border: 1px solid white;
-	border-radius: 10px 0 0 10px;
-	font-size: 1.15em;
-}
-
-#searchButton {
-    height: 100%;
-    width: 20%;
-    max-width: 8em;
-    min-width: 2.5em;
-    border: 1px solid white;
-    border-radius: 0 10px 10px 0;
+.navbarSearch {
+    
+    padding: 0.25em 0 0.25em 0;
+    max-height: 3rem;
 }
 
 .button {
-    border: 1px solid white;
-    border-radius: 10px 10px 10px 10px;
-    font-size: 1.15em;
+    font-size: 1em;
     color: var(--lnk1);
 }
 
@@ -101,8 +74,51 @@
     background-color: var(--btn1_active);
 }
 
+#searchForm {
+    display: inline-flex;
+    flex-grow: 1;
+    height: 3em;
+}
+
+#searchBox {
+    padding-left: 0.5em;
+    height: 100%;
+	width: 80%;
+    float: left;
+    flex-grow: 1;
+
+
+    border: 0;
+    background-color: var(--searchboxbg);
+	font-size: 1.15em;
+    font-weight: lighter;
+    color: white;
+}
+
+#searchButton {
+    padding: 0.5em 0.5em 0.5em 0.5em;
+    height: 100%;
+    width: 20%;
+    max-width: 8em;
+    min-width: 2.5em;
+
+    border: 0;
+    background-color: var(--btn1);
+}
+
+#searchButton > img {
+    max-height: 1.5em;
+}
+
+
+#searchButton:hover {
+    background-color: var(--btn1_hover);
+}
+
+#searchButton:active {
+    background-color: var(--btn1_active);
+}
 
 a {
     color: var(--lnk1);
-    font-weight: bold;
 }
