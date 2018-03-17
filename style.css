@@ -1,0 +1,9 @@
+* {
+	margin: 0 0 0 0;
+	padding: 0 0 0 0;
+}
+
+.navbar {
+	background-color: gray;
+	height: 7%;
+}
