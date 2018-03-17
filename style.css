@@ -4,24 +4,36 @@
 }
 
 .navbar {
-	background-color: gray;
-	height: 50%;
-
+	background-color: black;
+	height: 4em;
 	box-sizing:border-box;
-	padding: 0.8% 0.8% 0.8% 0.8%;
+	padding: 0.5em 0.5em 0.5em 0.5em;
 }
 
 #logo {
-	display: inline;
-	max-width: 230px;
+	position relative;
+	float: left;
+	max-width: 196px;
 	max-height: 100%;
 }
 
 #searchForm {
-	display: inline;
+	margin-left: 0.5em;
+	float: left;
+	border: 1px solid green;
+	width: 28em;
+	height: 100%;
+	box-sizing: border-box;
+	padding-top: 0.5em;
+	padding-bottom: 0.5em;
 }
 
-#search{
-	display: inline;
-	width: 35%;
+#searchBox {
+	height: 100%;
+	width: 80%;
+}
+
+#searchButton {
+    height: 100%;
+    width: 19%;
 }
