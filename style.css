@@ -5,5 +5,23 @@
 
 .navbar {
 	background-color: gray;
-	height: 7%;
+	height: 50%;
+
+	box-sizing:border-box;
+	padding: 0.8% 0.8% 0.8% 0.8%;
+}
+
+#logo {
+	display: inline;
+	max-width: 230px;
+	max-height: 100%;
+}
+
+#searchForm {
+	display: inline;
+}
+
+#search{
+	display: inline;
+	width: 35%;
 }
