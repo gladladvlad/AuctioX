@@ -78,13 +78,12 @@
 
 .productImage{
     padding: 0.5em;
+    display: flex;
+    align-items: center;
 }
 
 .productImage img{
-    display: block;
-    margin: auto;
     width: 100%;
-    vertical-align: middle;
 }
 
 .homeProduct div{
