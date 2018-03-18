@@ -40,7 +40,7 @@
 						<div class="formElement">
 								<label class="formLabel" for="textareaDesc">Description</label>
 								<small>A short description for your item</small><br>
-								<textarea id="textareaDesc" oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"'></textarea>
+								<textarea id="textareaDesc" oninput='this.style.height = "";this.style.height = this.scrollHeight + 2 + "px"'></textarea>
 							</div>
 						<div class="formElement">
 							<label class="formLabel" for="inputTags">Tags</label>
@@ -61,22 +61,29 @@
 									<td><input type="text" /></td>
 									<td><input type="text" /></td>
 								</tr>
+								<tr>
+									<td><input type="text" placeholder="Suggested: production year"/></td>
+									<td><input type="text" /></td>
+								</tr>
+								<tr>
+									<td><input type="text" placeholder="Suggested: frequency"/></td>
+									<td><input type="text" /></td>
+								</tr>
 							</table>
 						</div>
 						<div class="formElement">
 							<label class="formLabel" for="inputPhotos">Photos</label>
 							<small>A picture is worth a thousand words (you can add more than 1 though)</small><br>
 							<input type="file" id="inputPhotos" accept="image/*" multiple>
-							<div class="formGroup">
-								<p>No files currently selected for upload</p>
-								<button class="button">Submit</button>
+							<div class="formPhotosPreview">
+								<p>No files to preview</p>
 							</div>
 						</div>
 						<div class="formElement">
 							<label class="formLabel" for="inputPrice">Starting price</label>
-							<small>The minimum amount of money you demand</small><br>
+							<small>The minimum amount of money you demand and preferred currency</small><br>
 							<input type="number" step="0.01" id="inputPrice" />
-							<select>
+							<select id="selectCurrency">
 								<option>EUR</option>
 								<option>USD</option>
 								<option>RON</option>
