@@ -56,9 +56,9 @@ small {
 	
 }
 
-.formElement > input, .formElement select, .formElement textarea, .formElement table, .formGroup {
+.formElement > input, .formElement select, .formElement textarea, .formElement table, .formPhotosPreview {
 	margin: 0.25em;
-	height: 1.5em;
+	min-height: 1.5em;
 	width: 90%;
 
 	background-color: var(--inputbg);
@@ -67,15 +67,13 @@ small {
 	font-size: 1.15em;
 }
 
-.formGroup {
+.formPhotosPreview {
 	padding: 0.25em 0.25em 0.25em 0.25em;
 	height: auto;
 
 	border-radius: 0;
-}
-
-.formGroup > * {
-	margin: 0.25em 0.25em 0.25em 0.25em;
+	color: gray;
+	font-size: 1em;
 }
 
 .formElement > textarea {
@@ -107,6 +105,11 @@ td input {
 	width: auto;
 
 	font-size: 2em;
+}
+
+#selectCurrency {
+	height: auto;
+	width: auto;
 }
 
 .containerFull {
