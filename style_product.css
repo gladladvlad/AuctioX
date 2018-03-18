@@ -1,0 +1,81 @@
+body{
+	background-color: blue;
+}
+.Pagina{
+    border: 1px solid black;
+    height: auto;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: white;
+}
+.Nume_produs{
+	color: blue;
+}
+#poza{
+	display :flex;
+	height : 70%;
+	width : 70%;
+	flex-grow : 1;
+}
+#pret {
+	font-width : bold;
+	text-align : center;
+	flex-grow: 1;
+	color : red;
+}
+#stoc{
+	font-width : bold;
+	float : center;
+	flex-grow: 1;
+	color : blue;
+}
+#adauga{
+	size: auto;
+	flex-grow: 1;
+}
+#favorite{
+	size: auto;
+	flex-grow: 1;
+}
+
+.Prezentare{
+	border: 1px solid black;
+	display:flex;
+	width : 100%;
+}
+.left{
+	display:flex;
+	width: 200%;
+}
+
+.rigth{
+	display:flex;
+	flex-direction: column;
+}
+
+.Specificatii{
+	display: flex;
+	width: 100%;
+	--border: 1px solid black;
+}
+.generale{
+	display:flex;
+	flex-direction:column;
+	border: 1px solid black;
+	width: 100%;
+}
+#Categorie{
+	display: flex;
+	font-size: 15;
+	flex-direction: row;
+	width: 100%;
+	flex-grow:1;
+}
+#Categorie p{
+	display: flex;
+	font-size: 15;
+	--flex-direction: row;
+	width: 100%;
+	flex-grow:1;
+}
