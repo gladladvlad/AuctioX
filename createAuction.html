@@ -29,7 +29,7 @@
 					<div class="containerHalf">
 						<div class="formElement">
 							<label class="formLabel" for="inputTitle">Title</label>
-							<small>Choose a title for the item you are auctioning</small><br>
+							<small>Choose a descriptive title for the item you are auctioning</small><br>
 							<input id="inputTitle" type="text"/>
 						</div>
 						<div class="formElement">
@@ -50,7 +50,8 @@
 					</div>
 					<div class="containerHalf">
 						<div class="formElement">
-							<label class="formLabel" for="tableSpecs">Specifications</label><br>
+							<label class="formLabel" for="tableSpecs">Specifications</label>
+							<small>(e.g. production year, consumption, frequency etc.)</small><br>
 							<table id="tableSpecs">
 								<tr>
 									<td><input type="text" /></td>
@@ -63,7 +64,8 @@
 							</table>
 						</div>
 						<div class="formElement">
-							<label class="formLabel" for="inputPhotos">Photos</label><br>
+							<label class="formLabel" for="inputPhotos">Photos</label>
+							<small>A picture is worth a thousand words (you can add more than 1 though)</small><br>
 							<input type="file" id="inputPhotos" accept="image/*" multiple>
 							<div class="formGroup">
 								<p>No files currently selected for upload</p>
@@ -71,8 +73,14 @@
 							</div>
 						</div>
 						<div class="formElement">
-							<label class="formLabel" for="inputPrice">Starting price</label><br>
-							<input type="text" id="inputPrice" />
+							<label class="formLabel" for="inputPrice">Starting price</label>
+							<small>The minimum amount of money you demand</small><br>
+							<input type="number" step="0.01" id="inputPrice" />
+							<select>
+								<option>EUR</option>
+								<option>USD</option>
+								<option>RON</option>
+							</select>
 						</div>	
 					</div>
 				</div>

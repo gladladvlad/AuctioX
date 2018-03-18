@@ -10,7 +10,8 @@ small {
 
 .mainContainer {
 	margin: 0 00% 0 00%;
-	height: 100%;
+	height: auto;
+	min-height: 100%;
 
 	background-color: white;
 }
@@ -99,6 +100,13 @@ td input {
 #inputPhotos  {
 	height: auto;
 
+}
+
+#inputPrice {
+	height: auto;
+	width: auto;
+
+	font-size: 2em;
 }
 
 .containerFull {
