@@ -48,7 +48,11 @@
     display: flex;
     width: 100%;
     justify-content: center;
-    flex-wrap: wrap-reverse;
+    flex-wrap: wrap;
+}
+
+.section .homeProduct:first-of-type {
+    width: 100%;
 }
 
 .section > *{
@@ -72,10 +76,12 @@
     border-radius: 0.3em;
 }
 
-.homeProduct img{
+.productImage img{
+    width: 100%;
+}
+
+.homeProduct div{
     width: 50%;
-    object-fit: contain;
-    margin: 0.5em;
 }
 
 .productInformation
@@ -83,7 +89,6 @@
     width: calc(50% - 2em);
     margin: auto;
     padding: 0.5vw;
-    object-fit: contain;
     text-align: left;
 }
 
