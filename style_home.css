@@ -1,3 +1,4 @@
+
 .homeBar{
     border-bottom: 1px solid gray;
     display: flex;
@@ -58,6 +59,7 @@
 }
 
 .section > h1{
+    font-size: calc(1.5vw + 1.2em);
     width: 100%;
     margin: 0.5em;
 }
@@ -80,23 +82,47 @@
 .productInformation
 {
     width: calc(50% - 2em);
-    margin: 0.5em;
+    margin: auto;
+    padding: 0.5vw;
     object-fit: contain;
     text-align: left;
-
 }
+
+
+/*font size*/
 
 /* Product title */
 .productInformation > p1{
-    font-size: calc(2vmin + 0.7em);
+    font-size: calc(1.5vw + 0.7em);
 }
 
 /* Product price */
 .productInformation > p2{
-    font-size: calc(1.8vmin + 0.7em);
+    font-size: calc(1.4vw + 0.7em);
+    line-height: 1.5;
 }
 
 /* Product description */
 .productInformation > p3{
-    font-size: calc(0.5vmin + 0.7em);
+    font-size: calc(0.6vw + 0.5em);
 }
+
+@media only screen and (min-width: 70em) {
+    .section > h1{
+    font-size: 2.3em;
+}
+.productInformation > p1{
+    font-size: 1.8em;
+}
+
+.productInformation > p2{
+    font-size: 1.7em;
+}
+
+.productInformation > p3{
+    font-size: 1em;
+}
+}
+
+
+
