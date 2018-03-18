@@ -1,5 +1,5 @@
+
 .homeBar{
-    border-bottom: 1px solid gray;
     display: flex;
     flex-direction: row;
     flex-grow: 1;
@@ -15,7 +15,7 @@
 }
 
 .homeBarSide{
-    background-color: var(--btn1);
+    background-color: var(--colorMain);
 }
 
 .homeBarSide li{
@@ -24,7 +24,7 @@
 }
 
 .homeBarSide li:hover{
-    background-color: var(--btn1_hover);
+    background-color: var(--colorMainLight);
 }
 
 .homeBarSide li > a{
@@ -37,15 +37,14 @@
 .home{
     width: 97%;
     max-width: 70em;
-    border: 1px solid black;
     height: auto;
     margin-left: auto;
     margin-right: auto;
+
     background-color: white;
 }
 
 .section{
-    border: 2px solid blue;
     display: flex;
     width: 100%;
     justify-content: center;
@@ -58,17 +57,19 @@
 }
 
 .section > h1{
+    font-size: calc(1.5vw + 1.2em);
     width: 100%;
-    margin: 0.5em;
+    margin: 0.3em;
 }
 
 .homeProduct{
     width: 20em;
-    min-height: 10em;
     min-width: 40%;
     flex-grow: 1;
-    border: 1px solid black;
     margin: 0.5em;
+
+    border: 3px solid var(--colorMainLight);
+    border-radius: 0.3em;
 }
 
 .homeProduct img{
@@ -80,23 +81,47 @@
 .productInformation
 {
     width: calc(50% - 2em);
-    margin: 0.5em;
+    margin: auto;
+    padding: 0.5vw;
     object-fit: contain;
     text-align: left;
-
 }
+
+
+/*font size*/
 
 /* Product title */
 .productInformation > p1{
-    font-size: calc(2vmin + 0.7em);
+    font-size: calc(1.5vw + 0.7em);
 }
 
 /* Product price */
 .productInformation > p2{
-    font-size: calc(1.8vmin + 0.7em);
+    font-size: calc(1.4vw + 0.7em);
+    line-height: 1.5;
 }
 
 /* Product description */
 .productInformation > p3{
-    font-size: calc(0.5vmin + 0.7em);
+    font-size: calc(0.6vw + 0.5em);
 }
+
+@media only screen and (min-width: 70em) {
+    .section > h1{
+    font-size: 2.3em;
+}
+.productInformation > p1{
+    font-size: 1.8em;
+}
+
+.productInformation > p2{
+    font-size: 1.7em;
+}
+
+.productInformation > p3{
+    font-size: 1em;
+}
+}
+
+
+
