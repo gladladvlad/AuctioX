@@ -13,41 +13,38 @@
 	margin: 0 0 0 0;
 	padding: 0 0 0 0;
 	box-sizing:border-box;
-	font-family: arial;
+	font-family: trebuchet ms;
 }
 
 .navbar {
 	background-color: var(--navbg);
 	padding: 0.5em 0em 0.5em 0em;
+    width: 100%;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
 }
 
-.navbarLeft {
-    margin-left: 0.25em;
-    display: flex;
-    flex-grow: 1;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-}
-
-.navbarRight {
-    margin-right: 0.25em;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-end;
-}
-
 .navbarElement {
     display: flex;
     align-items: center;
     min-width: 4rem;
+    flex-wrap: wrap;
+    justify-content: space-between;
 
     margin: 0 0.25em 0 0.25em;
     max-height: 3rem;
     color: white;
+}
+
+.navbarElement > a {
+    margin: 0 0.5em 0 0.5em;
+    max-width: 5rem;    
+    max-height: 3rem;
+
+    color: var(--lnk1);
+    text-align: center;
 }
 
 .navbarLogo {
@@ -56,13 +53,14 @@
 }
 
 .navbarSearch {
-    
     padding: 0.25em 0 0.25em 0;
-    max-height: 3rem;
+    height: 3em;
 }
 
 .button {
     font-size: 1em;
+    background-color: var(--btn1);
+    border: 0;
     color: var(--lnk1);
 }
 
@@ -77,16 +75,15 @@
 #searchForm {
     display: inline-flex;
     flex-grow: 1;
-    height: 3em;
 }
 
 #searchBox {
     padding-left: 0.5em;
     height: 100%;
 	width: 80%;
+    min-width: 4em;
     float: left;
     flex-grow: 1;
-
 
     border: 0;
     background-color: var(--searchboxbg);
@@ -100,10 +97,7 @@
     height: 100%;
     width: 20%;
     max-width: 8em;
-    min-width: 2.5em;
-
-    border: 0;
-    background-color: var(--btn1);
+    min-width: 2em;
 }
 
 #searchButton > img {
@@ -119,6 +113,3 @@
     background-color: var(--btn1_active);
 }
 
-a {
-    color: var(--lnk1);
-}

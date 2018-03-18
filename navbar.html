@@ -1,38 +1,17 @@
-<html>
-	<head>
-		<meta charset="utf-8">
-		<link rel="stylesheet" href="style.css">
-		<!--
-		<link rel="stylesheet" media="(max-width:911px)" href="style_s.css">
-		<link rel="stylesheet" media="(min-width:911px)" href="style_m.css">
-		-->
-		<title> AuctioX </title>
-	</head>
+<link rel="stylesheet" href="style_navbar.css">
 
-	<body style="background-color: black;">
-        <div class="navbar">
-            <img class="navbarElement navbarLogo" src="logo.png" alt="AuxioX" />
-            
-                
+<div class="navbar">
 
-                <form class="navbarElement navbarSearch" id="searchForm">
-                    <input id="searchBox" placeholder=" Search"/><button id="searchButton" class="button" href="search.html"><img src="./static/searchIcon.png" alt="logo"/></button>
-                </form>
+    <img class="navbarElement navbarLogo" src="./static/png/logo.png" alt="AuxioX" />
 
-                <div class="navbarElement">
-                    <a href="blank">Advanced Search</a>
-                </div>
+    <form class="navbarElement navbarSearch" id="searchForm">
+        <input id="searchBox" placeholder=" Search"/><button id="searchButton" class="button" href="search.html"><img src="./static/png/searchIcon.png" alt="search"/></button>
+    </form>
 
-                <div class="navbarElement">
-                    <a href="blank">Create Auction</a>
-                </div>
-            
-                <div class="navbarElement">
-                    <a href="blank">Sign in</a>
-                </div>
-            
-                        
-        </div>
-	</body>
+    <div class="navbarElement">
+        <a id="linkAdvancedSearch" href="#advancedSearch">Advanced Search</a>
+        <a id="linkCreateAuction" href="#createAuction">Create Auction</a>
+        <a id="linkSignIn" href="#signIn">Sign in</a>
+    </div>
 
-</html>
+</div>
