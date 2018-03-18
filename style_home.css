@@ -1,0 +1,48 @@
+.home{
+    border: 1px solid black;
+    height: auto;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+
+    background-color: white;
+}
+
+.homeBar{
+    border-bottom: 1px solid gray;
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+
+}
+
+.homeBar *{
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+    justify-content: space-evenly;
+}
+
+#homeBarLeft{
+    flex-grow: 1;
+    margin-right: 1px solid gray;
+}
+
+#homeBarLeft{
+    flex-grow: auto;
+    border-right: 1px solid var(--btn1);
+}
+
+.homeBarElement{
+    padding: 0.5em;
+}
+
+.homeBarElement li > a{
+    color: var(--btn1);
+    text-decoration: none;
+
+}
+
+.homeBarElement li > a:hover{
+    color: var(--btn1_hover);
+}
