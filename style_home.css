@@ -23,21 +23,18 @@
     justify-content: space-evenly;
 }
 
-#homeBarRight{
-    flex-grow: 1;
-}
-
-#homeBarLeft{
-    flex-grow: 1;
-}
-
 .homeBarSide{
+    flex-direction: row;
     flex-wrap: wrap;
     background-color: var(--btn1);
+    flex-grow: 1;
 }
 
 .homeBarSide li{
+    display: flex;
+    flex-grow: 1;
     padding: 0.5em;
+    text-align: center;
 }
 
 .homeBarSide li:hover{
