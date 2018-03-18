@@ -1,3 +1,21 @@
+:root {
+    --navbg: #202028;
+    --searchboxbg: #303038;
+
+    --btn1: #800030;
+    --btn1_hover: #900040;
+    --btn1_active: #780028;
+
+    --lnk1: #FFFFFF;
+}
+
+* {
+	margin: 0 0 0 0;
+	padding: 0 0 0 0;
+	box-sizing:border-box;
+	font-family: trebuchet ms;
+}
+
 .navbar {
 	background-color: var(--navbg);
 	padding: 0.5em 0em 0.5em 0em;
