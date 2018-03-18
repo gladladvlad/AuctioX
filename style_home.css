@@ -1,6 +1,5 @@
 
 .homeBar{
-    border-bottom: 1px solid gray;
     display: flex;
     flex-direction: row;
     flex-grow: 1;
@@ -16,7 +15,7 @@
 }
 
 .homeBarSide{
-    background-color: var(--btn1);
+    background-color: var(--colorMain);
 }
 
 .homeBarSide li{
@@ -25,7 +24,7 @@
 }
 
 .homeBarSide li:hover{
-    background-color: var(--btn1_hover);
+    background-color: var(--colorMainLight);
 }
 
 .homeBarSide li > a{
@@ -38,15 +37,14 @@
 .home{
     width: 97%;
     max-width: 70em;
-    border: 1px solid black;
     height: auto;
     margin-left: auto;
     margin-right: auto;
+
     background-color: white;
 }
 
 .section{
-    border: 2px solid blue;
     display: flex;
     width: 100%;
     justify-content: center;
@@ -61,16 +59,17 @@
 .section > h1{
     font-size: calc(1.5vw + 1.2em);
     width: 100%;
-    margin: 0.5em;
+    margin: 0.3em;
 }
 
 .homeProduct{
     width: 20em;
-    min-height: 10em;
     min-width: 40%;
     flex-grow: 1;
-    border: 1px solid black;
     margin: 0.5em;
+
+    border: 3px solid var(--colorMainLight);
+    border-radius: 0.3em;
 }
 
 .homeProduct img{
