@@ -8,7 +8,7 @@
 	<body>
 		<iframe style="width: 100%; border: 0; height: 4em;" src="navbar.html"></iframe>
 
-		<div class="mainContainer">
+		<div class="baseContainer">
 			<div class="title">
 				<h1>
 					Create an auction
@@ -16,7 +16,7 @@
 				<a href="#guidelines">
 					Guidelines
 				</a>
-				<a href="#tos">
+				<a href="tos.html">
 					Terms of service
 				</a>
 				<a href="#help">
@@ -24,74 +24,76 @@
 				</a>
 			</div>
 
-			<form id="auctionForm">
-				<div class="containerFull">
-					<div class="containerHalf">
-						<div class="formElement">
-							<label class="formLabel" for="inputTitle">Title</label>
-							<small>Choose a descriptive title for the item you are auctioning</small><br>
-							<input id="inputTitle" type="text"/>
-						</div>
-						<div class="formElement">
-							<label class="formLabel" for="inputCategory">Category</label>
-							<small>Place the item in a category</small><br>
-							<select id="inputCategory"></select>
-						</div>
-						<div class="formElement">
-								<label class="formLabel" for="textareaDesc">Description</label>
-								<small>A short description for your item</small><br>
-								<textarea id="textareaDesc" oninput='this.style.height = "";this.style.height = this.scrollHeight + 2 + "px"'></textarea>
+			<div class="mainContainer">
+				<form id="auctionForm">
+					<div class="containerFull">
+						<div class="containerHalf">
+							<div class="formElement">
+								<label class="formLabel" for="inputTitle">Title</label>
+								<small>Choose a descriptive title for the item you are auctioning</small><br>
+								<input id="inputTitle" type="text"/>
 							</div>
-						<div class="formElement">
-							<label class="formLabel" for="inputTags">Tags</label>
-							<small>Add tags to help your item get more visibility</small><br>
-							<input id="inputTags" type="text"/>
-						</div>
-					</div>
-					<div class="containerHalf">
-						<div class="formElement">
-							<label class="formLabel" for="tableSpecs">Specifications</label>
-							<small>(e.g. production year, consumption, frequency etc.)</small><br>
-							<table id="tableSpecs">
-								<tr>
-									<td><input type="text" /></td>
-									<td><input type="text" /></td>
-								</tr>
-								<tr>
-									<td><input type="text" /></td>
-									<td><input type="text" /></td>
-								</tr>
-								<tr>
-									<td><input type="text" placeholder="Suggested: production year"/></td>
-									<td><input type="text" /></td>
-								</tr>
-								<tr>
-									<td><input type="text" placeholder="Suggested: frequency"/></td>
-									<td><input type="text" /></td>
-								</tr>
-							</table>
-						</div>
-						<div class="formElement">
-							<label class="formLabel" for="inputPhotos">Photos</label>
-							<small>A picture is worth a thousand words (you can add more than 1 though)</small><br>
-							<input type="file" id="inputPhotos" accept="image/*" multiple>
-							<div class="formPhotosPreview">
-								<p>No files to preview</p>
+							<div class="formElement">
+								<label class="formLabel" for="inputCategory">Category</label>
+								<small>Place the item in a category</small><br>
+								<select id="inputCategory"></select>
+							</div>
+							<div class="formElement">
+									<label class="formLabel" for="textareaDesc">Description</label>
+									<small>A short description for your item</small><br>
+									<textarea id="textareaDesc" oninput='this.style.height = "";this.style.height = this.scrollHeight + 2 + "px"'></textarea>
+								</div>
+							<div class="formElement">
+								<label class="formLabel" for="inputTags">Tags</label>
+								<small>Add tags to help your item get more visibility</small><br>
+								<input id="inputTags" type="text"/>
 							</div>
 						</div>
-						<div class="formElement">
-							<label class="formLabel" for="inputPrice">Starting price</label>
-							<small>The minimum amount of money you demand and preferred currency</small><br>
-							<input type="number" step="0.01" id="inputPrice" />
-							<select id="selectCurrency">
-								<option>EUR</option>
-								<option>USD</option>
-								<option>RON</option>
-							</select>
-						</div>	
+						<div class="containerHalf">
+							<div class="formElement">
+								<label class="formLabel" for="tableSpecs">Specifications</label>
+								<small>(e.g. production year, consumption, frequency etc.)</small><br>
+								<table id="tableSpecs">
+									<tr>
+										<td><input type="text" /></td>
+										<td><input type="text" /></td>
+									</tr>
+									<tr>
+										<td><input type="text" /></td>
+										<td><input type="text" /></td>
+									</tr>
+									<tr>
+										<td><input type="text" placeholder="Suggested: production year"/></td>
+										<td><input type="text" /></td>
+									</tr>
+									<tr>
+										<td><input type="text" placeholder="Suggested: frequency"/></td>
+										<td><input type="text" /></td>
+									</tr>
+								</table>
+							</div>
+							<div class="formElement">
+								<label class="formLabel" for="inputPhotos">Photos</label>
+								<small>A picture is worth a thousand words (you can add more than 1 though)</small><br>
+								<input type="file" id="inputPhotos" accept="image/*" multiple>
+								<div class="formPhotosPreview">
+									<p>No files to preview</p>
+								</div>
+							</div>
+							<div class="formElement">
+								<label class="formLabel" for="inputPrice">Starting price</label>
+								<small>The minimum amount of money you demand and preferred currency</small><br>
+								<input type="number" step="0.01" id="inputPrice" />
+								<select id="selectCurrency">
+									<option>EUR</option>
+									<option>USD</option>
+									<option>RON</option>
+								</select>
+							</div>	
+						</div>
 					</div>
-				</div>
-			</form>
+				</form>
+			</div>
 		</div>
 
 	</body>
