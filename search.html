@@ -1,6 +1,7 @@
 <html>
 	<head>
 		<meta charset="utf-8">
+		<link rel="stylesheet" href="style.css">
 		<link rel="stylesheet" href="style_search.css">
 		<!--
 		<link rel="stylesheet" media="(max-width:911px)" href="style_s.css">
@@ -14,41 +15,64 @@
 
 	<body>
 		<iframe style="float: left; width: 100%; border: 0; height: 4em;" src="navbar.html"></iframe>
-		<div id="filtre" class="search_div">
-			<listheader> Categorii </listheader>
-			<ul class="list" title="categorii">
-				<li> <a> Materiale termoconductoare</a> </li>
-				<li> <a> Hrana animale </a> </li>
-				<li> <a> Manele noi </a> </li>
-				<li> <a> Aparate electrocasnice</a> </li>
-				<li> <a> Salam </a> </li>
-			</ul>
+		<div class="searchBody">
+			<div id="filtre">
+				<h3> Categorii: </h3>
+				<ul class="list" title="categorii">
+					<li> <a> Materiale termoconductoare</a> </li>
+					<li> <a> Hrana animale </a> </li>
+					<li> <a> Manele noi </a> </li>
+					<li> <a> Aparate electrocasnice</a> </li>
+					<li> <a> Salam </a> </li>
+				</ul>
 
-			<listheader> Filtre </listheader> <!-- de bagat checkboxuri -->
-			<ul class="list" title="filtre">
-				<li> <a> Pret </a> </li>
-				<li> <a> Conditie </a> </li>
-			</ul>
+				<h3> Filtre: </h3> <!-- de bagat checkboxuri -->
+				<ul class="list" title="filtre">
+					<li> <a> Pret </a> </li>
+					<li> <a> Conditie </a> </li>
+				</ul>
 
-			<listheader> Sortare dupa: </listheader>
-			<ul class="list" title="sortare">
-				<li> <a> Pret ascendent </a> </li>
-				<li> <a> Pret descendent </a> </li>
-				<li> <a> Conditie ascendent </a> </li>
-				<li> <a> Conditie descendent </a> </li>
-			</ul>
-		</div>
+				<h3> Sortare dupa: </h3>
+				<ul class="list" title="sortare">
+					<li> <a> Pret ascendent </a> </li>
+					<li> <a> Pret descendent </a> </li>
+					<li> <a> Conditie ascendent </a> </li>
+					<li> <a> Conditie descendent </a> </li>
+				</ul>
+			</div>
 
-		<div id="content" class="search_div">
-			<ul class="contentList">
-				<li class="contentItem"> Bomba </li>
-				<li class="contentItem"> 
-					<img src="https://static4.libertatea.ro/wp-content/uploads/2016/09/Florin_Salam_02.jpg" class="itemImg"/> Salam </li>
-				<li class="contentItem"> Manele noi </li>
-			</ul>
-		</div>
-		<div>
+			<div id="content">
+				<ul>
+					<li>
+						<div class="imgContainer">
+							<img src="./resource/img/nes.jpg" />
+						</div>
+						<h3> Nintendo Entertainment System UNOPENED NEW </h3>
+					</li>
+					<li> 
+						<div class="imgContainer">
+							<img src="./resource/img/fam.png" /> 
+						</div>
+						<h3> Family Computer </h3>
 
+					</li>
+					<li>
+						<div class="imgContainer">
+							<img src="./resource/img/cell.jpg" />
+						</div>
+						<h3> Manele noi </h3>
+					</li>
+					<li>
+						<div class="imgContainer">
+							<img src="./resource/img/walkman.jpg" />
+						</div>
+						<h3> The Walking Men 2: All DLC</h3>
+					</li>
+				</ul>
+			</div>
+			<div id="space">
+
+			</div>
 		</div>
 	</body>
 </html>
