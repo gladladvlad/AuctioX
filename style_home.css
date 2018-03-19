@@ -28,6 +28,7 @@
 }
 
 .homeBarSide li > a{
+    text-align: center;
     font-size: 15;
     color: white;
     text-decoration: none;
@@ -134,5 +135,8 @@
 }
 }
 
-
-
+@media only screen and (max-width: 44em) {
+    #homebarRight {
+    display: none;
+    }
+}
