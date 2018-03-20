@@ -27,16 +27,12 @@
     background-color: var(--colorMainLight);
 }
 
-<<<<<<< HEAD
 .homeBarSide li > a {
     text-decoration: none;
 }
 
 .homeBarSide li > a > h2{
-=======
-.homeBarSide li > a{
     text-align: center;
->>>>>>> 8c51bbc34145a286f7d45cf6c6679d61230836d7
     font-size: 15;
     color: white;
     font-weight: lighter;
@@ -177,7 +173,6 @@
     font-size: 1em;
 }
 
-<<<<<<< HEAD
 .footerContent > a{
     font-size: 1.25em;
 }
@@ -189,10 +184,8 @@
     display: none;
 }
 }
-=======
 @media only screen and (max-width: 44em) {
     #homebarRight {
     display: none;
     }
 }
->>>>>>> 8c51bbc34145a286f7d45cf6c6679d61230836d7
