@@ -1,4 +1,8 @@
-.homeBar{
+body{
+    background-color: white;
+}
+
+ .homeBar{
     display: flex;
     flex-direction: row;
     flex-grow: 1;
@@ -19,7 +23,6 @@
 
 .homeBarSide li{
     padding: 0.5em;
-    text-align: center;
     text-decoration: none;
 }
 
@@ -32,6 +35,7 @@
 }
 
 .homeBarSide li > a > h2{
+    display: inline;
     text-align: center;
     font-size: 15;
     color: white;
@@ -48,7 +52,7 @@
     margin-top: 1em;
 
     background-color: white;
-}
+}   
 
 .section{
     display: flex;
@@ -74,6 +78,7 @@
 }
 
 .homeProduct{
+    display: flex;
     width: 20em;
     min-width: 40%;
     flex-grow: 1;
@@ -177,15 +182,8 @@
     font-size: 1.25em;
 }
 }
-
-
+    
 @media only screen and (max-width: 70em) {
 #homeBarRight{
     display: none;
-}
-}
-@media only screen and (max-width: 44em) {
-    #homebarRight {
-    display: none;
-    }
 }
