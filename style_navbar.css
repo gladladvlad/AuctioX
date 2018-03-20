@@ -95,3 +95,6 @@
     background-color: var(--btn1_active);
 }
 
+a {
+    text-decoration: underline;
+}

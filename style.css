@@ -24,6 +24,10 @@
 	padding: 0 0 0 0;
 	box-sizing:border-box;
 	font-family: trebuchet ms;
+<<<<<<< HEAD
+    text-decoration: none;
+    color: black;
+=======
 }
 
 body {
@@ -78,4 +82,5 @@ h3 {
 
     text-indent: 2em;
     text-align: justify;
+>>>>>>> 8c51bbc34145a286f7d45cf6c6679d61230836d7
 }
