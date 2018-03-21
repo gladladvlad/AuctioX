@@ -20,7 +20,8 @@ body {
 }
 
 .searchBody > div {
-	border: 1px solid gray;
+	border-bottom: 1px solid var(--colorMain);
+	border-right: 1px solid var(--colorMain);
 	float: left;
 }
 
@@ -59,7 +60,7 @@ body {
 	display: flex;
 	flex-direction: row;
 
-	border: 1px solid green;
+	border-bottom: 1px solid var(--colorMain);
 	width: 100%;
 	height: auto;
 
@@ -67,7 +68,6 @@ body {
 }
 
 .prod > .prodText > .prodTitle > h3 {
-	padding-left: 1em;
 	padding-top: 0.5em;
 	font-style: normal;
 	font-size: 125%;
@@ -83,23 +83,35 @@ body {
 .prod > .prodText > .prodDesc > .prodDescLeft {
 	display: flex;
 	flex-direction: column;
-	width: 50%;
+	width: 43%;
 	/* flex-grow: 1; */
+
+	border-right: 1px solid var(--colorMain);
 }
 
 .prod > .prodText > .prodDesc > .prodDescRight {
-	width: 50%;
+	width: 43%;
+	padding-left: 2%;
 	/* flex-grow: 1; */
 }
 
 .prod > .prodImage {
 	max-width: 25%;
-	max-height: 100%;
+	max-height: 50%;
 	object-fit: contain;
+	display: flex;
+
+	/*
+	box-sizing: border-box;
+	padding-top: 50%;
+	padding-bottom: 50%;
+	*/
 }
 
 .prod > .prodImage > img {
 	width: 100%;
+	margin: auto;
+	align-items: center;
 
 	/*min-width: 0;
 	min-height: 0;
