@@ -1,0 +1,150 @@
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <link rel="stylesheet" type="text/css" href="style_advancedSearch.css">
+    </head>
+
+    <body>
+        <iframe style="width: 100%; border: 0; height: 4em;" src="navbar.html"></iframe>
+
+        <div class="baseContainer">
+
+            <div class="title">
+                <h1>
+                    Advanced Search
+                </h1>
+            </div>
+
+            <div class="mainContainer">
+
+                <form id="searchForm">
+                    <div class="formElement" id="searchField">
+                        <input id="inputSearch" type="search" list="productSuggestion" placeholder="What are you looking for?"/>
+
+                        <datalist id="productSuggestion"/>
+                            <option value="Audi A8">
+                            <option value="Acer Laptop">
+                            <option value="Sennheiser Headphones">
+                            <option value="TV">
+                        </datalist>
+                    </div>
+
+                    <div class="formElement" id="categoryField">
+                        <input id="inputSearch" list="categories" placeholder="Select a category"/>
+
+                        <datalist id="categories"/>
+                            <option value="Cars">
+                            <option value="Clothing">
+                            <option value="Home & Outdoors">
+                            <option value="Electronics">
+                        </datalist>
+                    </div>
+
+                    <div class="formElement"><br>
+                        <input id="inputTags" type="text" placeholder="Add tags. e.g. WW2"/>
+                    </div>
+
+
+
+                    <div class="formElement" id="conditionField">
+                        <label id="condition">Condition</label><br>
+
+                        <input id="condition1" class="checkbox" type="checkbox">
+                        <label for="condition1">New</label><br>
+                        <input id="condition2" class="checkbox" type="checkbox">
+                        <label for="condition2">Mint condition, barely used</label><br>
+                        <input id="condition3" class="checkbox" type="checkbox">
+                        <label for="condition3">Good</label><br>
+                        <input id="condition4" class="checkbox" type="checkbox">
+                        <label for="condition4">Working condition</label><br>
+                        <input id="condition5" class="checkbox" type="checkbox">
+                        <label for="condition5">Not fully working</label><br>
+                        <input id="condition5" class="checkbox" type="checkbox">
+                        <label for="condition5">Broken</label><br>
+                        <input id="condition6" class="checkbox" type="checkbox">
+                        <label for="condition6">Refurbished</label><br>
+                    </div>
+
+                    
+
+                    <div class="formElement" id="locationField">
+
+                        <div class="formElementInput" id="countryField">
+                            <br>
+                            <input id="inputCountry" list="countryList" placeholder="Select a country"/>
+
+                            <datalist id="countryList"/>
+                                <option value="Romania"/>
+                                <option value="United States"/>
+                            </datalist>
+                        </div>
+
+                        <div class="formElementInput" id="stateField">
+                            <br>
+                            <input id="inputState" list="stateList" type="text" placeholder="Select a state"/>
+
+                            <datalist id="stateList"/>
+                                <option value="Nebraska">
+                                <option value="California">
+                                <option value="Florida">
+                                <option value="Columbia">
+                            </datalist>
+
+                        </div>
+
+                        <div class="formElementInput" id="cityField">
+                            <br>
+                            <input id="inputCity" list="cityList" placeholder="Select a city"/>
+
+                            <datalist id="cityList"/>
+                                <option value="Iasi">
+                                <option value="Bucharest">
+                                <option value="New York">
+                                <option value="Washington">
+                            </datalist>
+
+                        </div>
+                    </div>
+                        
+                    <div class="formElement" id="price">
+                        <label>Price</label><br>
+                        <input id="priceCheckbox" class="checkbox" type="checkbox">
+                        <label for="condition1">
+                            Between
+                            <input type="number" step="0.01" id="inputPriceFloor" />
+                            and
+                            <input type="number" step="0.01" id="inputPriceCCeiling" />
+                             <select id="selectCurrency">
+                                <option>USD</option>
+                                <option>EUR</option>
+
+                                <option>RON</option>
+                            </select>
+
+
+                        </label><br>
+                    </div>
+
+                    <div class="formElement" id="listingType">
+                        <label>Listing type</label><br>
+                        <input type="radio" name="listingType" id="listingBuyNow" checked> Buy it now<br>
+                        <input type="radio" name="listingType" id="listingAuction">Auction<br>
+                    </div>
+
+                    <div class="buttonContainer">
+                        <button class="button">
+                            Search
+                        </button>
+
+                    </div>
+
+                </form>
+            </div>
+
+        </div>
+
+
+    </body>
+</html>
