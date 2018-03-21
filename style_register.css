@@ -16,6 +16,8 @@ small{
 	width: auto;
 	min-width: 50%;
 	flex-grow: 1;
+	padding-right: 3em;
+	padding-left: 1em;
 	margin-bottom: 3em;
 }
 
@@ -43,9 +45,9 @@ small{
 }
 
 .formElement > input, .formElement select, .formElement textarea, .formElement table, .formPhotosPreview {
-	margin: 0.5em 0.25em 0.25em 1em;
+	margin: 0.5em 0.5em 0.5em 0.5em;
 	min-height: 1.5em;
-	width: 90%;
+	width: 100%;
 
 	background-color: var(--inputbg);
 	border: 1px solid gray;
