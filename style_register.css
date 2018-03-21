@@ -13,7 +13,9 @@ small{
 }
 
 .section{
+	width: auto;
 	min-width: 50%;
+	flex-grow: 1;
 	margin-bottom: 3.5em;
 }
 
@@ -32,7 +34,7 @@ small{
 }
 
 .formElement{
-	margin-top: 2em;
+	margin-top: 1em;
 	width: 100%;
 }
 

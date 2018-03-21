@@ -31,7 +31,7 @@
         <form class="mainContainer">
 
             <div id="registerSection" class="section">
-                <label class="registrationLabel">User information</label>
+                <div class="registrationLabel"><label>User information</label></div>
 
                 <div class="formElement" id="emailField">
                     <label class="formLabel" for="inputEmail">Email</label>
@@ -55,25 +55,9 @@
                 </div>
             </div>
 
-            <div id="userInfoSection" class="section">
-                <label class="registrationLabel">Contact information</label>
-
-                <div class="formElement" id="nameField">
-                    <label class="formLabel" for="inputName">Full Name</label>
-                    <small>e.g. John Salesman Doe</small><br>
-                    <input id="inputEmail" type="text" required/>
-                </div>
-
-                <div class="formElement" id="telField">
-                    <label class="formLabel" for="inputTel">Telephone number</label>
-                    <small>e.g. 40 711 222 333</small>
-                    <br>
-                    <input id="inputTel" type="tel" required/>
-                </div>
-            </div>
 
             <div id="locationSection" class="section">
-                <label class="registrationLabel">Location</label>
+                <div class="registrationLabel"><label>Address</label></div>
                 <small>This will be used as the shipping/billing address.</small><br>
 
                 <div class="formElement" id="countryField">
@@ -131,6 +115,23 @@
                     <small> e.g. 40003</small>
                     <br>
                     <input id="inputZipCode" required/>
+                </div>
+
+                <div id="userInfoSection" class="section">
+                    <div class="registrationLabel"><label>Contact information</label></div>
+
+                        <div class="formElement" id="nameField">
+                            <label class="formLabel" for="inputName">Full Name</label>
+                            <small>e.g. John Salesman Doe</small><br>
+                            <input id="inputEmail" type="text" required/>
+                        </div>
+
+                        <div class="formElement" id="telField">
+                            <label class="formLabel" for="inputTel">Telephone number</label>
+                            <small>e.g. 40 711 222 333</small>
+                            <br>
+                            <input id="inputTel" type="tel" required/>
+                    </div>
                 </div>
 
             </div>
