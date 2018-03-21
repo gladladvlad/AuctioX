@@ -125,6 +125,10 @@ body {
 	color: white;
 }
 
+.quickCriteriaDiv > a, .quickCriteriaLastDiv > a{
+	margin-left: 0.5em;
+}
+
 .quickCriteria > .quickCriteriaDiv {
 	padding-right: 1em;
 	margin-right: 1em;
@@ -214,8 +218,78 @@ body {
 	flex-grow: 2;*/
 }
 
-.prod > .prodContent > .prodImage > img:hover {
-	background:#0000ff;
-}
 /* END produs */
 /* END lista de produse */
+
+@media only screen and (max-width: 917px) {
+	#content {
+		width: 77.5%;
+	}
+
+	#filtre {
+		width: 22.5%;
+	}
+}
+
+@media only screen and (max-width: 830px) {
+	.quickCriteria {
+		display:flex;
+		justify-content: center;
+		flex-direction: column;
+
+		margin-left: 1em;
+		margin-right: 1em;
+		padding-left: 1em;
+		padding-right: 1em;
+		padding-top: 0.25em;
+		padding-bottom: 0.25em;
+
+		background-color: var(--colorMainLight);
+
+	}
+
+	.quickCriteria > .quickCriteriaDiv {
+		padding-right: 0em;
+		margin-right: 0em;
+
+		padding-bottom: 0.5em;
+
+		border-right: 0px;
+		border-bottom: 1px solid white;
+
+		display: flex;
+		justify-content: center;
+	}
+
+	.quickCriteria > .quickCriteriaLastDiv {
+		padding-right: 0em;
+		margin-right: 0em;
+
+		margin-top: 0.5em;
+
+		display: flex;
+		justify-content: center;
+	}
+}
+
+@media only screen and (max-width: 611px) {
+	#content {
+		width: 100%;
+	}
+
+	#filtre {
+		width: 0%;
+	}
+}
+
+@media only screen and (max-width: 366px) {
+	.prod > .prodContent {
+		flex-direction: column;
+		justify-content: center;
+	}
+
+	.prod > .prodContent > .prodImage {
+		max-width: 65%;
+		width: 100%;
+	}
+}
