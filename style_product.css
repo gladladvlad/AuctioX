@@ -84,3 +84,22 @@ body{
 	width: 50%;
 	justify-content: center;
 }
+
+.Produse_similare{
+	display: flex;
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 2em;
+}
+
+.alt_prod{
+	display: flex;
+    width: 20em;
+    min-width: 40%;
+    flex-grow: 1;
+    margin: 0.5em;
+
+    border: 2px solid var(--inputbg);
+    border-radius: 0.3em;
+}
