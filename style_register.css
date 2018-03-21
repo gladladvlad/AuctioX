@@ -4,14 +4,17 @@ small{
 }
 
 .mainContainer{
+	display: flex;
+	flex-wrap: wrap;
 	padding-top: 2em;
 	padding-bottom: 3em;
 	padding-left: 2.25em;
 	padding-bottom: 2.25em;
 }
 
-.registerSection{
-	display: flex;
+.section{
+	min-width: 50%;
+	margin-bottom: 3.5em;
 }
 
 .registrationLabel{
@@ -29,9 +32,8 @@ small{
 }
 
 .formElement{
-	padding: 1em 0 1em 0;
+	margin-top: 2em;
 	width: 100%;
-	
 }
 
 .formElement > input, .formElement select, .formElement textarea, .formElement table, .formPhotosPreview {
