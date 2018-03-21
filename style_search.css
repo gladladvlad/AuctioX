@@ -1,6 +1,7 @@
 /* chestii mai globale */
 :root {
-	--colorLink:#0066CC;
+	--colorLink:#2591F2;
+    --seminavbg: #14141B;
 }
 
 * {
@@ -30,27 +31,46 @@ body {
 /* meniu' din stanga */
 #filtre {
 	width: 15%;
+	background-color: var(--seminavbg);
+	border-top: 1px solid gray;
 }
 
 #filtre > ul {
 	margin-left: 5%;
 	color: var(--colorLink);
 	list-style-type: none;
+	padding-bottom: 1em;
+	border-bottom: 1px solid gray;
+}
+
+#filtre > ul > li > a {
+	text-decoration: none;
+	color: var(--colorLink);
 }
 
 #filtre > h3 {
 	font-size: 100%;
-	color: var(--colorMain);
+	color: var(--colorMainLighter);
 }
 
-.dropdown {
+.list > li > .dropdown {
+
 }
 
-.dropdown > input {
+.list > li > .dropdown > input {
 	resize: horizontal;
 	width: 95%;
 	
 	margin-right: 1em;
+}
+
+.list > li > .radio {
+	display: flex;
+	flex-direction: column;
+}
+
+.list > li > .radio > .radioItem {
+
 }
 
 /* END meniu' din stanga */
@@ -58,12 +78,36 @@ body {
 /* lista de produse */
 #content {
 	width: 70%;
+	background-color: white;
 }
 
 #content > ul {
 	list-style-type: none;
 }
 
+.quickCriteria {
+	display:flex;
+
+	margin-left: 1em;
+	margin-right: 1em;
+	padding-left: 1em;
+	padding-right: 1em;
+	padding-top: 0.25em;
+	padding-bottom: 0.25em;
+
+	background-color: var(--colorMainLight);
+}
+
+.quickCriteria > .quickCriteriaDiv * {
+	font-size: 125%;
+	color: white;
+}
+
+.quickCriteria > .quickCriteriaDiv {
+	padding-right: 1em;
+	margin-right: 1em;
+	border-right: 1px solid white;
+}
 
 /* produs */
 
@@ -139,6 +183,10 @@ body {
 	object-fit: contain;
 	width: 33%;
 	flex-grow: 2;*/
+}
+
+.prod > .prodContent > .prodImage > img:hover {
+	background:#0000ff;
 }
 /* END produs */
 /* END lista de produse */

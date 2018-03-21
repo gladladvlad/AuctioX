@@ -1,4 +1,4 @@
-a<html>
+<html>
 	<head>
 		<meta charset="utf-8">
 		<link rel="stylesheet" type="text/css" href="style.css">
@@ -29,12 +29,11 @@ a<html>
 					<div class="containerFull">
 						<div class="containerHalf">
 							<div class="formElement">
-								<label class="formLabel" for="inputTitle">Select Payment curency</label>
+								<label class="formLabel" for="inputTitle">Select Payment Medthod</label>
 								<br>
 								<select id="selectCurrency">
-									<option>EUR</option>
-									<option>USD</option>
-									<option>RON</option>
+									<option>PayPal</option>
+									<option>Card</option>
 								</select>
 							</div>
 							<div class="formElement">
@@ -44,7 +43,7 @@ a<html>
 							<div class="formElement">
 									<label class="formLabel" for="textareaDesc">Quantity</label>
 									<br>
-									<textarea id="textareaDesc" oninput='this.style.height = "";this.style.height = this.scrollHeight + 2 + "px"'></textarea>
+									<input id="inputTags" type="text"/>
 								</div>
 							<div class="formElement">
 								<label class="formLabel" for="inputTags">Tags</label>
@@ -57,9 +56,13 @@ a<html>
 							</div>
 						</div>
 						<div class="containerHalf">
+							<div class="formElement">
+								<label class="formLabel" for="inputCategory">Item Review</label>
+								<textarea id="textareaDesc" oninput='this.style.height = "";this.style.height = this.scrollHeight + 2 + "px"'></textarea>
+							</div>
 							<div class="buttonContainer">
 								<button class="button">
-									Buy
+									Buy: 1000$
 								</button>
 							</div>
 						</div>
