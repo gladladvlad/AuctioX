@@ -28,10 +28,10 @@
                     </a>
                 </div>
 
-        <div class="mainContainer">
+        <form class="mainContainer">
 
-            <form id="registerForm">
-                <label class="registrationLabel"">User information</label>
+            <div id="registerSection" class="section">
+                <label class="registrationLabel">User information</label>
 
                 <div class="formElement" id="emailField">
                     <label class="formLabel" for="inputEmail">Email</label>
@@ -53,11 +53,10 @@
                     <br>
                     <input id="inputConfirmPassword" type="password" required/>
                 </div>
-                
-            </form>
+            </div>
 
-            <form id="userInfoForm">
-                <label class="userInfoLabel">Contact information</label>
+            <div id="userInfoSection" class="section">
+                <label class="registrationLabel">Contact information</label>
 
                 <div class="formElement" id="nameField">
                     <label class="formLabel" for="inputName">Full Name</label>
@@ -67,35 +66,77 @@
 
                 <div class="formElement" id="telField">
                     <label class="formLabel" for="inputTel">Telephone number</label>
+                    <small>e.g. 40 711 222 333</small>
                     <br>
                     <input id="inputTel" type="tel" required/>
                 </div>
-            </form>
+            </div>
 
-            <form id="locationForm">
-                <label class="locationLabel">Location</label>
+            <div id="locationSection" class="section">
+                <label class="registrationLabel">Location</label>
                 <small>This will be used as the shipping/billing address.</small><br>
 
-                <div class="formElement" id="locationField">
+                <div class="formElement" id="countryField">
                     <label class="formLabel" for="inputAddress">Country</label>
+                    <small>e.g. United States</small>
                     <br>
-                    <input id="inputCountry" type="text" required/>
+                    <input id="inputCountry" list="countryList" required/>
+
+                    <datalist id="countryList"/>
+                        <option value="Romania"/>
+                        <option value="United States"/>
+                    </datalist>
+
                 </div>
 
-                <div class="formElement" id="locationField">
-                    <label class="formLabel" for="inputAddress">Country</label>
+                <div class="formElement" id="stateField">
+                    <label class="formLabel" for="inputState">State</label>
+                    <small>(If applicable) e.g. Columbia </small>
                     <br>
-                    <input id="inputCountry" type="text" required/>
+                    <input id="inputState" list="stateList" type="text"/>
+
+                    <datalist id="stateList"/>
+                        <option value="Nebraska">
+                        <option value="California">
+                        <option value="Florida">
+                        <option value="Columbia">
+                    </datalist>
+
                 </div>
 
-                <div class="formElement" id="locationField">
-                    <label class="formLabel" for="inputAddress">Country</label>
+                <div class="formElement" id="cityField">
+                    <label class="formLabel" for="inputCity">City</label>
+                    <small>e.g. New York</small>
                     <br>
-                    <input id="inputCountry" type="text" required/>
-                </div>
-            </form>
+                    <input id="inputCity" list="cityList" required/>
 
-        </div>
+                    <datalist id="cityList"/>
+                        <option value="Iasi">
+                        <option value="Bucharest">
+                        <option value="New York">
+                        <option value="Washington">
+                    </datalist>
+
+                </div>
+
+                <div class="formElement" id="streetField">
+                    <label class="formLabel" for="inputStreet">Street</label>
+                    <small> e.g. 1200 Pennsylvania Avenue</small>
+                    <br>
+                    <input id="inputStreet" required/>
+                </div>
+
+                <div class="formElement" id="zipCodeField">
+                    <label class="formLabel" for="inputZipCode">Zip Code</label>
+                    <small> e.g. 40003</small>
+                    <br>
+                    <input id="inputZipCode" required/>
+                </div>
+
+            </div>
+
+        </form>
+
     </div>
 
 
