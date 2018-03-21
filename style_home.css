@@ -120,7 +120,6 @@
     width: calc(50% - 2em);
     margin: auto;
     padding: 0.5vw;
-    height: auto;
     display: flex;
     justify-content: flex-start;
     align-content: center;
@@ -170,12 +169,11 @@
 /* Product price */
 .productInformation > h3{
     font-size: calc(1.4vw + 0.7em);
-    line-height: 1.5em;
-    margin: 0;
+    line-height: 0.5em;
 }
 
 /* Product description */
-.productInformation > h5{
+.productInformation > h4{
     font-size: calc(0.6vw + 0.5em);
 }
 
@@ -197,11 +195,11 @@
     font-size: 1.7em;
 }
 
-.productInformation > h5{
+.productInformation > h4{
     font-size: 1em;
 }
 
-.footerContent > a{
+.footerContent > a {
     font-size: 1.25em;
 }
 }
