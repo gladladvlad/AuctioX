@@ -17,27 +17,58 @@
 		<iframe style="float: left; width: 100%; border: 0; height: 4em;" src="navbar.html"></iframe>
 		<div class="searchBody">
 			<div id="filtre">
-				<h3> Categorii: </h3>
+				<h3> Category: </h3>
 				<ul class="list" title="categorii">
-					<li> <a> Materiale termoconductoare</a> </li>
-					<li> <a> Hrana animale </a> </li>
-					<li> <a> Manele noi </a> </li>
-					<li> <a> Aparate electrocasnice</a> </li>
-					<li> <a> Salam </a> </li>
+					<li> Building materials </li>
+					<li> Pet food </li>
+					<li> Kitchenware </li>
+					<li> Electronics </li>
+					<li> PC accessories </li>
+					<li> Miscellaneous </li>
 				</ul>
 
-				<h3> Filtre: </h3> <!-- de bagat checkboxuri -->
+				<h3> Filters: </h3> <!-- de bagat checkboxuri -->
 				<ul class="list" title="filtre">
-					<li> <a> Pret </a> </li>
-					<li> <a> Conditie </a> </li>
+					<li>
+						<div class="dropdown">
+							<label for="inputAddress">Country</label>
+							<input list="countryList" required/>
+
+							<datalist id="countryList"/>
+								<option value="Romania"/>
+								<option value="Vaslui"/>
+								<option value="Uganda"/>
+								<option value="Zimbabwe"/>
+								<option value="United States"/>
+							</datalist>
+
+						</div>
+					</li>
+					<li>
+						<div class="dropdown">
+							<label for="inputAddress">City</label>
+							<input list="countryList" required/>
+
+							<datalist id="countryList"/>
+								<option value="England"/>
+								<option value="Londonistan"/>
+								<option value="Berlinistan"/>
+								<option value="Moldova"/>
+								<option value="Parisistan"/>
+							</datalist>
+
+						</div>
+					</li>
+					<li> Price </li>
+					<li> Condition </li>
 				</ul>
 
 				<h3> Sortare dupa: </h3>
 				<ul class="list" title="sortare">
-					<li> <a> Pret ascendent </a> </li>
-					<li> <a> Pret descendent </a> </li>
-					<li> <a> Conditie ascendent </a> </li>
-					<li> <a> Conditie descendent </a> </li>
+					<li> Price: ascending </li>
+					<li> Price: descending </li>
+					<li> Condition: ascending </li>
+					<li> Condition: descending </li>
 				</ul>
 			</div>
 
@@ -53,10 +84,12 @@
 							</div>
 							<div class="prodDesc">
 								<div class="prodDescLeft">
-									<span> Conditie </span>
-									<span> Locatie </span>
-									<span> Pret </span>
-									<span> Shipping method (price) </span>
+									<span> Condition: boxed </span>
+									<span> Country: Italy </span>
+									<span> City: Rroma </span>
+									<span> Price: 300EUR </span>
+									<span> Shipping method: Malaysia Airways </span>
+									<span> Shipping cost: 9.99RON
 								</div>
 								<div class="prodDescRight">
 									<p>
@@ -76,10 +109,12 @@
 							</div>
 							<div class="prodDesc">
 								<div class="prodDescLeft">
-									<span> Conditie </span>
-									<span> Locatie </span>
-									<span> Pret </span>
-									<span> Shipping method (price) </span>
+									<span> Condition: boxed </span>
+									<span> Country: China </span>
+									<span> City: Changsha </span>
+									<span> Price: 1.99RNB </span>
+									<span> Shipping method: China Post Service </span>
+									<span> Shipping price: 0.99RNB </span>
 								</div>
 								<div class="prodDescRight">
 									<p>
@@ -99,10 +134,12 @@
 							</div>
 							<div class="prodDesc">
 								<div class="prodDescLeft">
-									<span> Conditie </span>
-									<span> Locatie </span>
-									<span> Pret </span>
-									<span> Shipping method (price) </span>
+									<span> Condition: slightly used </span>
+									<span> Country: Romania </span>
+									<span> City: Iasi </span>
+									<span> Price: 299.99RON </span>
+									<span> Shipping method: taxi </span>
+									<span> Shipping price: 40RON </span>
 								</div>
 								<div class="prodDescRight">
 									<p>
@@ -122,10 +159,12 @@
 							</div>
 							<div class="prodDesc">
 								<div class="prodDescLeft">
-									<span> Conditie </span>
-									<span> Locatie </span>
-									<span> Pret </span>
-									<span> Shipping method (price) </span>
+									<span> Condition: new </span>
+									<span> Country: Romania </span>
+									<span> City: Iasi </span>
+									<span> Price: 14.99RON </span>
+									<span> Shipping method: submarine </span>
+									<span> Shipping price: 14.99RON </span>
 								</div>
 								<div class="prodDescRight">
 									<p>
