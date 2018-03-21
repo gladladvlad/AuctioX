@@ -1,0 +1,72 @@
+a<html>
+	<head>
+		<meta charset="utf-8">
+		<link rel="stylesheet" type="text/css" href="style.css">
+		<link rel="stylesheet" type="text/css" href="style_buy.css">
+	</head>
+
+	<body>
+		<iframe style="width: 100%; border: 0; height: 4em;" src="navbar.html"></iframe>
+
+		<div class="baseContainer">
+			<div class="title">
+				<h1>
+					Buy
+				</h1>
+				<a href="#guidelines">
+					Guidelines
+				</a>
+				<a href="tos.html">
+					Terms of service
+				</a>
+				<a href="#help">
+					Help
+				</a>
+			</div>
+
+			<div class="mainContainer">
+				<form id="sellForm">
+					<div class="containerFull">
+						<div class="containerHalf">
+							<div class="formElement">
+								<label class="formLabel" for="inputTitle">Select Payment curency</label>
+								<br>
+								<select id="selectCurrency">
+									<option>EUR</option>
+									<option>USD</option>
+									<option>RON</option>
+								</select>
+							</div>
+							<div class="formElement">
+								<label class="formLabel" for="inputCategory">Ship to</label>
+								<textarea id="textareaDesc" oninput='this.style.height = "";this.style.height = this.scrollHeight + 2 + "px"'></textarea>
+							</div>
+							<div class="formElement">
+									<label class="formLabel" for="textareaDesc">Quantity</label>
+									<br>
+									<textarea id="textareaDesc" oninput='this.style.height = "";this.style.height = this.scrollHeight + 2 + "px"'></textarea>
+								</div>
+							<div class="formElement">
+								<label class="formLabel" for="inputTags">Tags</label>
+								<br>
+								<select id="selectCurrency">
+									<option>Fast</option>
+									<option>Priority</option>
+									<option>Regular</option>
+								</select>
+							</div>
+						</div>
+						<div class="containerHalf">
+							<div class="buttonContainer">
+								<button class="button">
+									Buy
+								</button>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+
+	</body>
+</html>

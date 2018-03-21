@@ -5,6 +5,7 @@
      <link rel="stylesheet" href="style.css">
      <link rel="stylesheet" href="style_home.css">
 	 <link rel="stylesheet" href="style_product.css">
+	 <link rel="stylesheet" href="navbar.css">
     <!--
      <link rel="stylesheet" media="(max-width:911px)" href="style_s.css">
      <link rel="stylesheet" media="(min-width:911px)" href="style_m.css">
@@ -45,12 +46,44 @@
 		</div>
 		<div class="Prezentare rigth">
 		
-			<p class="Prezentare right" id="pret">Ana</p>
-			<p class="Prezentare rigth" id="stoc">in stoc</p>
-			<a href="https://www.mozilla.org/en-US/" class="Prezentare right" id="adauga" ><img class="Prezentare right" id="adauga" src="./static/png/adauga_cos.png" ></a>
-			<a href="https://www.mozilla.org/en-US/" class="Prezentare right" id="favorite"><img class="Prezentare right" id="favorite" src="./static/png/favorite.png" ></a>
+			<p class="Prezentare right" id="pret">Pret</p>
+			<img class="Prezentare rigth" id="stoc" src="./static/png/in_stoc.png" >
+			<div class="Prezentare rigth" id="adauga">
+			<button type="submit" id="searchButton" class="button" >
+				<img src="./static/png/bid.jpg" alt="Add cart"/>
+			</button>
+			</div>
+			<div class="Prezentare right" id="favorite">
+			<button type="submit" id="searchButton" class="button" href="search.html">
+				<img src="./static/png/favorite.png" alt="search"/>
+			</button>
+			</div>
 		</div>
 	</div>
+	
+	<div class="Produse_similare">
+		<div class="alt_prod"><a href="">
+                    <div class="productImage">
+                        <img src="./resource/img/macbook1.jpg" alt="produs">
+                    </div>
+                    <div class="productInformation">
+                        <h2>Macbook Pro</h2><br>
+                        <h3>$2000</h3><br>
+                        <h5>underwhelming specifications</h5>
+                    </div>
+                </a></div>
+		<div class="alt_prod"><a href="">
+                    <div class="productImage">
+                        <img src="./resource/img/thinkpadx1.jpg" alt="produs">
+                    </div>
+                    <div class="productInformation">
+                        <h2>Thinkpad X1</h2><br>
+                        <h3>$800</h3><br>
+                        <h5>i7 something something </h5>
+                    </div>
+                </a></div>
+	</div>
+	
 	<div class="Specificatii">
 		<div class="spec">
 			<h1>Specification</h1>

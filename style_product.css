@@ -23,26 +23,31 @@ body{
 	text-align : center;
 	flex-grow: 1;
 	color : red;
+	display:felx;
 }
 #stoc{
 	font-width : bold;
 	float : center;
 	flex-grow: 1;
 	color : blue;
+	display:felx;
 }
 #adauga{
 	size: auto;
 	flex-grow: 1;
+	display:felx;
 }
 #favorite{
 	size: auto;
 	flex-grow: 1;
+	display:felx;
 }
 
 .Prezentare{
 	--border: 1px solid black;
 	display:flex;
 	width : 100%;
+	max-height: 100%;
 }
 .left{
 	display:flex;
@@ -78,4 +83,23 @@ body{
 	display:flex;
 	width: 50%;
 	justify-content: center;
+}
+
+.Produse_similare{
+	display: flex;
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 2em;
+}
+
+.alt_prod{
+	display: flex;
+    width: 20em;
+    min-width: 40%;
+    flex-grow: 1;
+    margin: 0.5em;
+
+    border: 2px solid var(--inputbg);
+    border-radius: 0.3em;
 }
