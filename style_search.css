@@ -70,7 +70,7 @@ body {
 /*#content > ul > li { */
 .prod {
 	display: flex;
-	flex-direction: row;
+	flex-direction: column;
 
 	border-bottom: 1px solid var(--colorMain);
 	width: 100%;
@@ -79,20 +79,29 @@ body {
 	padding: 1em;
 }
 
-.prod > .prodText > .prodTitle > h3 {
+.prod > .prodContent {
+	display: flex;
+	flex-direction: row;
+}
+
+.prod > .prodContent > .prodTitle > h3 {
 	padding-top: 0.5em;
 	font-style: normal;
 	font-size: 125%;
 }
 
-.prod > .prodText > .prodDesc {
+.prodTitle {
+	text-align: center;
+}
+
+.prod > .prodContent > .prodDesc {
 	padding-left: 1em;
 
 	display: flex;
 	flex-direction: row;
 }
 
-.prod > .prodText > .prodDesc > .prodDescLeft {
+.prod > .prodContent > .prodDesc > .prodDescLeft {
 	display: flex;
 	flex-direction: column;
 	width: 43%;
@@ -101,13 +110,13 @@ body {
 	border-right: 1px solid var(--colorMain);
 }
 
-.prod > .prodText > .prodDesc > .prodDescRight {
+.prod > .prodContent > .prodDesc > .prodDescRight {
 	width: 43%;
 	padding-left: 2%;
 	/* flex-grow: 1; */
 }
 
-.prod > .prodImage {
+.prod > .prodContent > .prodImage {
 	max-width: 25%;
 	max-height: 50%;
 	object-fit: contain;
@@ -120,7 +129,7 @@ body {
 	*/
 }
 
-.prod > .prodImage > img {
+.prod > .prodContent > .prodImage > img {
 	width: 100%;
 	margin: auto;
 	align-items: center;
