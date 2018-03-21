@@ -125,6 +125,10 @@ body {
 	color: white;
 }
 
+.quickCriteriaDiv > a, .quickCriteriaLastDiv > a{
+	margin-left: 0.5em;
+}
+
 .quickCriteria > .quickCriteriaDiv {
 	padding-right: 1em;
 	margin-right: 1em;
@@ -217,7 +221,7 @@ body {
 /* END produs */
 /* END lista de produse */
 
-@media only screen and (max-width: 844px) {
+@media only screen and (max-width: 917px) {
 	#content {
 		width: 77.5%;
 	}
@@ -227,7 +231,7 @@ body {
 	}
 }
 
-@media only screen and (max-width: 764px) {
+@media only screen and (max-width: 830px) {
 	.quickCriteria {
 		display:flex;
 		justify-content: center;
