@@ -17,46 +17,118 @@
 		<iframe style="float: left; width: 100%; border: 0; height: 4em;" src="navbar.html"></iframe>
 		<div class="searchBody">
 			<div id="filtre">
-				<h3> Categorii: </h3>
-				<ul class="list" title="categorii">
-					<li> <a> Materiale termoconductoare</a> </li>
-					<li> <a> Hrana animale </a> </li>
-					<li> <a> Manele noi </a> </li>
-					<li> <a> Aparate electrocasnice</a> </li>
-					<li> <a> Salam </a> </li>
+				<h3> Category: </h3>
+				<ul class="list">
+					<li><a href="search.html"> Building materials </a></li>
+					<li><a href="search.html"> Pet food </a></li>
+					<li><a href="search.html"> Kitchenware </a></li>
+					<li><a href="search.html"> Electronics </a></li>
+					<li><a href="search.html"> PC accessories </a></li>
+					<li><a href="search.html"> Miscellaneous </a></li>
 				</ul>
 
-				<h3> Filtre: </h3> <!-- de bagat checkboxuri -->
-				<ul class="list" title="filtre">
-					<li> <a> Pret </a> </li>
-					<li> <a> Conditie </a> </li>
+				<h3> Filters: </h3> <!-- de bagat checkboxuri -->
+				<ul class="list">
+					<li>
+						<div class="dropdown">
+							<label for="inputAddress">Country</label>
+							<input list="countryList" required/>
+
+							<datalist id="countryList"/>
+								<option value="Romania"/>
+								<option value="Vaslui"/>
+								<option value="Uganda"/>
+								<option value="Zimbabwe"/>
+								<option value="United States"/>
+							</datalist>
+
+						</div>
+					</li>
+					<li>
+						<div class="dropdown">
+							<label for="inputAddress">City</label>
+							<input list="countryList" required/>
+
+							<datalist id="countryList"/>
+								<option value="England"/>
+								<option value="Londonistan"/>
+								<option value="Berlinistan"/>
+								<option value="Moldova"/>
+								<option value="Parisistan"/>
+							</datalist>
+
+						</div>
+					</li>
+					<li> Price </li>
+					<li> Condition </li>
 				</ul>
 
-				<h3> Sortare dupa: </h3>
-				<ul class="list" title="sortare">
-					<li> <a> Pret ascendent </a> </li>
-					<li> <a> Pret descendent </a> </li>
-					<li> <a> Conditie ascendent </a> </li>
-					<li> <a> Conditie descendent </a> </li>
+				<h3> Sort for: </h3>
+				<ul class="list">
+					<li>
+						<div class="radio">
+							<div class="radioItem">
+								<input type="radio" name="priceSort" value="asc"> Price: ascending </input>
+							</div>
+							<div class="radioItem">
+								<input type="radio" name="priceSort" value="desc"> Price: descending </input>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="radio">
+							<div class="radioItem">
+								<input type="radio" name="condSort" value="asc"> Condition: ascending </input>
+							</div>
+							<div class="radioItem">
+								<input type="radio" name="condSort" value="desc"> Condition: descending </input>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="radio">
+							<div class="radioItem">
+								<input type="radio" name="dateSort" value="asc"> Date: ascending </input>
+							</div>
+							<div class="radioItem">
+								<input type="radio" name="dateSort" value="desc"> Date: descending </input>
+							</div>
+						</div>
+					</li>
 				</ul>
 			</div>
 
 			<div id="content">
+				<div class="quickCriteria">
+					<div class="quickCriteriaDiv">
+						<span> Sort by: </span>
+						<a href="search.html"> Relevance </a>
+						<a href="search.html"> Date </a>
+					</div>
+					<div class="quickCriteriaDiv">
+						<span> Listing: </span>
+						<a href="search.html"> All</a>
+						<a href="search.html"> Auctions</a>
+						<a href="search.html"> Insta-buy</a>
+					</div>
+				</div>
 				<ul>
 					<li class="prod">
-						<div class="prodImage">
-							<img src="./resource/img/nes.jpg" />
+						<div class="prodTitle">
+							<a href="product.html"><h3> Nintendo Entertainment System UNOPENED NEW </h3></a>
 						</div>
-						<div class="prodText">
-							<div class="prodTitle">
-								<h3> Nintendo Entertainment System UNOPENED NEW </h3>
+						<div class="prodContent">
+							<div class="prodImage">
+								<img src="./resource/img/nes.jpg" />
 							</div>
 							<div class="prodDesc">
 								<div class="prodDescLeft">
-									<span> Conditie </span>
-									<span> Locatie </span>
-									<span> Pret </span>
-									<span> Shipping method (price) </span>
+									<span> Condition: boxed </span>
+									<span> Country: Italy </span>
+									<span> City: Rroma </span>
+									<span> Price: 300EUR </span>
+									<span> Shipping method: Malaysia Airways </span>
+									<span> Shipping cost: 9.99RON
 								</div>
 								<div class="prodDescRight">
 									<p>
@@ -67,19 +139,21 @@
 						</div>
 					</li>
 					<li class="prod">
-						<div class="prodImage">
-							<img src="./resource/img/fam.png" /> 
+						<div class="prodTitle">
+							<a href="product.html"><h3> Family Computer </h3></a>
 						</div>
-						<div class="prodText">
-							<div class="prodTitle">
-								<h3> Family Computer </h3>
+						<div class="prodContent">
+							<div class="prodImage">
+								<img src="./resource/img/fam.png" /> 
 							</div>
 							<div class="prodDesc">
 								<div class="prodDescLeft">
-									<span> Conditie </span>
-									<span> Locatie </span>
-									<span> Pret </span>
-									<span> Shipping method (price) </span>
+									<span> Condition: boxed </span>
+									<span> Country: China </span>
+									<span> City: Changsha </span>
+									<span> Price: 1.99RNB </span>
+									<span> Shipping method: China Post Service </span>
+									<span> Shipping price: 0.99RNB </span>
 								</div>
 								<div class="prodDescRight">
 									<p>
@@ -90,19 +164,21 @@
 						</div>
 					</li>
 					<li class="prod">
-						<div class="prodImage">
-							<img src="./resource/img/cell.jpg" />
+						<div class="prodTitle">
+							<a href="product.html"><h3> Manele noi </h3></a>
 						</div>
-						<div class="prodText">
-							<div class="prodTitle">
-								<h3> Manele noi </h3>
+						<div class="prodContent">
+							<div class="prodImage">
+								<img src="./resource/img/cell.jpg" />
 							</div>
 							<div class="prodDesc">
 								<div class="prodDescLeft">
-									<span> Conditie </span>
-									<span> Locatie </span>
-									<span> Pret </span>
-									<span> Shipping method (price) </span>
+									<span> Condition: slightly used </span>
+									<span> Country: Romania </span>
+									<span> City: Iasi </span>
+									<span> Price: 299.99RON </span>
+									<span> Shipping method: taxi </span>
+									<span> Shipping price: 40RON </span>
 								</div>
 								<div class="prodDescRight">
 									<p>
@@ -113,19 +189,21 @@
 						</div>
 					</li>
 					<li class="prod">
-						<div class="prodImage">
-							<img src="./resource/img/walkman.jpg" />
+						<div class="prodTitle">
+							<a href="product.html"><h3> The Walking Men 2: All DLC</h3></a>
 						</div>
-						<div class="prodText">
-							<div class="prodTitle">
-								<h3> The Walking Men 2: All DLC</h3>
+						<div class="prodContent">
+							<div class="prodImage">
+								<img src="./resource/img/walkman.jpg" />
 							</div>
 							<div class="prodDesc">
 								<div class="prodDescLeft">
-									<span> Conditie </span>
-									<span> Locatie </span>
-									<span> Pret </span>
-									<span> Shipping method (price) </span>
+									<span> Condition: new </span>
+									<span> Country: Romania </span>
+									<span> City: Iasi </span>
+									<span> Price: 14.99RON </span>
+									<span> Shipping method: submarine </span>
+									<span> Shipping price: 14.99RON </span>
 								</div>
 								<div class="prodDescRight">
 									<p>

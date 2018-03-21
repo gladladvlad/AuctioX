@@ -1,0 +1,95 @@
+@media only screen and (min-width: 800px) {
+    .mainContainer {
+        width: 800px;
+        margin: auto;
+    }
+}
+
+.mainContainer{
+    background-color: white;
+}
+
+#signinForm{
+    background-color: white;
+}
+
+.formLabel{
+    font-size: 1.15em;
+    font-weight: bold;
+
+    color: var(--colorMainDark);
+}
+
+.formElement{
+    width: 90%;
+    margin-top: 2em;
+    margin-bottom: 5%;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+#inputSearch {
+    min-height: 1.5em;
+    width: 100%;
+    padding: 0.5em 0.5em 0.5em 0.5em;
+
+    background-color: var(--inputbg);
+    border: 1px solid gray;
+    border-radius: 3px;
+    font-size: 1.15em;
+}
+
+.buttonContainer{
+    min-width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.button {
+    margin: auto;
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+    min-width: 6em;
+    padding: 0.25em 0.5em 0.25em 0.5em;
+    width: 50%;
+    height: 2em;
+
+    font-size: 1.5em;
+    background-color: var(--btn1);
+    border: 0;
+    color: var(--lnk1);
+}
+
+.button:hover {
+    background-color: var(--btn1_hover);
+}
+
+.button:active {
+    background-color: var(--btn1_active);
+}
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="style.css">
+    </head>
+
+    <body>
+        <iframe style="width: 100%; border: 0; height: 4em;" src="navbar.html"></iframe>
+
+        <div class="baseContainer">
+
+            <div class="title">
+                <h1>
+                    This is a template
+                </h1>
+            </div>
+
+            <div class="mainContainer">
+                Content Goes Here !
+            </div>
+
+        </div>
+
+
+    </body>
+</html>

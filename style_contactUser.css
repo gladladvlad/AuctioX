@@ -1,6 +1,6 @@
-@media only screen and (min-width: 500px) {
+@media only screen and (min-width: 800px) {
     .mainContainer {
-        width: 500px;
+        width: 800px;
         margin: auto;
     }
 }
@@ -52,7 +52,8 @@
 	min-width: 6em;
     padding: 0.25em 0.5em 0.25em 0.5em;
     width: 50%;
-    height: 2em;
+    min-height: 2em;
+    height: auto;
 
     font-size: 1.5em;
     background-color: var(--btn1);
@@ -66,4 +67,12 @@
 
 .button:active {
     background-color: var(--btn1_active);
+}
+
+.formElement > textarea {
+	max-width: 100%;
+	min-width: 100%;
+	min-height: 10em;
+	padding: 0.5em;
+	border-radius: 3px;
 }
