@@ -37,6 +37,7 @@ body {
 
 #filtre > ul {
 	margin-left: 5%;
+	margin-right: 5%;
 	color: var(--colorLink);
 	list-style-type: none;
 	padding-bottom: 1em;
@@ -48,29 +49,48 @@ body {
 	color: var(--colorLink);
 }
 
-#filtre > h3 {
+#filtre h3, #filtre h4 {
 	font-size: 100%;
+	text-decoration: none;
+	font-weight: normal;
+}
+
+#filtre > h3 {
 	color: var(--colorMainLighter);
 }
 
-.list > li > .dropdown {
+.checkboxPossibilities {
+	display: flex;
+	flex-direction: column;
+}
 
+.range {
+	display: flex;
+	flex-direction: column;
+}
+
+.range > .rangeInput {
+	display:flex;
+	flex-direction: row;
+}
+
+.range > .rangeInput > input {
+	width: 40%;
+}
+
+.range > .rangeInput > span {
+	width: 20%;
+	text-align: center;
 }
 
 .list > li > .dropdown > input {
 	resize: horizontal;
-	width: 95%;
-	
-	margin-right: 1em;
+	width: 100%;
 }
 
 .list > li > .radio {
 	display: flex;
 	flex-direction: column;
-}
-
-.list > li > .radio > .radioItem {
-
 }
 
 /* END meniu' din stanga */
@@ -87,6 +107,7 @@ body {
 
 .quickCriteria {
 	display:flex;
+	justify-content: center;
 
 	margin-left: 1em;
 	margin-right: 1em;
@@ -96,9 +117,10 @@ body {
 	padding-bottom: 0.25em;
 
 	background-color: var(--colorMainLight);
+
 }
 
-.quickCriteria > .quickCriteriaDiv * {
+.quickCriteria > .quickCriteriaDiv *, .quickCriteria > .quickCriteriaLastDiv * {
 	font-size: 125%;
 	color: white;
 }
@@ -107,6 +129,11 @@ body {
 	padding-right: 1em;
 	margin-right: 1em;
 	border-right: 1px solid white;
+}
+
+.quickCriteria > .quickCriteriaLastDiv {
+	padding-right: 1em;
+	margin-right: 1em;
 }
 
 /* produs */
@@ -143,6 +170,8 @@ body {
 
 	display: flex;
 	flex-direction: row;
+
+	line-height: 1.6;
 }
 
 .prod > .prodContent > .prodDesc > .prodDescLeft {
