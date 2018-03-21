@@ -4,6 +4,7 @@
         <meta charset="utf-8">
         <link rel="stylesheet" type="text/css" href="style.css">
         <link rel="stylesheet" type="text/css" href="style_advancedSearch.css">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
     </head>
 
     <body>
@@ -20,32 +21,36 @@
             <div class="mainContainer">
 
                 <form id="searchForm">
-                    <div class="formElement" id="searchField">
-                        <input id="inputSearch" type="search" list="productSuggestion" placeholder="What are you looking for?"/>
+                    <div class="section" id="product">
+                        <label>Product</label>
 
-                        <datalist id="productSuggestion"/>
-                            <option value="Audi A8">
-                            <option value="Acer Laptop">
-                            <option value="Sennheiser Headphones">
-                            <option value="TV">
-                        </datalist>
+                        <div class="formElement" id="searchField">
+                            <input id="inputSearch" type="search" list="productSuggestion" placeholder="What are you looking for?"/>
+
+                            <datalist id="productSuggestion"/>
+                                <option value="Audi A8">
+                                <option value="Acer Laptop">
+                                <option value="Sennheiser Headphones">
+                                <option value="TV">
+                            </datalist>
+                        </div>
+
+                        <div class="formElement" id="categoryField">
+                            <input id="inputSearch" list="categories" placeholder="Select a category"/>
+
+                            <datalist id="categories"/>
+                                <option value="Cars">
+                                <option value="Clothing">
+                                <option value="Home & Outdoors">
+                                <option value="Electronics">
+                            </datalist>
+                        </div>
+
+                        <div class="formElement"><br>
+                            <input id="inputTags" type="text" placeholder="Add tags. e.g. WW2"/>
+                        </div>
+
                     </div>
-
-                    <div class="formElement" id="categoryField">
-                        <input id="inputSearch" list="categories" placeholder="Select a category"/>
-
-                        <datalist id="categories"/>
-                            <option value="Cars">
-                            <option value="Clothing">
-                            <option value="Home & Outdoors">
-                            <option value="Electronics">
-                        </datalist>
-                    </div>
-
-                    <div class="formElement"><br>
-                        <input id="inputTags" type="text" placeholder="Add tags. e.g. WW2"/>
-                    </div>
-
 
 
                     <div class="formElement" id="conditionField">
@@ -69,9 +74,9 @@
 
                     
 
-                    <div class="formElement" id="locationField">
+                    <div class="section" id="locationField">
 
-                        <div class="formElementInput" id="countryField">
+                        <div class="formElement" id="countryField">
                             <br>
                             <input id="inputCountry" list="countryList" placeholder="Select a country"/>
 
@@ -81,7 +86,7 @@
                             </datalist>
                         </div>
 
-                        <div class="formElementInput" id="stateField">
+                        <div class="formElement" id="stateField">
                             <br>
                             <input id="inputState" list="stateList" type="text" placeholder="Select a state"/>
 
@@ -94,7 +99,7 @@
 
                         </div>
 
-                        <div class="formElementInput" id="cityField">
+                        <div class="formElement" id="cityField">
                             <br>
                             <input id="inputCity" list="cityList" placeholder="Select a city"/>
 
@@ -119,7 +124,6 @@
                              <select id="selectCurrency">
                                 <option>USD</option>
                                 <option>EUR</option>
-
                                 <option>RON</option>
                             </select>
 
@@ -127,9 +131,9 @@
                         </label><br>
                     </div>
 
-                    <div class="formElement" id="listingType">
+                    <div class="formElement" id="listing">
                         <label>Listing type</label><br>
-                        <input type="radio" name="listingType" id="listingBuyNow" checked> Buy it now<br>
+                        <input type="radio" name="listingType" id="listingBuyNow" checked>Buy it now<br>
                         <input type="radio" name="listingType" id="listingAuction">Auction<br>
                     </div>
 
