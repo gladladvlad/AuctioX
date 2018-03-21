@@ -33,10 +33,12 @@ body {
 .baseContainer {
     height: auto;
     min-height: 100%;
+
+    background-color: var(--background);
 }
 
 .title {
-    padding: 1em;
+    padding: 0.5em 1em 1em 1em;
     display: flex;
     flex-wrap: wrap;
     align-items: baseline;
@@ -45,12 +47,27 @@ body {
     color: white;
 }
 
+@media only screen and (max-width: 768px) {
+    .title h1 {
+        margin: 0;
+        font-size: 1.5em;
+    }
+}
+
 .title > * {
     margin-right: 1em;
 }
 
-.title > a {
+.title a {
     color: white;
+}
+
+.titleLevel {
+    margin: 0.25em;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
 }
 
 @media only screen and (min-width: 768px) {
@@ -76,4 +93,171 @@ h3 {
 
     text-indent: 2em;
     text-align: justify;
+}
+
+.containerFull {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+
+.containerHalf {
+    display: flex;
+    width: 50%;
+    flex-wrap: wrap;
+    flex-grow: 1;
+    align-content: flex-start;
+}
+
+@media only screen and (max-width: 1024px) {
+    .containerFull {
+        flex-direction: row;
+    }
+
+    .containerHalf {
+        width: 100%;
+    }
+}
+
+.button {
+    padding: 0.25em 0.5em 0.25em 0.5em;
+    width: 50%;
+    height: 2em;
+
+    font-size: 1.5em;
+    background-color: var(--btn1);
+    border: 0;
+    color: var(--lnk1);
+}
+
+.button:hover {
+    background-color: var(--btn1_hover);
+}
+
+.button:active {
+    background-color: var(--btn1_active);
+}
+
+#photoShowcase {
+    height: 30em;
+    width: 50%;
+
+    display: flex;
+    flex-direction: row;
+    flex-shrink: 1;
+
+    background-color: #080808;
+}
+
+#photoCurrent {
+    height: 90%;
+    display: flex;
+    justify-content: center;
+
+}
+
+#photoCurrent img {
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: contain;
+    flex-shrink: 1;
+}
+
+#photoList {
+    height: 10%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+
+    background-color: #101010;
+}
+
+#photoList img {
+    height: 100%;
+    opacity: 0.5;
+}
+
+#photoList img:hover {
+    opacity: 1;
+}
+
+#productControlPanel {
+    padding: 0.5em;
+    display: flex;
+    flex-direction: row;
+    height: 30em;
+}
+
+#productGeneralInfo {
+    margin: 0;
+    padding: 0.5em;
+    background-color: var(--background);
+    width: 100%;
+}
+
+#productGeneralInfo td:last-of-type {
+    font-weight: bold;
+}
+
+#bidPanel {
+    border: 1px solid green;
+}
+
+#bidInfo {
+    padding: 1em;
+    width: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+
+    border: 1px solid blue; 
+}
+
+#currentBid {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+}
+
+#currentBid > * {
+    margin-left: 0.5em;
+}
+
+#currentBid h3 {
+
+}
+
+#bitControl {
+    width: 100%;
+    height: 3em;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+
+    border: 1px solid red;   
+}
+
+#bitControl input {
+    width: 50%;
+    height: 100%;
+
+    background-color: var(--inputbg);
+    border: 1px solid gray;
+    font-size: 1.5em;
+}
+
+#bitControl button {
+        width: 50%;
+    }
+
+@media only screen and (max-width: 1024px) {
+
+    #bitControl input {
+        width: 100%;
+    }
+
+    #bitControl button {
+        width: 100%;
+    }
 }
