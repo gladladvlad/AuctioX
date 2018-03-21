@@ -88,6 +88,11 @@ body{
     border-radius: 0.3em;
 }
 
+.homeProduct a {
+    text-decoration: none;
+    color: black;
+}
+
 .productImage{
     padding: 1em;
     display: flex;
@@ -107,7 +112,15 @@ body{
     width: calc(50% - 2em);
     margin: auto;
     padding: 0.5vw;
-    text-align: left;
+    display: flex;
+    justify-content: flex-start;
+    align-content: center;
+    flex-direction: column;
+}
+
+.productInformation * {
+    padding: 1%;
+    text-decoration: none;
 }
 
 .footer{
@@ -143,18 +156,18 @@ body{
 /*font size*/
 
 /* Product title */
-.productInformation > p1{
+.productInformation > h2{
     font-size: calc(1.5vw + 0.7em);
 }
 
 /* Product price */
-.productInformation > p2{
+.productInformation > h3{
     font-size: calc(1.4vw + 0.7em);
     line-height: 1.5;
 }
 
 /* Product description */
-.productInformation > p3{
+.productInformation > h4{
     font-size: calc(0.6vw + 0.5em);
 }
 
@@ -166,15 +179,15 @@ body{
     .section > h4{
     font-size: 2.3em;
 }
-.productInformation > p1{
+.productInformation > h2{
     font-size: 1.8em;
 }
 
-.productInformation > p2{
+.productInformation > h3{
     font-size: 1.7em;
 }
 
-.productInformation > p3{
+.productInformation > h5{
     font-size: 1em;
 }
 
