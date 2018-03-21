@@ -1,3 +1,4 @@
+/* chestii mai globale */
 :root {
 	--colorLink:#0066CC;
 }
@@ -23,6 +24,9 @@ body {
 	float: left;
 }
 
+/* END chestii mai globale */
+
+/* meniu' din stanga */
 #filtre {
 	width: 15%;
 }
@@ -36,7 +40,9 @@ body {
 	font-size: 100%;
 	color: var(--colorMain);
 }
+/* END meniu' din stanga */
 
+/* lista de produse */
 #content {
 	width: 70%;
 }
@@ -45,7 +51,11 @@ body {
 	list-style-type: none;
 }
 
-#content > ul > li {
+
+/* produs */
+
+/*#content > ul > li { */
+.prod {
 	display: flex;
 	flex-direction: row;
 
@@ -56,26 +66,46 @@ body {
 	padding: 1em;
 }
 
-.imgContainer {
+.prod > .prodText > .prodTitle > h3 {
+	padding-left: 1em;
+	padding-top: 0.5em;
+	font-style: normal;
+	font-size: 125%;
+}
+
+.prod > .prodText > .prodDesc {
+	padding-left: 1em;
+
+	display: flex;
+	flex-direction: row;
+}
+
+.prod > .prodText > .prodDesc > .prodDescLeft {
+	display: flex;
+	flex-direction: column;
+	width: 50%;
+	/* flex-grow: 1; */
+}
+
+.prod > .prodText > .prodDesc > .prodDescRight {
+	width: 50%;
+	/* flex-grow: 1; */
+}
+
+.prod > .prodImage {
 	max-width: 25%;
 	max-height: 100%;
 	object-fit: contain;
 }
 
-.imgContainer > img {
+.prod > .prodImage > img {
 	width: 100%;
-	/*
-	min-width: 0;
+
+	/*min-width: 0;
 	min-height: 0;
 	object-fit: contain;
 	width: 33%;
-	flex-grow: 2;
-	*/
+	flex-grow: 2;*/
 }
-
-#content > ul > li > h3 {
-	font-style: normal;
-	font-size: 100%;
-	flex-grow: 4;
-}
-
+/* END produs */
+/* END lista de produse */

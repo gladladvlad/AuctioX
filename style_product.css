@@ -1,5 +1,5 @@
 body{
-	background-color: blue;
+	
 }
 .Pagina{
     border: 1px solid black;
@@ -40,7 +40,7 @@ body{
 }
 
 .Prezentare{
-	border: 1px solid black;
+	--border: 1px solid black;
 	display:flex;
 	width : 100%;
 }
@@ -56,26 +56,26 @@ body{
 
 .Specificatii{
 	display: flex;
-	width: 100%;
-	--border: 1px solid black;
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 1em;
 }
-.generale{
+
+.spec{
+	display: flex;
+    --width: 20em;
+    min-width: 50%;
+    flex-grow: 1;
+    margin: 0.5em;
+
+    border: 2px solid var(--inputbg);
+    border-radius: 0.3em;
+}
+
+
+.spec p{
 	display:flex;
-	flex-direction:column;
-	border: 1px solid black;
-	width: 100%;
-}
-#Categorie{
-	display: flex;
-	font-size: 15;
-	flex-direction: row;
-	width: 100%;
-	flex-grow:1;
-}
-#Categorie p{
-	display: flex;
-	font-size: 15;
-	--flex-direction: row;
-	width: 100%;
-	flex-grow:1;
+	width: 50%;
+	justify-content: center;
 }
