@@ -27,14 +27,12 @@
 }
 
 body {
-    background-color: var(--background)
+    background-color: var(--background);
 }
 
 .baseContainer {
     height: auto;
     min-height: 100%;
-
-    background-color: var(--background);
 }
 
 .title {

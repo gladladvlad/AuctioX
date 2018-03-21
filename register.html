@@ -3,11 +3,7 @@
  <head>
      <meta charset="utf-8">
      <link rel="stylesheet" href="style.css">
-     <link rel="stylesheet" href="style_createAuction.css">
-    <!--
-     <link rel="stylesheet" media="(max-width:911px)" href="style_s.css">
-     <link rel="stylesheet" media="(min-width:911px)" href="style_m.css">
-    -->
+     <link rel="stylesheet" href="style_register.css">
 
      <title> AuctioX </title>
  </head>
@@ -15,75 +11,92 @@
  <body>
     <iframe style="width: 100%; border: 0; height: 4em;" src="navbar.html"></iframe>
 
-    <div class="mainContainer">
-            <div class="title">
-                <h1>
-                    Register
-                </h1>
-                <a href="#guidelines">
-                    Guidelines
-                </a>
-                <a href="#tos">
-                    Terms of service
-                </a>
-                <a href="#help">
-                    Help
-                </a>
-            </div>
+    <div class="baseContainer">
 
-        <form id="registerForm">
-            <div class="formElement" id="emailField">
-                <label class="formLabel" for="inputEmail">Email</label>
-                <small>This will be used for validating your account.</small><br>
-                <input id="inputEmail" type="email"/>
-            </div>
+        <div class="title">
+                    <h1>
+                        Register
+                    </h1>
+                    <a href="#guidelines">
+                        Guidelines
+                    </a>
+                    <a href="#tos">
+                        Terms of service
+                    </a>
+                    <a href="#help">
+                        Help
+                    </a>
+                </div>
 
-            <div class="formElement" id="usernameField">
-                <label class="formLabel" for="inputUsername">Username</label>
-                <small>Must be between 4 and 16 characters.</small><br>
-                <input id="inputUsername" type="text"/>
-            </div>
+        <div class="mainContainer">
 
-            <div class="formElement" id="passwordField">
-                <label class="formLabel" for="inputPassowrd">Password</label>
-                <small>Must be between 8 and 32 characters that are alphanumeric or , . + - _ ? !</small><br>
-                <input id="inputPassword" type="password"/><br>
-                <label class="formLabel" for="inputConfirmPassowrd">Confirm Password</label>
-                <br>
-                <input id="inputConfirmPassword" type="password"/>
-            </div>
+            <form id="registerForm">
+                <label class="registrationLabel"">User information</label>
 
-            <div class="formElement">
+                <div class="formElement" id="emailField">
+                    <label class="formLabel" for="inputEmail">Email</label>
+                    <small>This will be used for validating your account.</small><br>
+                    <input id="inputEmail" type="email" required/>
+                </div>
+
+                <div class="formElement" id="usernameField">
+                    <label class="formLabel" for="inputUsername">Username</label>
+                    <small>Must be between 4 and 16 characters.</small><br>
+                    <input id="inputUsername" type="text" required/>
+                </div>
+
+                <div class="formElement" id="passwordField">
+                    <label class="formLabel" for="inputPassowrd">Password</label>
+                    <small>Must be between 8 and 32 characters that are alphanumeric or , . + - _ ? !</small><br>
+                    <input id="inputPassword" type="password" required/><br>
+                    <label class="formLabel" for="inputConfirmPassowrd">Confirm Password</label>
+                    <br>
+                    <input id="inputConfirmPassword" type="password" required/>
+                </div>
                 
-            </div>
-            
-        </form>
+            </form>
 
-        <form id="userInfoForm">
-            <div class="formElement" id="nameField">
-                <label class="formLabel" for="inputName">Full Name</label>
-                <small>e.g. John Salesman Doe</small><br>
-                <input id="inputEmail" type="text"/>
-            </div>
+            <form id="userInfoForm">
+                <label class="userInfoLabel">Contact information</label>
 
-            <div class="formElement" id="telField">
-                <label class="formLabel" for="inputTel">Telephone number</label>
-                <br>
-                <input id="inputTel" type="tel"/>
-            </div>
+                <div class="formElement" id="nameField">
+                    <label class="formLabel" for="inputName">Full Name</label>
+                    <small>e.g. John Salesman Doe</small><br>
+                    <input id="inputEmail" type="text" required/>
+                </div>
 
-            <div class="formElement" id="locationField">
-                <label class="formLabel" for="inputAddress">Country</label>
-                <br>
-                <input id="inputTel" type="text"/>
-            </div>
+                <div class="formElement" id="telField">
+                    <label class="formLabel" for="inputTel">Telephone number</label>
+                    <br>
+                    <input id="inputTel" type="tel" required/>
+                </div>
+            </form>
 
+            <form id="locationForm">
+                <label class="locationLabel">Location</label>
+                <small>This will be used as the shipping/billing address.</small><br>
 
+                <div class="formElement" id="locationField">
+                    <label class="formLabel" for="inputAddress">Country</label>
+                    <br>
+                    <input id="inputCountry" type="text" required/>
+                </div>
 
-        </form>
+                <div class="formElement" id="locationField">
+                    <label class="formLabel" for="inputAddress">Country</label>
+                    <br>
+                    <input id="inputCountry" type="text" required/>
+                </div>
 
+                <div class="formElement" id="locationField">
+                    <label class="formLabel" for="inputAddress">Country</label>
+                    <br>
+                    <input id="inputCountry" type="text" required/>
+                </div>
+            </form>
+
+        </div>
     </div>
-
 
 
  </body>

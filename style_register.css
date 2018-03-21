@@ -1,35 +1,28 @@
-body {
-	background-color: gray;
-}
-
 small {
 	margin-left: 0.5em;
 	color: var(--colorMainLight);
 }
 
-.mainContainer {
-	margin: 0 00% 0 00%;
-	height: auto;
-	min-height: 100%;
+.formLabel {
+	font-size: 1.5em;
+	font-weight: bold;
 
-	background-color: white;
+	color: var(--colorMainDark);
 }
 
-.title {
-	margin-bottom: 1em;
-	padding: 1em;
-	display: flex;
-	flex-wrap: wrap;
-	align-items: baseline;
-
-	background-color: var(--colorMain);
-	color: white;
+.formElement {
+	padding: 1em 0.25em 1em 0.25em;
+	width: 100%;
+	
 }
 
-.title > * {
-	margin-right: 1em;
-}
+.formElement > input, .formElement select, .formElement textarea, .formElement table, .formPhotosPreview {
+	margin: 0.5em 0.25em 0.25em 1em;
+	min-height: 1.5em;
+	width: 90%;
 
-.title > a {
-	color: white;
+	background-color: var(--inputbg);
+	border: 1px solid gray;
+	border-radius: 3px;
+	font-size: 1.15em;
 }
