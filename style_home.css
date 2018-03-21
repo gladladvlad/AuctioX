@@ -46,7 +46,7 @@
 
 .home{
     width: 97%;
-    max-width: 70em;
+    max-width: 1000px;
     height: auto;
     margin-left: auto;
     margin-right: auto;
@@ -61,7 +61,7 @@
     width: 100%;
     justify-content: center;
     flex-wrap: wrap;
-    margin-bottom: 1em;
+    margin-bottom: 2em;
 }
 
 .homeProduct:first-of-type {
@@ -169,7 +169,7 @@
 /* Product price */
 .productInformation > h3{
     font-size: calc(1.4vw + 0.7em);
-    line-height: 1.5;
+    line-height: 0.5em;
 }
 
 /* Product description */
@@ -181,10 +181,12 @@
     font-size: calc(0.8vw + 0.7em );
 }
 
-@media only screen and (min-width: 70em) {
-    .section > h4{
+@media only screen and (min-width: 1000px) {
+
+.section > h3{
     font-size: 2.3em;
 }
+
 .productInformation > h2{
     font-size: 1.8em;
 }
@@ -193,7 +195,7 @@
     font-size: 1.7em;
 }
 
-.productInformation > h5{
+.productInformation > h4{
     font-size: 1em;
 }
 
@@ -202,7 +204,7 @@
 }
 }
     
-@media only screen and (max-width: 70em) {
+@media only screen and (max-width: 1000px) {
 #homeBarRight{
     display: none;
 }

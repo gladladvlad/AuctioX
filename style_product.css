@@ -23,26 +23,31 @@ body{
 	text-align : center;
 	flex-grow: 1;
 	color : red;
+	display:felx;
 }
 #stoc{
 	font-width : bold;
 	float : center;
 	flex-grow: 1;
 	color : blue;
+	display:felx;
 }
 #adauga{
 	size: auto;
 	flex-grow: 1;
+	display:felx;
 }
 #favorite{
 	size: auto;
 	flex-grow: 1;
+	display:felx;
 }
 
 .Prezentare{
 	--border: 1px solid black;
 	display:flex;
 	width : 100%;
+	max-height: 100%;
 }
 .left{
 	display:flex;
