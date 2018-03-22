@@ -1,7 +1,7 @@
 /* chestii mai globale */
 :root {
-	--colorLink: #ffccff;
-    --seminavbg: #14141B;
+	--colorLink: white;
+    --seminavbg: var(--colorMain);
 }
 
 * {
@@ -50,13 +50,16 @@ body {
 }
 
 #filtre h3, #filtre h4 {
-	font-size: 100%;
+	font-size: 120%;
 	text-decoration: none;
 	font-weight: normal;
 }
 
 #filtre > h3 {
-	color: var(--colorMainLighter);
+	padding-top: 0.5em;
+	padding-left: 1em;
+	color: white;
+	text-align: center;
 }
 
 .checkboxPossibilities {
@@ -116,7 +119,7 @@ body {
 	padding-top: 0.25em;
 	padding-bottom: 0.25em;
 
-	background-color: var(--colorMainLight);
+	background-color: var(--colorMain);
 
 }
 
