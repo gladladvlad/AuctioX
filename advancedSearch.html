@@ -22,7 +22,7 @@
                         <h3> <label>Product</label> </h3>
 
                         <div class="formElement" id="searchField">
-                            <input id="inputSearch" type="search" list="productSuggestion" placeholder="What are you looking for?"/>
+                            <input class="inputBox" id="inputBoxSearch" type="search" list="productSuggestion" placeholder="What are you looking for?"/>
 
                             <datalist id="productSuggestion"/>
                                 <option value="Audi A8">
@@ -33,7 +33,7 @@
                         </div>
 
                         <div class="formElement" id="categoryField">
-                            <input id="inputSearch" list="categories" placeholder="Select a category"/>
+                            <input class="inputBox" id="inputBoxCategory" list="categories" placeholder="Select a category"/>
 
                             <datalist id="categories"/>
                                 <option value="Cars">
@@ -44,7 +44,7 @@
                         </div>
 
                         <div class="formElement">
-                            <input id="inputSearch" type="text" placeholder="Add tags. e.g. WW2"/>
+                            <input class="inputBox" id="inputBoxTags" type="text" placeholder="Add tags. e.g. WW2"/>
                         </div>
 
                     </div>
@@ -53,29 +53,28 @@
                     <div class="formElement" id="conditionField">
                         <h4><label id="condition">Condition</label></h4>
 
-                        <input id="condition1" class="checkbox" type="checkbox">
-                        <label for="condition1">New</label><br>
-                        <input id="condition2" class="checkbox" type="checkbox">
-                        <label for="condition2">Mint condition, barely used</label><br>
-                        <input id="condition3" class="checkbox" type="checkbox">
-                        <label for="condition3">Good</label><br>
-                        <input id="condition4" class="checkbox" type="checkbox">
-                        <label for="condition4">Working condition</label><br>
-                        <input id="condition5" class="checkbox" type="checkbox">
-                        <label for="condition5">Not fully working</label><br>
-                        <input id="condition5" class="checkbox" type="checkbox">
-                        <label for="condition5">Broken</label><br>
-                        <input id="condition6" class="checkbox" type="checkbox">
-                        <label for="condition6">Refurbished</label><br>
+                        <div class="checkboxOption"> <input class="checkBox" id="condition1" class="checkbox" type="checkbox">
+                        <label for="condition1">New</label><br></div>
+                        <div class="checkboxOption"> <input class="checkBox" id="condition2" class="checkbox" type="checkbox">
+                        <label for="condition2">Mint condition, barely used</label><br></div>
+                        <div class="checkboxOption"> <input class="checkBox" id="condition3" class="checkbox" type="checkbox">
+                        <label for="condition3">Good</label><br></div>
+                        <div class="checkboxOption"> <input class="checkBox" id="condition4" class="checkbox" type="checkbox">
+                        <label for="condition4">Working condition</label><br></div>
+                        <div class="checkboxOption"> <input class="checkBox" id="condition5" class="checkbox" type="checkbox">
+                        <label for="condition5">Not fully working</label><br></div>
+                        <div class="checkboxOption"> <input class="checkBox" id="condition5" class="checkbox" type="checkbox">
+                        <label for="condition5">Broken</label><br></div>
+                        <div class="checkboxOption"> <input class="checkBox" id="condition6" class="checkbox" type="checkbox">
+                        <label for="condition6">Refurbished</label><br></div>
                     </div>
 
                     
 
                     <div class="section" id="locationField">
-
+                            <h3><label>Location<label></h3>
                         <div class="formElement" id="countryField">
-							<h4> Country: </h4>
-                            <input id="inputSearch" list="countryList" placeholder="Select a country"/>
+                            <input class="inputBox" id="inputBoxLocation" list="countryList" placeholder="Select a country"/>
 
                             <datalist id="countryList"/>
                                 <option value="Romania"/>
@@ -84,8 +83,7 @@
                         </div>
 
                         <div class="formElement" id="stateField">
-							<h4> State: </h4>
-                            <input id="inputSearch" list="stateList" type="text" placeholder="Select a state"/>
+                            <input class="inputBox" id="inputBoxState" list="stateList" type="text" placeholder="Select a state"/>
 
                             <datalist id="stateList"/>
                                 <option value="Nebraska">
@@ -97,8 +95,7 @@
                         </div>
 
                         <div class="formElement" id="cityField">
-							<h4> City </h4>
-                            <input id="inputSearch" list="cityList" placeholder="Select a city"/>
+                            <input class="inputBox" id="inputBoxCity" list="cityList" placeholder="Select a city"/>
 
                             <datalist id="cityList"/>
                                 <option value="Iasi">
@@ -109,29 +106,38 @@
 
                         </div>
                     </div>
-                        
+                    
                     <div class="formElement" id="price">
                         <h4><label>Price</label></h4>
-                        <input id="priceCheckbox" class="checkbox" type="checkbox">
-                        <label for="condition1">
-                            Between
-                            <input type="number" step="0.01" id="inputPriceFloor" />
-                            and
-                            <input type="number" step="0.01" id="inputPriceCCeiling" />
-                             <select id="selectCurrency">
-                                <option>USD</option>
-                                <option>EUR</option>
-                                <option>RON</option>
-                            </select>
-
-
-                        </label>
+                        <div class="checkboxOption">
+                            <input id="priceCheckbox" class="checkbox" type="checkbox">
+                            <label for="condition1">
+                                Between
+                                <input type="number" step="0.01" id="inputPriceFloor" />
+                                and
+                                <input type="number" step="0.01" id="inputPriceCCeiling" />
+                                 <select id="selectCurrency">
+                                    <option>USD</option>
+                                    <option>EUR</option>
+                                    <option>RON</option>
+                                </select>
+                            </label>
+                        </div>
                     </div>
 
                     <div class="formElement" id="listing">
                         <h4><label>Listing type</label></h4>
-                        <input type="radio" name="listingType" id="listingBuyNow" checked>Buy it now<br>
-                        <input type="radio" name="listingType" id="listingAuction">Auction
+                        <div class="checkboxOption">
+                            <input type="radio" class="radioCheckBox" name="listingType" id="listingBuyNow" checked>
+                            <label for="listingBuyNow">
+                            Buy it now<br></label>
+                        </div>
+                        <div class="checkboxOption">
+                            <input type="radio" class="radioCheckBox" name="listingType" id="listingAuction">
+                             <label for="listingAuction">
+                            Auction<br></label>
+                        </div>
+
                     </div>
 
                     <div class="buttonContainer">

@@ -14,15 +14,17 @@
 }
 
 .formLabel{
-    font-size: 1.15em;
-    font-weight: bold;
-
+    font-size: 1em;
     color: var(--colorMainDark);
+}
+
+.section label{
+    margin-left: 5%;
 }
 
 .formElement{
     width: 90%;
-    margin-bottom: 2%;
+    margin-bottom: 1em;
     margin-left: 5%;
     margin-right: 5%;
 }
@@ -32,18 +34,41 @@
 	font-size: 1.15em;
 }
 
-#inputSearch {
+.inputBox{
+    min-height: 1.5em;
+    width: 20em;
+    max-width: 100%;
+    padding-left: 0.5em;
+
+    background-color: var(--inputbg);
+    border: 1px solid gray;
+    border-radius: 3px;
+    font-size: 1em;
+}
+
+.checkBoxOption{
+    margin: 0.2em;
+}
+
+#inputBoxSearch {
     min-height: 1.5em;
     width: 100%;
-	padding-top: 0.5em;
-	padding-bottom: 0.5em;
-	padding-left: 0.5em;
-	padding-right: 0.5em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    margin-bottom: 0.5em;
 
     background-color: var(--inputbg);
     border: 1px solid gray;
     border-radius: 3px;
     font-size: 1.15em;
+}
+
+h3, h4{
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+    padding: 0;
 }
 
 .buttonContainer{
@@ -74,32 +99,3 @@
 .button:active {
     background-color: var(--btn1_active);
 }
-
-/*
-<html>
-    <head>
-        <meta charset="utf-8">
-        <link rel="stylesheet" type="text/css" href="style.css">
-    </head>
-
-    <body>
-        <iframe style="width: 100%; border: 0; height: 4em;" src="navbar.html"></iframe>
-
-        <div class="baseContainer">
-
-            <div class="title">
-                <h1>
-                    This is a template
-                </h1>
-            </div>
-
-            <div class="mainContainer">
-                Content Goes Here !
-            </div>
-
-        </div>
-
-
-    </body>
-</html>
-*/
