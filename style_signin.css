@@ -45,6 +45,20 @@
 	justify-content: center;
 }
 
+#registerField{
+	text-align: center;
+	padding: 1em;
+}
+
+#registerField a{
+	color: var(--colorMain);
+}
+
+#registerField a:hover{
+	color: var(--colorMainDarker);
+}
+
+
 .button {
 	margin: auto;
 	margin-top: 1em;
