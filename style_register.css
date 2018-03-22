@@ -21,6 +21,10 @@ small{
 	margin-bottom: 3em;
 }
 
+#userInfoSection{
+	width: 100%;
+}
+
 .sectionLabel{
 	margin-bottom: 1.5em;
 }
