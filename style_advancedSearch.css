@@ -22,16 +22,23 @@
 
 .formElement{
     width: 90%;
-    margin-top: 2em;
-    margin-bottom: 5%;
+    margin-bottom: 2%;
     margin-left: 5%;
     margin-right: 5%;
+}
+
+#searchForm h4 {
+	color: var(--colorMain);
+	font-size: 1.15em;
 }
 
 #inputSearch {
     min-height: 1.5em;
     width: 100%;
-    padding: 0.5em 0.5em 0.5em 0.5em;
+	padding-top: 0.5em;
+	padding-bottom: 0.5em;
+	padding-left: 0.5em;
+	padding-right: 0.5em;
 
     background-color: var(--inputbg);
     border: 1px solid gray;
@@ -67,6 +74,8 @@
 .button:active {
     background-color: var(--btn1_active);
 }
+
+/*
 <html>
     <head>
         <meta charset="utf-8">
@@ -93,3 +102,4 @@
 
     </body>
 </html>
+*/
