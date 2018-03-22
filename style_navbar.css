@@ -112,11 +112,26 @@ a {
 	}
 
 	.navbar > a > img {
-		max-width: 50%;
+		object-fit: contain;
 	}
 
 	.navbarElement {
 		width: 100%;
+		margin-left: 0;
+		margin-right: 0;
+		padding-left: 0;
+		padding-right: 0;
 		justify-content: center;
+	}
+
+	#searchForm {
+		margin-left: 0;
+		margin-right: 0;
+		padding-left: 0;
+		padding-right: 0;
+	}
+
+	iframe {
+		height: 12em;
 	}
 }

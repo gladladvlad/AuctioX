@@ -1,4 +1,3 @@
-
 <html>
     <head>
         <meta charset="utf-8">
@@ -11,7 +10,6 @@
         <iframe style="width: 100%; border: 0; height: 4em;" src="navbar.html"></iframe>
 
         <div class="baseContainer">
-
             <div class="title">
                 <h1>
                     Advanced Search
@@ -19,10 +17,9 @@
             </div>
 
             <div class="mainContainer">
-
                 <form id="searchForm">
                     <div class="section" id="product">
-                        <label>Product</label>
+                        <h3> <label>Product</label> </h3>
 
                         <div class="formElement" id="searchField">
                             <input id="inputSearch" type="search" list="productSuggestion" placeholder="What are you looking for?"/>
@@ -46,15 +43,15 @@
                             </datalist>
                         </div>
 
-                        <div class="formElement"><br>
-                            <input id="inputTags" type="text" placeholder="Add tags. e.g. WW2"/>
+                        <div class="formElement">
+                            <input id="inputSearch" type="text" placeholder="Add tags. e.g. WW2"/>
                         </div>
 
                     </div>
 
 
                     <div class="formElement" id="conditionField">
-                        <label id="condition">Condition</label><br>
+                        <h4><label id="condition">Condition</label></h4>
 
                         <input id="condition1" class="checkbox" type="checkbox">
                         <label for="condition1">New</label><br>
@@ -77,8 +74,8 @@
                     <div class="section" id="locationField">
 
                         <div class="formElement" id="countryField">
-                            <br>
-                            <input id="inputCountry" list="countryList" placeholder="Select a country"/>
+							<h4> Country: </h4>
+                            <input id="inputSearch" list="countryList" placeholder="Select a country"/>
 
                             <datalist id="countryList"/>
                                 <option value="Romania"/>
@@ -87,8 +84,8 @@
                         </div>
 
                         <div class="formElement" id="stateField">
-                            <br>
-                            <input id="inputState" list="stateList" type="text" placeholder="Select a state"/>
+							<h4> State: </h4>
+                            <input id="inputSearch" list="stateList" type="text" placeholder="Select a state"/>
 
                             <datalist id="stateList"/>
                                 <option value="Nebraska">
@@ -100,8 +97,8 @@
                         </div>
 
                         <div class="formElement" id="cityField">
-                            <br>
-                            <input id="inputCity" list="cityList" placeholder="Select a city"/>
+							<h4> City </h4>
+                            <input id="inputSearch" list="cityList" placeholder="Select a city"/>
 
                             <datalist id="cityList"/>
                                 <option value="Iasi">
@@ -114,7 +111,7 @@
                     </div>
                         
                     <div class="formElement" id="price">
-                        <label>Price</label><br>
+                        <h4><label>Price</label></h4>
                         <input id="priceCheckbox" class="checkbox" type="checkbox">
                         <label for="condition1">
                             Between
@@ -128,13 +125,13 @@
                             </select>
 
 
-                        </label><br>
+                        </label>
                     </div>
 
                     <div class="formElement" id="listing">
-                        <label>Listing type</label><br>
+                        <h4><label>Listing type</label></h4>
                         <input type="radio" name="listingType" id="listingBuyNow" checked>Buy it now<br>
-                        <input type="radio" name="listingType" id="listingAuction">Auction<br>
+                        <input type="radio" name="listingType" id="listingAuction">Auction
                     </div>
 
                     <div class="buttonContainer">

@@ -1,0 +1,27 @@
+.baseContainer {
+	min-height: 4em;
+}
+
+.stdTable {
+    width: 100%;
+}
+
+.entry {
+	padding-top: 1em;
+	padding-bottom: 2em;
+	border-top: 2px solid var(--colorMain);
+}
+
+#listings > ul > li {
+
+}
+
+th, td {
+	border: 1px solid black;
+	border-radius: 2px;
+}
+
+tr:nth-child(even) {
+	       background-color: #dddddd;
+   }
+
