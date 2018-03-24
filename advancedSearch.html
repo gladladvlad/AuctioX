@@ -1,5 +1,7 @@
+<!DOCTYPE html>
 <html>
     <head>
+        <title>Create an auction</title>
         <meta charset="utf-8">
         <link rel="stylesheet" type="text/css" href="style.css">
         <link rel="stylesheet" type="text/css" href="style_advancedSearch.css">
@@ -24,7 +26,7 @@
                         <div class="formElement" id="searchField">
                             <input class="inputBox" id="inputBoxSearch" type="search" list="productSuggestion" placeholder="What are you looking for?"/>
 
-                            <datalist id="productSuggestion"/>
+                            <datalist id="productSuggestion">
                                 <option value="Audi A8">
                                 <option value="Acer Laptop">
                                 <option value="Sennheiser Headphones">
@@ -35,7 +37,7 @@
                         <div class="formElement" id="categoryField">
                             <input class="inputBox" id="inputBoxCategory" list="categories" placeholder="Select a category"/>
 
-                            <datalist id="categories"/>
+                            <datalist id="categories">
                                 <option value="Cars">
                                 <option value="Clothing">
                                 <option value="Home & Outdoors">
@@ -53,39 +55,39 @@
                     <div class="formElement" id="conditionField">
                         <h4><label id="condition">Condition</label></h4>
 
-                        <div class="checkboxOption"> <input class="checkBox" id="condition1" class="checkbox" type="checkbox">
+                        <div class="checkboxOption"> <input class="checkBox" id="condition1"  type="checkbox">
                         <label for="condition1">New</label><br></div>
-                        <div class="checkboxOption"> <input class="checkBox" id="condition2" class="checkbox" type="checkbox">
+                        <div class="checkboxOption"> <input class="checkBox" id="condition2" type="checkbox">
                         <label for="condition2">Mint condition, barely used</label><br></div>
-                        <div class="checkboxOption"> <input class="checkBox" id="condition3" class="checkbox" type="checkbox">
+                        <div class="checkboxOption"> <input class="checkBox" id="condition3" type="checkbox">
                         <label for="condition3">Good</label><br></div>
-                        <div class="checkboxOption"> <input class="checkBox" id="condition4" class="checkbox" type="checkbox">
+                        <div class="checkboxOption"> <input class="checkBox" id="condition4" type="checkbox">
                         <label for="condition4">Working condition</label><br></div>
-                        <div class="checkboxOption"> <input class="checkBox" id="condition5" class="checkbox" type="checkbox">
+                        <div class="checkboxOption"> <input class="checkBox" id="condition5" type="checkbox">
                         <label for="condition5">Not fully working</label><br></div>
-                        <div class="checkboxOption"> <input class="checkBox" id="condition5" class="checkbox" type="checkbox">
+                        <div class="checkboxOption"> <input class="checkBox" id="condition6" type="checkbox">
                         <label for="condition5">Broken</label><br></div>
-                        <div class="checkboxOption"> <input class="checkBox" id="condition6" class="checkbox" type="checkbox">
+                        <div class="checkboxOption"> <input class="checkBox" id="condition7" type="checkbox">
                         <label for="condition6">Refurbished</label><br></div>
                     </div>
 
                     
 
                     <div class="section" id="locationField">
-                            <h3><label>Location<label></h3>
+                            <h3><label>Location</label></h3>
                         <div class="formElement" id="countryField">
                             <input class="inputBox" id="inputBoxLocation" list="countryList" placeholder="Select a country"/>
 
-                            <datalist id="countryList"/>
-                                <option value="Romania"/>
-                                <option value="United States"/>
+                            <datalist id="countryList">
+                                <option value="Romania">
+                                <option value="United States">
                             </datalist>
                         </div>
 
                         <div class="formElement" id="stateField">
                             <input class="inputBox" id="inputBoxState" list="stateList" type="text" placeholder="Select a state"/>
 
-                            <datalist id="stateList"/>
+                            <datalist id="stateList">
                                 <option value="Nebraska">
                                 <option value="California">
                                 <option value="Florida">
@@ -97,7 +99,7 @@
                         <div class="formElement" id="cityField">
                             <input class="inputBox" id="inputBoxCity" list="cityList" placeholder="Select a city"/>
 
-                            <datalist id="cityList"/>
+                            <datalist id="cityList">
                                 <option value="Iasi">
                                 <option value="Bucharest">
                                 <option value="New York">
@@ -109,9 +111,9 @@
                     
                     <div class="formElement" id="price">
                         <h4><label>Price</label></h4>
-                        <div class="checkboxOption">
+                        <div class="checkboxOption" id= "priceInterval">
                             <input id="priceCheckbox" class="checkbox" type="checkbox">
-                            <label for="condition1">
+
                                 Between
                                 <input type="number" step="0.01" id="inputPriceFloor" />
                                 and
@@ -121,7 +123,6 @@
                                     <option>EUR</option>
                                     <option>RON</option>
                                 </select>
-                            </label>
                         </div>
                     </div>
 

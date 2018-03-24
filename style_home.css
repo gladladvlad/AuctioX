@@ -11,7 +11,6 @@
     flex-direction: row;
     flex-grow: 1;
     flex-wrap: wrap;
-    justify-content: space-evenly;
 }
 
 .homeBarSide{
@@ -34,7 +33,7 @@
 .homeBarSide li > a > h2{
     display: inline;
     text-align: center;
-    font-size: 15;
+    font-size: 0.93em;
     color: white;
     font-weight: lighter;
 }
@@ -214,4 +213,5 @@
 @media only screen and (max-width: 1000px) {
 #homeBarRight{
     display: none;
+}
 }
