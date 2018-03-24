@@ -1,12 +1,11 @@
+<!DOCTYPE html>
 <html>
-
- <head>
+    <head>
+        <title>Register</title>
      <meta charset="utf-8">
      <link rel="stylesheet" href="style.css">
      <link rel="stylesheet" href="style_register.css">
      <meta name="viewport" content="width=device-width,initial-scale=1">
-
-     <title> AuctioX </title>
  </head>
 
  <body>
@@ -47,10 +46,10 @@
                 </div>
 
                 <div class="formElement" id="passwordField">
-                    <label class="formLabel" for="inputPassowrd">Password</label>
+                    <label class="formLabel">Password</label>
                     <small>Must be between 8 and 32 characters that are alphanumeric or , . + - _ ? !</small><br>
                     <input id="inputPassword" type="password" required/><br>
-                    <label class="formLabel" for="inputConfirmPassowrd">Confirm Password</label>
+                    <label class="formLabel">Confirm Password</label>
                     <br>
                     <input id="inputConfirmPassword" type="password" required/>
                 </div>
@@ -63,14 +62,14 @@
                 </div>
 
                 <div class="formElement" id="countryField">
-                    <label class="formLabel" for="inputAddress">Country</label>
+                    <label class="formLabel">Country</label>
                     <small>e.g. United States</small>
                     <br>
                     <input id="inputCountry" list="countryList" required/>
 
-                    <datalist id="countryList"/>
-                        <option value="Romania"/>
-                        <option value="United States"/>
+                    <datalist id="countryList">
+                        <option value="Romania">
+                        <option value="United States">
                     </datalist>
 
                 </div>
@@ -81,7 +80,7 @@
                     <br>
                     <input id="inputState" list="stateList" type="text"/>
 
-                    <datalist id="stateList"/>
+                    <datalist id="stateList">
                         <option value="Nebraska">
                         <option value="California">
                         <option value="Florida">
@@ -96,7 +95,7 @@
                     <br>
                     <input id="inputCity" list="cityList" required/>
 
-                    <datalist id="cityList"/>
+                    <datalist id="cityList">
                         <option value="Iasi">
                         <option value="Bucharest">
                         <option value="New York">
@@ -132,9 +131,9 @@
                     <div class="sectionLabel"><label>Contact information</label></div>
 
                     <div class="formElement" id="nameField">
-                        <label class="formLabel" for="inputName">Full Name</label>
+                        <label class="formLabel">Full Name</label>
                         <small>e.g. John Salesman Doe</small><br>
-                        <input id="inputEmail" type="text" required/>
+                        <input id="inputName" type="text" required/>
                     </div>
 
                     <div class="formElement" id="telField">
