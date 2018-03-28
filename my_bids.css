@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
     <head>
-    <title>MyAccount</title>
+    <title>Profile</title>
      <meta charset="utf-8">
      <link rel="stylesheet" href="style.css">
-     <link rel="stylesheet" href="style_my_account.css">
+     <link rel="stylesheet" href="style_profile.css">
 
      <title> AuctioX </title>
  </head>
@@ -16,7 +16,7 @@
 
         <div class="title">
                     <h1>
-                        My Account
+                        My Profile
                     </h1>
 					<a href="edit_profile">
                         My Bids
