@@ -1,6 +1,7 @@
 import BaseHTTPServer
 import SocketServer
 import shutil
+import os
 
 PORT = 8000
 
@@ -9,50 +10,46 @@ class RequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
 
     def do_GET(self):
 
-        print self.path
+        path = self.path
 
-        self.send_response(200)
+        print "Path: [{0}]".format(path)
+        #print self.headers
 
-        print self.headers
+        try:
+            if path == '/':
+                path = "/public/static/html/home.html"
 
-        if self.path.endswith('.css'):
-            self.send_header("Content-type", "text/css")
-        elif self.path.endswith('.png'):
-            self.send_header("Content-type", "image/png")
-        else:
-            self.send_header("Content-type", "text/html")
+            filePath = "..{0}".format(path)
+            print filePath
+            content = open(filePath, 'rb').read()
 
-        self.end_headers()
+            self.send_response(200)
 
-        if self.path == '/login':
+            if path.endswith('.css'):
+                self.send_header("Content-type", "text/css")
+            elif path.endswith('.png'):
+                self.send_header("Content-type", "image/png")
+            elif path.endswith('.jpg'):
+                self.send_header("Content-type", "image/*")
+            elif path.endswith('.html'):
+                self.send_header("Content-type", "text/html")
+            else:
+                self.send_header("Content-type", "text/plain")
 
-            f = open('..\\AuctioX\\signin.html')
-            shutil.copyfileobj(f, self.wfile)
+            self.end_headers()
 
-        if self.path == '/style.css':
+            self.wfile.write(content)
 
-            f = open('..\\AuctioX\\style.css')
-            shutil.copyfileobj(f, self.wfile)
+        except:
 
-        if self.path == '/style_signin.css':
+            self.send_response(404)
 
-            f = open('..\\AuctioX\\style_signin.css')
-            shutil.copyfileobj(f, self.wfile)
+            self.send_header("Content-type", "text/plain")
 
-        if self.path == '/navbar.html':
+            self.end_headers()
 
-            f = open('..\\AuctioX\\navbar.html')
-            shutil.copyfileobj(f, self.wfile)
+            self.wfile.write("Error")
 
-        if self.path == '/style_navbar.css':
-
-            f = open('..\\AuctioX\\style_navbar.css')
-            shutil.copyfileobj(f, self.wfile)
-
-        if self.path == '/static/png/logo.png':
-
-            f = open('..\\AuctioX\\static\\png\\logo.png')
-            shutil.copyfileobj(f, self.wfile)
 
         return
 

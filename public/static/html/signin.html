@@ -3,9 +3,11 @@
     <head>
         <title>SignIn</title>
         <meta charset="utf-8">
-        <link rel="stylesheet" type="text/css" href="style.css">
-        <link rel="stylesheet" type="text/css" href="style_signin.css">
+        <link rel="stylesheet" type="text/css" href="/public/static/css/style.css">
+        <link rel="stylesheet" type="text/css" href="/public/static/css/style_signin.css">
         <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <script src="/public/static/js/signIn.js"></script>
     </head>
 
     <body>
@@ -23,7 +25,7 @@
 
                 <form id="signinForm">
                     <div class="formElement" id="emailField">
-                        <label class="formLabel" for="inputEmail">Email</label>
+                        <label class="formLabel" for="inputEmail">Username/Email</label>
                         <input id="inputEmail" type="email" required/>
                     </div>
 
@@ -33,7 +35,7 @@
                 </div>
 
                 <div class="buttonContainer">
-                    <button class="button">
+                    <button type="button" class="button" id="signInButton">
                         Sign in
                     </button>
                 </div>

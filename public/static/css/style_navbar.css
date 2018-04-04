@@ -40,6 +40,9 @@
 }
 
 .button {
+    display: flex;
+    justify-content: center;
+
     font-size: 1em;
     background-color: var(--btn1);
     border: 0;
