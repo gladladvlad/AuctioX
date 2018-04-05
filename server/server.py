@@ -2,9 +2,17 @@ import BaseHTTPServer
 import SocketServer
 import shutil
 import os
+from urlparse import parse_qs, urlparse
 
 PORT = 8000
 
+userDB = [
+    {'user': ['rbaisan'], 'pass': ['rba135135']},
+    {'user': ['gabih'], 'pass': ['dnd']},
+    {'user': ['adrenalina'], 'pass': ['yesss']},
+    {'user': ['vlad'], 'pass': ['vlad']},
+    {'user': ['MLADULARMARE'], 'pass': ['iluvciuliXOXO']},
+]
 
 class RequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
 
@@ -15,12 +23,26 @@ class RequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
         print "Path: [{0}]".format(path)
         #print self.headers
 
+        if path.startswith("/signinrequest/"):
+            creds = parse_qs(urlparse(path).query)
+            print creds
+
+            self.send_response(200)
+            self.send_header("Content-type", "text/plain")
+            self.end_headers()
+            if creds in userDB:
+                self.wfile.write("SUCCESS")
+            else:
+                self.wfile.write("FAIL")
+
+            return
+
         try:
             if path == '/':
                 path = "/public/static/html/home.html"
 
             filePath = "..{0}".format(path)
-            print filePath
+            print "Returning file: {0}".format(filePath)
             content = open(filePath, 'rb').read()
 
             self.send_response(200)
