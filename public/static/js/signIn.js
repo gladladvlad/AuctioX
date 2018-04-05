@@ -1,16 +1,30 @@
 window.onload = function(){
 
+    inputUser = document.getElementById("inputEmail");
+    inputPass = document.getElementById("inputPassword");
+
     signInButton == document.getElementById("signInButton");
 
     signInButton.onclick = SignIn;
+
+    inputUser.addEventListener("keyup", function(event){
+        event.preventDefault();
+        if (event.keyCode == 13){
+            SignIn();
+        }
+    })
+
+    inputPass.addEventListener("keyup", function(event){
+        event.preventDefault();
+        if (event.keyCode == 13){
+            SignIn();
+        }
+    })
 
     console.log("Onload() finished.")
 }
 
 function SignIn(){
-    inputUser = document.getElementById("inputEmail");
-    inputPass = document.getElementById("inputPassword");
-
     user = inputUser.value;
     pass = inputPass.value;
 
