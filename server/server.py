@@ -58,6 +58,10 @@ class RequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
             pair.append('=')
             pair.append(value)
 
+        if other != '':
+            pair.append('; ')
+            pair.append(other)
+
         pair = ''.join(pair)
 
         requestHandler.send_header('Set-Cookie', pair)
@@ -90,7 +94,7 @@ class RequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
             if creds in userDB:
                 # self.send_header("Set-Cookie", "logged=yes")
                 # same ting
-                self.set_cookie('logged', 'yes')
+                self.set_cookie('logged', 'yes', 'path=/')
             else:
                 self.send_header("Set-Cookie", "logged=no")
 
