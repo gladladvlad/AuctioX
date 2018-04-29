@@ -2,7 +2,7 @@ import re, os
 from dispatcherMap import map
 
 # functie pentru gasit view-ul care corespunde path-ului din request
-def MatchFunction(path):
+def matchFunction(path):
 
     func = None
 
@@ -18,11 +18,13 @@ def MatchFunction(path):
     return func
 
 # functie care cauta si apeleaza view-ul corespunzator unui request
-def Dispatch(request):
+def dispatch(request):
 
     #args = parse_qs(urlparse(request.path).query)
 
-    func = MatchFunction(request.path)
+    func = matchFunction(request.path)
+
+    print "[INFO] received request for path '{0}'".format(request.path)
 
     if func is None:
 
