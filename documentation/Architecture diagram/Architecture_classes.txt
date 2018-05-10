@@ -1,0 +1,30 @@
+RequestHandler:
+    RequestHandler is a subtype of BaseHTTPRequestHandler that, as the name suggests, handles HTTP requests and forwards request information to the Dispatcher.
+
+Dispatcher:
+    The Dispatcher will provide most of the server's logic. This includes authentication, creating users, buying, selling, posting questions, reviews, banning users, matching views etc.
+
+User:
+    The User class is a simple object that encapsulates the data of any registered user and provides user manipulation functionality such as buying, selling, reviewing or confirming payment.
+
+Admin:
+    The Admin is a subtype of a User. This class has additional rights and methods for general administration and moderation of the website.This includes banning, sending notices to users etc.
+
+Report:
+    The Report class is an object meant for manipulating the corresponding database table.
+
+Notice:
+    The Notice class is an object meant for manipulating the corresponding database table.
+
+Product:
+    The Product class models an item listed for auction, selling or an archived item (that was removed from public listing).
+
+    This class models the condition, price, date of listing and other such characteristics of the product.
+
+View:
+    The View class is an interface to all the functions that can generate a response coresponding to the received request.
+
+StateExporter:
+    The StateExporter class handles any type of request for a news stream.
+
+
