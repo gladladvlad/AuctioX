@@ -4,6 +4,7 @@ import shutil
 import os
 import re
 from urlparse import parse_qs, urlparse
+from lib import dispatcher
 
 #from lib.acx_cookie import *
 
@@ -69,6 +70,11 @@ class RequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
 
     def do_GET(self):
 
+
+        disp = dispatcher.dispatcher(self)
+        disp.dispatch()
+
+        return
         path = self.path
 
         print "Path: [{0}]".format(path)

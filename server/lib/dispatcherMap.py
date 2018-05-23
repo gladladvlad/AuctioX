@@ -4,6 +4,13 @@ from views import *
 
 map = [
     {'regex': '^/public/*', 'view': publicFileResponse},
-    {'regex': '^/signin/?', 'view': publicFileResponse},
+    {'regex': '^/signin/?', 'view': pageFileResponse},
     {'regex': '^/',         'view': homepage}
 ]
+
+pageMap = {
+    'home': '/public/static/html/home.html',
+    'search': '/public/static/html/search.html',
+    'advancedSearch': '/public/static/html/advancedSearch.html',
+    'product': '/public/static/html/product.html',
+}

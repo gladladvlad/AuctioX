@@ -1,34 +1,41 @@
 import re, os
 from dispatcherMap import map
+import BaseHTTPServer
 
-# functie pentru gasit view-ul care corespunde path-ului din request
-def matchFunction(path):
+class dispatcher:
 
-    func = None
+    def __init__(self, request):
 
-    for item in map:
+        self.request = request
 
-        if func is not None:
-             break
+    # functie pentru gasit view-ul care corespunde path-ului din request
+    def matchFunction(self, path):
 
-        if re.match(item['regex'], path) is not None:
+        func = None
 
-            func = item['view']
+        for item in map:
 
-    return func
+            if func is not None:
+                 break
 
-# functie care cauta si apeleaza view-ul corespunzator unui request
-def dispatch(request):
+            if re.match(item['regex'], path) is not None:
 
-    #args = parse_qs(urlparse(request.path).query)
+                func = item['view']
 
-    func = matchFunction(request.path)
+        return func
 
-    print "[INFO] received request for path '{0}'".format(request.path)
+    # functie care cauta si apeleaza view-ul corespunzator unui request
+    def dispatch(self):
 
-    if func is None:
+        #args = parse_qs(urlparse(request.path).query)
 
-        print "[WARNINIG] Could not find function for path '{0}'".format(request.path)
-        return
+        func = dispatcher.matchFunction(self, self.request.path)
 
-    func(request)
+        print "[INFO] received request for path '{0}'".format(self.request.path)
+
+        if func is None:
+
+            print "[WARNINIG] Could not find function for path '{0}'".format(self.request.path)
+            return
+
+        func(self.request)
