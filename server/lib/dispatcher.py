@@ -9,33 +9,33 @@ class dispatcher:
         self.request = request
 
     # functie pentru gasit view-ul care corespunde path-ului din request
-    def matchFunction(self, path):
+    def matchView(self, path):
 
-        func = None
+        view = None
 
         for item in map:
 
-            if func is not None:
+            if view is not None:
                  break
 
             if re.match(item['regex'], path) is not None:
 
-                func = item['view']
+                view = item['view']
 
-        return func
+        return view
 
     # functie care cauta si apeleaza view-ul corespunzator unui request
     def dispatch(self):
 
         #args = parse_qs(urlparse(request.path).query)
 
-        func = dispatcher.matchFunction(self, self.request.path)
+        view = dispatcher.matchView(self, self.request.path)
 
         print "[INFO] received request for path '{0}'".format(self.request.path)
 
-        if func is None:
+        if view is None:
 
             print "[WARNINIG] Could not find function for path '{0}'".format(self.request.path)
             return
 
-        func(self.request)
+        view(self.request)
