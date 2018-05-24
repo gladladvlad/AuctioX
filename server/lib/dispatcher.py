@@ -13,14 +13,14 @@ class dispatcher:
 
         view = None
 
-        for item in map:
+        for pair in map:
 
             if view is not None:
                  break
 
-            if re.match(item['regex'], path) is not None:
+            if re.match(pair[0], path) is not None:
 
-                view = item['view']
+                view = pair[1]
 
         return view
 
