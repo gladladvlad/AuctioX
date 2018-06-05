@@ -75,9 +75,10 @@ class RequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
         disp.dispatch()
 
         return
+
         path = self.path
 
-        print "Path: [{0}]".format(path)
+        #print "Path: [{0}]".format(path)
         #print self.headers
 
         if path.startswith("/signinrequest/"):
