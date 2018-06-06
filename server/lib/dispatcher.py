@@ -1,14 +1,11 @@
-import re, os
+import re
 from dispatcherMap import map
 import BaseHTTPServer
 
 class dispatcher:
 
-    def __init__(self, request):
-
-        self.request = request
-
     # functie pentru gasit view-ul care corespunde path-ului din request
+
     def matchView(self, path):
 
         view = None
@@ -25,17 +22,16 @@ class dispatcher:
         return view
 
     # functie care cauta si apeleaza view-ul corespunzator unui request
-    def dispatch(self):
 
-        #args = parse_qs(urlparse(request.path).query)
+    def dispatch(self, request):
 
-        view = dispatcher.matchView(self, self.request.path)
+        view = dispatcher.matchView(self, request.path)
 
-        print "[INFO] received request for path '{0}'".format(self.request.path)
+        print "[INFO] received request for path '{0}'".format(request.path)
 
         if view is None:
 
-            print "[WARNINIG] Could not find function for path '{0}'".format(self.request.path)
+            print "[WARNINIG] Could not find view for path '{0}'".format(request.path)
             return
 
-        view(self.request)
+        view(request)
