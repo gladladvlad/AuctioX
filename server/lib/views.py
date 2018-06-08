@@ -46,11 +46,17 @@ class view:
                 self.response = self.get()
 
             # debug(self.response)
-        except Exception:
+        except Exception, e:
             self.request.send_response(404)
-            self.request.send_header("Content-type", 'text/plain')
+            self.request.send_header("Content-type", 'text/html')
             self.request.end_headers()
-            self.request.wfile.write("Error")
+            response = "<body style='font-family: monospace'><h1>Error</h1><hr>"
+            if DEBUG:
+                response += self.request.requestline + "<hr>"
+                response += "URL arguments:<br><pre>" + json.dumps(self.urlArgs, indent=4) + "</pre><hr>"
+                response += "Headers:<br><pre>" + str(self.request.headers) + "</pre>"
+                response += "Error:<br><pre>" + str(e.message) + "</pre>"
+            self.request.wfile.write(response)
             return
 
         self.request.send_response(200)
