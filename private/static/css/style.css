@@ -1,0 +1,337 @@
+:root {
+    --navbg: #202028;
+    --searchboxbg: #303038;
+
+    --btn1: #800030;
+    --btn1_hover: #9B1245;
+    --btn1_active: #600024;
+
+    --lnk1: #FFFFFF;
+
+    --colorMain: #800030;
+    --colorMainLight: #9B1245;
+    --colorMainLighter: #B92E61;
+    --colorMainDark: #600024;
+    --colorMainDarker: #3B0016;
+
+    --inputbg: #F4F0F0;
+
+    --background: #E0E0E0;
+}
+
+* {
+	margin: 0 0 0 0;
+	padding: 0 0 0 0;
+	box-sizing:border-box;
+	font-family: trebuchet ms;
+}
+
+body {
+    background-color: var(--background);
+}
+
+.baseContainer {
+    height: auto;
+    min-height: 100%;
+
+    background-color: var(--background);
+}
+
+.title {
+    padding: 0.5em 1em 1em 1em;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+
+    background-color: var(--colorMain);
+    color: white;
+}
+
+@media only screen and (max-width: 768px) {
+    .title h1 {
+        margin: 0 1em 0 0;
+        font-size: 1.5em;
+    }
+}
+
+.title > * {
+    margin-right: 1em;
+}
+
+.title a {
+    color: white;
+}
+
+.titleLevel {
+    margin: 0.25em;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+@media only screen and (min-width: 768px) {
+    .mainContainer {
+        margin: 0 10% 0 10%;
+    }
+}
+
+.mainContainer {
+    padding: 1em 1em 2em 1em;
+
+    background-color: white;
+}
+
+h3 {
+    padding: 1em 1em 0.5em 2em;
+
+    color: var(--colorMainDark)
+}
+
+.mainContainer > p {
+    padding: 0.5em 0.25em 0.25em 0.25em;
+
+    text-indent: 2em;
+    text-align: justify;
+}
+
+.containerFull {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+
+.containerHalf {
+    display: flex;
+    width: 50%;
+    flex-wrap: wrap;
+    flex-grow: 1;
+    align-content: flex-start;
+}
+
+@media only screen and (max-width: 1024px) {
+    .containerFull {
+        flex-direction: row;
+    }
+
+    .containerHalf {
+        width: 100%;
+    }
+}
+
+.button {
+    padding: 0.25em 0.5em 0.25em 0.5em;
+    width: 50%;
+    height: 2em;
+
+    font-size: 1.5em;
+    background-color: var(--btn1);
+    border: 0;
+    color: var(--lnk1);
+}
+
+.button:hover {
+    background-color: var(--btn1_hover);
+}
+
+.button:active {
+    background-color: var(--btn1_active);
+}
+
+#photoShowcase {
+    height: 30em;
+    width: 50%;
+
+    display: flex;
+    flex-direction: row;
+    flex-shrink: 1;
+
+    background-color: #080808;
+}
+
+#photoCurrent {
+    height: 90%;
+    display: flex;
+    justify-content: center;
+
+}
+
+#photoCurrent img {
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: contain;
+    flex-shrink: 1;
+}
+
+#photoList {
+    height: 10%;
+
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-evenly;
+    
+
+    background-color: #101010;
+}
+
+#photoList img {
+    max-height: 100%;
+    opacity: 0.5;
+}
+
+#photoList img:hover {
+    opacity: 1;
+}
+
+#productControlPanel {
+    padding: 0.5em;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    align-content: space-between;    
+}
+
+#productGeneralInfo, #sellerInfoTable {
+    margin: 0;
+    padding: 0.5em;
+    background-color: var(--background);
+    width: 100%;
+}
+
+#productGeneralInfo tr, #sellerInfo tr {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+#productGeneralInfo td, #sellerInfo td {
+    margin-left: 0.5em;
+}
+
+#productGeneralInfo td:last-of-type {
+    font-weight: bold;
+}
+
+#bidPanel {
+}
+
+#bidInfo {
+    padding: 1em;
+    width: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+
+}
+
+#currentBid {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+}
+
+#currentBid > * {
+    margin-left: 0.5em;
+}
+
+#currentBid h2 {
+    padding: 0 0.25em 0 0.25em;
+
+    color: var(--colorMain);
+    background-color: var(--background);
+}
+
+#bidControl {
+    width: 100%;
+    height: 3em;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+
+}
+
+#bidControl input {
+    padding-left: 0.5em;
+    width: 50%;
+    height: 100%;
+
+    background-color: var(--inputbg);
+    border: 1px solid var(--background);
+    font-size: 1.5em;
+}
+
+#bidControl button {
+        width: 50%;
+    }
+
+@media only screen and (max-width: 1024px) {
+
+    #bidControl input {
+        width: 100%;
+    }
+
+    #bidControl button {
+        width: 100%;
+    }
+}
+
+#sellerInfo {
+    margin: 0;
+    padding: 0.5em;
+    background-color: var(--background);
+    width: 100%;
+}
+
+#sellerInfo a, #otherItemsList a {
+    color: var(--colorMainLight);
+}
+
+#details {
+    padding: 1em;
+    display: flex;
+    flex-direction: row;
+}
+
+#details > * {
+    width: 100%;
+}
+
+#details p {
+    text-align: justify;
+}
+
+#details tr {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--background);
+}
+
+#otherItems {
+    padding: 1em;
+    width: 100%;
+}
+
+#otherItems h4 {
+    padding: 1em;
+}
+
+#otherItemsList {
+    display: flex;
+    align-content: flex-start;
+    justify-content: space-between;
+}
+
+#otherItemsList div {
+    padding: 0.5em 0.5em 0.5em 0.5em;
+    height: 15em;
+    width: 20%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#otherItemsList img {
+    margin-bottom: 0.5em;
+    height: 80%;
+}

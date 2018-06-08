@@ -1,0 +1,299 @@
+
+* {
+	margin: 0 0 0 0;
+	padding: 0 0 0 0;
+}
+
+
+body {
+	display: flex;
+	flex-direction: column;
+}
+
+.searchBody {
+	display: flex;
+	flex-direction: row;
+}
+
+.searchBody > div {
+	border-bottom: 1px solid var(--colorMain);
+	border-right: 1px solid var(--colorMain);
+	float: left;
+}
+
+/* END chestii mai globale */
+
+/* meniu' din stanga */
+#filtre {
+	width: 15%;
+	background-color: var(--colorMain);
+	border-top: 1px solid gray;
+}
+
+#filtre > ul {
+	margin-left: 5%;
+	margin-right: 5%;
+	color: var(--white);
+	list-style-type: none;
+	padding-bottom: 1em;
+	border-bottom: 1px solid gray;
+}
+
+#filtre > ul > li > a {
+	text-decoration: none;
+	color: var(--white);
+}
+
+#filtre h3, #filtre h4 {
+	font-size: 120%;
+	text-decoration: none;
+	font-weight: normal;
+}
+
+#filtre > h3 {
+	padding-top: 0.5em;
+	padding-left: 1em;
+	color: white;
+	text-align: center;
+}
+
+.checkboxPossibilities {
+	display: flex;
+	flex-direction: column;
+}
+
+.range {
+	display: flex;
+	flex-direction: column;
+}
+
+.range > .rangeInput {
+	display:flex;
+	flex-direction: row;
+}
+
+.range > .rangeInput > input {
+	width: 40%;
+}
+
+.range > .rangeInput > span {
+	width: 20%;
+	text-align: center;
+}
+
+.list > li > .dropdown > input {
+	resize: horizontal;
+	width: 100%;
+}
+
+.list > li > .radio {
+	display: flex;
+	flex-direction: column;
+}
+
+/* END meniu' din stanga */
+
+/* lista de produse */
+#content {
+	width: 70%;
+	background-color: white;
+}
+
+#content > ul {
+	list-style-type: none;
+}
+
+.quickCriteria {
+	display:flex;
+	justify-content: center;
+
+	margin-left: 1em;
+	margin-right: 1em;
+	padding-left: 1em;
+	padding-right: 1em;
+	padding-top: 0.25em;
+	padding-bottom: 0.25em;
+
+	background-color: var(--colorMain);
+
+}
+
+.quickCriteria > .quickCriteriaDiv *, .quickCriteria > .quickCriteriaLastDiv * {
+	font-size: 125%;
+	color: white;
+}
+
+.quickCriteriaDiv > a, .quickCriteriaLastDiv > a{
+	margin-left: 0.5em;
+}
+
+.quickCriteria > .quickCriteriaDiv {
+	padding-right: 1em;
+	margin-right: 1em;
+	border-right: 1px solid white;
+}
+
+.quickCriteria > .quickCriteriaLastDiv {
+	padding-right: 1em;
+	margin-right: 1em;
+}
+
+/* produs */
+
+/*#content > ul > li { */
+.prod {
+	display: flex;
+	flex-direction: column;
+
+	border-bottom: 1px solid var(--colorMain);
+	width: 100%;
+	height: auto;
+
+	padding: 1em;
+}
+
+.prod > .prodContent {
+	display: flex;
+	flex-direction: row;
+}
+
+.prod > .prodContent > .prodTitle > h3 {
+	padding-top: 0.5em;
+	font-style: normal;
+	font-size: 125%;
+}
+
+.prodTitle {
+	text-align: center;
+}
+
+.prod > .prodContent > .prodDesc {
+	padding-left: 1em;
+
+	display: flex;
+	flex-direction: row;
+
+	line-height: 1.6;
+}
+
+.prod > .prodContent > .prodDesc > .prodDescLeft {
+	display: flex;
+	flex-direction: column;
+	width: 43%;
+	/* flex-grow: 1; */
+
+	border-right: 1px solid var(--colorMain);
+}
+
+.prod > .prodContent > .prodDesc > .prodDescRight {
+	width: 43%;
+	padding-left: 2%;
+	/* flex-grow: 1; */
+}
+
+.prod > .prodContent > .prodImage {
+	max-width: 25%;
+	max-height: 50%;
+	object-fit: contain;
+	display: flex;
+	flex-direction: column;
+
+	/*
+	box-sizing: border-box;
+	padding-top: 50%;
+	padding-bottom: 50%;
+	*/
+}
+
+.prod > .prodContent > .prodImage > img {
+	width: 100%;
+	margin: auto;
+	align-items: center;
+
+	/*min-width: 0;
+	min-height: 0;
+	object-fit: contain;
+	width: 33%;
+	flex-grow: 2;*/
+}
+
+.prod > .prodContent > .prodOtherImages > img {
+	max-width: 5%;
+	object-fit: contain;
+}
+
+/* END produs */
+/* END lista de produse */
+
+@media only screen and (max-width: 917px) {
+	#content {
+		width: 77.5%;
+	}
+
+	#filtre {
+		width: 22.5%;
+	}
+}
+
+@media only screen and (max-width: 830px) {
+	.quickCriteria {
+		display:flex;
+		justify-content: center;
+		flex-direction: column;
+
+		margin-left: 1em;
+		margin-right: 1em;
+		padding-left: 1em;
+		padding-right: 1em;
+		padding-top: 0.25em;
+		padding-bottom: 0.25em;
+
+		background-color: var(--colorMainLight);
+
+	}
+
+	.quickCriteria > .quickCriteriaDiv {
+		padding-right: 0em;
+		margin-right: 0em;
+
+		padding-bottom: 0.5em;
+
+		border-right: 0px;
+		border-bottom: 1px solid white;
+
+		display: flex;
+		justify-content: center;
+	}
+
+	.quickCriteria > .quickCriteriaLastDiv {
+		padding-right: 0em;
+		margin-right: 0em;
+
+		margin-top: 0.5em;
+
+		display: flex;
+		justify-content: center;
+	}
+}
+
+@media only screen and (max-width: 611px) {
+	#content {
+		width: 100%;
+	}
+
+	#filtre {
+		width: 0%;
+	}
+}
+
+@media only screen and (max-width: 366px) {
+	.prod > .prodContent {
+		flex-direction: column;
+		justify-content: center;
+	}
+
+	.prod > .prodContent > .prodImage {
+		max-width: 65%;
+		width: 100%;
+	}
+}

@@ -1,0 +1,165 @@
+.navbar {
+	background-color: var(--navbg);
+	padding: 0.5em 0em 0.5em 0em;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.navbarElement {
+    display: flex;
+    align-items: center;
+    min-width: 4rem;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    margin: 0 0.25em 0 0.25em;
+    max-height: 3rem;
+    color: white;
+}
+
+.navbarElement > a {
+    margin: 0 0.5em 0 0.5em;
+    max-width: 5rem;    
+    max-height: 3rem;
+
+    color: var(--lnk1);
+    text-align: center;
+}
+
+.navbarLogo {
+    height: 3em;
+    min-width: auto;
+}
+
+.navbarSearch {
+    padding: 0.25em 0 0.25em 0;
+    height: 3em;
+}
+
+.button {
+    display: flex;
+    justify-content: center;
+
+    font-size: 1em;
+    background-color: var(--btn1);
+    border: 0;
+    color: var(--lnk1);
+}
+
+.button:hover {
+    background-color: var(--btn1_hover);
+}
+
+.button:active {
+    background-color: var(--btn1_active);
+}
+
+#searchForm {
+    display: inline-flex;
+    flex-grow: 1;
+}
+
+#searchBox {
+    padding-left: 0.5em;
+    height: 100%;
+	width: 80%;
+    min-width: 4em;
+    float: left;
+    flex-grow: 1;
+
+    border: 0;
+    background-color: var(--searchboxbg);
+	font-size: 1.15em;
+    font-weight: lighter;
+    color: white;
+}
+
+#searchButton {
+    padding: 0.5em 0.5em 0.5em 0.5em;
+    height: 100%;
+    width: 20%;
+    max-width: 8em;
+    min-width: 2em;
+}
+
+#searchButton > img {
+    max-height: 1.5em;
+}
+
+
+#searchButton:hover {
+    background-color: var(--btn1_hover);
+}
+
+#searchButton:active {
+    background-color: var(--btn1_active);
+}
+
+a {
+    text-decoration: underline;
+}
+
+@media only screen and (max-width: 766px) {
+	.navbar {
+		display:flex;
+        flex-wrap: nowrap;
+	}
+
+	.navbar > a {
+		display: flex;
+		justify-content: center;
+		width: 20%;
+        margin-left: 0.25em;
+        margin-right: 0.25em;
+        min-width: 3.5em;
+	}
+
+	.navbar > a > img {
+		object-fit: contain;
+        width: 100%;
+	}
+
+    #searchForm{
+        flex-wrap: nowrap;
+    }
+
+    #searchButton{
+        min-width: 3em;
+    }
+
+    #linkAdvancedSearch{
+        display: none;
+    }
+
+    #linkCreateAuction{
+        display: none;
+    }
+
+    .navbar{
+        height: 4em;
+    }
+
+    #searchForm {
+        height: 3rem;
+        margin-left: 0;
+        margin-right: 0;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+}
+
+@media only screen and (max-width: 400px) {
+    .navbarElement{
+        display: none;
+        width: 0%;
+    }
+
+    .navbarLogo
+    {
+        display: flex;
+    }
+}

@@ -1,0 +1,90 @@
+small{
+	margin-left: 0.5em;
+	color: var(--colorMainLight);
+}
+
+.mainContainer{
+	display: flex;
+	flex-wrap: wrap;
+	padding-top: 2em;
+	padding-bottom: 3em;
+	padding-left: 2.25em;
+	padding-right: 2.25em;
+}
+
+.section{
+	width: auto;
+	min-width: 50%;
+	flex-grow: 1;
+	padding-right: 3em;
+	padding-left: 1em;
+	margin-bottom: 3em;
+}
+
+#userInfoSection{
+	width: 100%;
+}
+
+.sectionLabel{
+	margin-bottom: 1.5em;
+}
+
+.sectionLabel > label{
+	font-size: 1.5em;
+	font-weight: bold;
+
+	color: var(--colorMainDark);
+}
+
+.formLabel{
+	font-size: 1.15em;
+	font-weight: bold;
+
+	color: var(--colorMainDark);
+}
+
+.formElement{
+	margin-top: 1em;
+	width: 100%;
+}
+
+.formElement > input, .formElement select, .formElement textarea, .formElement table, .formPhotosPreview {
+	margin: 0.5em 0.5em 0.5em 0.5em;
+	min-height: 1.5em;
+	width: 100%;
+
+	background-color: var(--inputbg);
+	border: 1px solid gray;
+	border-radius: 3px;
+	font-size: 1.15em;
+}
+
+#inputPassword{
+	margin-bottom: 0.75em;
+}
+
+.buttonContainer{
+	min-width: 100%;
+	display: flex;
+	justify-content: center;
+}
+
+.button {
+	margin: auto;
+    padding: 0.25em 0.5em 0.25em 0.5em;
+    width: 50%;
+    height: 2em;
+
+    font-size: 1.5em;
+    background-color: var(--btn1);
+    border: 0;
+    color: var(--lnk1);
+}
+
+.button:hover {
+    background-color: var(--btn1_hover);
+}
+
+.button:active {
+    background-color: var(--btn1_active);
+}

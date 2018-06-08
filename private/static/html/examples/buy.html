@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+
+<!-- scoate ID-urile duplicate -->
+
+<html>
+	<head>
+		<title>Buy</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" type="text/css" href="/public/static/css/style.css">
+		<link rel="stylesheet" type="text/css" href="/public/static/css/style_buy.css">
+	</head>
+
+	<body>
+		<iframe style="width: 100%; border: 0; height: 4em;" src="navbar.html"></iframe>
+
+		<div class="baseContainer">
+			<div class="title">
+				<h1>
+					Buy
+				</h1>
+				<a href="#guidelines">
+					Guidelines
+				</a>
+				<a href="tos.html">
+					Terms of service
+				</a>
+				<a href="#help">
+					Help
+				</a>
+			</div>
+
+			<div class="mainContainer">
+				<form id="sellForm">
+					<div class="containerFull">
+						<div class="containerHalf">
+							<div class="formElement">
+								<label class="formLabel" for="inputTitle">Select Payment Medthod</label>
+								<br>
+								<select id="selectPaymentMethod">
+									<option>PayPal</option>
+									<option>Card</option>
+								</select>
+							</div>
+							<div class="formElement">
+								<label class="formLabel" >Ship to</label>
+								<textarea oninput='this.style.height = "";this.style.height = this.scrollHeight + 2 + "px"'></textarea>
+							</div>
+							<div class="formElement">
+									<label class="formLabel" for="textareaDesc">Quantity</label>
+									<br>
+									<input id="inputTags" type="text"/>
+								</div>
+							<div class="formElement">
+								<label class="formLabel" for="inputTags">Tags</label>
+								<br>
+								<select id="selectCurrency">
+									<option>Fast</option>
+									<option>Priority</option>
+									<option>Regular</option>
+								</select>
+							</div>
+						</div>
+						<div class="containerHalf">
+							<div class="formElement">
+									<a href="product.html"><img class="formElement" id="formElement" src="./resource/product/g1.jpg" alt="product"></a>
+								</div>
+							<div class="buttonContainer">
+								<button class="button">
+									Buy: 1000$
+								</button>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+
+	</body>
+</html>
