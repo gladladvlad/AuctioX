@@ -7,6 +7,7 @@ from generalViews import *
 map = [
     ('^/public/*', publicFileView),
     ('^/jinjatest', jinjatest),
+    ('^/userlistings', userListingView),
     ('^/', homepageView),
     ('*', view)
 ]
