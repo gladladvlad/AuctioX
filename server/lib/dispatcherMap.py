@@ -8,6 +8,7 @@ map = [
     ('^/public/*', publicFileView),
     ('^/jinjatest', jinjatest),
     ('^/userlistings', userListingView),
+    ('^/createListing', createListingView),
     ('^/', homepageView),
     ('*', view)
 ]
