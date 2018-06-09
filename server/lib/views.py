@@ -2,7 +2,7 @@ import os
 from mimetypes import MimeTypes
 from urlparse import parse_qs, urlparse
 from dispatcherMap import *
-from jinja2 import Template
+from jinja2 import Template, Environment, FileSystemLoader, select_autoescape
 import json
 
 # Aici sunt view-urile. Un view (la noi) este o functie care primeste un request si pregateste raspunsul (care e trimis dupaia inapoi)
@@ -138,4 +138,33 @@ class publicFileView(view):
             raise Exception
 
         debug("Sending {0} as {1}".format(filePath, self.contentType))
+        return content
+
+
+class homepageView(view):
+    def get(self):
+
+        path = self.request.path
+
+        context = {'style' : open('../private/static/html/components/home_styles.html').read(),
+                   'navbar' : open('../private/static/html/components/navbar.html').read(),
+                   'content' : open('../private/static/html/components/home_content.html').read(),
+                   'homebar' : open('../private/static/html/components/home_homebar.html').read(),
+                   'footer' : open('../private/static/html/components/footer.html').read()}
+
+        self.setContentType('text/html')
+
+        print 'building environment'
+        env = Environment(loader=FileSystemLoader('../private/static/html/templates'), autoescape=select_autoescape(['xml']))
+        print 'done'
+
+        #template = Template(open('../private/static/html/templates/home.html').read())
+        print 'building template'
+        template = env.get_template('home.html')
+        print 'done'
+
+        print 'building content'
+        content = template.render(context)
+        print 'done'
+
         return content

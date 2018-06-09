@@ -6,5 +6,6 @@ from testViews import *
 map = [
     ('^/public/*', publicFileView),
     ('^/jinjatest', jinjatest),
-    ('^/', view)
+    #('^/', view)
+    ('^/', homepageView)
 ]
