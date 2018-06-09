@@ -21,6 +21,8 @@ TEMPLATE_DIRECTORY = '../private/static/html/templates/'
 COMPONENT_DIRECTORY = '../private/static/html/components/'
 
 class view:
+    #la autoescape puteti sa puneti extensii de fisiere care sa fie escapate automat
+    jinja2Env = Environment(loader = FileSystemLoader(TEMPLATE_DIRECTORY), autoescape = select_autoescape(['xml']))
 
     def __init__(self, request):
 
@@ -91,7 +93,7 @@ class view:
 
     def renderTemplate(self, templateName):
 
-        template = Template(open(os.path.join(TEMPLATE_DIRECTORY, templateName)).read())
+        template = view.jinja2Env.get_template(templateName)
         content = template.render(self.context)
         self.setContentType('text/html')
         return content
@@ -143,28 +145,16 @@ class publicFileView(view):
 
 class homepageView(view):
     def get(self):
-
-        path = self.request.path
-
-        context = {'style' : open('../private/static/html/components/home_styles.html').read(),
-                   'navbar' : open('../private/static/html/components/navbar.html').read(),
-                   'content' : open('../private/static/html/components/home_content.html').read(),
-                   'homebar' : open('../private/static/html/components/home_homebar.html').read(),
-                   'footer' : open('../private/static/html/components/footer.html').read()}
+        debug('[INFO] homepageView reached')
 
         self.setContentType('text/html')
 
-        print 'building environment'
-        env = Environment(loader=FileSystemLoader('../private/static/html/templates'), autoescape=select_autoescape(['xml']))
-        print 'done'
+        self.addComponentToContext('home_styles.html', 'style', True)
+        self.addComponentToContext('navbar.html', 'navbar', True)
+        self.addComponentToContext('home_content.html', 'content', True)
+        self.addComponentToContext('home_homebar.html', 'homebar', True)
+        self.addComponentToContext('footer.html', 'footer', True)
 
-        #template = Template(open('../private/static/html/templates/home.html').read())
-        print 'building template'
-        template = env.get_template('home.html')
-        print 'done'
-
-        print 'building content'
-        content = template.render(context)
-        print 'done'
+        content = self.renderTemplate('home.html')
 
         return content
