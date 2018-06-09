@@ -92,7 +92,7 @@ class databaseController():
         mycursor.execute(command)
         mariadb_connection.commit()
 
-    def insertInto
+    #def insertInto
 
 metod = databaseController()
 

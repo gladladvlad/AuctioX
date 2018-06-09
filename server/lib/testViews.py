@@ -1,13 +1,14 @@
-import views
-from jinja2 import Template
+from view import *
 
-class jinjatest(views.view):
+
+class jinjatest(view):
 
     def get(self):
         self.addComponentToContext('navbar.html')
         return self.renderTemplate('jinjatest.html')
 
-class globalFavicon(views.view):
+
+class globalFavicon(view):
 
     def get(self):
         return open("..\\public\\static\\png\\favicon.png", "rb").read()

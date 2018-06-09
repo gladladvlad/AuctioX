@@ -20,9 +20,10 @@ def debug(msg):
 TEMPLATE_DIRECTORY = '../private/static/html/templates/'
 COMPONENT_DIRECTORY = '../private/static/html/components/'
 
+
 class view:
-    #la autoescape puteti sa puneti extensii de fisiere care sa fie escapate automat
-    jinja2Env = Environment(loader = FileSystemLoader(TEMPLATE_DIRECTORY), autoescape = select_autoescape(['xml']))
+    # la autoescape puteti sa puneti extensii de fisiere care sa fie escapate automat
+    jinja2Env = Environment(loader=FileSystemLoader(TEMPLATE_DIRECTORY), autoescape=select_autoescape(['xml']))
 
     def __init__(self, request):
 
@@ -93,7 +94,7 @@ class view:
 
     def renderTemplate(self, templateName):
 
-        template = view.jinja2Env.get_template(templateName)
+        template = self.jinja2Env.get_template(templateName)
         content = template.render(self.context)
         self.setContentType('text/html')
         return content
@@ -124,37 +125,3 @@ class view:
             return
 
         self.context[key] = item
-
-class publicFileView(view):
-
-    def get(self):
-
-        filePath = "..{0}".format(self.request.path.replace('/', '\\'))
-        try:
-            self.setContentType(MimeTypes().guess_type(self.request.path)[0])
-            # debug(self.contentType)
-            content = open(filePath, 'rb').read()
-            # debug(content)
-        except:
-            debug("[ERROR] Could not find file {0}".format(filePath))
-            raise Exception
-
-        debug("Sending {0} as {1}".format(filePath, self.contentType))
-        return content
-
-
-class homepageView(view):
-    def get(self):
-        debug('[INFO] homepageView reached')
-
-        self.setContentType('text/html')
-
-        self.addComponentToContext('home_styles.html', 'style', True)
-        self.addComponentToContext('navbar.html', 'navbar', True)
-        self.addComponentToContext('home_content.html', 'content', True)
-        self.addComponentToContext('home_homebar.html', 'homebar', True)
-        self.addComponentToContext('footer.html', 'footer', True)
-
-        content = self.renderTemplate('home.html')
-
-        return content
