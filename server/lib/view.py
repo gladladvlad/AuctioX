@@ -48,7 +48,24 @@ class view:
                 debug("GET")
                 self.response = self.get()
 
-            # debug(self.response)
+            if DEBUG and 'debug' in self.urlArgs:
+
+                self.request.send_response(202)
+                self.request.send_header("Content-type", 'text/plain')
+                self.request.end_headers()
+                oldResponse = self.response
+                response = "DEBUG\n\n"
+                if DEBUG:
+                    response += self.request.requestline + "\n\n"
+                    response += "URL arguments:\n" + json.dumps(self.urlArgs, indent=4) + "\n\n"
+                    response += "Headers:\n" + str(self.request.headers) + "\n\n"
+                    response += "Context:\n" + json.dumps(self.context, indent=4).replace('\\n', '\n').replace('\\t', '\t') + "\n\n"
+                    response += "Response:\n" + oldResponse + "\n\n"
+                self.request.wfile.write(response)
+                return
+
+
+
         except Exception, e:
             self.request.send_response(404)
             self.request.send_header("Content-type", 'text/html')
@@ -107,7 +124,7 @@ class view:
             else:
                 key = componentName
 
-        if self.context.has_key(key) and override is False:
+        if key in self.context and override is False:
             debug(
                 "[WARNING] Could not add component '{componentName}' to context because the key '{key}' is already used. Use override=True in order to overwrite the old context entry".format(
                     componentName=componentName, key=key))
@@ -118,7 +135,7 @@ class view:
 
     def addItemToContext(self, item, key, override=False):
 
-        if self.context.has_key(key) and override is False:
+        if key in self.context and override is False:
             debug(
                 "[WARNING] Could not add {itemType} item to context because the key '{key}' is already used. Use override=True in order to overwrite the old context entry".format(
                     itemType=type(item), key=key))
