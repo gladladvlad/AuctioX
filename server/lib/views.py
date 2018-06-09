@@ -94,8 +94,6 @@ class view:
         template = Template(open(os.path.join(TEMPLATE_DIRECTORY, templateName)).read())
         content = template.render(self.context)
         self.setContentType('text/html')
-        for item in self.context:
-            print item
         return content
 
     def addComponentToContext(self, componentName, key=None, override=False):
