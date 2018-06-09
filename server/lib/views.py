@@ -17,8 +17,8 @@ def debug(msg):
         print msg
 
 
-DEFAULT_HTML_PATH = '../public/static/html/'
-
+TEMPLATE_DIRECTORY = '../private/static/html/templates/'
+COMPONENT_DIRECTORY = '../private/static/html/components/'
 
 class view:
 
@@ -88,6 +88,42 @@ class view:
 
     def setContentType(self, contentType):
         self.contentType = contentType
+
+    def renderTemplate(self, templateName):
+
+        template = Template(open(os.path.join(TEMPLATE_DIRECTORY, templateName)).read())
+        content = template.render(self.context)
+        self.setContentType('text/html')
+        for item in self.context:
+            print item
+        return content
+
+    def addComponentToContext(self, componentName, key=None, override=False):
+
+        if key is None:
+            if len(componentName.split('.')) > 1:
+                key = componentName[0:-(1 + len(componentName.split('.')[-1]))]
+            else:
+                key = componentName
+
+        if self.context.has_key(key) and override is False:
+            debug(
+                "[WARNING] Could not add component '{componentName}' to context because the key '{key}' is already used. Use override=True in order to overwrite the old context entry".format(
+                    componentName=componentName, key=key))
+            return
+
+        component = open(os.path.join(COMPONENT_DIRECTORY, componentName)).read()
+        self.context[key] = component
+
+    def addItemToContext(self, item, key, override=False):
+
+        if self.context.has_key(key) and override is False:
+            debug(
+                "[WARNING] Could not add {itemType} item to context because the key '{key}' is already used. Use override=True in order to overwrite the old context entry".format(
+                    itemType=type(item), key=key))
+            return
+
+        self.context[key] = item
 
 class publicFileView(view):
 
