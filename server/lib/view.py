@@ -5,16 +5,11 @@ from dispatcherMap import *
 from jinja2 import Template, Environment, FileSystemLoader, select_autoescape
 import json
 
+from util import *
+
 # Aici sunt view-urile. Un view (la noi) este o functie care primeste un request si pregateste raspunsul (care e trimis dupaia inapoi)
 
 # publicFileResponse este view pentru toate fisierele care se afla in directorul public
-
-DEBUG = True
-
-
-def debug(msg):
-    if DEBUG:
-        print msg
 
 
 TEMPLATE_DIRECTORY = '../private/static/html/templates/'
