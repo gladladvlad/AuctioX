@@ -8,9 +8,12 @@ mycursor = mariadb_connection.cursor()
 
 class databaseController():
 
-    def executeSQLCommand(self,command):
+    def executeSQLCommand(self,command,commit):
         mycursor.execute(command)
-        mariadb_connection.commit()
+        result = mycursor.fetchall()
+        if commit == True:
+            mariadb_connection.commit()
+        return result
 
     """Extracting basic data from tables"""
     def getItemsFromTable(self, table, column, key, *args):
@@ -32,9 +35,6 @@ class databaseController():
 
     def getUserbidByID(self,key):
         return self.getItemsFromTable('userbid','xurrent_bid_id',key)
-
-    def getUserproductById(self,key):
-        return self.getItemsFromTable('userproduct','user_prod_id',key)
 
     def getTransactionById(self,key):
         return self.getItemsFromTable('transaction','transaction_id',key)
@@ -68,20 +68,20 @@ class databaseController():
 
     """Inserting data into tables"""
     def insertIntoUser(self, info):
-        lista = [info["username"],info["password"],info["first_name"],info["last_name"],info["email"],info["country"],info["state"],info["city"],info["adress_1"],info["adress_2"],info["zip_code"],info["contact_info"],info["cell_number"],info["session_id"]]
-        command = "INSERT INTO user(username,password,first_name,last_name,email,country,state,city,adress_1,adress_2,zip_code,contact_info,cell_number,session_id) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+        lista = [info["username"],info["password"],info["first_name"],info["last_name"],info["email"],info["country"],info["state"],info["city"],info["adress_1"],info["adress_2"],info["zip_code"],info["contact_info"],info["cell_number"],info["session_id"],info["status"]]
+        command = "INSERT INTO user(username,password,first_name,last_name,email,country,state,city,adress_1,adress_2,zip_code,contact_info,cell_number,session_id,status) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
         mycursor.execute(command,lista)
         mariadb_connection.commit()
 
     def insertIntoUserbid(self, info):
-        lista = [info["user_id"],info["product_id"]]
-        command = "INSERT INTO userbid(user_id,product_id) VALUES(%s,%s)"
+        lista = [info["user_id"],info["product_id"],info["status"]]
+        command = "INSERT INTO userbid(user_id,product_id,status) VALUES(%s,%s,%s)"
         mycursor.execute(command,lista)
         mariadb_connection.commit()
 
     def insertIntoProduct(self,info):
-        lista = [info["user_id"],info["product_data_id"],info["title"]]
-        command = "INSERT INTO product(user_id,product_data_id,title) VALUES(%s,%s,%s)"
+        lista = [info["user_id"],info["product_data_id"],info["title"],info["status"]]
+        command = "INSERT INTO product(user_id,product_data_id,title,status) VALUES(%s,%s,%s,%s)"
         mycursor.execute(command,lista)
         mariadb_connection.commit()
 
@@ -129,8 +129,8 @@ class databaseController():
         mariadb_connection.commit()
 
     def insertIntoTrasnaction(self,info):
-        lista = [info["seller_user_id"],info["buyer_user_id"],info["has_ended"],info["date_initiated"],info["date_ended"]]
-        command = "INSERT INTO transaction(seller_user_id,buyer_user_id,has_ended,date_initiated,date_ended) VALUES()"
+        lista = [info["seller_user_id"],info["buyer_user_id"],info["product_id"],info["has_ended"],info["date_initiated"],info["date_ended"]]
+        command = "INSERT INTO transaction(seller_user_id,buyer_user_id,product_id,has_ended,date_initiated,date_ended) VALUES(%s,%s,%s,%s,%,s.%s)"
         mycursor.execute(command,lista)
         mariadb_connection.commit()
 
@@ -139,6 +139,33 @@ class databaseController():
             session_id=info["session_id"], user_id=info["user_id"], date_created=info["date_created"],
             last_connected=info["last_connected"], device=info["device"], ip=info["ip"]
         )
+        mycursor.execute(command)
+        mariadb_connection.commit()
+
+    """Setari inactiv in baza de date"""
+    def setInactiveInTransaction(self, key):
+        command = "UPDATE transaction set has_ended = 0 where transaction_id={key}".format(key=key)
+        mycursor.execute(command)
+        mariadb_connection.commit()
+        command = "select product_id from transaction where transaction_id={key}".format(key=key)
+        result = mycursor.execute(command)
+        self.setInactiveInProduct(result)
+
+    def setInactiveInUserbid(self, key):
+        command = "update userbid set status=0 where user_bid_id={key})".format(key=key)
+        mycursor.execute(command)
+        mariadb_connection.commit()
+
+    def setInactiveInUser(self, key):
+        command = "update user set status=0 where user_id={key}".format(key=key)
+        mycursor.execute(command)
+        mariadb_connection.commit()
+
+    def setInactiveInProduct(self, key):
+        command = "update product set status=0 where product_id={key})".format(key=key)
+        mycursor.execute(command)
+        mariadb_connection.commit()
+        command = "select product_id where product_id={key}".format(key=key)
 
 
 
@@ -160,11 +187,18 @@ hashinfo={
     "zip_code" : '11111',
     "contact_info" : 'contact1',
     "cell_number" : '0766******',
-    "session_id" : 12
+    "session_id" : 12,
+    "status" : 1
 }
 
 #metod.insertIntoUser(hashinfo)
-print metod.getUserById(1)
+res = metod.getUserById(1)
+print res[0]["status"]
+metod.setInactiveInUser(1)
+res = metod.getUserById(1)
+print res[0]["status"]
+
+
 #rec = [12.0,'acum']
 #mycursor.execute("insert into testare(ceva,ceva2) values (%s,%s)", rec)
 #mariadb_connection.commit()
