@@ -1,10 +1,10 @@
 from view import *
 
-
 class jinjatest(view):
 
     def get(self):
         self.addComponentToContext('navbar.html')
+        self.addItemToContext('Jinja Test Page', 'title')
         return self.renderTemplate('jinjatest.html')
 
 

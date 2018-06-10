@@ -34,13 +34,13 @@ class view:
             self.requestType = self.request.requestline.split(' ')[0]
 
             if 'POST' in self.requestType:
-                debug("POST")
+                # debug("POST")
                 content_length = int(self.request.headers['Content-Length'])
                 self.postData = self.request.rfile.read(content_length)
                 self.response = self.post()
 
             else:
-                debug("GET")
+                # debug("GET")
                 self.response = self.get()
 
             if DEBUG and 'debug' in self.urlArgs:
@@ -58,8 +58,6 @@ class view:
                     response += "Response:\n" + oldResponse + "\n\n"
                 self.request.wfile.write(response)
                 return
-
-
 
         except Exception, e:
             self.request.send_response(404)
