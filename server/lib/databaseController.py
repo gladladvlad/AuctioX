@@ -74,22 +74,38 @@ class databaseController():
         mariadb_connection.commit()
 
     def insertIntoUserbid(self, info):
-        lista = [info["user_id"],info["product_id"],info["status"]]
-        command = "INSERT INTO userbid(user_id,product_id,status) VALUES(%s,%s,%s)"
+        lista = [info["user_id"],info["product_id"],info["status"],info["value"]]
+        command = "INSERT INTO userbid(user_id,product_id,status,value) VALUES(%s,%s,%s,%s)"
         mycursor.execute(command,lista)
         mariadb_connection.commit()
 
     def insertIntoProduct(self,info):
-        lista = [info["user_id"],info["product_data_id"],info["title"],info["status"]]
-        command = "INSERT INTO product(user_id,product_data_id,title,status) VALUES(%s,%s,%s,%s)"
-        mycursor.execute(command,lista)
+        command = "INSERT INTO product VALUES({product_id},{user_id},{product_data_id},'{title}','{status}')".format(
+            product_id=info["product_id"], user_id=info["user_id"], product_data_id=info["product_data_id"],
+            title=info["title"], status=info["status"]
+        )
+        mycursor.execute(command)
         mariadb_connection.commit()
 
     def insertIntoProductdata(self,info):
-        lista = [info["title"],info["desc"],info["contition"],info["country"],info["city"],info["is_auction"],info["price"],info["shipping_type"],info["shipping_price"],info["image"],info["date_added"],info["date_expires"],info["category"],info["subcategory"]]
-        command = "INSERT INTO productdata(title,desc,condition,country,city,is_auction,price,shipping_type,shipping_price,image,date_added,date_expires,category,subcategory) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+        lista = [info["title"],info["desc"],info["contition"],info["country"],info["city"],info["is_auction"],info["price"],info["shipping_type"],info["shipping_price"],info["date_added"],info["date_expires"],info["category"],info["subcategory"],info["views"]]
+        command = "INSERT INTO productdata(title,desc,condition,country,city,is_auction,price,shipping_type,shipping_price,date_added,date_expires,category,subcategory,views) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
         mycursor.execute(command,lista)
         mariadb_connection.commit()
+        hashmap={
+            "product_id" : info["product_data_id"],
+            "user_id" : info["user_id"],
+            "product_data_id" : info["product_data_id"],
+            "title" : info["title"],
+            "status" : info["status"]
+        }
+        self.insertIntoProduct(hashmap)
+        hashmap={
+            "product_data_id" : info["product_data_id"],
+            "image" : info["image"]
+        }
+        self.insertIntoImages(hashmap)
+
 
     def insertIntoFeedback(self,info):
         lista = [info["transaction_id"],info["user_id"],info["title"],info["content"]]
@@ -97,11 +113,11 @@ class databaseController():
         mycursor.execute(command,lista)
         mariadb_connection.commit()
 
-    def insertIntoImage(self,info):
+    def insertIntoImages(self,info):
         for i in info["image"]:
-            lista = [info["user_id"],i]
-            command = "INSERT INTO images(user_id,image) VALUES(%s,%s)"
-            mycursor.execute(command,lista)
+            lista = [info["product_data_id"], i]
+            command = "INSERT INTO images(product_data_id,image) VALUES(%s,%s)"
+            mycursor.execute(command, lista)
             mariadb_connection.commit()
 
     def insertIntoNotice(self,info):
@@ -143,30 +159,85 @@ class databaseController():
         mariadb_connection.commit()
 
     """Setari inactiv in baza de date"""
+
     def setInactiveInTransaction(self, key):
-        command = "UPDATE transaction set has_ended = 0 where transaction_id={key}".format(key=key)
+        command = "UPDATE transaction set has_ended ='ended' where product_id_id={key}".format(key=key)
         mycursor.execute(command)
         mariadb_connection.commit()
-        command = "select product_id from transaction where transaction_id={key}".format(key=key)
-        result = mycursor.execute(command)
-        self.setInactiveInProduct(result)
 
     def setInactiveInUserbid(self, key):
-        command = "update userbid set status=0 where user_bid_id={key})".format(key=key)
+        command = "update userbid set status='lost' where product_id={key})".format(key=key)
+        mycursor.execute(command)
+        mariadb_connection.commit()
+        command = "select current_bid_id from userbid where value=max(value)"
+        mycursor.execute(command)
+        result = mycursor.fetchone()
+        command = "update userbid set status='won' where current_bid_id={result}".format(result=result)
         mycursor.execute(command)
         mariadb_connection.commit()
 
     def setInactiveInUser(self, key):
-        command = "update user set status=0 where user_id={key}".format(key=key)
+        command = "update user set status='inactive' where user_id={key}".format(key=key)
         mycursor.execute(command)
         mariadb_connection.commit()
 
     def setInactiveInProduct(self, key):
-        command = "update product set status=0 where product_id={key})".format(key=key)
+        command = "update product set status='sold' where product_data_id={key})".format(key=key)
         mycursor.execute(command)
         mariadb_connection.commit()
         command = "select product_id where product_id={key}".format(key=key)
+        mycursor.execute(command)
+        result = mycursor.fetchone()
+        self.setInactiveInTransaction(result)
+        self.setInactiveInUserbid(result)
 
+    """Delete everything in database"""
+
+    def deleteDatabase(self):
+        command = "delete from userbid"
+        mycursor.execute(command)
+        mariadb_connection.commit()
+        command = "delete from transaction"
+        mycursor.execute(command)
+        mariadb_connection.commit()
+        command = "delete from sessions"
+        mycursor.execute(command)
+        mariadb_connection.commit()
+        command = "delete from report"
+        mycursor.execute(command)
+        mariadb_connection.commit()
+        command = "delete from question"
+        mycursor.execute(command)
+        mariadb_connection.commit()
+        command = "delete from images"
+        mycursor.execute(command)
+        mariadb_connection.commit()
+        command = "delete from productdata"
+        mycursor.execute(command)
+        mariadb_connection.commit()
+        command = "delete from feedback"
+        mycursor.execute(command)
+        mariadb_connection.commit()
+        command = "delete from notice"
+        mycursor.execute(command)
+        mariadb_connection.commit()
+        command = "delete from response"
+        mycursor.execute(command)
+        mariadb_connection.commit()
+        command = "delete from product"
+        mycursor.execute(command)
+        mariadb_connection.commit()
+        command = "delete from user"
+        mycursor.execute(command)
+        mariadb_connection.commit()
+
+    """Match chestii"""
+    def matchText(self,info):
+        lista = []
+        command = 'select product_data_id from ((SELECT product_data_id, MATCH (title,description) AGAINST ("{info}" IN NATURAL LANGUAGE MODE) AS "score" FROM productdata) as intermediar_table) where score!=0'.format(info=info)
+        mycursor.execute(command)
+        result = mycursor.fetchall()
+        return result
 
 
 metod = databaseController()
@@ -174,10 +245,10 @@ metod = databaseController()
 #print json.dumps(metod.getUserById("user","country","'romania'"),indent=4)
 
 hashinfo={
-    "username" : 'GabiHartobanu',
+    "username" : 'Gabi Hartobanu',
     "password" : 'mancare',
-    "first_name" : 'Hirtobanu',
-    "last_name" : 'Gabi',
+    "first_name" : 'Baisan',
+    "last_name" : 'Razvan',
     "email" : 'gabi@yahoo.com',
     "country" : 'romania',
     "state" : '',
@@ -192,11 +263,8 @@ hashinfo={
 }
 
 #metod.insertIntoUser(hashinfo)
-res = metod.getUserById(1)
-print res[0]["status"]
-metod.setInactiveInUser(1)
-res = metod.getUserById(1)
-print res[0]["status"]
+#print json.dumps(metod.matchText("Gabi"),indent=4)
+print metod.matchText("Gabi")
 
 
 #rec = [12.0,'acum']
