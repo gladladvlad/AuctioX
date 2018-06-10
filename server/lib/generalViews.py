@@ -19,6 +19,32 @@ class publicFileView(view):
         debug("Sending {0} as {1}".format(filePath, self.contentType))
         return content
 
+class userListingView(view):
+    def get(self):
+        debug('[INFO] userListings reached')
+
+        self.addComponentToContext('userlisting_styles.html', 'style', True)
+        self.setContentType('text/html')
+        self.addComponentToContext('navbar.html', 'navbar', True)
+        self.addComponentToContext('userlisting_content.html', 'content', True)
+        self.addComponentToContext('footer.html', 'footer', True)
+        content = self.renderTemplate('userlistings.html')
+
+        return content
+
+class createListingView(view):
+    def get(self):
+        debug('[INFO] createListings reached')
+
+        self.addComponentToContext('createlisting_styles.html', 'style', True)
+        self.setContentType('text/html')
+        self.addComponentToContext('navbar.html', 'navbar', True)
+        self.addComponentToContext('createlisting_content.html', 'content', True)
+        self.addComponentToContext('footer.html', 'footer', True)
+        content = self.renderTemplate('createlisting.html')
+
+        return content
+
 
 class homepageView(view):
     def get(self):

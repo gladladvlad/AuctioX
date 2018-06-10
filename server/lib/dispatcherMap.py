@@ -9,13 +9,18 @@ map = [
     ('^/public/*', publicFileView),
     ('^/jinjatest', jinjatest),
 
-    # User Registration START
+    # User Views START
 
     ('^/registration', userRegistrationPage),
-
-    # User Registration END
-
     ('^/userlistings', userListingView),
+
+    # User Views END
+
+    # Product Views START
+
+    ('^/createListing', createListingView),
+
+    # Product Views END
 
     ('^/', homepageView),
     ('*', view)
