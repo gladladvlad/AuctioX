@@ -2,6 +2,10 @@
 	--white: #000000;
 }
 
+[hidden] {
+	display: none;
+}
+
 * {
 	margin: 0 0 0 0;
 	padding: 0 0 0 0;

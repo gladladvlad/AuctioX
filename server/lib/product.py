@@ -17,3 +17,22 @@ class product():
         self.shippingPrice = newShippingPrice
         self.dateAdded = newDateAdded
         self.dateExpires = newDateExpires
+
+    def asDict(self):
+        result = dict()
+        result = {'ownerID' : str(self.ownerID),
+                'productID' : str(self.newProductID),
+                'productDataID' : str(self.newProductDataID),
+                'title' : str(self.newTitle),
+                'desc' : str(self.newDesc),
+                'condition' : str(self.newCondition),
+                'country' : str(self.newCountry),
+                'city' : str(self.newCity),
+                'auction' : str(self.newAuction),
+                'price' : str(self.newPrice),
+                'shippingType' : str(self.newShippingType),
+                'shippingPrice' : str(self.newShippingPrice),
+                'dateAdded' : str(self.newDateAdded),
+                'dateExpires' : str(self.newDateExpires)}
+
+        return result

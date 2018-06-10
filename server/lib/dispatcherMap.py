@@ -19,11 +19,13 @@ map = [
 
     # Product Views START
 
-    ('^/createListing', createListingView),
+    ('^/search', searchView),
+    ('^/getproductids', searchProductIDsView),
+    ('^/getproducts', searchProductsView),
+    ('^/createlisting', createListingView),
 
     # Product Views END
 
-    ('^/search', searchView),
 
     ('^/', homepageView),
     ('*', view)
