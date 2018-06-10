@@ -11,7 +11,7 @@ class product():
         self.condition = newCondition
         self.country = newCountry
         self.city = newCity
-        self.auction = bool(newAuction)
+        self.auction = newAuction
         self.price = newPrice
         self.shippingType = newShippingType
         self.shippingPrice = newShippingPrice
@@ -21,18 +21,18 @@ class product():
     def asDict(self):
         result = dict()
         result = {'ownerID' : str(self.ownerID),
-                'productID' : str(self.newProductID),
-                'productDataID' : str(self.newProductDataID),
-                'title' : str(self.newTitle),
-                'desc' : str(self.newDesc),
-                'condition' : str(self.newCondition),
-                'country' : str(self.newCountry),
-                'city' : str(self.newCity),
-                'auction' : str(self.newAuction),
-                'price' : str(self.newPrice),
-                'shippingType' : str(self.newShippingType),
-                'shippingPrice' : str(self.newShippingPrice),
-                'dateAdded' : str(self.newDateAdded),
-                'dateExpires' : str(self.newDateExpires)}
+                'productID' : str(self.productID),
+                'productDataID' : str(self.productDataID),
+                'title' : str(self.title),
+                'desc' : str(self.desc),
+                'condition' : str(self.condition),
+                'country' : str(self.country),
+                'city' : str(self.city),
+                'auction' : str(self.auction),
+                'price' : str(self.price),
+                'shippingType' : str(self.shippingType),
+                'shippingPrice' : str(self.shippingPrice),
+                'dateAdded' : str(self.dateAdded),
+                'dateExpires' : str(self.dateExpires)}
 
         return result
