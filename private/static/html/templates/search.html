@@ -9,19 +9,39 @@
 	<div class="searchBody">
 		{{ search_filters }}
 
-		{% block items %}
-			{{ ints }}
-			{% for thing in ints %}
-				{{ thing }}
-			{% endfor %}
-
-			<div id="content">
-				{% block product_list %}
-				{% endblock %}
-			</div>
-		{% endblock %}
+		<script src="../public/static/js/getProducts_script.js"></script>
+		<div id="content">
+			<ul hidden>
+				<li class="prod">
+					<div class="prodTitle">
+						<h3><a href="http://google.com"> title </a></h3>
+					</div>
+					<div class="prodContent">
+						<div class="prodImage">
+							<img src="./resource/img/nes.jpg" alt="product"/>
+						</div>
+						<div class="prodDesc">
+							<div class="prodDescLeft">
+								<span> Condition: product.condition </span>
+								<span> Country: product.country </span>
+								<span> City: product.city </span>
+								<span> Listing type: product.auction </span>
+								<span> Price: product.price currency </span>
+								<span> Shipping method: product.shippingType </span>
+								<span> Shipping cost: product.shippingPrice currency </span>
+								<span> Date added: product.dateAdded </span>
+							</div>
+							<div class="prodDescRight">
+								<p>
+									product.desc
+								</p>
+							</div>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
 	</div>
-	<script src="../public/static/js/getProducts_script.js"></script>
 {% endblock %}
 
 {% block footer %}
