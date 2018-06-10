@@ -63,6 +63,14 @@ class databaseController():
     def getSessionById(self,key):
         return self.getItemsFromTable('sessions','session_id',key)
 
+    def getDate(self,table,column_key,column_date,key):
+        command = "select '{column_date}' from '{table}' where {column_key}={key}".format(
+            column_date=column_date,table=table,column_key=column_key,key=key
+        )
+        mycursor.execute(command)
+        result = mycursor.fetchall()
+        return result
+
 
     #def advancedSearch(self):
 
@@ -145,10 +153,17 @@ class databaseController():
         mariadb_connection.commit()
 
     def insertIntoTrasnaction(self,info):
-        lista = [info["seller_user_id"],info["buyer_user_id"],info["product_id"],info["has_ended"],info["date_initiated"],info["date_ended"]]
+        lista = [info["seller_user_id"],info["buyer_user_id"],info["product_id"],info["has_ended"],datetime.datetime.now(),self.getDate('productdata','product_data_id','date_expires',info["product_id"])]
         command = "INSERT INTO transaction(seller_user_id,buyer_user_id,product_id,has_ended,date_initiated,date_ended) VALUES(%s,%s,%s,%s,%,s.%s)"
         mycursor.execute(command,lista)
         mariadb_connection.commit()
+        hashmap={
+            "user_id" : info["buyer_user_id"],
+            "product_id" : info["product_id"],
+            "status" : 'ongoing',
+            "value" : info["value"]
+        }
+        self.insertIntoUserbid(hashmap)
 
     def insertIntoSessions(self,info):
         command = "INSERT INTO sessions VALUES({session_id}, {user_id}, {date_created}, {last_connected}, '{device}', '{ip}')".format(
@@ -233,7 +248,6 @@ class databaseController():
 
     """Match chestii"""
     def matchText(self,info):
-        lista = []
         command = 'select product_data_id from ((SELECT product_data_id, MATCH (title,description) AGAINST ("{info}" IN NATURAL LANGUAGE MODE) AS "score" FROM productdata) as intermediar_table) where score!=0'.format(info=info)
         mycursor.execute(command)
         result = mycursor.fetchall()
@@ -265,16 +279,6 @@ hashinfo={
 #metod.insertIntoUser(hashinfo)
 #print json.dumps(metod.matchText("Gabi"),indent=4)
 print metod.matchText("Gabi")
-
-
-#rec = [12.0,'acum']
-#mycursor.execute("insert into testare(ceva,ceva2) values (%s,%s)", rec)
-#mariadb_connection.commit()
-
-
-#record = ['GabiHartobanu','mancare','Hirtobanu','Gabriel','gabi@yahoo.com','romania','','iasi','ciurebesti1','ciurbesti2','111','contacti1','0753******',7]
-#mycursor.execute('insert into user(username,password,first_name,last_name,email,country,state,city,adress_1,adress_2,zip_code,contact_info,cell_number,session_id) values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%d)',record )
-#mariadb_connection.commit()
-#print mycursor.fetchall()
-#mycursor.execute('INSERT INTO userbid VALUES (1,1,1)')
-#mariadb_connection.commit()
+#print metod.getUserById(3)
+res = datetime.datetime.now()
+print res
