@@ -23,6 +23,8 @@ map = [
 
     # Product Views END
 
+    ('^/search', searchView),
+
     ('^/', homepageView),
     ('*', view)
 ]
