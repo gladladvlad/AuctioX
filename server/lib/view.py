@@ -29,6 +29,8 @@ class view:
             self.contentType = "text/plain"  # this is by default
 
             self.urlArgs = parse_qs(urlparse(request.path).query)  # get args from url
+            for key in self.urlArgs:
+                self.urlArgs[key] = self.urlArgs[key][0]
             # debug(self.urlAargs)
 
             self.requestType = self.request.requestline.split(' ')[0]
