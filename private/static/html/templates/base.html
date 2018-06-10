@@ -2,13 +2,24 @@
 <html>
     <head>
         <meta charset="utf-8">
+
+        <meta name="viewport" content="width=device-width,initial-scale=1"/>
+
         <link rel="stylesheet" type="text/css" href="/public/static/css/style.css">
+
+        {% if navbar is defined %}
+        <link rel="stylesheet" type="text/css" href="/public/static/css/style.css">
+        {% endif %}
 
         {% block style %}
             {{ style }}
         {% endblock %}
 
-        <title> AuctioX </title>
+        {% block script %}
+
+        {% endblock %}
+
+        <title> {% if title is defined %}{{ title }}{% else %}AuctioX{% endif %} </title>
 
     </head>
 
@@ -19,6 +30,9 @@
     {% endblock %}
 
     {% block homebar %}
+    {% endblock %}
+
+    {% block titlebar %}
     {% endblock %}
 
     {% block content %}
