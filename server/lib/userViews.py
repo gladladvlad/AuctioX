@@ -12,3 +12,17 @@ class userRegistrationPage(view):
         self.addComponentToContext('userRegistration_main.html')
 
         return self.renderTemplate('userRegistration.html')
+
+
+class userListingView(view):
+    def get(self):
+        debug('[INFO] userListings reached')
+
+        self.addComponentToContext('userlisting_styles.html', 'style', True)
+        self.setContentType('text/html')
+        self.addComponentToContext('navbar.html', 'navbar', True)
+        self.addComponentToContext('userlisting_content.html', 'content', True)
+        self.addComponentToContext('footer.html', 'footer', True)
+        content = self.renderTemplate('userlistings.html')
+
+        return content
