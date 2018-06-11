@@ -103,20 +103,23 @@ class databaseController():
         mariadb_connection.commit()
 
     def insertIntoProductdata(self,info):
-        lista = [info["title"],info["desc"],info["contition"],info["country"],info["city"],info["is_auction"],info["price"],info["shipping_type"],info["shipping_price"],info["date_added"],info["date_expires"],info["category"],info["subcategory"],info["views"]]
-        command = "INSERT INTO productdata(title,desc,condition,country,city,is_auction,price,shipping_type,shipping_price,date_added,date_expires,category,subcategory,views) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+        lista = [info["title"],info["description"],info["condition"],info["country"],info["state"],info["city"],info["is_auction"],info["price"],info["shipping_type"],info["shipping_price"],info["date_added"],info["date_expires"],info["category"],info["subcategory"],info["views"]]
+        command = "INSERT INTO productdata(title,description,conditie,country,state,city,is_auction,price,shipping_type,shipping_price,date_added,date_expires,category,subcategory,views) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
         mycursor.execute(command,lista)
         mariadb_connection.commit()
+        command="select max(product_data_id) from productdata"
+        mycursor.execute(command)
+        result=mycursor.fetchone()
         hashmap={
-            "product_id" : info["product_data_id"],
+            "product_id" : result[0],
             "user_id" : info["user_id"],
-            "product_data_id" : info["product_data_id"],
+            "product_data_id" : result[0],
             "title" : info["title"],
-            "status" : info["status"]
+            "status" : 'on_sale'
         }
         self.insertIntoProduct(hashmap)
         hashmap={
-            "product_data_id" : info["product_data_id"],
+            "product_data_id" : result[0],
             "image" : info["image"]
         }
         self.insertIntoImages(hashmap)
@@ -234,6 +237,9 @@ class databaseController():
         command = "delete from images"
         mycursor.execute(command)
         mariadb_connection.commit()
+        command = "delete from product"
+        mycursor.execute(command)
+        mariadb_connection.commit()
         command = "delete from productdata"
         mycursor.execute(command)
         mariadb_connection.commit()
@@ -244,9 +250,6 @@ class databaseController():
         mycursor.execute(command)
         mariadb_connection.commit()
         command = "delete from response"
-        mycursor.execute(command)
-        mariadb_connection.commit()
-        command = "delete from product"
         mycursor.execute(command)
         mariadb_connection.commit()
         command = "delete from user"
@@ -293,10 +296,26 @@ if __name__ == "__main__":
     #print json.dumps(metod.getUserById("user","country","'romania'"),indent=4)
 
     hashinfo={
-        "condition":'ceva',
-        "price":12
+        "title": 'Telefon bengos',
+        "description": 'Cel mai tare din parcare',
+        "condition": 'bulit',
+        "country": 'blocuri ciurea',
+        "state":'aci',
+        "city":'iasi',
+        "is_auction":1,
+        "price":100,
+        "shipping_type":'pa jos',
+        "shipping_price":'1000',
+        "date_added":datetime.datetime.now(),
+        "date_expires":datetime.datetime.now()+ datetime.timedelta(days=10),
+        "category":'haur',
+        "subcategory":'land',
+        "views": 20,
+        "user_id": 16,
+        "image": []
     }
     #print(hashinfo["condition"])
     #metod.insertIntoUser(hashinfo)
     #print json.dumps(metod.matchText("Gabi"),indent=4)
-    print metod.getProductsByFilter(hashinfo,'condition','asc','aaa')
+    #print metod.getProductsByFilter(hashinfo,'condition','asc','aaa')
+    metod.deleteDatabase()

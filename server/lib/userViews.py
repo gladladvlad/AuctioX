@@ -26,3 +26,7 @@ class userListingView(view):
         content = self.renderTemplate('userlistings.html')
 
         return content
+
+class userSignInView(view):
+    def get(self):
+
