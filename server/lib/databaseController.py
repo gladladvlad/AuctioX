@@ -94,20 +94,22 @@ class databaseController():
 
     #def insertInto
 
-metod = databaseController()
+if __name__ == "__main__":
 
-#print json.dumps(metod.getUserById("user","country","'romania'"),indent=4)
+    metod = databaseController()
 
-hashinfo={
-    "current_bid_id" : 1,
-    "user_id" : 1,
-    "product_id" : 1
-}
+    #print json.dumps(metod.getUserById("user","country","'romania'"),indent=4)
 
-metod.InsertIntoUserbid(hashinfo)
+    hashinfo={
+        "current_bid_id" : 1,
+        "user_id" : 1,
+        "product_id" : 1
+    }
 
-#mycursor.execute('insert into user values(3,"GabiHartobanu","mancare","Hirtobanu","Gabriel","gabi@yahoo.com","romania","","iasi","ciurebesti1","ciurbesti2","111","contacti1","0753******",3)')
-#mariadb_connection.commit()
-#print mycursor.fetchall()
-#mycursor.execute('INSERT INTO userbid VALUES (1,1,1)')
-#mariadb_connection.commit()
+    metod.InsertIntoUserbid(hashinfo)
+
+    #mycursor.execute('insert into user values(3,"GabiHartobanu","mancare","Hirtobanu","Gabriel","gabi@yahoo.com","romania","","iasi","ciurebesti1","ciurbesti2","111","contacti1","0753******",3)')
+    #mariadb_connection.commit()
+    #print mycursor.fetchall()
+    #mycursor.execute('INSERT INTO userbid VALUES (1,1,1)')
+    #mariadb_connection.commit()

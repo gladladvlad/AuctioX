@@ -23,7 +23,7 @@ class view:
     def __init__(self, request):
 
         self.context = dict()
-        debug("View: {0}".format(self.__class__.__name__))
+        debug("View init: {0}".format(self.__class__.__name__))
         try:
             self.request = request
             self.contentType = "text/plain"  # this is by default
@@ -37,13 +37,14 @@ class view:
             self.requestType = self.request.requestline.split(' ')[0]
 
             if 'POST' in self.requestType:
-                # debug("POST")
                 content_length = int(self.request.headers['Content-Length'])
                 self.postData = self.request.rfile.read(content_length)
+
+                debug("Calling {0}.post()".format(self.__class__.__name__))
                 self.response = self.post()
 
             else:
-                # debug("GET")
+                debug("Calling {0}.get()".format(self.__class__.__name__))
                 self.response = self.get()
 
             if DEBUG and 'debug' in self.urlArgs:
@@ -88,7 +89,8 @@ class view:
         if DEBUG:
             response += self.request.requestline + "<hr>"
             response += "URL arguments:<br><pre>" + json.dumps(self.urlArgs, indent=4) + "</pre><hr>"
-            response += "Headers:<br><pre>" + str(self.request.headers) + "</pre>"
+            response += "Headers:<br><pre>" + str(self.request.headers) + "</pre><hr>"
+            response += "View:<br><pre>" + self.__class__.__name__ + "</pre>"
         return response
 
     def post(self):
@@ -98,8 +100,9 @@ class view:
         if DEBUG:
             response += self.request.requestline + "<hr>"
             response += "URL arguments:<br><pre>" + json.dumps(self.urlArgs, indent=4) + "</pre><hr>"
-            response += "POST data:<br><pre>" + self.postData + "</pre><hr>"
-            response += "Headers:<br><pre>" + str(self.request.headers) + "</pre>"
+            response += "POST data:<br><pre>" + json.dumps(self.postData) + "</pre><hr>"
+            response += "Headers:<br><pre>" + str(self.request.headers) + "</pre><hr>"
+            response += "View:<br><pre>" + self.__class__.__name__ + "</pre>"
         return response
 
     def setContentType(self, contentType):
