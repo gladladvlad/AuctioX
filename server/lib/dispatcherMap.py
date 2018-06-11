@@ -19,9 +19,12 @@ map = [
 
     # Product Views START
 
+    ('^/search_page', searchPageView),
     ('^/search', searchView),
     ('^/getproductids', searchProductIDsView),
+    #### will be unused ######
     ('^/getproducts', searchProductsView),
+    #######################
     ('^/createlisting', createListingView),
 
     # Product Views END

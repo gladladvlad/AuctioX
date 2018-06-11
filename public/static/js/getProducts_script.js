@@ -1,9 +1,12 @@
 var productIDs;
 var products;
+var productPage;
 
 window.onload = function(){
     requestProductIDs();
-    requestProducts(0, 4);
+    requestProductPage(0, 4);
+
+    document.write(productPage);
 
     console.log("onload() finished");
 }
@@ -24,6 +27,40 @@ function requestProductIDs(){
     xhr.send();
 }
 
+function requestProductPage(fromIndex, toIndex){
+    if (fromIndex > toIndex) throw "Inverted indexes!";
+    if (fromIndex < 0) throw "Left index lower than 0!";
+    if (toIndex > (productIDs.length - 1)) throw "Right index higher than productIDs.length!";
+
+    var request = "/search_page";
+
+    request = request + "?";
+    var argIter = "";
+
+    for (var i = fromIndex; i <= toIndex; i++) {
+        argIter = "item" + i.toString() + "=" + productIDs[i].toString();
+
+        request = request + argIter;
+        if (i != toIndex) {
+            request = request + "&";
+        }
+    }
+
+    var xhr = new XMLHttpRequest();
+
+    xhr.onreadystatechange = function(){
+        if(xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200){
+            productPage = xhr.responseText;
+        }
+    }
+
+    xhr.open("GET", request, false);
+    xhr.setRequestHeader("Content-type", "application/json");
+    xhr.send();
+}
+
+
+/*
 function requestProducts(fromIndex, toIndex){
     if (fromIndex > toIndex) throw "Inverted indexes!";
     if (fromIndex < 0) throw "Left index lower than 0!";
@@ -55,3 +92,4 @@ function requestProducts(fromIndex, toIndex){
     xhr.setRequestHeader("Content-type", "application/json");
     xhr.send();
 }
+*/

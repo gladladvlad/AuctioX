@@ -1,0 +1,32 @@
+			<ul>
+				{% for product in products %}
+				<li class="prod">
+					<div class="prodTitle">
+						<h3><a href="HTTP://GOOGLE.COM"> {{ product.title }} </a></h3>
+					</div>
+
+					<div class="prodContent">
+						<div class="prodImage">
+							<img src="https://i.ytimg.com/vi/aiWkZMMDLg4/maxresdefault.jpg" alt="product"/>
+						</div>
+						<div class="prodDesc">
+							<div class="prodDescLeft">
+								<span> Condition: {{ product.condition }} </span>
+								<span> Country: {{ product.country }} </span>
+								<span> City: {{ product.city }} </span>
+								<span> Listing type: {{ product.auction }} </span>
+								<span> Price: {{ product.price }} currency </span>
+								<span> Shipping method: {{ product.shippingType }} </span>
+								<span> Shipping cost: {{ product.shippingPrice }} currency </span>
+								<span> Date added: {{ product.dateAdded }} </span>
+							</div>
+							<div class="prodDescRight">
+								<p>
+									{{product.desc }}
+								</p>
+							</div>
+						</div>
+					</div>
+				</li>
+				{% endfor %}
+			</ul>
