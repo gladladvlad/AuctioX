@@ -1,6 +1,7 @@
 from view import *
 from product import *
 import json
+from productController import productController
 
 
 class createListingView(view):

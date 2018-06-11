@@ -15,7 +15,7 @@
 			</div>
 
 			<div class="mainContainer">
-				<form id="auctionForm" action="return">
+				<form id="auctionForm" action="" onsubmit="return false;">
 					<div class="containerFull">
 						<div class="containerHalf">
 							<div class="formElement">
@@ -66,8 +66,8 @@
 								<label class="formLabel" for="inputPhotos">Photos</label>
 								<small>A picture is worth a thousand words (you can add more than 1 though)</small><br>
 								<input type="file" id="inputPhotos" accept="image/*" multiple>
-								<div class="formPhotosPreview">
-									<p>No files to preview</p>
+								<button type="button" onclick="submitPhoto(); return false;">Submit</button>
+								<div id="preview" class="formPhotosPreview">
 								</div>
 							</div>
 							<div class="formElement">
