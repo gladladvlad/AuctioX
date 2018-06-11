@@ -1,7 +1,9 @@
 import mysql.connector as mariadb
+#from userController import user
 import  json
 import time
 import datetime
+
 mariadb_connection = mariadb.connect(user='root', password='mancare', host='localhost', database='tw')
 mycursor = mariadb_connection.cursor()
 
@@ -34,7 +36,7 @@ class databaseController():
         return self.getItemsFromTable('user','user_id',key)
 
     def getUserbidByID(self,key):
-        return self.getItemsFromTable('userbid','xurrent_bid_id',key)
+        return self.getItemsFromTable('userbid','current_bid_id',key)
 
     def getTransactionById(self,key):
         return self.getItemsFromTable('transaction','transaction_id',key)
@@ -70,6 +72,9 @@ class databaseController():
         mycursor.execute(command)
         result = mycursor.fetchall()
         return result
+
+    def getUserByUsername(self,key):
+        return self.getItemsFromTable('user','username',key)
 
 
     #def advancedSearch(self):
@@ -253,32 +258,45 @@ class databaseController():
         result = mycursor.fetchall()
         return result
 
+    """Get products by filter"""
+    def getProductsByFilter(self,info):
+        where_clause = ''
+        for key,value in info.items():
+            if value != None:
+                where_clause += ''
 
-metod = databaseController()
 
-#print json.dumps(metod.getUserById("user","country","'romania'"),indent=4)
+if __name__ == "__main__":
+    metod = databaseController()
 
-hashinfo={
-    "username" : 'Gabi Hartobanu',
-    "password" : 'mancare',
-    "first_name" : 'Baisan',
-    "last_name" : 'Razvan',
-    "email" : 'gabi@yahoo.com',
-    "country" : 'romania',
-    "state" : '',
-    "city" : 'iasi',
-    "adress_1" : 'ciurbesti_1',
-    "adress_2" : 'ciurbesti2',
-    "zip_code" : '11111',
-    "contact_info" : 'contact1',
-    "cell_number" : '0766******',
-    "session_id" : 12,
-    "status" : 1
-}
+    #print json.dumps(metod.getUserById("user","country","'romania'"),indent=4)
 
-#metod.insertIntoUser(hashinfo)
-#print json.dumps(metod.matchText("Gabi"),indent=4)
-print metod.matchText("Gabi")
-#print metod.getUserById(3)
-res = datetime.datetime.now()
-print res
+    hashinfo={
+        "username" : 'Gabi Hartobanu',
+        "password" : 'mancare',
+        "first_name" : 'Baisan',
+        "last_name" : 'Razvan',
+        "email" : 'gabi@yahoo.com',
+        "country" : 'romania',
+        "state" : '',
+        "city" : 'iasi',
+        "adress_1" : 'ciurbesti_1',
+        "adress_2" : 'ciurbesti2',
+        "zip_code" : '11111',
+        "contact_info" : 'contact1',
+        "cell_number" : '0766******',
+        "session_id" : 12,
+        "status" : 1
+    }
+
+    #metod.insertIntoUser(hashinfo)
+    #print json.dumps(metod.matchText("Gabi"),indent=4)
+    print metod.matchText("Gabi")
+    #print metod.getUserById(3)
+    res = datetime.datetime.now()
+    print res
+
+    string = ''
+    string += 'ceva'
+    print string
+

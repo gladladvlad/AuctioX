@@ -87,7 +87,8 @@ class view:
         if DEBUG:
             response += self.request.requestline + "<hr>"
             response += "URL arguments:<br><pre>" + json.dumps(self.urlArgs, indent=4) + "</pre><hr>"
-            response += "Headers:<br><pre>" + str(self.request.headers) + "</pre>"
+            response += "Headers:<br><pre>" + str(self.request.headers) + "</pre><hr>"
+            response += "View:<br><pre>" + self.__class__.__name__ + "</pre>"
         return response
 
     def post(self):
@@ -98,7 +99,8 @@ class view:
             response += self.request.requestline + "<hr>"
             response += "URL arguments:<br><pre>" + json.dumps(self.urlArgs, indent=4) + "</pre><hr>"
             response += "POST data:<br><pre>" + self.postData + "</pre><hr>"
-            response += "Headers:<br><pre>" + str(self.request.headers) + "</pre>"
+            response += "Headers:<br><pre>" + str(self.request.headers) + "</pre><hr>"
+            response += "View:<br><pre>" + self.__class__.__name__ + "</pre>"
         return response
 
     def setContentType(self, contentType):
