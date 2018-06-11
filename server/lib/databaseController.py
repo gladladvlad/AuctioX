@@ -20,7 +20,6 @@ class databaseController():
     """Extracting basic data from tables"""
     def getItemsFromTable(self, table, column, key, *args):
         command = None
-        print args
         if len(args)==0:
             command = "SELECT * FROM {table} WHERE {column}={key}".format(key=key,table=table,column=column)
         print command
@@ -74,7 +73,10 @@ class databaseController():
         return result
 
     def getUserByUsername(self,key):
-        return self.getItemsFromTable('user','username',key)
+        command = "select * from user where username='{key}'".format(key=key)
+        mycursor.execute(command)
+        result = mycursor.fetchone()
+        return result
 
 
     #def advancedSearch(self):
@@ -253,17 +255,36 @@ class databaseController():
 
     """Match chestii"""
     def matchText(self,info):
-        command = 'select product_data_id from ((SELECT product_data_id, MATCH (title,description) AGAINST ("{info}" IN NATURAL LANGUAGE MODE) AS "score" FROM productdata) as intermediar_table) where score!=0'.format(info=info)
+        command = "select product_data_id from productdata where match(title,description,category,subcategory) against('{info}') order by match(title,description,category,subcategory) against('{info}') desc".format(info=info)
         mycursor.execute(command)
         result = mycursor.fetchall()
         return result
 
     """Get products by filter"""
-    def getProductsByFilter(self,info):
-        where_clause = ''
+    def getProductsByFilter(self,info,order_by,how,query):
+        where_clause = ""
+        order = ""
+        how_order = "asc"
         for key,value in info.items():
-            if value != None:
-                where_clause += ''
+            if value != None and value != "":
+                if key == 'min_price':
+                     where_clause += "and price>={min_price} ".format(min_price=value)
+                elif key == 'max_price':
+                    where_clause += "and price<={max_price} ".format(min_price=value)
+                elif isinstance(value,int):
+                    where_clause =where_clause + "and {key}={value} ".format(key=key, value=value)
+                elif isinstance(value,basestring):
+                    where_clause =where_clause + "and '{key}'='{value}' ".format(key=key, value=value)
+        if order_by != None and order_by!= "":
+            order+="order by '{what}'".format(what=order_by)
+        if how == "desc":
+            how_order = "desc"
+        command = "select product_data_id from productdata where (match(title,description,category,subcategory) against( '{query}' )) {clause} {order_by} {how},(match (title,description,category,subcategory) against ('{query}')) desc".format(
+            clause=where_clause, query=query, order_by=order, how=how_order
+        )
+        mycursor.execute(command)
+        result = mycursor.fetchall()
+        return result
 
 
 if __name__ == "__main__":
@@ -272,31 +293,10 @@ if __name__ == "__main__":
     #print json.dumps(metod.getUserById("user","country","'romania'"),indent=4)
 
     hashinfo={
-        "username" : 'Gabi Hartobanu',
-        "password" : 'mancare',
-        "first_name" : 'Baisan',
-        "last_name" : 'Razvan',
-        "email" : 'gabi@yahoo.com',
-        "country" : 'romania',
-        "state" : '',
-        "city" : 'iasi',
-        "adress_1" : 'ciurbesti_1',
-        "adress_2" : 'ciurbesti2',
-        "zip_code" : '11111',
-        "contact_info" : 'contact1',
-        "cell_number" : '0766******',
-        "session_id" : 12,
-        "status" : 1
+        "condition":'ceva',
+        "price":12
     }
-
+    #print(hashinfo["condition"])
     #metod.insertIntoUser(hashinfo)
     #print json.dumps(metod.matchText("Gabi"),indent=4)
-    print metod.matchText("Gabi")
-    #print metod.getUserById(3)
-    res = datetime.datetime.now()
-    print res
-
-    string = ''
-    string += 'ceva'
-    print string
-
+    print metod.getProductsByFilter(hashinfo,'condition','asc','aaa')
