@@ -30,3 +30,26 @@
 				</li>
 				{% endfor %}
 			</ul>
+
+			<ul id="pageList">
+			{% if pages|length < 16 %}
+				{% for page in pages %}
+					<li>
+						<a onclick="updateProductPage({{ page.index }})"> {{ page.index }} </a>
+					</li>
+				{% endfor %}
+			{% else %}
+				{% for page in pages %}
+					{% if loop.index0 <= 8 or loop.index0 >= (loop.length - 8) %}
+						<li>
+							<a onclick="updateProductPage({{ page.index }})"> {{ page.index }} </a>
+						</li>
+					{% else %}
+						{% if loop.index0 == 9 %}
+							<span> ... </span>
+						{% endif %}
+					{% endif %}
+				{% endfor %}
+			{% endif %}
+			</ul>
+

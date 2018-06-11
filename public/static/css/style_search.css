@@ -111,6 +111,19 @@ body {
 	list-style-type: none;
 }
 
+/* lista de pagini */
+#content > #pageList {
+	text-align: center;
+}
+
+#content > #pageList > li {
+	display: inline-block;
+}
+
+#content > #pageList > li > a {
+	cursor: pointer;
+}
+
 .quickCriteria {
 	display:flex;
 	justify-content: center;
