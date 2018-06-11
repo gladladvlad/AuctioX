@@ -1,6 +1,7 @@
 from view import *
 from mimetypes import MimeTypes
 
+from productController import *
 
 class publicFileView(view):
 
@@ -35,3 +36,5 @@ class homepageView(view):
         content = self.renderTemplate('home.html')
 
         return content
+
+

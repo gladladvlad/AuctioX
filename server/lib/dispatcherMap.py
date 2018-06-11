@@ -8,21 +8,28 @@ from productViews import *
 
 map = [
     ('^/public/*', publicFileView),
-    ('^/jinjatest/?$', jinjatest),
+    ('^/jinjatest', jinjatest),
 
     # User Views START
 
-    ('^/registration/?$', userRegistrationPageView),
-    ('^/registrationrequest/?$', userRegistrationRequestView),
-    ('^/userlistings/?$', userListingView),
+    ('^/registration', userRegistrationPage),
+    ('^/userlistings', userListingView),
 
     # User Views END
 
     # Product Views START
 
-    ('^/createlisting/?$', createListingView),
+    ('^/search_page', searchPageView),
+    ('^/search', searchView),
+    ('^/getproductids', searchProductIDsView),
+    #### will be unused ######
+    ('^/getproducts', searchProductsView),
+    #######################
+    ('^/createlistingrequest', createListingRequestView),
+    ('^/createlisting', createListingView),
 
     # Product Views END
+
 
     ('^/', homepageView),
     ('*', view)

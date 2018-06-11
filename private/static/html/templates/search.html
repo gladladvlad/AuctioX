@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block style %}
+	{{ super() }}
+
+	{{ search_styles }}
+{% endblock %}
+
+{% block content %}
+	<div class="searchBody">
+		{{ search_filters }}
+
+		<script src="../public/static/js/getProducts_script.js"></script>
+		<div id="content">
+		</div>
+
+		<div id="pages">
+		</div>
+	</div>
+{% endblock %}
+
+{% block footer %}
+	{{ footer }}
+{% endblock %}
+

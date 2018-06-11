@@ -3,11 +3,11 @@
 
     <a href="home.html" target="_top"><img class="navbarElement navbarLogo" src="/public/static/png/logo.png" alt="AuxioX" /></a>
 
-    <form class="navbarElement navbarSearch" id="searchForm">
-        <input type="search" id="searchBox" placeholder=" Search for a product"/>
-        <div id="searchButton" class="button">
+    <form class="navbarElement navbarSearch" id="searchForm" action="/search">
+        <input type="text" id="searchBox" name="query" placeholder=" Search for a product"/>
+        <button type="submit" id="searchButton" class="button">
             <img src="/public/static/png/searchIcon.png" alt="search"/>
-        </div>
+        </button>
     </form>
 
     <div class="navbarElement">
