@@ -1,7 +1,7 @@
 from view import *
+from userController import *
 
-
-class userRegistrationPage(view):
+class userRegistrationPageView(view):
 
     def get(self):
 
@@ -9,12 +9,21 @@ class userRegistrationPage(view):
 
         self.addComponentToContext('navbar.html')
         self.addComponentToContext('userRegistration_titlebar.html')
+        self.addComponentToContext('userRegistration_styles.html')
         self.addComponentToContext('userRegistration_main.html')
 
         return self.renderTemplate('userRegistration.html')
 
 
+class userRegistrationRequestView(view):
+
+    def post(self):
+        debug('[INFO] userRegistrationRequestView reached')
+
+        return self.postData
+
 class userListingView(view):
+
     def get(self):
         debug('[INFO] userListings reached')
 
@@ -26,3 +35,7 @@ class userListingView(view):
         content = self.renderTemplate('userlistings.html')
 
         return content
+
+class userSignInView(view):
+    def get(self):
+
