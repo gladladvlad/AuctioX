@@ -24,9 +24,6 @@ map = [
     ('^/search_page', searchPageView),
     ('^/search', searchView),
     ('^/getproductids', searchProductIDsView),
-    #### will be unused ######
-    ('^/getproducts', searchProductsView),
-    #######################
     ('^/createlistingrequest/?$', createListingRequestView),
     ('^/createlisting/?$', createListingView),
 
