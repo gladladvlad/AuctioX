@@ -1,9 +1,13 @@
 from hashlib import pbkdf2_hmac
+<<<<<<< HEAD
 import os
 import  datetime
 from hashlib import pbkdf2_hmac
 import base64
 
+=======
+from os import urandom
+>>>>>>> 8cfa803acdead9a72c0eed1cd781e47af97984a1
 from util import *
 from databaseController import databaseController
 
