@@ -4,7 +4,7 @@ import  json
 import time
 import datetime
 
-mariadb_connection = mariadb.connect(user='root', password='mancare', host='localhost', database='tw')
+mariadb_connection = mariadb.connect(user='root', password='', host='localhost', database='tw')
 mycursor = mariadb_connection.cursor()
 
 
@@ -296,6 +296,9 @@ class databaseController():
         mariadb_connection.commit()
 
 
+databaseController = databaseController()
+
+
 if __name__ == "__main__":
     metod = databaseController()
 
@@ -325,3 +328,7 @@ if __name__ == "__main__":
     #print json.dumps(metod.matchText("Gabi"),indent=4)
     #print metod.getProductsByFilter(hashinfo,'condition','asc','aaa')
     metod.deleteDatabase()
+
+
+
+
