@@ -20,7 +20,9 @@ class userRegistrationRequestView(view):
     def post(self):
         debug('[INFO] userRegistrationRequestView reached')
 
-        return self.postData
+        result = userController.createNewUser(self.parseJsonPost())
+
+        return result
 
 class userListingView(view):
 
