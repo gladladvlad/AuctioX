@@ -4,6 +4,7 @@ from urlparse import parse_qs, urlparse
 from dispatcherMap import *
 from jinja2 import Template, Environment, FileSystemLoader, select_autoescape
 import json
+import traceback
 
 from util import *
 
@@ -71,8 +72,9 @@ class view:
             if DEBUG:
                 response += self.request.requestline + "<hr>"
                 response += "URL arguments:<br><pre>" + json.dumps(self.urlArgs, indent=4) + "</pre><hr>"
-                response += "Headers:<br><pre>" + str(self.request.headers) + "</pre>"
-                response += "Error:<br><pre>" + str(e.message) + "</pre>"
+                response += "Headers:<br><pre>" + str(self.request.headers) + "</pre><hr>"
+                response += "Error:<br><pre>" + str(e.message) + "</pre><hr>"
+                response += "Stack trace:<br><pre>" + str(traceback.extract_tb(None)) + "<pre>"
             self.request.wfile.write(response)
             return
 
