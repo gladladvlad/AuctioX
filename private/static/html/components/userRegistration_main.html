@@ -4,22 +4,22 @@
         <div class="sectionLabel"><label>User information</label></div>
 
         <div class="formElement" id="emailField">
-            <label class="formLabel" for="inputEmail">Email</label>
+            <label class="formLabel" for="inputEmail">Email<small>*</small></label>
             <small>This will be used for validating your account.</small><br>
             <input id="inputEmail" type="email" required/>
         </div>
 
         <div class="formElement" id="usernameField">
-            <label class="formLabel" for="inputUsername">Username</label>
+            <label class="formLabel" for="inputUsername">Username<small>*</small></label>
             <small>Must be between 4 and 16 characters.</small><br>
             <input id="inputUsername" type="text" required/>
         </div>
 
         <div class="formElement" id="passwordField">
-            <label class="formLabel">Password</label>
+            <label class="formLabel">Password<small>*</small></label>
             <small>Must be between 8 and 32 characters that are alphanumeric or , . + - _ ? !</small><br>
             <input id="inputPassword" type="password" required/><br>
-            <label class="formLabel">Confirm Password</label>
+            <label class="formLabel">Confirm Password<small>*</small></label>
             <br>
             <input id="inputConfirmPassword" type="password" required/>
         </div>
@@ -35,7 +35,7 @@
             <label class="formLabel">Country</label>
             <small>e.g. United States</small>
             <br>
-            <input id="inputCountry" list="countryList" required/>
+            <input id="inputCountry" list="countryList"/>
 
             <datalist id="countryList">
                 <option value="Romania">
@@ -63,7 +63,7 @@
             <label class="formLabel" for="inputCity">City</label>
             <small>e.g. New York</small>
             <br>
-            <input id="inputCity" list="cityList" required/>
+            <input id="inputCity" list="cityList"/>
 
             <datalist id="cityList">
                 <option value="Iasi">
@@ -78,21 +78,21 @@
             <label class="formLabel" for="inputAddress1">Address line 1</label>
             <small> e.g. 1200 Pennsylvania Avenue</small>
             <br>
-            <input id="inputAddress1" required/>
+            <input id="inputAddress1"/>
         </div>
 
         <div class="formElement" id="address2Field">
             <label class="formLabel" for="inputAddress2">Address line 2</label>
             <small> e.g. 1200 Pennsylvania Avenue</small>
             <br>
-            <input id="inputAddress2" required/>
+            <input id="inputAddress2"/>
         </div>
 
         <div class="formElement" id="zipCodeField">
             <label class="formLabel" for="inputZipCode">Zip Code</label>
             <small> e.g. 40003</small>
             <br>
-            <input id="inputZipCode" required/>
+            <input id="inputZipCode"/>
         </div>
 
     </div>
@@ -103,19 +103,21 @@
             <div class="formElement" id="nameField">
                 <label class="formLabel">Full Name</label>
                 <small>e.g. John Salesman Doe</small><br>
-                <input id="inputName" type="text" required/>
+                <input id="inputName" type="text"/>
             </div>
 
             <div class="formElement" id="telField">
                 <label class="formLabel" for="inputTel">Telephone number</label>
                 <small>e.g. 40 711 222 333</small>
                 <br>
-                <input id="inputTel" type="tel" required/>
+                <input id="inputTel" type="tel"/>
             </div>
     </div>
-
+    <div>
+        <small id="errors"></small>
+    </div>
     <div class="buttonContainer">
-        <button class="button" onclick="sendUserRegisterRequest();">
+        <button class="button" onclick="sendUserRegisterRequest(); return false;">
             Create account
         </button>
     </div>
