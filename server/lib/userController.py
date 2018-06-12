@@ -1,5 +1,4 @@
-from hashlib import pbkdf2_hmac
-import binascii
+from hashlib import pbkdf2_hmac 
 
 from util import *
 from databaseController import databaseController
@@ -53,5 +52,24 @@ class userController():
         result = {"success": success, "errorList": errorList}
 
         return result;
+
+    def processSignInRequest(self, signInDetails):
+
+        errorList = list()
+
+        userData = databaseController.getUserByUsername(signInDetails["username"])
+
+        if((userData is None) or (signInDetails["password"]!=userData["password"]))
+            errorList.append("Wrong username or password")
+
+        if(len(errorList)==0)
+            session = os.urandom()
+            hashinfo={
+                "session_id" : session,
+                "user_id": userData["user_id"],
+
+            }
+            databaseController.insertIntoSessions()
+
 
 userController = userController()

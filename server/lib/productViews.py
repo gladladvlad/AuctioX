@@ -2,6 +2,7 @@ from view import *
 from product import *
 import json
 import math
+from userController import *
 
 
 class createListingView(view):
@@ -76,38 +77,6 @@ class searchProductIDsView(view):
         return json.dumps(productIDs)
 
 
-##################################################
-# WILL BE UNUSED
-##################################################
-class searchProductsView(view):
-    def get(self):
-        debug('[INFO] searchProductsView reached')
-
-        if not self.urlArgs.has_key(searchPageSizeKey):
-            self.urlArgs[searchPageSizeKey] = searchDefaultPageSize
-
-        self.setContentType('application/json')
-
-        # TODO: get products based on query & filters
-        products = []
-
-        productIter = 0
-        itemKey = 'item{0}'.format(productIter)
-
-        while self.urlArgs.has_key(itemKey):
-            tmpProduct = product(1, 2, self.urlArgs[itemKey], 'title', 'product description lorem gipsum gaudeamus igitur', 4, 5, 6, 7, 8, 9, 10, 11, 12)
-            products.append(tmpProduct.asDict())
-
-            productIter += 1
-            itemKey = 'item{0}'.format(productIter)
-        # end TODO
-
-
-
-        return json.dumps(products)
-####################################################################################
-
-
 class searchPageView(view):
     def get(self):
         debug('[INFO] searchPageView reached')
@@ -128,11 +97,10 @@ class searchPageView(view):
         itemKey = 'item{0}'.format(productIter)
 
 
-        #while self.urlArgs.has_key(itemKey):
         for i in xrange(0, (int(self.urlArgs[searchProductCountKey]) - 1)):
             if self.urlArgs.has_key(itemKey):
                 # TODO: get products based on query & filters
-                tmpProduct = product(1, 2, self.urlArgs[itemKey], 'title', 'product description lorem gipsum gaudeamus igitur', 4, 5, 6, 7, 8, 9, 10, 11, 12)
+                tmpProduct = product(1, 2, self.urlArgs[itemKey], 'title', 'product description lorem gipsum gaudeamus igitur', [4], 4, 5, 6, 7, 8, 9, 10, 11, 12)
                 # end TODO
                 products.append(tmpProduct.asDict())
                 productsDone += 1
@@ -154,7 +122,6 @@ class searchPageView(view):
         self.addItemToContext(pages, 'pages', True)
 
 
-        #self.addComponentToContext('search_content.html', 'search_content', True)
         self.addComponentToContext('search_filters.html', 'search_filters', True)
         self.addComponentToContext('search_styles.html', 'search_styles', True)
         self.addComponentToContext('navbar.html', 'navbar', True)
@@ -166,4 +133,40 @@ class searchPageView(view):
 
         return page
 
+
+productIDKey = "prodid"
+
+class productView(view):
+    def get(self):
+        debug('[INFO] productView reached')
+
+        if not self.urlArgs.has_key(productIDKey):
+            raise ValueError("No product provided!")
+
+
+        # TODO: get product from bd
+        tmpProduct = product(1, 2, 3, 'title', 'product description lorem gipsum gaudeamus igitur', [4], 4, 5, 6, 7, 8, 9, 10, 11, 12)
+        # end TODO
+
+        self.addItemToContext(tmpProduct, 'product', True)
+
+        # TODO: get seller from bd
+        tmpSeller = user(1, 2, 3, 4, 5, 6, 7, 8)
+        # end TODO
+
+        self.addItemToContext(tmpSeller, 'seller', True)
+
+
+        self.addComponentToContext('product_content.html', 'product_content', True)
+        self.addComponentToContext('product_styles.html', 'product_styles', True)
+        self.addComponentToContext('navbar.html', 'navbar', True)
+        self.addComponentToContext('footer.html', 'footer', True)
+
+        content = self.renderTemplate('product.html')
+
+        return content
+
+class bidView(view):
+    def get(self):
+        return 'unsupported command error in pony! press F for full stack'
 

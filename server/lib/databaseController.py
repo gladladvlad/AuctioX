@@ -83,7 +83,7 @@ class databaseController():
 
     """Inserting data into tables"""
     def insertIntoUser(self, info):
-        lista = [info["username"],info["password"],info["first_name"],info["last_name"],info["email"],info["country"],info["state"],info["city"],info["adress_1"],info["adress_2"],info["zip_code"],info["contact_info"],info["cell_number"],info["session_id"],info["status"]]
+        lista = [info["username"],info["password"],info["first_name"],info["last_name"],info["email"],info["country"],info["state"],info["city"],info["adress_1"],info["adress_2"],info["zip_code"],info["contact_info"],info["cell_number"],info["status"],info["salt"]]
         command = "INSERT INTO user(username,password,first_name,last_name,email,country,state,city,adress_1,adress_2,zip_code,contact_info,cell_number,session_id,status) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
         mycursor.execute(command,lista)
         mariadb_connection.commit()
@@ -288,6 +288,12 @@ class databaseController():
         mycursor.execute(command)
         result = mycursor.fetchall()
         return result
+
+    """Set new session id"""
+    def removeSessionId(self,session):
+        command = "delete from sessions where session_id={session}".format(session=session)
+        mycursor.execute(command)
+        mariadb_connection.commit()
 
 
 if __name__ == "__main__":

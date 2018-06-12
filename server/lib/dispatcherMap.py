@@ -12,10 +12,10 @@ map = [
 
     # User Views START
 
-    ('^/registration', userRegistrationPageView),
-    ('^/userlistings', userListingView),
-    ('^/userSignIn', userSignInView),
-
+    ('^/registration/?$', userRegistrationPageView),
+    ('^/registrationrequest/?$', userRegistrationRequestView),
+    ('^/userlistings/?$', userListingView),
+    ('^/userSignIn/?$', userSignInView),
 
     # User Views END
 
@@ -24,9 +24,8 @@ map = [
     ('^/search_page', searchPageView),
     ('^/search', searchView),
     ('^/getproductids', searchProductIDsView),
-    #### will be unused ######
-    ('^/getproducts', searchProductsView),
-    #######################
+    ('^/product', productView),
+    ('^/bid', bidView),
     ('^/createlistingrequest/?$', createListingRequestView),
     ('^/createlisting/?$', createListingView),
 
