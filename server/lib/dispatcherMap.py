@@ -24,6 +24,8 @@ map = [
     ('^/search_page', searchPageView),
     ('^/search', searchView),
     ('^/getproductids', searchProductIDsView),
+    ('^/product', productView),
+    ('^/bid', bidView),
     ('^/createlistingrequest/?$', createListingRequestView),
     ('^/createlisting/?$', createListingView),
 

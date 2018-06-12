@@ -166,3 +166,7 @@ class productView(view):
 
         return content
 
+class bidView(view):
+    def get(self):
+        return 'unsupported command error in pony! press F for full stack'
+
