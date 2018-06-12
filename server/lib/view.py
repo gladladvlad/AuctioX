@@ -105,6 +105,9 @@ class view:
             response += "View:<br><pre>" + self.__class__.__name__ + "</pre>"
         return response
 
+    def parseJsonPost(self):
+        return json.loads(self.postData)
+
     def setContentType(self, contentType):
         self.contentType = contentType
 

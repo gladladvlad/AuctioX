@@ -16,7 +16,7 @@ function sendUserRegisterRequest() {
     inputName = document.getElementById("inputName");
     inputTel = document.getElementById("inputTel");
 
-    data = []
+    data = {}
 
     data['email'] = inputEmail.value
     data['username'] = inputUsername.value
@@ -31,7 +31,7 @@ function sendUserRegisterRequest() {
     data['name'] = inputName.value
     data['tel'] = inputTel.value
 
-    
+    form = new FormData()
 
     errorField = document.getElementById("errors")
     errorField.innerHTML = ""
@@ -54,5 +54,5 @@ function sendUserRegisterRequest() {
 
     xhr.open("POST", "/registrationrequest", true);
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhr.send(formData);
+    xhr.send(JSON.stringify(data));
 }
