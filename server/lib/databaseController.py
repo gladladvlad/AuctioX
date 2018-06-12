@@ -4,7 +4,7 @@ import  json
 import time
 import datetime
 
-mariadb_connection = mariadb.connect(user='root', password='', host='localhost', database='tw')
+mariadb_connection = mariadb.connect(user='root', password='mancare', host='localhost', database='tw')
 mycursor = mariadb_connection.cursor()
 
 
@@ -84,7 +84,7 @@ class databaseController():
     """Inserting data into tables"""
     def insertIntoUser(self, info):
         lista = [info["username"],info["password"],info["first_name"],info["last_name"],info["email"],info["country"],info["state"],info["city"],info["adress_1"],info["adress_2"],info["zip_code"],info["contact_info"],info["cell_number"],info["status"],info["salt"]]
-        command = "INSERT INTO user(username,password,first_name,last_name,email,country,state,city,adress_1,adress_2,zip_code,contact_info,cell_number,session_id,status) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+        command = "INSERT INTO user(username,password,first_name,last_name,email,country,state,city,adress_1,adress_2,zip_code,contact_info,cell_number,status,salt) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
         mycursor.execute(command,lista)
         mariadb_connection.commit()
 
@@ -296,38 +296,33 @@ class databaseController():
         mariadb_connection.commit()
 
 
-databaseController = databaseController()
-
-
 if __name__ == "__main__":
     metod = databaseController()
 
     #print json.dumps(metod.getUserById("user","country","'romania'"),indent=4)
 
     hashinfo={
-        "title": 'Telefon bengos',
-        "description": 'Cel mai tare din parcare',
-        "condition": 'bulit',
-        "country": 'blocuri ciurea',
-        "state":'aci',
-        "city":'iasi',
-        "is_auction":1,
-        "price":100,
-        "shipping_type":'pa jos',
-        "shipping_price":'1000',
-        "date_added":datetime.datetime.now(),
-        "date_expires":datetime.datetime.now()+ datetime.timedelta(days=10),
-        "category":'haur',
-        "subcategory":'land',
-        "views": 20,
-        "user_id": 16,
-        "image": []
+        "username":'aa',
+        "password":'aaaa',
+        "first_name": 'bbb',
+        "last_name": 'ccc',
+        "email":'ddd',
+        "country":'eee',
+        "state":'ffff',
+        "city":'gggg',
+        "adress_1":'hhhh',
+        "adress_2":'iiii',
+        "zip_code":'jjj',
+        "contact_info":'dadfds',
+        "cell_number":'asdsfsd',
+        "status":'asfdfds',
+        "salt":None
     }
     #print(hashinfo["condition"])
-    #metod.insertIntoUser(hashinfo)
+    metod.insertIntoUser(hashinfo)
     #print json.dumps(metod.matchText("Gabi"),indent=4)
     #print metod.getProductsByFilter(hashinfo,'condition','asc','aaa')
-    metod.deleteDatabase()
+    #metod.deleteDatabase()
 
 
 
