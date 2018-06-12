@@ -1,4 +1,5 @@
-from hashlib import pbkdf2_hmac 
+from hashlib import pbkdf2_hmac
+import os
 
 from util import *
 from databaseController import databaseController
@@ -38,5 +39,18 @@ class userController():
 
         if registerDetails["password"] != registerDetails["confirmPassword"]:
             errorList.append("Passwords do not match")
+
+    def processSignInRequest(self, signInDetails):
+
+        errorList = list()
+
+        userData = databaseController.getUserByUsername(signInDetails["username"])
+
+        if((userData is None) or (signInDetails["password"]!=userData["password"]))
+            errorList.append("Wrong username or password")
+
+        if(len(errorList)==0)
+            os.urandom()
+
 
 userController = userController()

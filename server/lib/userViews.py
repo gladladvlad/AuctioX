@@ -46,3 +46,10 @@ class userSignInView(view):
         content = self.renderTemplate('userSignIn.html')
 
         return content
+
+class userSignInRequestView(view):
+    def post(self):
+        debug("[INFO] userSignInRequest reached")
+
+
+        return self.postData
