@@ -50,7 +50,13 @@ class userController():
             errorList.append("Wrong username or password")
 
         if(len(errorList)==0)
-            os.urandom()
+            session = os.urandom()
+            hashinfo={
+                "session_id" : session,
+                "user_id": userData["user_id"],
+                
+            }
+            databaseController.insertIntoSessions()
 
 
 userController = userController()
