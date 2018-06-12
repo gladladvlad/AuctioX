@@ -38,4 +38,11 @@ class userListingView(view):
 
 class userSignInView(view):
     def get(self):
+        self.addComponentToContext('userSignIn_styles.html', 'style', True)
+        self.setContentType('text/html')
+        self.addComponentToContext('navbar.html', 'navbar', True)
+        self.addComponentToContext('userSignIn_content.html', 'content', True)
+        self.addComponentToContext('footer.html', 'footer', True)
+        content = self.renderTemplate('userSignIn.html')
 
+        return content

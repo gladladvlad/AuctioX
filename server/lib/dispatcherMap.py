@@ -12,8 +12,10 @@ map = [
 
     # User Views START
 
-    ('^/registration', userRegistrationPage),
+    ('^/registration', userRegistrationPageView),
     ('^/userlistings', userListingView),
+    ('^/userSignIn', userSignInView),
+
 
     # User Views END
 
