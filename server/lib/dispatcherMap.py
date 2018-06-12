@@ -7,6 +7,11 @@ from productViews import *
 # Aici mapam expresii regulate view-urilor. Cand se primeste un request, dispatcherul verifica toate expresiile regulate in ordine si apeleaza view-ul corespunzator
 
 map = [
+
+    #test views
+    ('^/addprod', addProductView),
+    ('^/adduser', addUserView),
+    #
     ('^/public/*', publicFileView),
     ('^/jinjatest', jinjatest),
 
