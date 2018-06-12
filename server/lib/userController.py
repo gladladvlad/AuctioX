@@ -36,22 +36,22 @@ class userController():
 
         if existingUser is not None:
             errorList.append("Username already taken")
-            success = false;
+            success = false
 
         if registerDetails["password"] != registerDetails["confirmPassword"]:
             errorList.append("Passwords do not match")
-            success = false;
+            success = false
 
         if len(errorList) == 0:
-            salt = os.urandom(16);
+            salt = os.urandom(16)
             pwd = hashlib.pbkdf2_hmac('sha256', registerDetails["password"], salt, 50000)
-            binascii.hexlify(pwd);
-            success = true;
-            info = ["username" : registerDetails["username"], "password" : registerDetails["password"], "first_name" : registerDetails["first_name"], "last_name" : registerDetails["last_name"], "email" : registerDetails["email"], "country": registerDetails["country"], "state": registerDetails["state"], "city" : registerDetails["city"], "adress_1" : registerDetails["adress_1"], "adress_2" : registerDetails["adress_2"], "zip_code" : registerDetails["zip_code"], "contact_info" : registerDetails["contact_info"], "cell_number" : registerDetails["cell_number"], "status" : 1]
+            binascii.hexlify(pwd)
+            success = true
+            info = {"username": registerDetails["username"], "password": registerDetails["password"], "first_name": registerDetails["first_name"], "last_name" : registerDetails["last_name"], "email" : registerDetails["email"], "country": registerDetails["country"], "state": registerDetails["state"], "city" : registerDetails["city"], "adress_1" : registerDetails["adress_1"], "adress_2" : registerDetails["adress_2"], "zip_code" : registerDetails["zip_code"], "contact_info" : registerDetails["contact_info"], "cell_number" : registerDetails["cell_number"], "status" : 1}
             DBcontroller.insertIntoUser(info)
         result = {"success": success, "errorList": errorList}
 
-        return result;
+        return result
 
     def processSignInRequest(self, signInDetails):
 
@@ -59,10 +59,10 @@ class userController():
 
         userData = databaseController.getUserByUsername(signInDetails["username"])
 
-        if((userData is None) or (signInDetails["password"]!=userData["password"]))
+        if((userData is None) or (signInDetails["password"]!=userData["password"])):
             errorList.append("Wrong username or password")
 
-        if(len(errorList)==0)
+        if(len(errorList)==0):
             session = os.urandom()
             hashinfo={
                 "session_id" : session,
