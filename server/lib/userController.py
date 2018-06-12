@@ -1,5 +1,6 @@
 from hashlib import pbkdf2_hmac
 import os
+import  datetime
 
 from util import *
 from databaseController import databaseController
@@ -54,7 +55,8 @@ class userController():
             hashinfo={
                 "session_id" : session,
                 "user_id": userData["user_id"],
-                
+                "date_created": datetime.datetime.now(),
+                "date_espires":
             }
             databaseController.insertIntoSessions()
 
