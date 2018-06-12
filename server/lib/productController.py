@@ -1,6 +1,7 @@
-
+from view import *
 
 class productController():
+    def viewPostData(this, postData):
+        debug(postData)
 
-    def __init__(self):
-        print 'unsupported! press F to pay full stack trace'
+productController = productController()
