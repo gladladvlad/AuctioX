@@ -1,5 +1,5 @@
-from hashlib import pbkdf2_hmac 
-
+from hashlib import pbkdf2_hmac
+from os import urandom
 from util import *
 from databaseController import databaseController
 
@@ -62,7 +62,7 @@ class userController():
                 "contact_info" : registerDetails["contact_info"],
                 "cell_number" : registerDetails["cell_number"],
                 "status" : 1}
-            DBcontroller.insertIntoUser(info)
+            databaseController.insertIntoUser(info)
         result = {"success": success, "errorList": errorList}
 
         return result
