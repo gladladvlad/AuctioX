@@ -76,7 +76,7 @@ class view:
                 response += "Headers:<br><pre>" + str(self.request.headers) + "</pre><hr>"
                 response += "Error:<br><pre>" + str(e.message) + "</pre><hr>"
                 response += "Stack:<br><pre>" + str(traceback.extract_stack(sys.exc_info()[2])) + "<pre><hr>"
-                response += "Stack:<br><pre>"
+                response += "Trace:<br><pre>"
                 for line in traceback.extract_stack():
                     response += line + "\n"
                 response += "</pre>"
