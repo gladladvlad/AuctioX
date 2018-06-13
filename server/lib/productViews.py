@@ -72,17 +72,24 @@ class searchProductIDsView(view):
         self.setContentType('application/json')
 
 
-        productIDs = []
+        info = dict()
+        if self.urlArgs.has_key('min_price'):
+            info['min_price'] = int(self.urlArgs['min_price'])
+
+        if self.urlArgs.has_key('max_price'):
+            info['max_price'] = int(self.urlArgs['max_price'])
+
         # info <=> {'min_price' : 2,
         #           'max_price' : 5,
         #           'conditie' : 2}
         # order_by <=> string cu campu' dupa care ordonam
         # how <=> asc/desc
         # query <=> string
-        productsByQuery = productController.getProductsByFilter(None, None, None, self.urlArgs[searchQueryKey])
+        productsByQuery = productController.getProductsByFilter(info, None, None, self.urlArgs[searchQueryKey])
         debug('LENGTH OF QUERY')
         debug(len(productsByQuery))
 
+        productIDs = []
         for iter in xrange(0, len(productsByQuery)):
             productIDs.append(productsByQuery[iter][PROD_ID])
 

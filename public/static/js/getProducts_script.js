@@ -2,56 +2,62 @@ var productIDs;
 var products;
 var productPage;
 
-var productCountKey = "prods";
-
-var queryKey = "query";
 var lastQuery;
-
-var pageSizeKey = "psize";
 var pageSize;
 
-
-var minPriceKey = 'min_price';
-var minPriceVal;
-
-var maxPriceKey = 'max_price';
-var maxPriceVal;
-
-var conditionKey = 'conditie';
-var conditionVal;
-
-var countryKey = 'country';
-var country;
-
-var cityKey = 'city';
-var cityVal;
-
-var sortByKey = '';
-var sortByVal;
-
+var filters = {}
 
 window.onload = function(){
-    lastQuery = getHTTPGArg(queryKey);
+    lastQuery = getHTTPGArg("query");
     if (typeof lastQuery == "undefined")
         lastQuery = "";
+    lastQuery = lastQuery.replace("+", " ");
 
-    pageSize = getHTTPGArg(pageSizeKey);
+    pageSize = getHTTPGArg("psize");
     if (typeof pageSize == "undefined")
         pageSize = 5;
     else pageSize = parseInt(pageSize);
 
+
     document.getElementById("searchBox").value = lastQuery;
-    document.getElementById("searchForm").action = "";
-    document.getElementById("searchForm").onclick = "searchAgain()";
 
-
-
-    requestProductIDs();
+    getFiltersFromUrl();
+    requestProductIDs(filters);
     updateProductPage(0);
 
     console.log("onload() finished");
 }
 
+function getFiltersFromUrl () {
+    /*filters = {"min_price" : getHTTPGArg("min_price"),
+                    "max_price" : getHTTPGArg("max_price"),
+                    "condition" : getHTTPGArg("condition"),
+                    "country" : getHTTPGArg("country"),
+                    "city" : getHTTPGArg("city"),
+                    "sortby" : getHTTPGArg("sort") }*/
+    console.log("fetching filters");
+
+    var tmpObj = getHTTPGArg("min_price")
+    if (typeof tmpObj != "undefined")
+        filters['min_price'] = tmpObj;
+    tmpObj = getHTTPGArg("max_price")
+    if (typeof tmpObj != "undefined")
+        filters['max_price'] = tmpObj;
+    tmpObj = getHTTPGArg("country")
+    if (typeof tmpObj != "undefined")
+        filters['country'] = tmpObj;
+    tmpObj = getHTTPGArg("city")
+    if (typeof tmpObj != "undefined")
+        filters['city'] = tmpObj;
+    tmpObj = getHTTPGArg("sortby")
+    if (typeof tmpObj != "undefined")
+        filters['sortby'] = tmpObj;
+    tmpObj = getHTTPGArg("query")
+    if (typeof tmpObj != "undefined")
+        filters['query'] = tmpObj;
+
+    console.log(filters);
+}
 
 function updateProductPage(page) {
     var from = page * pageSize;
@@ -72,8 +78,27 @@ function updateProductPage(page) {
     document.getElementById("content").innerHTML = productPage;
 }
 
-function requestProductIDs(){
+
+function requestProductIDs(args){
     var request = "/getproductids";
+
+    var firstFlag = 0;
+    for (var key in args) {
+        if (args[key] == "undefined") {
+            console.log("found undefined key")
+            continue;
+        }
+
+        if (firstFlag == 0) {
+            request = request + "?" + key + "=" + args[key];
+            firstFlag = 1;
+            console.log("first iteration done")
+            console.log(request)
+        } else {
+            request = request + "&" + key + "=" + args[key];
+        }
+    }
+    console.log("request will be " + request)
 
     var xhr = new XMLHttpRequest();
 
@@ -95,8 +120,7 @@ function requestProductPage(fromIndex, toIndex){
     if (fromIndex < 0) throw "Left index lower than 0!";
     if (fromIndex > toIndex) throw "Inverted indexes!";
 
-    var request = "/searchpage?" + productCountKey + "=" + productIDs.length + "&" + pageSizeKey + "=" + pageSize + "&";
-    //var request = "/search_page?" + pageSizeKey + "=" + pageSize + "&";
+    var request = "/searchpage?prods=" + productIDs.length + "&psize=" + pageSize + "&";
     var argIter = "";
 
     console.log("request is " + request)
@@ -105,13 +129,11 @@ function requestProductPage(fromIndex, toIndex){
     console.log("beginning loop")
     for (var i = fromIndex; i <= toIndex; i++) {
         argIter = "item" + i.toString() + "=" + productIDs[i].toString();
-        console.log("" + i + "th iteration; argIter is " + argIter)
 
         request = request + argIter;
         if (i != toIndex) {
             request = request + "&";
         }
-        console.log("request becomes " + request);
     }
 
     var xhr = new XMLHttpRequest();
@@ -128,6 +150,12 @@ function requestProductPage(fromIndex, toIndex){
 }
 
 function getHTTPGArg(key) {
-    return window.location.href.split(new RegExp("[?&]" + key + "="))[1];
+    //return window.location.href.split(new RegExp("[?&]" + key + "="))[1];
+    try {
+            return window.location.href.split(key + "=")[1].split("&")[0];
+    } catch (err) {
+        if (err == "TypeError")
+            return "undefined";
+    }
 }
 

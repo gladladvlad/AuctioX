@@ -61,7 +61,11 @@ class productController():
     # query <=> string
     def getProductsByFilter(self, info, order_by, how, query):
         #get all products from DB
+        debug('===========================')
+        debug(info)
         products = databaseController.getProductsByFilter(info, order_by, how, query)
+
+        debug(products)
 
         return products
 
