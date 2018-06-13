@@ -61,7 +61,7 @@ class userController():
             errorList.append("Username length is not between 4 and 16 characters")
             success = False
 
-        if re.match("^[0-9A-Fa-z\-_]*$", registerDetails["username"]) is None:
+        if re.match("^[0-9A-Za-z\-_]*$", registerDetails["username"]) is None:
             errorList.append("Username contains invalid characters")
             success = False
 
