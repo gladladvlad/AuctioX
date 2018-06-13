@@ -146,6 +146,7 @@ class userController():
                 "session_id" : session,
                 "user_id": userData[USER_ID],
                 "date_created": datetime.datetime.now(),
+                "last_connected": datetime.datetime.now(),
                 "device": userAgent,
                 "ip": clientAddress
             }

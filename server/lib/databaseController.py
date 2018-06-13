@@ -43,6 +43,7 @@ USER_SALT =15
 import databaseCredentials
 mariadb_connection = mariadb.connect(user=databaseCredentials.user, password=databaseCredentials.password, host='localhost', database='tw')
 mycursor = mariadb_connection.cursor()
+from util import *
 
 
 class databaseController():
@@ -149,8 +150,10 @@ class databaseController():
         mycursor.execute(command,lista)
         mariadb_connection.commit()
 
-    def insertIntoProductdata(self,info):
+    def insertIntoProductdata(self, info):
+        debug("in database controller: adding product data")
         lista = [info["user_id"],info["title"],info["description"],info["conditie"],info["country"],info["state"],info["city"],info["is_auction"],info["price"],info["shipping_type"],info["shipping_price"],info["date_added"],info["date_expires"],info["category"],info["subcategory"],info["views"],info["status"]]
+        debug(lista)
         command = "INSERT INTO productdata(user_id,title,description,conditie,country,state,city,is_auction,price,shipping_type,shipping_price,date_added,date_expires,category,subcategory,views,status) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
         print command
         mycursor.execute(command,lista)
