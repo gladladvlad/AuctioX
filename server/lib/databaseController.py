@@ -4,7 +4,7 @@ import  json
 import time
 import datetime
 
-mariadb_connection = mariadb.connect(user='root', password='', host='localhost', database='tw')
+mariadb_connection = mariadb.connect(user='root', password='mancare', host='localhost', database='tw')
 mycursor = mariadb_connection.cursor()
 
 
@@ -104,9 +104,10 @@ class databaseController():
         mariadb_connection.commit()
 
     def insertIntoProductdata(self,info):
-        lista = [info["title"],info["description"],info["condition"],info["country"],info["state"],info["city"],info["is_auction"],info["price"],info["shipping_type"],info["shipping_price"],info["date_added"],info["date_expires"],info["category"],info["subcategory"],info["views"]]
+        lista = [info["title"],info["description"],info["conditie"],info["country"],info["state"],info["city"],info["is_auction"],info["price"],info["shipping_type"],info["shipping_price"],info["date_added"],info["date_expires"],info["category"],info["subcategory"],info["views"]]
         command = "INSERT INTO productdata(title,description,conditie,country,state,city,is_auction,price,shipping_type,shipping_price,date_added,date_expires,category,subcategory,views) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
         mycursor.execute(command,lista)
+        print lista
         mariadb_connection.commit()
         command="select max(product_data_id) from productdata"
         mycursor.execute(command)
@@ -302,7 +303,7 @@ if __name__ == "__main__":
 
     #print json.dumps(metod.getUserById("user","country","'romania'"),indent=4)
 
-    hashinfo={
+    """hashinfo={
         "username":'aa',
         "password":'aaaa',
         "first_name": 'bbb',
@@ -318,9 +319,26 @@ if __name__ == "__main__":
         "cell_number":'asdsfsd',
         "status":'asfdfds',
         "salt":bytearray("dawdas")
-    }
+    }"""
+    prodData = {'title': 'Air guitar Epiphone les paul vasilescu',
+                'description': 'cea mia mijtoui s mora mama meu k ii sm3k mkatzash lorem gipsum jajaj jaj as lal qea j2qj h n asdasd, asdasldkj',
+                'conditie': 3,
+                'country': 'vaslui kong',
+                'state': 'triburile romane unite',
+                'city': 'vaslui',
+                'is_auction': 1,
+                'price': 399,
+                'shipping_type': 'Malaysia Airways',
+                'shipping_price': 429,
+                'date_added': datetime.datetime.now(),
+                'date_expires': datetime.datetime.now(),
+                'category': 'lol nu stiu',
+                'subcategory': 'yes',
+                'views': 420,
+                'image': [bytearray('asdasdasd')],
+                'user_id': 1}
     #print(hashinfo["condition"])
-    print metod.getUserByUsername('aa')
+    print metod.insertIntoProductdata(prodData)
     #print json.dumps(metod.matchText("Gabi"),indent=4)
     #print metod.getProductsByFilter(hashinfo,'condition','asc','aaa')
     #metod.deleteDatabase()
