@@ -152,6 +152,7 @@ class databaseController():
     def insertIntoProductdata(self,info):
         lista = [info["user_id"],info["title"],info["description"],info["conditie"],info["country"],info["state"],info["city"],info["is_auction"],info["price"],info["shipping_type"],info["shipping_price"],info["date_added"],info["date_expires"],info["category"],info["subcategory"],info["views"],info["status"]]
         command = "INSERT INTO productdata(user_id,title,description,conditie,country,state,city,is_auction,price,shipping_type,shipping_price,date_added,date_expires,category,subcategory,views,status) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+        print command
         mycursor.execute(command,lista)
         mariadb_connection.commit()
         command="select max(product_data_id) from productdata"
@@ -203,23 +204,24 @@ class databaseController():
 
     def insertIntoTrasnaction(self,info):
         lista = [info["seller_user_id"],info["buyer_user_id"],info["product_id"],info["has_ended"],datetime.datetime.now(),self.getDate('productdata','product_data_id','date_expires',info["product_id"])]
-        command = "INSERT INTO transaction(seller_user_id,buyer_user_id,product_id,has_ended,date_initiated,date_ended) VALUES(%s,%s,%s,%s,%,s.%s)"
-        mycursor.execute(command,lista)
-        mariadb_connection.commit()
-        hashmap={
+        print lista
+        command = "INSERT INTO transaction(seller_user_id,buyer_user_id,product_id,has_ended,date_initiated,date_ended) VALUES(%s,%s,%s,%s,%,s,%s)"
+        print(command)
+        #mycursor.execute(command,lista)
+        #mariadb_connection.commit()
+        """hashmap={
             "user_id" : info["buyer_user_id"],
             "product_id" : info["product_id"],
             "status" : 'ongoing',
             "value" : info["value"]
         }
-        self.insertIntoUserbid(hashmap)
+        self.insertIntoUserbid(hashmap)"""
 
     def insertIntoSessions(self,info):
-        command = "INSERT INTO sessions VALUES({session_id}, {user_id}, {date_created}, {last_connected}, '{device}', '{ip}')".format(
-            session_id=info["session_id"], user_id=info["user_id"], date_created=info["date_created"],
-            last_connected=info["last_connected"], device=info["device"], ip=info["ip"]
-        )
-        mycursor.execute(command)
+        lista=[info["session_id"],info["user_id"],info["date_created"],info["last_connected"],info["device"],info["ip"]]
+        command = "INSERT INTO sessions (session_id, user_id, date_created, last_connected, device, ip) values (%s,%s,%s,%s,%s,%s)"
+        print command
+        mycursor.execute(command,lista)
         mariadb_connection.commit()
 
     """Setari inactiv in baza de date"""
@@ -409,11 +411,25 @@ if __name__ == "__main__":
                 'user_id': 1,
                 'status':'ongoing'
                 }
-    #print(hashinfo["condition"])
     #metod.insertIntoProductdata(prodData)
-    print metod.getUserByUsername('aa or 1=1')
-    #print json.dumps(metod.matchText("Gabi"),indent=4)
-    #print metod.getProductsByFilter(hashinfo,'condition','asc','aaa')
+    #print metod.getUserByUsername('aa or 1=1')
+    transactiondict={
+        "seller_user_id":1,
+        "buyer_user_id":2,
+        "product_id":1,
+        "has_ended":'ongoing'
+    }
+    session={
+        "session_id": '423545',
+        "user_id":1,
+        "date_created":datetime.datetime.now(),
+        "last_connected":datetime.datetime.now(),
+        "device":'aici',
+        'ip':'1111'
+    }
+    metod.insertIntoSessions(session)
+    #metod.insertIntoTrasnaction(transactiondict)
+
     #metod.deleteDatabase()
 
 databaseController = databaseController()
