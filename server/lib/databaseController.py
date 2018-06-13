@@ -106,11 +106,12 @@ class databaseController():
         return self.getItemsFromTable('sessions','session_id',key)
 
     def getDate(self,table,column_key,column_date,key):
-        command = "select '{column_date}' from '{table}' where {column_key}={key}".format(
+        command = "select {column_date} from {table} where {column_key}={key}".format(
             column_date=column_date,table=table,column_key=column_key,key=key
         )
+
         mycursor.execute(command)
-        result = mycursor.fetchall()
+        result = mycursor.fetchone()
         return result
 
     def getUserByUsername(self,key):
@@ -203,12 +204,15 @@ class databaseController():
         mariadb_connection.commit()
 
     def insertIntoTrasnaction(self,info):
-        lista = [info["seller_user_id"],info["buyer_user_id"],info["product_id"],info["has_ended"],datetime.datetime.now(),self.getDate('productdata','product_data_id','date_expires',info["product_id"])]
+        current_date = datetime.datetime.now()
+        date_expires = self.getDate('productdata','product_data_id','date_expires',info["product_data_id"])
+        print(date_expires)
+        lista = [info["seller_user_id"],info["buyer_user_id"],info["product_data_id"],info["has_ended"],current_date,self.getDate('productdata','product_data_id','date_expires',info["product_data_id"])]
         print lista
         command = "INSERT INTO transaction(seller_user_id,buyer_user_id,product_id,has_ended,date_initiated,date_ended) VALUES(%s,%s,%s,%s,%,s,%s)"
         print(command)
-        #mycursor.execute(command,lista)
-        #mariadb_connection.commit()
+        mycursor.execute(command,lista)
+        mariadb_connection.commit()
         """hashmap={
             "user_id" : info["buyer_user_id"],
             "product_id" : info["product_id"],
@@ -378,10 +382,15 @@ class databaseController():
         elif (info is not None) and (order_by is None) and (how is None) and (query == ''):
             for key, value in info.items():
                 if value is not None and value != "":
-                    if key == 'min_price':
+                    if key == 'conditie' and len(value) != 0:
+                        where_clause += "and ("
+                        for i in value:
+                            where_clause += "conditie={value} or ".format(value=i)
+                        where_clause += "0=1) "
+                    elif key == 'min_price':
                         where_clause += "and price>={min_price} ".format(min_price=value)
                     elif key == 'max_price':
-                        where_clause += "and price<={max_price} ".format(min_price=value)
+                        where_clause += "and price<={max_price} ".format(max_price=value)
                     elif isinstance(value, int):
                         where_clause = where_clause + "and {key}={value} ".format(key=key, value=value)
                     elif isinstance(value, basestring):
@@ -389,16 +398,22 @@ class databaseController():
             command = "select * from productdata where 1=1 {where_clause}".format(
                 query=query, where_clause=where_clause
             )
+            print(command)
             mycursor.execute(command)
             result = mycursor.fetchall()
             return result
         elif (info is not None) and (order_by is None) and (how is None) and (query != ''):
             for key, value in info.items():
                 if value is not None and value != "":
-                    if key == 'min_price':
+                    if key == 'conditie' and len(value) != 0:
+                        where_clause += "and ("
+                        for i in value:
+                            where_clause += "conditie={value} or ".format(value=i)
+                        where_clause += "0=1) "
+                    elif key == 'min_price':
                         where_clause += "and price>={min_price} ".format(min_price=value)
                     elif key == 'max_price':
-                        where_clause += "and price<={max_price} ".format(min_price=value)
+                        where_clause += "and price<={max_price} ".format(max_price=value)
                     elif isinstance(value, int):
                         where_clause = where_clause + "and {key}={value} ".format(key=key, value=value)
                     elif isinstance(value, basestring):
@@ -412,10 +427,15 @@ class databaseController():
         elif (info is not None) and (order_by is not None) and (how is None) and (query == ''):
             for key, value in info.items():
                 if value is not None and value != "":
-                    if key == 'min_price':
+                    if key == 'conditie' and len(value) != 0:
+                        where_clause += "and ("
+                        for i in value:
+                            where_clause += "conditie={value} or ".format(value=i)
+                        where_clause += "0=1) "
+                    elif key == 'min_price':
                         where_clause += "and price>={min_price} ".format(min_price=value)
                     elif key == 'max_price':
-                        where_clause += "and price<={max_price} ".format(min_price=value)
+                        where_clause += "and price<={max_price} ".format(max_price=value)
                     elif isinstance(value, int):
                         where_clause = where_clause + "and {key}={value} ".format(key=key, value=value)
                     elif isinstance(value, basestring):
@@ -428,11 +448,16 @@ class databaseController():
             return result
         elif (info is not None) and (order_by is not None) and (how is None) and (query != ''):
             for key, value in info.items():
-                if value is not None and value != "":
+                if key == 'conditie' and len(value) != 0:
+                    where_clause += "and ("
+                    for i in value:
+                        where_clause += "conditie={value} or ".format(value=i)
+                    where_clause += "0=1) "
+                elif value is not None and value != "":
                     if key == 'min_price':
                         where_clause += "and price>={min_price} ".format(min_price=value)
                     elif key == 'max_price':
-                        where_clause += "and price<={max_price} ".format(min_price=value)
+                        where_clause += "and price<={max_price} ".format(max_price=value)
                     elif isinstance(value, int):
                         where_clause = where_clause + "and {key}={value} ".format(key=key, value=value)
                     elif isinstance(value, basestring):
@@ -446,10 +471,15 @@ class databaseController():
         elif (info is not None) and (order_by is not None) and (how is not None) and (query == ''):
             for key, value in info.items():
                 if value is not None and value != "":
-                    if key == 'min_price':
+                    if key == 'conditie' and len(value) != 0:
+                        where_clause += "and ("
+                        for i in value:
+                            where_clause += "conditie={value} or ".format(value=i)
+                        where_clause += "0=1) "
+                    elif key == 'min_price':
                         where_clause += "and price>={min_price} ".format(min_price=value)
                     elif key == 'max_price':
-                        where_clause += "and price<={max_price} ".format(min_price=value)
+                        where_clause += "and price<={max_price} ".format(max_price=value)
                     elif isinstance(value, int):
                         where_clause = where_clause + "and {key}={value} ".format(key=key, value=value)
                     elif isinstance(value, basestring):
@@ -462,11 +492,16 @@ class databaseController():
             return result
         elif (info is not None) and (order_by is not None) and (how is not None) and (query != ''):
             for key, value in info.items():
-                if value is not None and value != "":
+                if key=='conditie' and len(value)!=0:
+                    where_clause+="and ("
+                    for i in value:
+                        where_clause+="conditie={value} or ".format(value=i)
+                    where_clause+= "0=1) "
+                elif value is not None and value != "":
                     if key == 'min_price':
-                        where_clause += "and price>={min_price} ".format(min_price=value)
+                        where_clause += "and price>={min_price} between".format(min_price=value)
                     elif key == 'max_price':
-                        where_clause += "and price<={max_price} ".format(min_price=value)
+                        where_clause += "and price<={max_price} ".format(max_price=value)
                     elif isinstance(value, int):
                         where_clause = where_clause + "and {key}={value} ".format(key=key, value=value)
                     elif isinstance(value, basestring):
@@ -482,7 +517,8 @@ class databaseController():
 
     """Set new session id"""
     def removeSessionId(self,session):
-        command = "delete from sessions where session_id={session}".format(session=session)
+        command = "delete from sessions where session_id='{session}'".format(session=session)
+        print(command)
         mycursor.execute(command)
         mariadb_connection.commit()
 
@@ -512,19 +548,19 @@ if __name__ == "__main__":
     #metod.insertIntoUser(hashinfo)
     prodData = {'title': 'Air guitar Epiphone les paul vasilescu',
                 'description': 'cea mia mijtoui s mora mama meu k ii sm3k mkatzash lorem gipsum jajaj jaj as lal qea j2qj h n asdasd, asdasldkj',
-                'conditie': 3,
+                'conditie': 1,
                 'country': 'vaslui kong',
                 'state': 'triburile romane unite',
                 'city': 'vaslui',
                 'is_auction': 1,
-                'price': 399,
+                'price': 700,
                 'shipping_type': 'Malaysia Airways',
                 'shipping_price': 429,
                 'date_added': datetime.datetime.now(),
                 'date_expires': datetime.datetime.now(),
                 'category': 'lol nu stiu',
                 'subcategory': 'yes',
-                'views': 420,
+                'views': 445,
                 'image': [bytearray('asdasdasd'),bytearray('sdagfdgfds')],
                 'user_id': 1,
                 'status':'ongoing'
@@ -534,7 +570,7 @@ if __name__ == "__main__":
     transactiondict={
         "seller_user_id":1,
         "buyer_user_id":2,
-        "product_id":1,
+        "product_data_id":1,
         "has_ended":'ongoing'
     }
     session={
@@ -546,9 +582,10 @@ if __name__ == "__main__":
         'ip':'1111'
     }
     #metod.insertIntoSessions(session)
-    print metod.getProductsByFilter({"conditie":3}, 'date_added', 'desc', "Air")
+    #print metod.getProductsByFilter({"min_price":200,"max_price":300}, None, None, "")
+    print metod.getUserById(1)
     #metod.insertIntoTrasnaction(transactiondict)
-
+    #metod.removeSessionId(1)
     #metod.deleteDatabase()
 
 databaseController = databaseController()
