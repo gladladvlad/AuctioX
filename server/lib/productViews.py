@@ -80,9 +80,14 @@ class searchProductIDsView(view):
         info = dict()
         if self.urlArgs.has_key('min_price'):
             info['min_price'] = int(self.urlArgs['min_price'])
-
         if self.urlArgs.has_key('max_price'):
             info['max_price'] = int(self.urlArgs['max_price'])
+        if self.urlArgs.has_key('condition'):
+            info['conditie'] = int(self.urlArgs['conditie'])
+        if self.urlArgs.has_key('country'):
+            info['country'] = int(self.urlArgs['country'])
+        if self.urlArgs.has_key('city'):
+            info['city'] = int(self.urlArgs['city'])
 
         # info <=> {'min_price' : 2,
         #           'max_price' : 5,
@@ -193,18 +198,18 @@ class productView(view):
         if not self.urlArgs.has_key(productIDKey):
             raise ValueError("No product provided!")
 
+        debug('=====================================')
+        product = productController.getProductInstanceById(int(self.urlArgs[productIDKey]))
 
-        # TODO: get product from bd
-        tmpProduct = product(1, 2, 3, 'title', 'product description lorem gipsum gaudeamus igitur', [4], 4, 5, 6, 7, 8, 9, 10, 11, 12)
-        # end TODO
+        debug(product.asDict())
 
-        self.addItemToContext(tmpProduct, 'product', True)
+        self.addItemToContext(product, 'product', True)
 
-        # TODO: get seller from bd
-        tmpSeller = user(1, 2, 3, 4, 5, 6, 7, 8)
-        # end TODO
+        seller = userController.getUserInstanceById(int(product.ownerID))
 
-        self.addItemToContext(tmpSeller, 'seller', True)
+        debug(seller.asDict())
+
+        self.addItemToContext(seller, 'seller', True)
 
 
         self.addComponentToContext('product_content.html', 'product_content', True)

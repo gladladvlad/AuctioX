@@ -15,21 +15,55 @@ from databaseController import *
 #CRYPT_SALT_SIZE = 32
 
 class user():
-    def __init__(self, newUID, newSessionID, newUsername, newPasswordIterCount, newPasswordSalt, newPasswordHash, newEmail, newPhone):
-        self.UID = str(newUID)
-        self.sessionID = str(newSessionID)
-        self.username = str(newUsername)
-        self.passwordIterCount = int(newPasswordIterCount)
-        self.passwordSalt = bytearray(newPasswordSalt)
-        self.passwordHash = bytearray(newPasswordHash)
-        self.email = str(newEmail)
-        self.phone = str(newPhone)
+    def __init__(self, newUID, newSessionID, newUsername, newPasswordIterCount, newPasswordSalt, newPasswordHash, newEmail, newPhone, newFirstName, newLastName, newCountry, newState, newCity, newAdress1, newAdress2, newZipCode, newContactInfo, newStatus):
+        self.UID = newUID
+        self.sessionID = newSessionID
+        self.username = newUsername
+        self.passwordIterCount = newPasswordIterCount
+        self.passwordSalt = newPasswordSalt
+        self.passwordHash = newPasswordHash
+        self.email = newEmail
+        self.phone = newPhone
+        self.firstName = newFirstName
+        self.lastName = newLastName
+        self.country = newCountry
+        self.state = newState
+        self.city = newCity
+        self.adress1 = newAdress1
+        self.adress2 = newAdress2
+        self.zipCode = newZipCode
+        self.contactInfo = newContactInfo
+        self.status = newStatus
+
+    def asDict(self):
+        result = dict()
+
+        #'iterations' : self.passwordIterCount,
+        #'salt' : self.passwordSalt,
+        #'passHash' : self.passwordHash,
+        result = {'id' : self.UID,
+                'username' : self.username,
+                'email' : self.email,
+                'phone' : self.phone,
+                'firstName' : self.firstName,
+                'lastName' : self.lastName,
+                'country' : self.country,
+                'state' : self.state,
+                'city' : self.city,
+                'adress1' : self.adress1,
+                'adress2' : self.adress2,
+                'zip' : self.zipCode,
+                'contact' : self.contactInfo,
+                'status' : self.status}
+
+        return result
 
     def validatePassword(self, passwordIterCount, passwordSalt, passwordPlain):
         passwordHash = pbkdf2_hmac('sha256', bytearray('passwordPlain'), bytearray('passwordSalt'),
                                    passwordIterCount)
 
         return passwordHash == self.passwordHash
+
 
 
 class userController():
@@ -188,6 +222,16 @@ class userController():
                 return userInfo[USER_ID]
 
         return None
+
+
+    def getUserInstanceById(self, userID):
+        userBD = databaseController.getUserById(userID)[0]
+        session = databaseController.getSessionById(userID)
+
+
+        resultUser = user(userBD[USER_ID], session, userBD[USER_USERNAME], 50000, userBD[USER_SALT], userBD[USER_PASSWORD], userBD[USER_EMAIL], userBD[USER_CELL_NUMBER], userBD[USER_FIRST_NAME], userBD[USER_LAST_NAME], userBD[USER_COUNTRY], userBD[USER_STATE], userBD[USER_CITY], userBD[USER_ADRESS_1], userBD[USER_ADRESS_2], userBD[USER_ZIP_CODE], userBD[USER_CONTACT_INFO], userBD[USER_STATUS])
+
+        return resultUser
 
 
 userController = userController()

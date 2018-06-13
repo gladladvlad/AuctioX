@@ -38,7 +38,7 @@
 			<div class="containerFull" id="bidPanel">
 				<div id="bidInfo">
 					<div id="currentBid">
-						<h4>Current bid: </h4><h2> {{ product.price }} </h2> <h5> <!-- TODO: ADAUGAT CURRENCY --> </h5>
+						<h4>Current bid: </h4><h2> {{ product.price }} {{ product.currency }} </h2>
 					</div>
 				</div>
 				<div id="bidControl">
@@ -54,8 +54,8 @@
 					<td><a href="userListings.html"> {{ seller.username }} </a></td>
 				</tr>
 				<tr>
-					<td>rating</td>
-					<td>aaa4.2/5</td>
+					<td>views: </td>
+					<td>{{ product.views }}</td>
 				</tr>
 				<tr>
 					<td>email</td>
@@ -63,7 +63,7 @@
 				</tr>
 				<tr>
 					<td>location</td>
-					<td>Munich, Germany</td>
+					<td> {{ product.country }}, {{ product.city }} </td>
 				</tr>
 			</table> 					
 			</div>
