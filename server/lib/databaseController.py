@@ -499,7 +499,7 @@ class databaseController():
                     where_clause+= "0=1) "
                 elif value is not None and value != "":
                     if key == 'min_price':
-                        where_clause += "and price>={min_price} between".format(min_price=value)
+                        where_clause += "and price>={min_price} ".format(min_price=value)
                     elif key == 'max_price':
                         where_clause += "and price<={max_price} ".format(max_price=value)
                     elif isinstance(value, int):
@@ -517,7 +517,7 @@ class databaseController():
 
     """Set new session id"""
     def removeSessionId(self,session):
-        command = "delete from sessions where session_id='{session}'".format(session=session)
+        command = "delete from sessions where session_id={session}".format(session=session)
         print(command)
         mycursor.execute(command)
         mariadb_connection.commit()
@@ -574,7 +574,7 @@ if __name__ == "__main__":
         "has_ended":'ongoing'
     }
     session={
-        "session_id": '423545',
+        "session_id": '42354fdsg5',
         "user_id":1,
         "date_created":datetime.datetime.now(),
         "last_connected":datetime.datetime.now(),
@@ -582,10 +582,10 @@ if __name__ == "__main__":
         'ip':'1111'
     }
     #metod.insertIntoSessions(session)
-    #print metod.getProductsByFilter({"min_price":200,"max_price":300}, None, None, "")
-    print metod.getUserById(1)
+    print metod.getProductsByFilter({"min_price":200,"max_price":500,"views":445}, "date_added", "desc", "Air")
+    #print metod.getUserById(1)
     #metod.insertIntoTrasnaction(transactiondict)
-    #metod.removeSessionId(1)
+    #metod.removeSessionId('423545')
     #metod.deleteDatabase()
 
 databaseController = databaseController()
