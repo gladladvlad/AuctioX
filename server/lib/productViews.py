@@ -97,7 +97,7 @@ class searchPageView(view):
 
         debug('==================right before for==============')
 
-        for i in xrange(0, (int(self.urlArgs[searchProductCountKey]) - 1)):
+        for i in xrange(0, (int(self.urlArgs[searchProductCountKey]))):
             if self.urlArgs.has_key(itemKey):
                 # TODO: get products based on query & filters
                 #tmpProduct = product(1, 2, self.urlArgs[itemKey], 'title', 'product description lorem gipsum gaudeamus igitur', [4], 4, 5, 6, 7, 8, 9, 10, 11, 12)
@@ -105,7 +105,6 @@ class searchPageView(view):
                 debug('getting prod{0}'.format(i))
                 debug('itemKey ' + itemKey)
                 tmpProduct = productController.getProductById(int(self.urlArgs[itemKey]))
-                debug(tmpProduct.asDict())
 
                 products.append(tmpProduct.asDict())
                 productsDone += 1
@@ -116,7 +115,7 @@ class searchPageView(view):
             if (productsDone == int(self.urlArgs[searchPageSizeKey])):
                 break
 
-        debug(products)
+        debug(len(products))
 
 
         pages = [dict()]
