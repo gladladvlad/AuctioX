@@ -4,7 +4,7 @@ from databaseController import *
 class product():
     conditionMap = ['new', 'slightly used', 'used', 'broken']
 
-    def __init__(self, newOwnerID, newProductID, newStatus, newTitle, newDesc, newCategory, newSubCategory, newImages, newViews, newCondition, newCountry, newCity, newAuction, newPrice, newShippingType, newShippingPrice, newDateAdded, newDateExpires):
+    def __init__(self, newOwnerID, newProductID, newStatus, newTitle, newDesc, newCategory, newSubCategory, newImages, newViews, newCondition, newCountry, newCity, newAuction, newPrice, newCurrency, newShippingType, newShippingPrice, newDateAdded, newDateExpires):
         self.ownerID = newOwnerID
         self.productID = newProductID
         self.status = newStatus
@@ -19,6 +19,7 @@ class product():
         self.city = newCity
         self.auction = newAuction
         self.price = newPrice
+        self.currency = newCurrency
         self.shippingType = newShippingType
         self.shippingPrice = newShippingPrice
         self.dateAdded = newDateAdded
@@ -39,6 +40,7 @@ class product():
                 'city' : str(self.city),
                 'auction' : str(self.auction),
                 'price' : str(self.price),
+                'currency' : str(self.currency),
                 'shippingType' : str(self.shippingType),
                 'shippingPrice' : str(self.shippingPrice),
                 'dateAdded' : str(self.dateAdded),
@@ -73,7 +75,7 @@ class productController():
         prodDB = databaseController.getProductDataById(productID)[0]
         images = databaseController.getImages(productID)
 
-        productResult = product(prodDB[PROD_USER_ID], prodDB[PROD_ID], prodDB[PROD_STATUS], prodDB[PROD_TITLE], prodDB[PROD_DESCRIPTION], prodDB[PROD_CATEGORY], prodDB[PROD_SUBCATEGORY], images, prodDB[PROD_VIEWS], prodDB[PROD_CONDITIE], prodDB[PROD_COUNTRY], prodDB[PROD_CITY], prodDB[PROD_IS_AUCTION], prodDB[PROD_PRICE], prodDB[PROD_SHIPPING_TYPE], prodDB[PROD_SHIPPING_PRICE], prodDB[PROD_DATE_ADDED], prodDB[PROD_DATE_EXPIRES])
+        productResult = product(prodDB[PROD_USER_ID], prodDB[PROD_ID], prodDB[PROD_STATUS], prodDB[PROD_TITLE], prodDB[PROD_DESCRIPTION], prodDB[PROD_CATEGORY], prodDB[PROD_SUBCATEGORY], images, prodDB[PROD_VIEWS], prodDB[PROD_CONDITIE], prodDB[PROD_COUNTRY], prodDB[PROD_CITY], prodDB[PROD_IS_AUCTION], prodDB[PROD_PRICE], prodDB[PROD_CURRENCY], prodDB[PROD_SHIPPING_TYPE], prodDB[PROD_SHIPPING_PRICE], prodDB[PROD_DATE_ADDED], prodDB[PROD_DATE_EXPIRES])
 
         return productResult
 
