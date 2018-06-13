@@ -61,7 +61,6 @@ class databaseController():
                 command = "SELECT * FROM {table} WHERE {column}='{key}'".format(key=key,table=table,column=column)
             else:
                 command = "SELECT * FROM {table} WHERE {column}={key}".format(key=key, table=table, column=column)
-        print(command)
         mycursor.execute(command)
         result = mycursor.fetchall()
         return result
