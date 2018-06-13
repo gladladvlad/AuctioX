@@ -75,11 +75,13 @@ class view:
                 response += "URL arguments:<br><pre>" + json.dumps(self.urlArgs, indent=4) + "</pre><hr>"
                 response += "Headers:<br><pre>" + str(self.request.headers) + "</pre><hr>"
                 response += "Error:<br><pre>" + str(e.message) + "</pre><hr>"
-                response += "Stack:<br><pre>" + str(traceback.extract_stack(sys.exc_info()[2])) + "<pre><hr>"
-                response += "Trace:<br><pre>"
-                for line in traceback.extract_stack():
-                    response += line + "\n"
-                response += "</pre>"
+                # response += "Stack:<br><pre>" + str(traceback.extract_stack(sys.exc_info()[2])) + "<pre><hr>"
+                try:
+                    response += "Stack:<br><pre>"
+                    stack = traceback.extract_stack()
+                    response += json.dumps(stack, indent=4) + "</pre"
+                except:
+                    pass
             self.request.wfile.write(response)
             return
 

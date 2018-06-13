@@ -4,7 +4,41 @@ import  json
 import time
 import datetime
 
-mariadb_connection = mariadb.connect(user='root', password='', host='localhost', database='tw')
+PROD_ID = 0
+PROD_TITLE = 1
+PROD_DESCRIPTION = 2
+PROD_CONDITIE = 3
+PROD_COUNTRY = 4
+PROD_STATE = 5
+PROD_CITY = 6
+PROD_IS_AUCTION = 7
+PROD_PRICE = 8
+PROD_SHIPPING_TYPE = 9
+PROD_SHIPPING_PRICE = 10
+PROD_DATE_ADDED = 11
+PROD_DATE_EXPIRES = 12
+PROD_CATEGORY = 13
+PROD_SUBCATEGORY =14
+PROD_VIEWS = 15
+
+USER_ID =0
+USER_USERNAME = 1
+USER_PASSWORD =2
+USER_FIRST_NAME = 3
+USER_LAST_NAME =4
+USER_EMAIL =5
+USER_COUNTRY =6
+USER_STATE =7
+USER_CITY = 8
+USER_ADRESS_1 =9
+USER_ADRESS_2 =10
+USER_ZIP_CODE =11
+USER_CONTACT_INFO = 12
+USER_CELL_NUMBER =13
+USER_STATUS =14
+USER_SALT =15
+
+mariadb_connection = mariadb.connect(user='root', password='mancare', host='localhost', database='tw')
 mycursor = mariadb_connection.cursor()
 
 
@@ -21,7 +55,10 @@ class databaseController():
     def getItemsFromTable(self, table, column, key, *args):
         command = None
         if len(args)==0:
-            command = "SELECT * FROM {table} WHERE {column}={key}".format(key=key,table=table,column=column)
+            if(isinstance(key,basestring)):
+                command = "SELECT * FROM {table} WHERE {column}='{key}'".format(key=key,table=table,column=column)
+            else:
+                command = "SELECT * FROM {table} WHERE {column}={key}".format(key=key, table=table, column=column)
         print command
         mycursor.execute(command)
         items = mycursor.fetchall()
@@ -33,6 +70,9 @@ class databaseController():
 
     def getUserById(self,key):
         return self.getItemsFromTable('user','user_id',key)
+
+    def getUserByEmail(self,key):
+        return self.getItemsFromTable('user','email',key)
 
     def getUserbidByID(self,key):
         return self.getItemsFromTable('userbid','current_bid_id',key)
@@ -51,6 +91,12 @@ class databaseController():
 
     def getProductDataById(self,key):
         return self.getItemsFromTable('product_data','product_data_id',key)
+
+    def getProducts(self):
+        command= "select * from productdata"
+        mycursor.execute(command)
+        result = mycursor.fetchall()
+        return result
 
     def getProductById(self,key):
         return self.getItemsFromTable('product','product_id',key)
@@ -74,6 +120,7 @@ class databaseController():
 
     def getUserByUsername(self,key):
         command = "select * from user where username='{key}'".format(key=key)
+        print command
         mycursor.execute(command)
         result = mycursor.fetchone()
         return result
@@ -103,9 +150,10 @@ class databaseController():
         mariadb_connection.commit()
 
     def insertIntoProductdata(self,info):
-        lista = [info["title"],info["description"],info["condition"],info["country"],info["state"],info["city"],info["is_auction"],info["price"],info["shipping_type"],info["shipping_price"],info["date_added"],info["date_expires"],info["category"],info["subcategory"],info["views"]]
+        lista = [info["title"],info["description"],info["conditie"],info["country"],info["state"],info["city"],info["is_auction"],info["price"],info["shipping_type"],info["shipping_price"],info["date_added"],info["date_expires"],info["category"],info["subcategory"],info["views"]]
         command = "INSERT INTO productdata(title,description,conditie,country,state,city,is_auction,price,shipping_type,shipping_price,date_added,date_expires,category,subcategory,views) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
         mycursor.execute(command,lista)
+        print lista
         mariadb_connection.commit()
         command="select max(product_data_id) from productdata"
         mycursor.execute(command)
@@ -301,7 +349,7 @@ if __name__ == "__main__":
 
     #print json.dumps(metod.getUserById("user","country","'romania'"),indent=4)
 
-    hashinfo={
+    """hashinfo={
         "username":'aa',
         "password":'aaaa',
         "first_name": 'bbb',
@@ -317,9 +365,26 @@ if __name__ == "__main__":
         "cell_number":'asdsfsd',
         "status":'asfdfds',
         "salt":bytearray("dawdas")
-    }
+    }"""
+    prodData = {'title': 'Air guitar Epiphone les paul vasilescu',
+                'description': 'cea mia mijtoui s mora mama meu k ii sm3k mkatzash lorem gipsum jajaj jaj as lal qea j2qj h n asdasd, asdasldkj',
+                'conditie': 3,
+                'country': 'vaslui kong',
+                'state': 'triburile romane unite',
+                'city': 'vaslui',
+                'is_auction': 1,
+                'price': 399,
+                'shipping_type': 'Malaysia Airways',
+                'shipping_price': 429,
+                'date_added': datetime.datetime.now(),
+                'date_expires': datetime.datetime.now(),
+                'category': 'lol nu stiu',
+                'subcategory': 'yes',
+                'views': 420,
+                'image': [bytearray('asdasdasd')],
+                'user_id': 1}
     #print(hashinfo["condition"])
-    metod.insertIntoUser(hashinfo)
+    print metod.getUserByEmail('ddd')
     #print json.dumps(metod.matchText("Gabi"),indent=4)
     #print metod.getProductsByFilter(hashinfo,'condition','asc','aaa')
     #metod.deleteDatabase()
