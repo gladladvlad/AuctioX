@@ -62,7 +62,6 @@ class databaseController():
             else:
                 command = "SELECT * FROM {table} WHERE {column}={key}".format(key=key, table=table, column=column)
         mycursor.execute(command)
-        print(len(mycursor.fetchall()))
         result = mycursor.fetchall()
         return result
 
@@ -411,7 +410,7 @@ if __name__ == "__main__":
                 }
     #print(hashinfo["condition"])
     #metod.insertIntoProductdata(prodData)
-    print metod.getImages(3)
+    print metod.getProductDataById(1)
     #print json.dumps(metod.matchText("Gabi"),indent=4)
     #print metod.getProductsByFilter(hashinfo,'condition','asc','aaa')
     #metod.deleteDatabase()
