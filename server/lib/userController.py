@@ -4,6 +4,7 @@ import datetime
 import hashlib
 import os
 from hashlib import pbkdf2_hmac
+from util import *
 
 from databaseController import databaseController
 
@@ -35,8 +36,11 @@ class userController():
 
         errorList = list()
         status = True;
+        debug("Status changed")
 
-        existingUser = databaseController.getUserByUsername(registerDetails['user'])
+        existingUser = databaseController.getUserByUsername('aa')
+
+        debug("searched in database for user")
 
         if existingUser is not None:
             errorList.append("Username already taken")
@@ -51,7 +55,21 @@ class userController():
             pwd = hashlib.pbkdf2_hmac('sha256', registerDetails["password"], salt, 50000)
             binascii.hexlify(pwd);
             success = True;
-            info = {"username" : registerDetails["username"], "password" : registerDetails["password"], "first_name" : registerDetails["first_name"], "last_name" : registerDetails["last_name"], "email" : registerDetails["email"], "country": registerDetails["country"], "state": registerDetails["state"], "city" : registerDetails["city"], "adress_1" : registerDetails["adress_1"], "adress_2" : registerDetails["adress_2"], "zip_code" : registerDetails["zip_code"], "contact_info" : registerDetails["contact_info"], "cell_number" : registerDetails["cell_number"], "status" : 1}
+            info = {"username" : registerDetails["username"],
+                    "password" : registerDetails["password"],
+                    "first_name" : registerDetails["first_name"],
+                    "last_name" : registerDetails["last_name"],
+                    "email" : registerDetails["email"],
+                    "country": registerDetails["country"],
+                    "state": registerDetails["state"],
+                    "city" : registerDetails["city"],
+                    "adress_1" : registerDetails["adress_1"],
+                    "adress_2" : registerDetails["adress_2"],
+                    "zip_code" : registerDetails["zip_code"],
+                    "contact_info" : registerDetails["contact_info"],
+                    "cell_number" : registerDetails["cell_number"],
+                    "salt": salt,
+                    "status" : 1}
             databaseController.controller.insertIntoUser(info)
         result = {"success": success, "errorList": errorList}
 
