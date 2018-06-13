@@ -14,7 +14,7 @@
 					<li>
 						<div class="dropdown">
 							<h4><label>Country:</label></h4>
-							<input list="countryList" required/>
+							<input id="country" list="countryList" required/>
 
 							<datalist id="countryList">
 								<option value="Romania">
@@ -29,7 +29,7 @@
 					<li>
 						<div class="dropdown">
 							<h4><label>City:</label></h4>
-							<input list="countryList2" required/>
+							<input id="city" list="countryList2" required/>
 
 							<datalist id="countryList2">
 								<option value="England">
@@ -87,32 +87,27 @@
 					<li>
 						<div class="radio">
 							<div class="radioItem">
-								<input type="radio" name="priceSort" value="asc"/> Price: ascending
+								<input type="radio" id="price" name="sort" value="asc"/> Price: ascending
 							</div>
 							<div class="radioItem">
-								<input type="radio" name="priceSort" value="desc"/> Price: descending
+								<input type="radio" id="price" name="sort" value="desc"/> Price: descending
+							</div>
+							<div class="radioItem">
+								<input type="radio" id="condition" name="sort" value="asc"/> Condition: ascending
+							</div>
+							<div class="radioItem">
+								<input type="radio" id="condition" name="sort" value="desc"/> Condition: descending
+							</div>
+							<div class="radioItem">
+								<input type="radio" id="date" name="sort" value="asc"/> Date: ascending
+							</div>
+							<div class="radioItem">
+								<input type="radio" id="date" name="sort" value="desc"/> Date: descending
 							</div>
 						</div>
 					</li>
-					<li>
-						<div class="radio">
-							<div class="radioItem">
-								<input type="radio" name="condSort" value="asc"/> Condition: ascending
-							</div>
-							<div class="radioItem">
-								<input type="radio" name="condSort" value="desc"/> Condition: descending
-							</div>
-						</div>
-					</li>
-					<li>
-						<div class="radio">
-							<div class="radioItem">
-								<input type="radio" name="dateSort" value="asc"/> Date: ascending
-							</div>
-							<div class="radioItem">
-								<input type="radio" name="dateSort" value="desc"/> Date: descending
-							</div>
-						</div>
-					</li>
+				</ul>
+				<ul>
+					<input type="button" action="searchAgain()" value="Submit" style="margin-top: 1.5em; width: 100%;"/>
 				</ul>
 			</div>

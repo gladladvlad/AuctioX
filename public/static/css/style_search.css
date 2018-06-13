@@ -298,16 +298,24 @@ body {
 }
 
 @media only screen and (max-width: 611px) {
+	.searchBody {
+		flex-direction: column;
+	}
+
 	#content {
 		width: 100%;
 	}
 
 	#filtre {
-		width: 0%;
+		width: 100%;
 	}
 }
 
 @media only screen and (max-width: 366px) {
+	.searchBody {
+		flex-direction: column;
+	}
+
 	.prod > .prodContent {
 		flex-direction: column;
 		justify-content: center;
