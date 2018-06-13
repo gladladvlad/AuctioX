@@ -341,26 +341,32 @@ class databaseController():
         where_clause = ""
         order = ""
         how_order = "asc"
-        for key,value in info.items():
-            if value != None and value != "":
-                if key == 'min_price':
-                     where_clause += "and price>={min_price} ".format(min_price=value)
-                elif key == 'max_price':
-                    where_clause += "and price<={max_price} ".format(min_price=value)
-                elif isinstance(value,int):
-                    where_clause =where_clause + "and {key}={value} ".format(key=key, value=value)
-                elif isinstance(value,basestring):
-                    where_clause =where_clause + "and '{key}'='{value}' ".format(key=key, value=value)
-        if order_by != None and order_by!= "":
-            order+="order by '{what}'".format(what=order_by)
-        if how == "desc":
-            how_order = "desc"
-        command = "select product_data_id from productdata where (match(title,description,category,subcategory) against( '{query}' )) {clause} {order_by} {how},(match (title,description,category,subcategory) against ('{query}')) desc".format(
-            clause=where_clause, query=query, order_by=order, how=how_order
-        )
-        mycursor.execute(command)
-        result = mycursor.fetchall()
-        return result
+        if info is None and order_by is None and how is None and query == '':
+            command = "select * from productdata where status = 'ongoing'"
+            mycursor.execute(command)
+            result = mycursor.fetchall()
+            return result
+        else:
+            for key,value in info.items():
+                if value is not None and value != "":
+                    if key == 'min_price':
+                         where_clause += "and price>={min_price} ".format(min_price=value)
+                    elif key == 'max_price':
+                        where_clause += "and price<={max_price} ".format(min_price=value)
+                    elif isinstance(value,int):
+                        where_clause =where_clause + "and {key}={value} ".format(key=key, value=value)
+                    elif isinstance(value,basestring):
+                        where_clause =where_clause + "and '{key}'='{value}' ".format(key=key, value=value)
+            if order_by != None and order_by!= "":
+                order+="order by '{what}'".format(what=order_by)
+            if how == "desc":
+                how_order = "desc"
+            command = "select product_data_id from productdata where (match(title,description,category,subcategory) against( '{query}' )) {clause} {order_by} {how},(match (title,description,category,subcategory) against ('{query}')) desc".format(
+                clause=where_clause, query=query, order_by=order, how=how_order
+            )
+            mycursor.execute(command)
+            result = mycursor.fetchall()
+            return result
 
     """Set new session id"""
     def removeSessionId(self,session):
@@ -427,7 +433,8 @@ if __name__ == "__main__":
         "device":'aici',
         'ip':'1111'
     }
-    metod.insertIntoSessions(session)
+    #metod.insertIntoSessions(session)
+    print metod.getProductsByFilter(None, None, None, '')
     #metod.insertIntoTrasnaction(transactiondict)
 
     #metod.deleteDatabase()
