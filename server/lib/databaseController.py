@@ -38,7 +38,7 @@ USER_CELL_NUMBER =13
 USER_STATUS =14
 USER_SALT =15
 
-mariadb_connection = mariadb.connect(user='root', password='', host='localhost', database='tw')
+mariadb_connection = mariadb.connect(user='root', password='mancare', host='localhost', database='tw')
 mycursor = mariadb_connection.cursor()
 
 
@@ -55,7 +55,10 @@ class databaseController():
     def getItemsFromTable(self, table, column, key, *args):
         command = None
         if len(args)==0:
-            command = "SELECT * FROM {table} WHERE {column}={key}".format(key=key,table=table,column=column)
+            if(isinstance(key,basestring)):
+                command = "SELECT * FROM {table} WHERE {column}='{key}'".format(key=key,table=table,column=column)
+            else:
+                command = "SELECT * FROM {table} WHERE {column}={key}".format(key=key, table=table, column=column)
         print command
         mycursor.execute(command)
         items = mycursor.fetchall()
@@ -381,7 +384,7 @@ if __name__ == "__main__":
                 'image': [bytearray('asdasdasd')],
                 'user_id': 1}
     #print(hashinfo["condition"])
-    print metod.getProducts()
+    print metod.getUserByEmail('ddd')
     #print json.dumps(metod.matchText("Gabi"),indent=4)
     #print metod.getProductsByFilter(hashinfo,'condition','asc','aaa')
     #metod.deleteDatabase()
