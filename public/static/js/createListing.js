@@ -1,4 +1,5 @@
 photoFiles = []
+data = {}
 
 window.onload = function(){
 
@@ -14,16 +15,12 @@ window.onload = function(){
     createListingButton == document.getElementById("createListing");
 
     createListingButton.onclick = createListing;
-
-    console.log("Onload() finished.")
 }
 
 function submitPhoto(){
 
 
     var currentFiles = photos.files;
-
-    console.log(currentFiles);
 
     if (currentFiles.length == 0){
         return
@@ -35,16 +32,35 @@ function submitPhoto(){
             return
         }
         photo = document.createElement('img');
-        console.log(i + " " + currentFiles[i])
         photo.src = URL.createObjectURL(currentFiles[i]);
         photoFiles.push(currentFiles[i])
         preview.append(photo)
     }
 }
 
+function readMultiFiles(files) {
+    resultList = []
+    var reader = new FileReader();
+    function readFile(index) {
+        if( index >= files.length || files[index] == null) {
+            console.log("Finished reading");
+            console.log(resultList)
+            data["photos"] = resultList
+            sendRequest(data)
+        }
+        console.log("Reading " + index + " from " + files[index].type)
+        var file = files[index];
+        reader.onload = function() {
+            b64 = btoa(reader.result)
+            resultList.push("data:" + files[index].type + ";base64," + b64)
+            readFile(index+1)
+        }
+        reader.readAsDataURL(file);
+    }
+    readFile(0);
+}
+
 function createListing(){
-
-
 
     data = {}
     data["title"] = inputTitle.value;
@@ -52,30 +68,23 @@ function createListing(){
     data["description"] = inputDesc.value;
     data["price"] = inputPrice.value;
     data["currency"] = inputCurrency.value;
-    data["photos"] = []
+    readMultiFiles(photoFiles);
+}
 
 
-    for (var i = 0; i < photoFiles.length; i++){
-        var reader = new FileReader();
-        console.log(photoFiles[0])
-        data["photos"].push(reader.readAsArrayBuffer(photoFiles[i]));
-    }
-
-    console.log(data);
-
+function sendRequest(data) {
     var xhr = new XMLHttpRequest();
 
     xhr.onreadystatechange = function()
     {
-
         if(xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200){
-            //body = document.getElementsByTagName("body")[0].innerHTML = xhr.response;
-            console.log(xhr.response);
+            console.log(xhr.responseText)
+            response = JSON.parse(xhr.responseText)
             return;
         }
     }
 
     xhr.open("POST", "/createlistingrequest", true);
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhr.send(data);
+    xhr.send(JSON.stringify(data));
 }

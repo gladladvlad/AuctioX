@@ -23,8 +23,10 @@ class createListingRequestView(view):
 
     def post(self):
         debug('[INFO] createListings: received post data')
-        productController.viewPostData(self.postData)
-        return "ok";
+        print self.postData
+        result = productController.createListing(self.parseJsonPost())
+        print result
+        return result
 
 
 searchProductCountKey = 'prods'
