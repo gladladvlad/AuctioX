@@ -206,9 +206,7 @@ class databaseController():
         current_date = datetime.datetime.now()
         date_expires = self.getDate('productdata','product_data_id','date_expires',info["product_data_id"])
         lista = [info["seller_user_id"],info["buyer_user_id"],info["product_data_id"],info["has_ended"],current_date,date_expires]
-        print lista
         command = "INSERT INTO transaction(seller_user_id,buyer_user_id,product_id,has_ended,date_initiated,date_ended) VALUES(%s,%s,%s,%s,%s,%s)"
-        print(command)
         mycursor.execute(command,lista)
         mariadb_connection.commit()
         hashmap={
@@ -229,18 +227,19 @@ class databaseController():
     """Setari inactiv in baza de date"""
 
     def setInactiveInTransaction(self, key):
-        command = "UPDATE transaction set has_ended ='ended' where product_id_id={key}".format(key=key)
+        command = "UPDATE transaction set has_ended ='ended' where product_id={key}".format(key=key)
         mycursor.execute(command)
         mariadb_connection.commit()
 
     def setInactiveInUserbid(self, key):
-        command = "update userbid set status='lost' where product_id={key})".format(key=key)
+        command = "update userbid set status='lost' where product_id={key}".format(key=key)
         mycursor.execute(command)
         mariadb_connection.commit()
-        command = "select current_bid_id from userbid where value=max(value)"
+        command = "select current_bid_id from userbid where product_id={key} order by value desc".format(key=key)
         mycursor.execute(command)
-        result = mycursor.fetchone()
-        command = "update userbid set status='won' where current_bid_id={result}".format(result=result)
+        result = mycursor.fetchall()
+        command = "update userbid set status='won' where current_bid_id={result}".format(result=result[0][0])
+        print(command)
         mycursor.execute(command)
         mariadb_connection.commit()
 
@@ -250,14 +249,11 @@ class databaseController():
         mariadb_connection.commit()
 
     def setInactiveInProduct(self, key):
-        command = "update product set status='sold' where product_data_id={key})".format(key=key)
+        command = "update productdata set status='sold' where product_data_id={key}".format(key=key)
         mycursor.execute(command)
         mariadb_connection.commit()
-        command = "select product_id where product_id={key}".format(key=key)
-        mycursor.execute(command)
-        result = mycursor.fetchone()
-        self.setInactiveInTransaction(result)
-        self.setInactiveInUserbid(result)
+        self.setInactiveInTransaction(key)
+        self.setInactiveInUserbid(key)
 
     """Delete everything in database"""
     def resetAutoIncrement(self):
@@ -567,7 +563,7 @@ if __name__ == "__main__":
     #print metod.getUserByUsername('aa or 1=1')
     transactiondict={
         "seller_user_id":1,
-        "buyer_user_id":2,
+        "buyer_user_id":3,
         "product_data_id":1,
         "has_ended":'ongoing',
         "value": 1000
@@ -583,10 +579,11 @@ if __name__ == "__main__":
     #metod.insertIntoSessions(session)
     #print metod.getProductsByFilter({"min_price":200,"max_price":500,"views":445}, "date_added", "desc", "Air")
     #print metod.getUserById(1)
-    metod.insertIntoTrasnaction(transactiondict)
+    #metod.insertIntoTrasnaction(transactiondict)
     #metod.removeSessionId('423545')
     #metod.deleteDatabase()
-
+    #metod.setInactiveInTransaction(1)
+    metod.setInactiveInProduct(1)
 databaseController = databaseController()
 
 
