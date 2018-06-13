@@ -14,14 +14,15 @@ PROD_STATE = 6
 PROD_CITY = 7
 PROD_IS_AUCTION = 8
 PROD_PRICE = 9
-PROD_SHIPPING_TYPE = 10
-PROD_SHIPPING_PRICE = 11
-PROD_DATE_ADDED = 12
-PROD_DATE_EXPIRES = 13
-PROD_CATEGORY = 14
-PROD_SUBCATEGORY =15
-PROD_VIEWS = 16
-PROD_STATUS =17
+PROD_CURRENCY = 10
+PROD_SHIPPING_TYPE = 11
+PROD_SHIPPING_PRICE = 12
+PROD_DATE_ADDED = 13
+PROD_DATE_EXPIRES = 14
+PROD_CATEGORY = 15
+PROD_SUBCATEGORY =16
+PROD_VIEWS = 17
+PROD_STATUS =18
 
 USER_ID =0
 USER_USERNAME = 1
@@ -43,7 +44,6 @@ USER_SALT =15
 import databaseCredentials
 mariadb_connection = mariadb.connect(user=databaseCredentials.user, password=databaseCredentials.password, host='localhost', database='tw')
 mycursor = mariadb_connection.cursor()
-from util import *
 
 
 class databaseController():
@@ -107,12 +107,12 @@ class databaseController():
         return self.getItemsFromTable('sessions','session_id',key)
 
     def getDate(self,table,column_key,column_date,key):
-        command = "select '{column_date}' from '{table}' where {column_key}={key}".format(
+        command = "select {column_date} from {table} where {column_key}={key}".format(
             column_date=column_date,table=table,column_key=column_key,key=key
         )
         mycursor.execute(command)
-        result = mycursor.fetchall()
-        return result
+        result = mycursor.fetchone()
+        return result[0]
 
     def getUserByUsername(self,key):
         command = "select * from user where username='{key}'".format(key=key)
@@ -150,11 +150,9 @@ class databaseController():
         mycursor.execute(command,lista)
         mariadb_connection.commit()
 
-    def insertIntoProductdata(self, info):
-        debug("in database controller: adding product data")
-        lista = [info["user_id"],info["title"],info["description"],info["conditie"],info["country"],info["state"],info["city"],info["is_auction"],info["price"],info["shipping_type"],info["shipping_price"],info["date_added"],info["date_expires"],info["category"],info["subcategory"],info["views"],info["status"]]
-        debug(lista)
-        command = "INSERT INTO productdata(user_id,title,description,conditie,country,state,city,is_auction,price,shipping_type,shipping_price,date_added,date_expires,category,subcategory,views,status) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+    def insertIntoProductdata(self,info):
+        lista = [info["user_id"],info["title"],info["description"],info["conditie"],info["country"],info["state"],info["city"],info["is_auction"],info["price"],info["currency"],info["shipping_type"],info["shipping_price"],info["date_added"],info["date_expires"],info["category"],info["subcategory"],info["views"],info["status"]]
+        command = "INSERT INTO productdata(user_id,title,description,conditie,country,state,city,is_auction,price,currency,shipping_type,shipping_price,date_added,date_expires,category,subcategory,views,status) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
         print command
         mycursor.execute(command,lista)
         mariadb_connection.commit()
@@ -169,8 +167,8 @@ class databaseController():
 
 
     def insertIntoFeedback(self,info):
-        lista = [info["transaction_id"],info["user_id"],info["title"],info["content"]]
-        command = "INSERT INTO feedback(transaction_id,user_id,rating,title,content) VALUES(%s,%s,%s,%s)"
+        lista = [info["transaction_id"],info["user_id"],info["rating"],info["title"],info["content"]]
+        command = "INSERT INTO feedback(transaction_id,user_id,rating,title,content) VALUES(%s,%s,%s,%s,%s)"
         mycursor.execute(command,lista)
         mariadb_connection.commit()
 
@@ -182,14 +180,15 @@ class databaseController():
             mariadb_connection.commit()
 
     def insertIntoNotice(self,info):
-        lista = [info["for_user_id"],info["from_user_id"],info["notice"],info["title"],info["content"]]
+        lista = [info["for_user_id"],info["from_user_id"],info["count"],info["title"],info["content"]]
         command = "INSERT INTO notice(for_user_id,from_user_id,count,title,content) VALUES(%s,%s,%s,%s,%s)"
         mycursor.execute(command,lista)
         mariadb_connection.commit()
 
     def insertIntoQuestion(self,info):
         lista = [info["product_id"],info["user_id"],info["title"],info["content"]]
-        command = "INSERT INTO question(product_id,user_id,title,content}) VALUES(%s,%s,%s,%s)"
+        command = "INSERT INTO question (product_id,user_id,title,content) VALUES(%s,%s,%s,%s)"
+        print(command)
         mycursor.execute(command,lista)
         mariadb_connection.commit()
 
@@ -206,19 +205,19 @@ class databaseController():
         mariadb_connection.commit()
 
     def insertIntoTrasnaction(self,info):
-        lista = [info["seller_user_id"],info["buyer_user_id"],info["product_id"],info["has_ended"],datetime.datetime.now(),self.getDate('productdata','product_data_id','date_expires',info["product_id"])]
-        print lista
-        command = "INSERT INTO transaction(seller_user_id,buyer_user_id,product_id,has_ended,date_initiated,date_ended) VALUES(%s,%s,%s,%s,%,s,%s)"
-        print(command)
-        #mycursor.execute(command,lista)
-        #mariadb_connection.commit()
-        """hashmap={
+        current_date = datetime.datetime.now()
+        date_expires = self.getDate('productdata','product_data_id','date_expires',info["product_data_id"])
+        lista = [info["seller_user_id"],info["buyer_user_id"],info["product_data_id"],info["has_ended"],current_date,date_expires]
+        command = "INSERT INTO transaction(seller_user_id,buyer_user_id,product_id,has_ended,date_initiated,date_ended) VALUES(%s,%s,%s,%s,%s,%s)"
+        mycursor.execute(command,lista)
+        mariadb_connection.commit()
+        hashmap={
             "user_id" : info["buyer_user_id"],
-            "product_id" : info["product_id"],
+            "product_id" : info["product_data_id"],
             "status" : 'ongoing',
             "value" : info["value"]
         }
-        self.insertIntoUserbid(hashmap)"""
+        self.insertIntoUserbid(hashmap)
 
     def insertIntoSessions(self,info):
         lista=[info["session_id"],info["user_id"],info["date_created"],info["last_connected"],info["device"],info["ip"]]
@@ -230,18 +229,18 @@ class databaseController():
     """Setari inactiv in baza de date"""
 
     def setInactiveInTransaction(self, key):
-        command = "UPDATE transaction set has_ended ='ended' where product_id_id={key}".format(key=key)
+        command = "UPDATE transaction set has_ended ='ended' where product_id={key}".format(key=key)
         mycursor.execute(command)
         mariadb_connection.commit()
 
     def setInactiveInUserbid(self, key):
-        command = "update userbid set status='lost' where product_id={key})".format(key=key)
+        command = "update userbid set status='lost' where product_id={key}".format(key=key)
         mycursor.execute(command)
         mariadb_connection.commit()
-        command = "select current_bid_id from userbid where value=max(value)"
+        command = "select current_bid_id from userbid where product_id={key} order by value desc".format(key=key)
         mycursor.execute(command)
-        result = mycursor.fetchone()
-        command = "update userbid set status='won' where current_bid_id={result}".format(result=result)
+        result = mycursor.fetchall()
+        command = "update userbid set status='won' where current_bid_id={result}".format(result=result[0][0])
         mycursor.execute(command)
         mariadb_connection.commit()
 
@@ -251,14 +250,26 @@ class databaseController():
         mariadb_connection.commit()
 
     def setInactiveInProduct(self, key):
-        command = "update product set status='sold' where product_data_id={key})".format(key=key)
+        command = "update productdata set status='sold' where product_data_id={key}".format(key=key)
         mycursor.execute(command)
         mariadb_connection.commit()
-        command = "select product_id where product_id={key}".format(key=key)
+        self.setInactiveInTransaction(key)
+        self.setInactiveInUserbid(key)
+
+    def setSellerConfirm(self,user,produs):
+        command = "update transaction set seller_confirm = 1 where seller_user_id={user} and product_id={produs}".format(
+            user=user, produs=produs
+        )
         mycursor.execute(command)
-        result = mycursor.fetchone()
-        self.setInactiveInTransaction(result)
-        self.setInactiveInUserbid(result)
+        mariadb_connection.commit()
+
+    def setBuyerConfirm(self,user,product):
+        command = "update transaction set buyer_confirm = 1 where buyer_user_id={user} and product_id={produs}".format(
+            user=user, produs=product
+        )
+        print(command)
+        mycursor.execute(command)
+        mariadb_connection.commit()
 
     """Delete everything in database"""
     def resetAutoIncrement(self):
@@ -342,38 +353,182 @@ class databaseController():
     """Get products by filter"""
     def getProductsByFilter(self,info,order_by,how,query):
         where_clause = ""
-        order = ""
-        how_order = "asc"
-        if info is None and order_by is None and how is None and query == '':
+        if (info is None) and (order_by is None) and (how is None) and (query == ''):
             command = "select * from productdata where status = 'ongoing'"
             mycursor.execute(command)
             result = mycursor.fetchall()
             return result
-        else:
-            for key,value in info.items():
-                if value is not None and value != "":
-                    if key == 'min_price':
-                         where_clause += "and price>={min_price} ".format(min_price=value)
-                    elif key == 'max_price':
-                        where_clause += "and price<={max_price} ".format(min_price=value)
-                    elif isinstance(value,int):
-                        where_clause =where_clause + "and {key}={value} ".format(key=key, value=value)
-                    elif isinstance(value,basestring):
-                        where_clause =where_clause + "and '{key}'='{value}' ".format(key=key, value=value)
-            if order_by != None and order_by!= "":
-                order+="order by '{what}'".format(what=order_by)
-            if how == "desc":
-                how_order = "desc"
-            command = "select product_data_id from productdata where (match(title,description,category,subcategory) against( '{query}' )) {clause} {order_by} {how},(match (title,description,category,subcategory) against ('{query}')) desc".format(
-                clause=where_clause, query=query, order_by=order, how=how_order
+        elif (info is None) and (order_by is None) and (how is None) and (query != ''):
+            command = "select * from productdata where (match(title,description,category,subcategory) against( '{query}' ))"
+            mycursor.execute(command)
+            result =mycursor.fetchall()
+            return result
+        elif (info is None) and (order_by is not None) and (how is None) and (query != ''):
+            command = "select * from productdata where (match(title,description,category,subcategory) against( '{query}' )) order by {orderby}".format(
+                query=query, orderby=order_by
             )
             mycursor.execute(command)
             result = mycursor.fetchall()
             return result
+        elif (info is None) and (order_by is not None) and (how is None) and (query == ''):
+            command = "select * from productdata order by {orderby}".format(orderby=order_by)
+            mycursor.execute(command)
+            result = mycursor.fetchall()
+            return result
+        elif (info is None) and (order_by is not None) and (how is not None) and (query == ''):
+            command = 'select * from productdata order by {orderby} {how}'.format(
+                orderby=order_by, how=how
+            )
+            mycursor.execute(command)
+            result = mycursor.fetchall()
+            return result
+        elif (info is None) and (order_by is not None) and (how is not None) and (query != ''):
+            command = "select * from productdata where (match(title,description,category,subcategory) against( '{query}' )) order by {orderby} {how}".format(
+                query=query, orderby=order_by, how=how
+            )
+            mycursor.execute(command)
+            result = mycursor.fetchall()
+            return result
+        elif (info is not None) and (order_by is None) and (how is None) and (query == ''):
+            for key, value in info.items():
+                if value is not None and value != "":
+                    if key == 'conditie' and len(value) != 0:
+                        where_clause += "and ("
+                        for i in value:
+                            where_clause += "conditie={value} or ".format(value=i)
+                        where_clause += "0=1) "
+                    elif key == 'min_price':
+                        where_clause += "and price>={min_price} ".format(min_price=value)
+                    elif key == 'max_price':
+                        where_clause += "and price<={max_price} ".format(max_price=value)
+                    elif isinstance(value, int):
+                        where_clause = where_clause + "and {key}={value} ".format(key=key, value=value)
+                    elif isinstance(value, basestring):
+                        where_clause = where_clause + "and {key}='{value}' ".format(key=key, value=value)
+            command = "select * from productdata where 1=1 {where_clause}".format(
+                query=query, where_clause=where_clause
+            )
+            print(command)
+            mycursor.execute(command)
+            result = mycursor.fetchall()
+            return result
+        elif (info is not None) and (order_by is None) and (how is None) and (query != ''):
+            for key, value in info.items():
+                if value is not None and value != "":
+                    if key == 'conditie' and len(value) != 0:
+                        where_clause += "and ("
+                        for i in value:
+                            where_clause += "conditie={value} or ".format(value=i)
+                        where_clause += "0=1) "
+                    elif key == 'min_price':
+                        where_clause += "and price>={min_price} ".format(min_price=value)
+                    elif key == 'max_price':
+                        where_clause += "and price<={max_price} ".format(max_price=value)
+                    elif isinstance(value, int):
+                        where_clause = where_clause + "and {key}={value} ".format(key=key, value=value)
+                    elif isinstance(value, basestring):
+                        where_clause = where_clause + "and {key}='{value}' ".format(key=key, value=value)
+            command = "select * from productdata where (match(title,description,category,subcategory) against( '{query}' )) {where_clause}".format(
+                query=query, where_clause=where_clause
+            )
+            mycursor.execute(command)
+            result = mycursor.fetchall()
+            return result
+        elif (info is not None) and (order_by is not None) and (how is None) and (query == ''):
+            for key, value in info.items():
+                if value is not None and value != "":
+                    if key == 'conditie' and len(value) != 0:
+                        where_clause += "and ("
+                        for i in value:
+                            where_clause += "conditie={value} or ".format(value=i)
+                        where_clause += "0=1) "
+                    elif key == 'min_price':
+                        where_clause += "and price>={min_price} ".format(min_price=value)
+                    elif key == 'max_price':
+                        where_clause += "and price<={max_price} ".format(max_price=value)
+                    elif isinstance(value, int):
+                        where_clause = where_clause + "and {key}={value} ".format(key=key, value=value)
+                    elif isinstance(value, basestring):
+                        where_clause = where_clause + "and {key}='{value}' ".format(key=key, value=value)
+            command = "select * from productdata where 1=1 {clause} order by {order}".format(
+                clause=where_clause, order=order_by
+            )
+            mycursor.execute(command)
+            result = mycursor.fetchall()
+            return result
+        elif (info is not None) and (order_by is not None) and (how is None) and (query != ''):
+            for key, value in info.items():
+                if key == 'conditie' and len(value) != 0:
+                    where_clause += "and ("
+                    for i in value:
+                        where_clause += "conditie={value} or ".format(value=i)
+                    where_clause += "0=1) "
+                elif value is not None and value != "":
+                    if key == 'min_price':
+                        where_clause += "and price>={min_price} ".format(min_price=value)
+                    elif key == 'max_price':
+                        where_clause += "and price<={max_price} ".format(max_price=value)
+                    elif isinstance(value, int):
+                        where_clause = where_clause + "and {key}={value} ".format(key=key, value=value)
+                    elif isinstance(value, basestring):
+                        where_clause = where_clause + "and {key}='{value}' ".format(key=key, value=value)
+            command = "select * from productdata where (match(title,description,category,subcategory) against( '{query}' )) {clause} order by {order} asc".format(
+                query=query, clause=where_clause, order=order_by
+            )
+            mycursor.execute(command)
+            result = mycursor.fetchall()
+            return result
+        elif (info is not None) and (order_by is not None) and (how is not None) and (query == ''):
+            for key, value in info.items():
+                if value is not None and value != "":
+                    if key == 'conditie' and len(value) != 0:
+                        where_clause += "and ("
+                        for i in value:
+                            where_clause += "conditie={value} or ".format(value=i)
+                        where_clause += "0=1) "
+                    elif key == 'min_price':
+                        where_clause += "and price>={min_price} ".format(min_price=value)
+                    elif key == 'max_price':
+                        where_clause += "and price<={max_price} ".format(max_price=value)
+                    elif isinstance(value, int):
+                        where_clause = where_clause + "and {key}={value} ".format(key=key, value=value)
+                    elif isinstance(value, basestring):
+                        where_clause = where_clause + "and {key}='{value}' ".format(key=key, value=value)
+            command = "select * from productdata where 1=1 {clause} order by {order} {how}".format(
+                clause=where_clause, order=order_by, how=how
+            )
+            mycursor.execute(command)
+            result = mycursor.fetchall()
+            return result
+        elif (info is not None) and (order_by is not None) and (how is not None) and (query != ''):
+            for key, value in info.items():
+                if key=='conditie' and len(value)!=0:
+                    where_clause+="and ("
+                    for i in value:
+                        where_clause+="conditie={value} or ".format(value=i)
+                    where_clause+= "0=1) "
+                elif value is not None and value != "":
+                    if key == 'min_price':
+                        where_clause += "and price>={min_price} ".format(min_price=value)
+                    elif key == 'max_price':
+                        where_clause += "and price<={max_price} ".format(max_price=value)
+                    elif isinstance(value, int):
+                        where_clause = where_clause + "and {key}={value} ".format(key=key, value=value)
+                    elif isinstance(value, basestring):
+                        where_clause = where_clause + "and {key}='{value}' ".format(key=key, value=value)
+            command= "select * from productdata where (match(title,description,category,subcategory) against( '{query}' )) {clause} order by {order} {how}".format(
+                query=query, clause=where_clause, order=order_by, how=how
+            )
+            print(command)
+            mycursor.execute(command)
+            result = mycursor.fetchall()
+            return result
+
 
     """Set new session id"""
     def removeSessionId(self,session):
         command = "delete from sessions where session_id={session}".format(session=session)
+        print(command)
         mycursor.execute(command)
         mariadb_connection.commit()
 
@@ -403,19 +558,20 @@ if __name__ == "__main__":
     #metod.insertIntoUser(hashinfo)
     prodData = {'title': 'Air guitar Epiphone les paul vasilescu',
                 'description': 'cea mia mijtoui s mora mama meu k ii sm3k mkatzash lorem gipsum jajaj jaj as lal qea j2qj h n asdasd, asdasldkj',
-                'conditie': 3,
+                'conditie': 1,
                 'country': 'vaslui kong',
                 'state': 'triburile romane unite',
                 'city': 'vaslui',
                 'is_auction': 1,
-                'price': 399,
+                'price': 700,
+                'currency':'eur',
                 'shipping_type': 'Malaysia Airways',
                 'shipping_price': 429,
                 'date_added': datetime.datetime.now(),
                 'date_expires': datetime.datetime.now(),
                 'category': 'lol nu stiu',
                 'subcategory': 'yes',
-                'views': 420,
+                'views': 445,
                 'image': [bytearray('asdasdasd'),bytearray('sdagfdgfds')],
                 'user_id': 1,
                 'status':'ongoing'
@@ -424,24 +580,65 @@ if __name__ == "__main__":
     #print metod.getUserByUsername('aa or 1=1')
     transactiondict={
         "seller_user_id":1,
-        "buyer_user_id":2,
-        "product_id":1,
-        "has_ended":'ongoing'
+        "buyer_user_id":3,
+        "product_data_id":1,
+        "has_ended":'ongoing',
+        "value": 1000
     }
     session={
-        "session_id": '423545',
+        "session_id": '42354fdsg5',
         "user_id":1,
         "date_created":datetime.datetime.now(),
         "last_connected":datetime.datetime.now(),
         "device":'aici',
         'ip':'1111'
     }
+    reportmap={
+        "type":'naspa',
+        "from_uid":2,
+        "to_uid":1,
+        "product_id":1,
+        "reason":15,
+        "details":'nustiu deastea',
+        "resolved":0,
+        "date_resolved":datetime.datetime.now(),
+        "is_valid":0
+    }
+    #metod.insertIntoReport(reportmap)
+    response={
+        "product_id":1,
+        "user_id":2,
+        "title":'intrebare',
+        "content":'zi si mie'
+    }
+    #metod.insertIntoResponse(response)
+    #metod.insertIntoQuestion(response)
+    notice={
+        "for_user_id":1,
+        "from_user_id":2,
+        "count":3,
+        "title":'nu mai tin minte pt ce era asta',
+        "content":"whaaaaaaaaaaaaaat?"
+    }
+    #metod.insertIntoNotice(notice)
+    feedback={
+        "transaction_id":1,
+        "user_id":1,
+        "rating":10,
+        "title":'Nice',
+        "content":'Super Nice'
+    }
+    metod.insertIntoFeedback(feedback)
     #metod.insertIntoSessions(session)
-    print metod.getProductsByFilter(None, None, None, '')
+    #print metod.getProductsByFilter({"min_price":200,"max_price":500,"views":445}, "date_added", "desc", "Air")
+    #print metod.getUserById(1)
     #metod.insertIntoTrasnaction(transactiondict)
-
+    #metod.removeSessionId('423545')
     #metod.deleteDatabase()
-
+    #metod.setInactiveInTransaction(1)
+    #metod.setInactiveInProduct(1)
+    #metod.setSellerConfirm(2,1)
+    #metod.setBuyerConfirm(2,1)
 databaseController = databaseController()
 
 
