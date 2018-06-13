@@ -23,10 +23,8 @@ class createListingView(view):
 class createListingRequestView(view):
 
     def post(self):
-        debug('[INFO] createListings: received post data')
-        print self.postData
+        debug('[VIEW] createListingsRequestView')
         result = productController.createListing(self.parseJsonPost())
-        print result
         return result
 
 
