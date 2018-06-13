@@ -50,18 +50,26 @@ class productController():
     def viewPostData(self, postData):
         debug(postData)
 
-    def getProductsByQuery(self, query):
-        #make sure query is string
-        query = str(query)
+    def getAllProducts(self):
+        return databaseController.getProducts()
 
+    # info <=> {'min_price' : 2,
+    #           'max_price' : 5,
+    #           'conditie' : 2}
+    # order_by <=> string cu campu' dupa care ordonam
+    # how <=> asc/desc
+    # query <=> string
+    def getProductsByFilter(self, info, order_by, how, query):
         #get all products from DB
-        products = databaseController.getProducts()
+        products = databaseController.getProductsByFilter(info, order_by, how, query)
 
         return products
 
     def getProductById(self, productID):
         prodDB = databaseController.getProductDataById(productID)[0]
         images = databaseController.getImages(productID)
+        debug('================')
+        debug(images)
 
         productResult = product(prodDB[PROD_USER_ID], prodDB[PROD_ID], prodDB[PROD_STATUS], prodDB[PROD_TITLE], prodDB[PROD_DESCRIPTION], prodDB[PROD_CATEGORY], prodDB[PROD_SUBCATEGORY], images, prodDB[PROD_VIEWS], prodDB[PROD_CONDITIE], prodDB[PROD_COUNTRY], prodDB[PROD_CITY], prodDB[PROD_IS_AUCTION], prodDB[PROD_PRICE], prodDB[PROD_SHIPPING_TYPE], prodDB[PROD_SHIPPING_PRICE], prodDB[PROD_DATE_ADDED], prodDB[PROD_DATE_EXPIRES])
 
