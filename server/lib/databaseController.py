@@ -339,34 +339,146 @@ class databaseController():
     """Get products by filter"""
     def getProductsByFilter(self,info,order_by,how,query):
         where_clause = ""
-        order = ""
-        how_order = "asc"
-        if info is None and order_by is None and how is None and query == '':
+        if (info is None) and (order_by is None) and (how is None) and (query == ''):
             command = "select * from productdata where status = 'ongoing'"
             mycursor.execute(command)
             result = mycursor.fetchall()
             return result
-        else:
-            for key,value in info.items():
-                if value is not None and value != "":
-                    if key == 'min_price':
-                         where_clause += "and price>={min_price} ".format(min_price=value)
-                    elif key == 'max_price':
-                        where_clause += "and price<={max_price} ".format(min_price=value)
-                    elif isinstance(value,int):
-                        where_clause =where_clause + "and {key}={value} ".format(key=key, value=value)
-                    elif isinstance(value,basestring):
-                        where_clause =where_clause + "and '{key}'='{value}' ".format(key=key, value=value)
-            if order_by != None and order_by!= "":
-                order+="order by '{what}'".format(what=order_by)
-            if how == "desc":
-                how_order = "desc"
-            command = "select product_data_id from productdata where (match(title,description,category,subcategory) against( '{query}' )) {clause} {order_by} {how},(match (title,description,category,subcategory) against ('{query}')) desc".format(
-                clause=where_clause, query=query, order_by=order, how=how_order
+        elif (info is None) and (order_by is None) and (how is None) and (query != ''):
+            command = "select * from productdata where (match(title,description,category,subcategory) against( '{query}' ))"
+            mycursor.execute(command)
+            result =mycursor.fetchall()
+            return result
+        elif (info is None) and (order_by is not None) and (how is None) and (query != ''):
+            command = "select * from productdata where (match(title,description,category,subcategory) against( '{query}' )) order by {orderby}".format(
+                query=query, orderby=order_by
             )
             mycursor.execute(command)
             result = mycursor.fetchall()
             return result
+        elif (info is None) and (order_by is not None) and (how is None) and (query == ''):
+            command = "select * from productdata order by {orderby}".format(orderby=order_by)
+            mycursor.execute(command)
+            result = mycursor.fetchall()
+            return result
+        elif (info is None) and (order_by is not None) and (how is not None) and (query == ''):
+            command = 'select * from productdata order by {orderby} {how}'.format(
+                orderby=order_by, how=how
+            )
+            mycursor.execute(command)
+            result = mycursor.fetchall()
+            return result
+        elif (info is None) and (order_by is not None) and (how is not None) and (query != ''):
+            command = "select * from productdata where (match(title,description,category,subcategory) against( '{query}' )) order by {orderby} {how}".format(
+                query=query, orderby=order_by, how=how
+            )
+            mycursor.execute(command)
+            result = mycursor.fetchall()
+            return result
+        elif (info is not None) and (order_by is None) and (how is None) and (query == ''):
+            for key, value in info.items():
+                if value is not None and value != "":
+                    if key == 'min_price':
+                        where_clause += "and price>={min_price} ".format(min_price=value)
+                    elif key == 'max_price':
+                        where_clause += "and price<={max_price} ".format(min_price=value)
+                    elif isinstance(value, int):
+                        where_clause = where_clause + "and {key}={value} ".format(key=key, value=value)
+                    elif isinstance(value, basestring):
+                        where_clause = where_clause + "and {key}='{value}' ".format(key=key, value=value)
+            command = "select * from productdata where 1=1 {where_clause}".format(
+                query=query, where_clause=where_clause
+            )
+            mycursor.execute(command)
+            result = mycursor.fetchall()
+            return result
+        elif (info is not None) and (order_by is None) and (how is None) and (query != ''):
+            for key, value in info.items():
+                if value is not None and value != "":
+                    if key == 'min_price':
+                        where_clause += "and price>={min_price} ".format(min_price=value)
+                    elif key == 'max_price':
+                        where_clause += "and price<={max_price} ".format(min_price=value)
+                    elif isinstance(value, int):
+                        where_clause = where_clause + "and {key}={value} ".format(key=key, value=value)
+                    elif isinstance(value, basestring):
+                        where_clause = where_clause + "and {key}='{value}' ".format(key=key, value=value)
+            command = "select * from productdata where (match(title,description,category,subcategory) against( '{query}' )) {where_clause}".format(
+                query=query, where_clause=where_clause
+            )
+            mycursor.execute(command)
+            result = mycursor.fetchall()
+            return result
+        elif (info is not None) and (order_by is not None) and (how is None) and (query == ''):
+            for key, value in info.items():
+                if value is not None and value != "":
+                    if key == 'min_price':
+                        where_clause += "and price>={min_price} ".format(min_price=value)
+                    elif key == 'max_price':
+                        where_clause += "and price<={max_price} ".format(min_price=value)
+                    elif isinstance(value, int):
+                        where_clause = where_clause + "and {key}={value} ".format(key=key, value=value)
+                    elif isinstance(value, basestring):
+                        where_clause = where_clause + "and {key}='{value}' ".format(key=key, value=value)
+            command = "select * from productdata where 1=1 {clause} order by {order}".format(
+                clause=where_clause, order=order_by
+            )
+            mycursor.execute(command)
+            result = mycursor.fetchall()
+            return result
+        elif (info is not None) and (order_by is not None) and (how is None) and (query != ''):
+            for key, value in info.items():
+                if value is not None and value != "":
+                    if key == 'min_price':
+                        where_clause += "and price>={min_price} ".format(min_price=value)
+                    elif key == 'max_price':
+                        where_clause += "and price<={max_price} ".format(min_price=value)
+                    elif isinstance(value, int):
+                        where_clause = where_clause + "and {key}={value} ".format(key=key, value=value)
+                    elif isinstance(value, basestring):
+                        where_clause = where_clause + "and {key}='{value}' ".format(key=key, value=value)
+            command = "select * from productdata where (match(title,description,category,subcategory) against( '{query}' )) {clause} order by {order} asc".format(
+                query=query, clause=where_clause, order=order_by
+            )
+            mycursor.execute(command)
+            result = mycursor.fetchall()
+            return result
+        elif (info is not None) and (order_by is not None) and (how is not None) and (query == ''):
+            for key, value in info.items():
+                if value is not None and value != "":
+                    if key == 'min_price':
+                        where_clause += "and price>={min_price} ".format(min_price=value)
+                    elif key == 'max_price':
+                        where_clause += "and price<={max_price} ".format(min_price=value)
+                    elif isinstance(value, int):
+                        where_clause = where_clause + "and {key}={value} ".format(key=key, value=value)
+                    elif isinstance(value, basestring):
+                        where_clause = where_clause + "and {key}='{value}' ".format(key=key, value=value)
+            command = "select * from productdata where 1=1 {clause} order by {order} {how}".format(
+                clause=where_clause, order=order_by, how=how
+            )
+            mycursor.execute(command)
+            result = mycursor.fetchall()
+            return result
+        elif (info is not None) and (order_by is not None) and (how is not None) and (query != ''):
+            for key, value in info.items():
+                if value is not None and value != "":
+                    if key == 'min_price':
+                        where_clause += "and price>={min_price} ".format(min_price=value)
+                    elif key == 'max_price':
+                        where_clause += "and price<={max_price} ".format(min_price=value)
+                    elif isinstance(value, int):
+                        where_clause = where_clause + "and {key}={value} ".format(key=key, value=value)
+                    elif isinstance(value, basestring):
+                        where_clause = where_clause + "and {key}='{value}' ".format(key=key, value=value)
+            command= "select * from productdata where (match(title,description,category,subcategory) against( '{query}' )) {clause} order by {order} {how}".format(
+                query=query, clause=where_clause, order=order_by, how=how
+            )
+            print(command)
+            mycursor.execute(command)
+            result = mycursor.fetchall()
+            return result
+
 
     """Set new session id"""
     def removeSessionId(self,session):
@@ -434,7 +546,7 @@ if __name__ == "__main__":
         'ip':'1111'
     }
     #metod.insertIntoSessions(session)
-    print metod.getProductsByFilter(None, None, None, '')
+    print metod.getProductsByFilter({"conditie":3}, 'date_added', 'desc', "Air")
     #metod.insertIntoTrasnaction(transactiondict)
 
     #metod.deleteDatabase()
