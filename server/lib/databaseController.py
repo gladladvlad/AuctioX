@@ -59,13 +59,8 @@ class databaseController():
                 command = "SELECT * FROM {table} WHERE {column}='{key}'".format(key=key,table=table,column=column)
             else:
                 command = "SELECT * FROM {table} WHERE {column}={key}".format(key=key, table=table, column=column)
-        print command
         mycursor.execute(command)
-        items = mycursor.fetchall()
-        result = list()
-        for item in items:
-            row = dict(zip(mycursor.column_names, item))
-            result.append(row)
+        result = mycursor.fetchone()
         return result
 
     def getUserById(self,key):
@@ -384,7 +379,7 @@ if __name__ == "__main__":
                 'image': [bytearray('asdasdasd')],
                 'user_id': 1}
     #print(hashinfo["condition"])
-    print metod.getUserByEmail('ddd')
+    print metod.getUserByEmail('dddaas23d')
     #print json.dumps(metod.matchText("Gabi"),indent=4)
     #print metod.getProductsByFilter(hashinfo,'condition','asc','aaa')
     #metod.deleteDatabase()
