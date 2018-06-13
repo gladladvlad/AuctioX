@@ -129,7 +129,10 @@ class databaseController():
         command = "select image from images where product_data_id={key}".format(key=key)
         mycursor.execute(command)
         result = mycursor.fetchall()
-        return result
+        list = []
+        for i in result:
+            list.append(i[0])
+        return list
 
     #def advancedSearch(self):
 
