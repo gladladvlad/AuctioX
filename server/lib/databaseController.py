@@ -410,7 +410,7 @@ if __name__ == "__main__":
                 }
     #print(hashinfo["condition"])
     #metod.insertIntoProductdata(prodData)
-    print metod.getProductDataById(1)
+    print metod.getUserByUsername('aa or 1=1')
     #print json.dumps(metod.matchText("Gabi"),indent=4)
     #print metod.getProductsByFilter(hashinfo,'condition','asc','aaa')
     #metod.deleteDatabase()
