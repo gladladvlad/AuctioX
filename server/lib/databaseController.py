@@ -40,7 +40,8 @@ USER_CELL_NUMBER =13
 USER_STATUS =14
 USER_SALT =15
 
-mariadb_connection = mariadb.connect(user='root', password='mancare', host='localhost', database='tw')
+import databaseCredentials
+mariadb_connection = mariadb.connect(user=databaseCredentials.user, password=databaseCredentials.password, host='localhost', database='tw')
 mycursor = mariadb_connection.cursor()
 
 
