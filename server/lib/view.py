@@ -1,4 +1,5 @@
 import os
+import sys
 from mimetypes import MimeTypes
 from urlparse import parse_qs, urlparse
 from dispatcherMap import *
@@ -74,7 +75,11 @@ class view:
                 response += "URL arguments:<br><pre>" + json.dumps(self.urlArgs, indent=4) + "</pre><hr>"
                 response += "Headers:<br><pre>" + str(self.request.headers) + "</pre><hr>"
                 response += "Error:<br><pre>" + str(e.message) + "</pre><hr>"
-                response += "Stack trace:<br><pre>" + str(traceback.extract_tb(None)) + "<pre>"
+                response += "Stack:<br><pre>" + str(traceback.extract_stack(sys.exc_info()[2])) + "<pre><hr>"
+                response += "Stack:<br><pre>"
+                for line in traceback.extract_stack():
+                    response += line + "\n"
+                response += "</pre>"
             self.request.wfile.write(response)
             return
 
