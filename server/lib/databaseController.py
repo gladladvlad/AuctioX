@@ -62,7 +62,7 @@ class databaseController():
             else:
                 command = "SELECT * FROM {table} WHERE {column}={key}".format(key=key, table=table, column=column)
         mycursor.execute(command)
-        result = mycursor.fetchone()
+        result = mycursor.fetchall()
         return result
 
     def getUserById(self,key):
@@ -118,6 +118,8 @@ class databaseController():
         result = mycursor.fetchone()
         return result
 
+    def getUserProducts(self,key):
+        return self.getItemsFromTable('productdata','user_id',key)
 
     #def advancedSearch(self):
 
@@ -138,7 +140,6 @@ class databaseController():
         lista = [info["user_id"],info["title"],info["description"],info["conditie"],info["country"],info["state"],info["city"],info["is_auction"],info["price"],info["shipping_type"],info["shipping_price"],info["date_added"],info["date_expires"],info["category"],info["subcategory"],info["views"],info["status"]]
         command = "INSERT INTO productdata(user_id,title,description,conditie,country,state,city,is_auction,price,shipping_type,shipping_price,date_added,date_expires,category,subcategory,views,status) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
         mycursor.execute(command,lista)
-        print lista
         mariadb_connection.commit()
         command="select max(product_data_id) from productdata"
         mycursor.execute(command)
@@ -375,7 +376,7 @@ if __name__ == "__main__":
         "status":'asfdfds',
         "salt":bytearray("dawdas")
     }
-    metod.insertIntoUser(hashinfo)
+    #metod.insertIntoUser(hashinfo)
     prodData = {'title': 'Air guitar Epiphone les paul vasilescu',
                 'description': 'cea mia mijtoui s mora mama meu k ii sm3k mkatzash lorem gipsum jajaj jaj as lal qea j2qj h n asdasd, asdasldkj',
                 'conditie': 3,
@@ -392,11 +393,12 @@ if __name__ == "__main__":
                 'subcategory': 'yes',
                 'views': 420,
                 'image': [bytearray('asdasdasd')],
-                'user_id': 2,
+                'user_id': 1,
                 'status':'ongoing'
                 }
     #print(hashinfo["condition"])
     #metod.insertIntoProductdata(prodData)
+    print metod.getUserProducts(1)
     #print json.dumps(metod.matchText("Gabi"),indent=4)
     #print metod.getProductsByFilter(hashinfo,'condition','asc','aaa')
     #metod.deleteDatabase()
