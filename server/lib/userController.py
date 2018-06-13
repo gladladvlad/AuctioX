@@ -48,8 +48,8 @@ class userController():
             success = False
 
         existingUser = databaseController.getUserByEmail(registerDetails['email'])
-
-        if existingUser is not None:
+        debug(existingUser)
+        if len(existingUser) > 0:
             errorList.append("Email is already in use")
             success = False
 
