@@ -62,6 +62,7 @@ class databaseController():
             else:
                 command = "SELECT * FROM {table} WHERE {column}={key}".format(key=key, table=table, column=column)
         mycursor.execute(command)
+        print(len(mycursor.fetchall()))
         result = mycursor.fetchall()
         return result
 
@@ -119,7 +120,16 @@ class databaseController():
         return result
 
     def getUserProducts(self,key):
-        return self.getItemsFromTable('productdata','user_id',key)
+        command = "select * from productdata where user_id={key}".format(key=key)
+        mycursor.execute(command)
+        result = mycursor.fetchall()
+        return result
+
+    def getImages(self,key):
+        command = "select image from images where product_data_id={key}".format(key=key)
+        mycursor.execute(command)
+        result = mycursor.fetchall()
+        return result
 
     #def advancedSearch(self):
 
@@ -392,13 +402,13 @@ if __name__ == "__main__":
                 'category': 'lol nu stiu',
                 'subcategory': 'yes',
                 'views': 420,
-                'image': [bytearray('asdasdasd')],
+                'image': [bytearray('asdasdasd'),bytearray('sdagfdgfds')],
                 'user_id': 1,
                 'status':'ongoing'
                 }
     #print(hashinfo["condition"])
     #metod.insertIntoProductdata(prodData)
-    print metod.getUserProducts(1)
+    print metod.getImages(3)
     #print json.dumps(metod.matchText("Gabi"),indent=4)
     #print metod.getProductsByFilter(hashinfo,'condition','asc','aaa')
     #metod.deleteDatabase()
