@@ -1,11 +1,9 @@
 window.onload = function(){
 
-    inputUsername==document.getElementById("inputEmail")
-    inputPassword==document.getElementById("inputPassword")
+    inputUsername = document.getElementById("inputUsername")
+    inputPassword = document.getElementById("inputPassword")
 
-    signInButton == document.getElementById("signInButton");
-
-    signInButton.onclick = signIn();
+    signInButton = document.getElementById("signInButton")
 
     console.log("Onload() finished.")
 }
@@ -22,13 +20,12 @@ function signIn(){
     {
 
         if(xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200){
-            //body = document.getElementsByTagName("body")[0].innerHTML = xhr.response;
-            alert(xhr.response);
+            console.log(xhr.responseText)
             return;
         }
     }
 
-    xhr.open("POST", "/signIn", true);
+    xhr.open("POST", "/signinrequest", true);
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhr.send(data);
+    xhr.send(JSON.stringify(data));
 }

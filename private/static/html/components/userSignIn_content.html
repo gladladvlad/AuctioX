@@ -1,9 +1,9 @@
 <div class="mainContainer">
 
-    <form id="signinForm">
+    <form id="signinForm" onsubmit="return false;">
         <div class="formElement" id="emailField">
-            <label class="formLabel" for="inputEmail">Username/Email</label>
-            <input id="inputEmail" type="email" required/>
+            <label class="formLabel" for="inputUsername">Username</label>
+            <input id="inputUsername" type="email" required/>
         </div>
 
         <div class="formElement" id="passwordField">
@@ -12,7 +12,7 @@
         </div>
 
         <div class="buttonContainer">
-            <button type="button" class="button" id="signInButton" onclick="signIn()">
+            <button type="button" class="button" id="signInButton" onclick="signIn(); return false;">
                 Sign in
             </button>
         </div>
@@ -20,7 +20,7 @@
     </form>
 
     <div id="registerField">
-        <a href="register.html">
+        <a href="/registration">
             Not already an user? Register
         </a>
     </div>

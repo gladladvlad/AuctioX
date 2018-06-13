@@ -33,8 +33,6 @@ function sendUserRegisterRequest() {
     data['lastName'] = inputLastName.value
     data['tel'] = inputTel.value
 
-    form = new FormData()
-
     errorField = document.getElementById("errors")
     errorField.innerHTML = ""
 
@@ -51,7 +49,8 @@ function sendUserRegisterRequest() {
 
             if(response["success"])
             {
-                console.log("Registration successful!")
+                alert("Registration successful!")
+                window.location = "/"
             }
 
             return
