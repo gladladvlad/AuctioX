@@ -38,7 +38,7 @@ USER_CELL_NUMBER =13
 USER_STATUS =14
 USER_SALT =15
 
-mariadb_connection = mariadb.connect(user='root', password='', host='localhost', database='tw')
+mariadb_connection = mariadb.connect(user='root', password='mancare', host='localhost', database='tw')
 mycursor = mariadb_connection.cursor()
 
 
@@ -85,16 +85,13 @@ class databaseController():
         return self.getItemsFromTable('question','question_id',key)
 
     def getProductDataById(self,key):
-        return self.getItemsFromTable('product_data','product_data_id',key)
+        return self.getItemsFromTable('productdata','product_data_id',key)
 
     def getProducts(self):
         command= "select * from productdata"
         mycursor.execute(command)
         result = mycursor.fetchall()
         return result
-
-    def getProductById(self,key):
-        return self.getItemsFromTable('product','product_id',key)
 
     def getNoticeById(self,key):
         return self.getItemsFromTable('notice','notice_id',key)
@@ -135,31 +132,15 @@ class databaseController():
         mycursor.execute(command,lista)
         mariadb_connection.commit()
 
-    def insertIntoProduct(self,info):
-        command = "INSERT INTO product VALUES({product_id},{user_id},{product_data_id},'{title}','{status}')".format(
-            product_id=info["product_id"], user_id=info["user_id"], product_data_id=info["product_data_id"],
-            title=info["title"], status=info["status"]
-        )
-        mycursor.execute(command)
-        mariadb_connection.commit()
-
     def insertIntoProductdata(self,info):
-        lista = [info["title"],info["description"],info["conditie"],info["country"],info["state"],info["city"],info["is_auction"],info["price"],info["shipping_type"],info["shipping_price"],info["date_added"],info["date_expires"],info["category"],info["subcategory"],info["views"]]
-        command = "INSERT INTO productdata(title,description,conditie,country,state,city,is_auction,price,shipping_type,shipping_price,date_added,date_expires,category,subcategory,views) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+        lista = [info["user_id"],info["title"],info["description"],info["conditie"],info["country"],info["state"],info["city"],info["is_auction"],info["price"],info["shipping_type"],info["shipping_price"],info["date_added"],info["date_expires"],info["category"],info["subcategory"],info["views"],info["status"]]
+        command = "INSERT INTO productdata(user_id,title,description,conditie,country,state,city,is_auction,price,shipping_type,shipping_price,date_added,date_expires,category,subcategory,views,status) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
         mycursor.execute(command,lista)
         print lista
         mariadb_connection.commit()
         command="select max(product_data_id) from productdata"
         mycursor.execute(command)
         result=mycursor.fetchone()
-        hashmap={
-            "product_id" : result[0],
-            "user_id" : info["user_id"],
-            "product_data_id" : result[0],
-            "title" : info["title"],
-            "status" : 'on_sale'
-        }
-        self.insertIntoProduct(hashmap)
         hashmap={
             "product_data_id" : result[0],
             "image" : info["image"]
@@ -343,7 +324,7 @@ if __name__ == "__main__":
 
     #print json.dumps(metod.getUserById("user","country","'romania'"),indent=4)
 
-    """hashinfo={
+    hashinfo={
         "username":'aa',
         "password":'aaaa',
         "first_name": 'bbb',
@@ -359,7 +340,8 @@ if __name__ == "__main__":
         "cell_number":'asdsfsd',
         "status":'asfdfds',
         "salt":bytearray("dawdas")
-    }"""
+    }
+    metod.insertIntoUser(hashinfo)
     prodData = {'title': 'Air guitar Epiphone les paul vasilescu',
                 'description': 'cea mia mijtoui s mora mama meu k ii sm3k mkatzash lorem gipsum jajaj jaj as lal qea j2qj h n asdasd, asdasldkj',
                 'conditie': 3,
@@ -376,9 +358,11 @@ if __name__ == "__main__":
                 'subcategory': 'yes',
                 'views': 420,
                 'image': [bytearray('asdasdasd')],
-                'user_id': 1}
+                'user_id': 2,
+                'status':'ongoing'
+                }
     #print(hashinfo["condition"])
-    print metod.getUserByUsername('asdfdfa')
+    metod.insertIntoProductdata(prodData)
     #print json.dumps(metod.matchText("Gabi"),indent=4)
     #print metod.getProductsByFilter(hashinfo,'condition','asc','aaa')
     #metod.deleteDatabase()
