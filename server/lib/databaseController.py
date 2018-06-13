@@ -135,6 +135,13 @@ class databaseController():
             list.append(i[0])
         return list
 
+    def getUserBidProduct(self,user_id):
+        command = "select * from productdata join userbid on productdata.product_data_id= userbid.product_id where userbid.user_id={user_id}".format(user_id=user_id)
+        print(command)
+        mycursor.execute(command)
+        result=mycursor.fetchall()
+        return result
+
     #def advancedSearch(self):
 
     """Inserting data into tables"""
@@ -628,7 +635,7 @@ if __name__ == "__main__":
         "title":'Nice',
         "content":'Super Nice'
     }
-    metod.insertIntoFeedback(feedback)
+    #metod.insertIntoFeedback(feedback)
     #metod.insertIntoSessions(session)
     #print metod.getProductsByFilter({"min_price":200,"max_price":500,"views":445}, "date_added", "desc", "Air")
     #print metod.getUserById(1)
@@ -639,6 +646,7 @@ if __name__ == "__main__":
     #metod.setInactiveInProduct(1)
     #metod.setSellerConfirm(2,1)
     #metod.setBuyerConfirm(2,1)
+    print metod.getUserBidProduct(2)
 databaseController = databaseController()
 
 
