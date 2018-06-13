@@ -317,7 +317,7 @@ if __name__ == "__main__":
         "contact_info":'dadfds',
         "cell_number":'asdsfsd',
         "status":'asfdfds',
-        "salt":None
+        "salt":bytearray("dawdas")
     }
     #print(hashinfo["condition"])
     print metod.getUserByUsername('aa')
@@ -325,6 +325,6 @@ if __name__ == "__main__":
     #print metod.getProductsByFilter(hashinfo,'condition','asc','aaa')
     #metod.deleteDatabase()
 
-
+databaseController = databaseController()
 
 
