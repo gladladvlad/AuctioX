@@ -4,11 +4,16 @@ import json
 import math
 from userController import *
 from productController import *
+from userViews import *
 
 
 class createListingView(view):
     def get(self):
         debug('[INFO] createListings reached')
+
+        if userController.validateUserSession(self.sessionData) is None:
+            self.switchView(userSignInView)
+            return False
 
         self.addComponentToContext('createlisting_styles.html', 'style', True)
         self.setContentType('text/html')

@@ -58,6 +58,9 @@ class view:
                 debug("Calling {0}.get()".format(self.__class__.__name__))
                 self.response = self.get()
 
+            if self.response is False:
+                return
+
             if DEBUG and 'debug' in self.urlArgs:
 
                 self.request.send_response(202)
@@ -74,6 +77,14 @@ class view:
                     response += "Response:\n" + oldResponse + "\n\n"
                 self.request.wfile.write(response)
                 return
+
+            self.request.send_response(200)
+            self.request.send_header("Content-type", self.contentType)
+            for cookie in self.cookies:
+                self.request.setCookie(cookie)
+            self.request.end_headers()
+            self.request.wfile.write(self.response)
+            return
 
         except Exception, e:
             self.request.send_response(404)
@@ -95,14 +106,6 @@ class view:
                     pass
             self.request.wfile.write(response)
             return
-
-        self.request.send_response(200)
-        self.request.send_header("Content-type", self.contentType)
-        for cookie in self.cookies:
-            self.request.setCookie(cookie)
-        self.request.end_headers()
-        self.request.wfile.write(self.response)
-        return
 
     def get(self):
 
@@ -166,3 +169,7 @@ class view:
             return
 
         self.context[key] = item
+
+    def switchView(self, newView):
+
+        newView(self.request)
