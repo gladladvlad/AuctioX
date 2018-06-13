@@ -109,10 +109,9 @@ class databaseController():
         command = "select {column_date} from {table} where {column_key}={key}".format(
             column_date=column_date,table=table,column_key=column_key,key=key
         )
-
         mycursor.execute(command)
         result = mycursor.fetchone()
-        return result
+        return result[0]
 
     def getUserByUsername(self,key):
         command = "select * from user where username='{key}'".format(key=key)
@@ -206,20 +205,19 @@ class databaseController():
     def insertIntoTrasnaction(self,info):
         current_date = datetime.datetime.now()
         date_expires = self.getDate('productdata','product_data_id','date_expires',info["product_data_id"])
-        print(date_expires)
-        lista = [info["seller_user_id"],info["buyer_user_id"],info["product_data_id"],info["has_ended"],current_date,self.getDate('productdata','product_data_id','date_expires',info["product_data_id"])]
+        lista = [info["seller_user_id"],info["buyer_user_id"],info["product_data_id"],info["has_ended"],current_date,date_expires]
         print lista
-        command = "INSERT INTO transaction(seller_user_id,buyer_user_id,product_id,has_ended,date_initiated,date_ended) VALUES(%s,%s,%s,%s,%,s,%s)"
+        command = "INSERT INTO transaction(seller_user_id,buyer_user_id,product_id,has_ended,date_initiated,date_ended) VALUES(%s,%s,%s,%s,%s,%s)"
         print(command)
         mycursor.execute(command,lista)
         mariadb_connection.commit()
-        """hashmap={
+        hashmap={
             "user_id" : info["buyer_user_id"],
-            "product_id" : info["product_id"],
+            "product_id" : info["product_data_id"],
             "status" : 'ongoing',
             "value" : info["value"]
         }
-        self.insertIntoUserbid(hashmap)"""
+        self.insertIntoUserbid(hashmap)
 
     def insertIntoSessions(self,info):
         lista=[info["session_id"],info["user_id"],info["date_created"],info["last_connected"],info["device"],info["ip"]]
@@ -499,7 +497,7 @@ class databaseController():
                     where_clause+= "0=1) "
                 elif value is not None and value != "":
                     if key == 'min_price':
-                        where_clause += "and price>={min_price} between".format(min_price=value)
+                        where_clause += "and price>={min_price} ".format(min_price=value)
                     elif key == 'max_price':
                         where_clause += "and price<={max_price} ".format(max_price=value)
                     elif isinstance(value, int):
@@ -517,7 +515,7 @@ class databaseController():
 
     """Set new session id"""
     def removeSessionId(self,session):
-        command = "delete from sessions where session_id='{session}'".format(session=session)
+        command = "delete from sessions where session_id={session}".format(session=session)
         print(command)
         mycursor.execute(command)
         mariadb_connection.commit()
@@ -571,10 +569,11 @@ if __name__ == "__main__":
         "seller_user_id":1,
         "buyer_user_id":2,
         "product_data_id":1,
-        "has_ended":'ongoing'
+        "has_ended":'ongoing',
+        "value": 1000
     }
     session={
-        "session_id": '423545',
+        "session_id": '42354fdsg5',
         "user_id":1,
         "date_created":datetime.datetime.now(),
         "last_connected":datetime.datetime.now(),
@@ -582,10 +581,10 @@ if __name__ == "__main__":
         'ip':'1111'
     }
     #metod.insertIntoSessions(session)
-    #print metod.getProductsByFilter({"min_price":200,"max_price":300}, None, None, "")
-    print metod.getUserById(1)
-    #metod.insertIntoTrasnaction(transactiondict)
-    #metod.removeSessionId(1)
+    #print metod.getProductsByFilter({"min_price":200,"max_price":500,"views":445}, "date_added", "desc", "Air")
+    #print metod.getUserById(1)
+    metod.insertIntoTrasnaction(transactiondict)
+    #metod.removeSessionId('423545')
     #metod.deleteDatabase()
 
 databaseController = databaseController()
