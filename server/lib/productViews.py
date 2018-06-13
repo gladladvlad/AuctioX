@@ -109,26 +109,6 @@ class searchProductIDsView(view):
 
 
 class searchPageView(view):
-    def getConditionStr(self, condInt):
-        if condInt == 0:
-            return 'boxed'
-        elif condInt == 1:
-            return 'new'
-        elif condInt == 2:
-            return 'slightly used'
-        elif condInt == 3:
-            return 'used'
-        elif condInt == 4:
-            return 'very used'
-        else:
-            return 'extremely used'
-
-    def getAuctionTypeStr(self, typeInt):
-        if typeInt == 0:
-            return 'Buy it now!'
-        else:
-            return 'Auction'
-
     def get(self):
         debug('[INFO] searchPageView reached')
 
@@ -149,12 +129,13 @@ class searchPageView(view):
 
         for i in xrange(0, (int(self.urlArgs[searchProductCountKey]))):
             if self.urlArgs.has_key(itemKey):
-                # TODO: get products based on query & filters
-                #tmpProduct = product(1, 2, self.urlArgs[itemKey], 'title', 'product description lorem gipsum gaudeamus igitur', [4], 4, 5, 6, 7, 8, 9, 10, 11, 12)
-                # end TODO
                 tmpProduct = productController.getProductInstanceById(int(self.urlArgs[itemKey]))
-                tmpProduct.auction = self.getAuctionTypeStr(tmpProduct.auction)
-                tmpProduct.condition = self.getConditionStr(tmpProduct.condition)
+                tmpProduct.auction = productController.getAuctionTypeStr(tmpProduct.auction)
+                tmpProduct.condition = productController.getConditionStr(tmpProduct.condition)
+                if (tmpProduct.auction == 'Auction'):
+                    highestBid = productController.getHighestBidById(tmpProduct.productID)
+                    tmpProduct.price = highestBid
+
 
                 products.append(tmpProduct.asDict())
                 productsDone += 1
@@ -201,6 +182,8 @@ class productView(view):
 
         debug('=====================================')
         product = productController.getProductInstanceById(int(self.urlArgs[productIDKey]))
+        product.condition = productController.getConditionStr(product.condition)
+        product.auction = productController.getAuctionTypeStr(product.auction)
 
         debug(product.asDict())
 
@@ -219,6 +202,8 @@ class productView(view):
         self.addComponentToContext('footer.html', 'footer', True)
 
         content = self.renderTemplate('product.html')
+        
+        debug('content rendered!')
 
         return content
 
@@ -236,9 +221,9 @@ class bidView(view):
         if userId is None:
             return 'Fail! You must be logged in!'
 
-        bidAmount = int(self.urlArgs['amount'])
-        highestBid = databaseController.executeSQLCommand('select value from userbid where product_id = {0} order by value desc'.format(self.urlArgs['prodid']), True)[0][0]
 
+        bidAmount = int(self.urlArgs['amount'])
+        highestBid = productController.getHighestBidById(self.urlArgs['prodid'])
 
         if not bidAmount > highestBid:
             return 'Fail! You cannot bid lower than the highest bid!'

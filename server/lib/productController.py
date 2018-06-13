@@ -2,8 +2,6 @@ from view import *
 from databaseController import *
 
 class product():
-    conditionMap = ['new', 'slightly used', 'used', 'broken']
-
     def __init__(self, newOwnerID, newProductID, newStatus, newTitle, newDesc, newCategory, newSubCategory, newImages, newViews, newCondition, newCountry, newCity, newAuction, newPrice, newCurrency, newShippingType, newShippingPrice, newDateAdded, newDateExpires):
         self.ownerID = newOwnerID
         self.productID = newProductID
@@ -27,6 +25,10 @@ class product():
 
     def asDict(self):
         result = dict()
+
+        for image in self.images:
+            image = str(image)
+
         result = {'ownerID' : str(self.ownerID),
                 'productID' : str(self.productID),
                 'status' : str(self.status),
@@ -79,6 +81,17 @@ class productController():
 
         return productResult
 
+    def getHighestBidById(self, productID):
+        highestBid = databaseController.executeSQLCommand('select value from userbid where product_id = {0} order by value desc'.format(productID), True)
+
+        if highestBid == []:
+            return 0
+
+        if highestBid[0] == []:
+            return 0
+
+        return highestBid
+
     def getConditionInt(self, condStr):
         if condStr == 'boxed':
             return 0
@@ -92,6 +105,26 @@ class productController():
             return 4
         else:
             return 5
+
+    def getConditionStr(self, condInt):
+        if condInt == 0:
+            return 'boxed'
+        elif condInt == 1:
+            return 'new'
+        elif condInt == 2:
+            return 'slightly used'
+        elif condInt == 3:
+            return 'used'
+        elif condInt == 4:
+            return 'very used'
+        else:
+            return 'extremely used'
+
+    def getAuctionTypeStr(self, typeInt):
+        if typeInt == 0:
+            return 'Buy it now!'
+        else:
+            return 'Auction'
 
     def createListing(self, data):
         debug("in productController: creating listing")

@@ -15,6 +15,11 @@
 								<span> Country: {{ product.country }} </span>
 								<span> City: {{ product.city }} </span>
 								<span> Listing type: {{ product.auction }} </span>
+								{% if product.auction == 'Auction' %}
+									<span> Highest bid: {{ product.price }} {{ product.currency }} </span>
+								{% else %}
+									<span> Price: {{ product.price }} {{ product.currency }} </span>
+								{% endif %}
 								<span> Price: {{ product.price }} {{ product.currency }} </span>
 								<span> Shipping method: {{ product.shippingType }} </span>
 								<span> Shipping cost: {{ product.shippingPrice }} {{ product.currency }} </span>

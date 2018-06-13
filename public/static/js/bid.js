@@ -1,5 +1,7 @@
 var answer;
 
+testSuccessRe = new RegExp("Success!")
+
 function bid() {
     bidAmount = document.getElementById("bidAmount").value;
     productID = getHTTPGArg('prodid')
@@ -16,6 +18,10 @@ function bid() {
     xhr.open("GET", request, false);
     xhr.setRequestHeader("Content-type", "application/json");
     xhr.send();
+
+    if (testSuccessRe.test(answer)) {
+        document.getElementById("price").innerHTML = bidAmount;
+    }
 
     alert(answer);
 }

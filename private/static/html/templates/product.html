@@ -26,7 +26,7 @@
 					<td> {{ product.condition }} </td>
 				</tr>
 				<tr>
-					<td>Time left</td>
+					<td>Expires at </td>
 					<td> {{ product.dateExpires }} </td>
 				</tr>
 				<tr>
@@ -38,12 +38,20 @@
 			<div class="containerFull" id="bidPanel">
 				<div id="bidInfo">
 					<div id="currentBid">
-						<h4>Current bid: </h4><h2> {{ product.price }} {{ product.currency }} </h2>
+						{% if product.auction == 'Auction' %}
+							<h4>Current bid: </h4><h2 id="price"> {{ product.price }} </h2><h2> {{ product.currency }} </h2>
+						{% else %}
+							<h4>Price: </h4><h2 id="price"> {{ product.price }}</h2><h2> {{ product.currency }} </h2>
+						{% endif %}
 					</div>
 				</div>
 				<div id="bidControl">
-						<input type="number" name="bidAmount" id="bidAmount" placeholder="Your bid">
-						<button class="button" onclick="bid()"> Bid now </button>
+						{% if product.auction == 'Auction' %}
+							<input type="number" name="bidAmount" id="bidAmount" placeholder="Your bid">
+							<button class="button" onclick="bid()"> Bid now! </button>
+						{% else %}
+							<button class="button" onclick="bid()"> Buy now! </button>
+						{% endif %}
 				</div>
 			</div>
 			<div id="sellerInfo">
