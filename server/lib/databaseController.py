@@ -38,7 +38,7 @@ USER_CELL_NUMBER =13
 USER_STATUS =14
 USER_SALT =15
 
-mariadb_connection = mariadb.connect(user='root', password='mancare', host='localhost', database='tw')
+mariadb_connection = mariadb.connect(user='root', password='', host='localhost', database='tw')
 mycursor = mariadb_connection.cursor()
 
 
@@ -115,7 +115,6 @@ class databaseController():
 
     def getUserByUsername(self,key):
         command = "select * from user where username='{key}'".format(key=key)
-        print command
         mycursor.execute(command)
         result = mycursor.fetchone()
         return result
@@ -379,7 +378,7 @@ if __name__ == "__main__":
                 'image': [bytearray('asdasdasd')],
                 'user_id': 1}
     #print(hashinfo["condition"])
-    print metod.getUserByEmail('dddaas23d')
+    print metod.getUserByUsername('asdfdfa')
     #print json.dumps(metod.matchText("Gabi"),indent=4)
     #print metod.getProductsByFilter(hashinfo,'condition','asc','aaa')
     #metod.deleteDatabase()
