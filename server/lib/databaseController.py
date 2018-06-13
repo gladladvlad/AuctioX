@@ -4,7 +4,41 @@ import  json
 import time
 import datetime
 
-mariadb_connection = mariadb.connect(user='root', password='mancare', host='localhost', database='tw')
+PROD_ID = 0
+PROD_TITLE = 1
+PROD_DESCRIPTION = 2
+PROD_CONDITIE = 3
+PROD_COUNTRY = 4
+PROD_STATE = 5
+PROD_CITY = 6
+PROD_IS_AUCTION = 7
+PROD_PRICE = 8
+PROD_SHIPPING_TYPE = 9
+PROD_SHIPPING_PRICE = 10
+PROD_DATE_ADDED = 11
+PROD_DATE_ESPIRES = 12
+PROD_CATEGORY = 13
+PROD_SUBCATEGORY =14
+PROD_VIEWS = 15
+
+USER_ID =0
+USER_USERNAME = 1
+USER_PASSWORD =2
+USER_FIRST_NAME = 3
+USER_LAST_NAME =4
+USER_EMAIL =5
+USER_COUNTRY =6
+USER_STATE =7
+USER_CITY = 8
+USER_ADRESS_1 =9
+USER_ADRESS_2 =10
+USER_ZIP_CODE =11
+USER_CONTACT_INFO = 12
+USER_CELL_NUMBER =13
+USER_STATUS =14
+USER_SALT =15
+
+mariadb_connection = mariadb.connect(user='root', password='', host='localhost', database='tw')
 mycursor = mariadb_connection.cursor()
 
 
@@ -34,6 +68,9 @@ class databaseController():
     def getUserById(self,key):
         return self.getItemsFromTable('user','user_id',key)
 
+    def getUserByEmail(self,key):
+        return self.getItemsFromTable('user','email',key)
+
     def getUserbidByID(self,key):
         return self.getItemsFromTable('userbid','current_bid_id',key)
 
@@ -51,6 +88,12 @@ class databaseController():
 
     def getProductDataById(self,key):
         return self.getItemsFromTable('product_data','product_data_id',key)
+
+    def getProducts(self):
+        command= "select * from productdata"
+        mycursor.execute(command)
+        columns = [column[0] for column in mycursor.description]
+        return result
 
     def getProductById(self,key):
         return self.getItemsFromTable('product','product_id',key)
@@ -338,7 +381,7 @@ if __name__ == "__main__":
                 'image': [bytearray('asdasdasd')],
                 'user_id': 1}
     #print(hashinfo["condition"])
-    print metod.insertIntoProductdata(prodData)
+    print metod.getProducts()
     #print json.dumps(metod.matchText("Gabi"),indent=4)
     #print metod.getProductsByFilter(hashinfo,'condition','asc','aaa')
     #metod.deleteDatabase()
