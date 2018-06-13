@@ -224,5 +224,32 @@ class productView(view):
 
 class bidView(view):
     def get(self):
-        return 'unsupported command error in pony! press F for full stack'
+
+        if not self.urlArgs.has_key('prodid'):
+            return 'Fail! No product provided!'
+
+        if not self.urlArgs.has_key('amount'):
+            return 'Fail! No amount provided!'
+
+        userId = userController.validateUserSession(self.sessionData)
+
+        if userId is None:
+            return 'Fail! You must be logged in!'
+
+        bidAmount = int(self.urlArgs['amount'])
+        highestBid = databaseController.executeSQLCommand('select value from userbid where product_id = {0} order by value desc'.format(self.urlArgs['prodid']), True)[0][0]
+
+
+        if not bidAmount > highestBid:
+            return 'Fail! You cannot bid lower than the highest bid!'
+
+
+        bidEntry = {'user_id' : userId,
+                'product_id' : int(self.urlArgs['prodid']),
+                    'status' : 'ongoing',
+                    'value' : bidAmount}
+
+        databaseController.insertIntoUserbid(bidEntry)
+
+        return 'Success! You bid ' + str(bidAmount)
 
