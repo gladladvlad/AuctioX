@@ -8,11 +8,10 @@ window.onload = function(){
     inputDesc = document.getElementById("textareaDesc");
     inputTags = document.getElementById("inputTags");
     photos = document.getElementById("inputPhotos");
+    inputListingType = document.getElementById("inputListingType");
     inputPrice = document.getElementById("inputPrice");
     inputCurrency = document.getElementById("selectCurrency");
     preview = document.getElementById("preview");
-
-    createListingButton == document.getElementById("createListing");
 
     createListingButton.onclick = createListing;
 }
@@ -68,6 +67,10 @@ function createListing(){
     data["title"] = inputTitle.value;
     data["category"] = inputCategory.value;
     data["description"] = inputDesc.value;
+    if (inputListingType.value == "Auction")
+        data["is_auction"] = 1;
+    else
+        data["is_auction"] = 0;
     data["price"] = inputPrice.value;
     data["currency"] = inputCurrency.value;
     readMultiFiles(photoFiles);

@@ -31,7 +31,7 @@ map = [
 
     # Product Views START
 
-    ('^/search_page', searchPageView),
+    ('^/searchpage', searchPageView),
     ('^/search', searchView),
     ('^/getproductids', searchProductIDsView),
     ('^/product', productView),

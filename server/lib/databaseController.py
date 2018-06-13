@@ -14,14 +14,15 @@ PROD_STATE = 6
 PROD_CITY = 7
 PROD_IS_AUCTION = 8
 PROD_PRICE = 9
-PROD_SHIPPING_TYPE = 10
-PROD_SHIPPING_PRICE = 11
-PROD_DATE_ADDED = 12
-PROD_DATE_EXPIRES = 13
-PROD_CATEGORY = 14
-PROD_SUBCATEGORY =15
-PROD_VIEWS = 16
-PROD_STATUS =17
+PROD_CURRENCY = 10
+PROD_SHIPPING_TYPE = 11
+PROD_SHIPPING_PRICE = 12
+PROD_DATE_ADDED = 13
+PROD_DATE_EXPIRES = 14
+PROD_CATEGORY = 15
+PROD_SUBCATEGORY =16
+PROD_VIEWS = 17
+PROD_STATUS =18
 
 USER_ID =0
 USER_USERNAME = 1
@@ -166,8 +167,8 @@ class databaseController():
 
 
     def insertIntoFeedback(self,info):
-        lista = [info["transaction_id"],info["user_id"],info["title"],info["content"]]
-        command = "INSERT INTO feedback(transaction_id,user_id,rating,title,content) VALUES(%s,%s,%s,%s)"
+        lista = [info["transaction_id"],info["user_id"],info["rating"],info["title"],info["content"]]
+        command = "INSERT INTO feedback(transaction_id,user_id,rating,title,content) VALUES(%s,%s,%s,%s,%s)"
         mycursor.execute(command,lista)
         mariadb_connection.commit()
 
@@ -179,14 +180,15 @@ class databaseController():
             mariadb_connection.commit()
 
     def insertIntoNotice(self,info):
-        lista = [info["for_user_id"],info["from_user_id"],info["notice"],info["title"],info["content"]]
+        lista = [info["for_user_id"],info["from_user_id"],info["count"],info["title"],info["content"]]
         command = "INSERT INTO notice(for_user_id,from_user_id,count,title,content) VALUES(%s,%s,%s,%s,%s)"
         mycursor.execute(command,lista)
         mariadb_connection.commit()
 
     def insertIntoQuestion(self,info):
         lista = [info["product_id"],info["user_id"],info["title"],info["content"]]
-        command = "INSERT INTO question(product_id,user_id,title,content}) VALUES(%s,%s,%s,%s)"
+        command = "INSERT INTO question (product_id,user_id,title,content) VALUES(%s,%s,%s,%s)"
+        print(command)
         mycursor.execute(command,lista)
         mariadb_connection.commit()
 
@@ -574,7 +576,7 @@ if __name__ == "__main__":
                 'user_id': 1,
                 'status':'ongoing'
                 }
-    metod.insertIntoProductdata(prodData)
+    #metod.insertIntoProductdata(prodData)
     #print metod.getUserByUsername('aa or 1=1')
     transactiondict={
         "seller_user_id":1,
@@ -592,9 +594,41 @@ if __name__ == "__main__":
         'ip':'1111'
     }
     reportmap={
-        "type":''
+        "type":'naspa',
+        "from_uid":2,
+        "to_uid":1,
+        "product_id":1,
+        "reason":15,
+        "details":'nustiu deastea',
+        "resolved":0,
+        "date_resolved":datetime.datetime.now(),
+        "is_valid":0
     }
-
+    #metod.insertIntoReport(reportmap)
+    response={
+        "product_id":1,
+        "user_id":2,
+        "title":'intrebare',
+        "content":'zi si mie'
+    }
+    #metod.insertIntoResponse(response)
+    #metod.insertIntoQuestion(response)
+    notice={
+        "for_user_id":1,
+        "from_user_id":2,
+        "count":3,
+        "title":'nu mai tin minte pt ce era asta',
+        "content":"whaaaaaaaaaaaaaat?"
+    }
+    #metod.insertIntoNotice(notice)
+    feedback={
+        "transaction_id":1,
+        "user_id":1,
+        "rating":10,
+        "title":'Nice',
+        "content":'Super Nice'
+    }
+    metod.insertIntoFeedback(feedback)
     #metod.insertIntoSessions(session)
     #print metod.getProductsByFilter({"min_price":200,"max_price":500,"views":445}, "date_added", "desc", "Air")
     #print metod.getUserById(1)
