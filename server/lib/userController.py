@@ -170,7 +170,7 @@ class userController():
 
         debug(result)
 
-        return result
+        return json.dumps(result), success
 
     def validateUserSession(self, sessionData):
 

@@ -44,7 +44,10 @@ function sendUserRegisterRequest() {
             response = JSON.parse(xhr.responseText)
             errorList = response["errorList"]
             for(i = 0; i < errorList.length; i++) {
-                errorField.innerHTML += " " + errorList[i] + "<br>"
+                errorField.innerHTML += " " + errorList[i]
+                if(i < errorList.length - 1) {
+                    errorField.innerHTML += "<br>"
+                }
             }
 
             if(response["success"])

@@ -3,6 +3,8 @@ window.onload = function(){
     inputUsername = document.getElementById("inputUsername")
     inputPassword = document.getElementById("inputPassword")
 
+    errorField = document.getElementById("errors")
+
     signInButton = document.getElementById("signInButton")
 
     console.log("Onload() finished.")
@@ -14,6 +16,8 @@ function signIn(){
     data["username"] = inputUsername.value;
     data["password"] = inputPassword.value;
 
+    errorField.innerHTML = ""
+
     var xhr = new XMLHttpRequest();
 
     xhr.onreadystatechange = function()
@@ -21,7 +25,21 @@ function signIn(){
 
         if(xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200){
             console.log(xhr.responseText)
-            return;
+            response = JSON.parse(xhr.responseText)
+            errorList = response["errors"]
+            for(i = 0; i < errorList.length; i++) {
+                errorField.innerHTML += " " + errorList[i]
+                if(i < errorList.length - 1) {
+                    errorField.innerHTML += "<br>"
+                }
+            }
+
+            if(response["success"])
+            {
+                window.location = "/"
+            }
+
+            return
         }
     }
 
