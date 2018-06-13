@@ -4,7 +4,7 @@ import  json
 import time
 import datetime
 
-mariadb_connection = mariadb.connect(user='root', password='mancare', host='localhost', database='tw')
+mariadb_connection = mariadb.connect(user='root', password='', host='localhost', database='tw')
 mycursor = mariadb_connection.cursor()
 
 
@@ -316,7 +316,7 @@ if __name__ == "__main__":
         "contact_info":'dadfds',
         "cell_number":'asdsfsd',
         "status":'asfdfds',
-        "salt":None
+        "salt":bytearray("dawdas")
     }
     #print(hashinfo["condition"])
     metod.insertIntoUser(hashinfo)
@@ -324,6 +324,6 @@ if __name__ == "__main__":
     #print metod.getProductsByFilter(hashinfo,'condition','asc','aaa')
     #metod.deleteDatabase()
 
-
+databaseController = databaseController()
 
 
