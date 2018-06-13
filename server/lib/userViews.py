@@ -56,10 +56,10 @@ class userSignInRequestView(view):
     def post(self):
         debug("[VIEW] userSignInRequest")
 
-        result = userController.processSignInRequest(self.parseJsonPost(), self.request.headers["User-Agent"], self.request.client_address[0])
+        result, success = userController.processSignInRequest(self.parseJsonPost(), self.request.headers["User-Agent"], self.request.client_address[0])
 
-        if result["success"]:
-            cookie = "user_session_identifier={data}; Expires={exp}".format(data=base64.b64encode(json.dumps(result)), exp=(datetime.datetime.now() + datetime.timedelta(days=5)).strftime("%a, %d %b %Y %H:%M:%S GMT"))
+        if success:
+            cookie = "user_session_identifier={data}; Expires={exp}".format(data=base64.b64encode(result), exp=(datetime.datetime.now() + datetime.timedelta(days=5)).strftime("%a, %d %b %Y %H:%M:%S GMT"))
             self.cookies.append(cookie)
 
         return result
@@ -75,4 +75,9 @@ class userSignOutRequestView(view):
         if "sessionData" in self.context:
             del self.context["sessionData"]
 
-        return
+        self.addComponentToContext('userSignOut_styles.html', 'style', True)
+        self.setContentType('text/html')
+        self.addComponentToContext('userSignOut_content.html', 'content', True)
+        self.addComponentToContext('footer.html', 'footer', True)
+        content = self.renderTemplate('userSignOut.html')
+        return content
