@@ -52,8 +52,11 @@ class userSignInView(view):
         return content
 
 class userSignInRequestView(view):
+
     def post(self):
-        debug("[INFO] userSignInRequest reached")
+        debug("[VIEW] userSignInRequest")
 
+        debug(self.parseJsonPost())
+        result = userController.processSignInRequest(self.parseJsonPost(), self.request.headers["User-Agent"], self.request.client_address[0])
 
-        return self.postData
+        return result

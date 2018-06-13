@@ -8,7 +8,7 @@ from util import *
 import json
 import re
 
-from databaseController import databaseController
+from databaseController import *
 
 
 #nu stiu daca trebuie :csf:
@@ -46,13 +46,12 @@ class userController():
         if existingUser is not None:
             errorList.append("Username already taken")
             success = False
-        """
+
         existingUser = databaseController.getUserByEmail(registerDetails['email'])
 
         if existingUser is not None:
             errorList.append("Email is already in use")
             success = False
-        """
 
         if re.match("^[0-9A-Za-z\-_.]*[@][0-9A-Za-z]*.[0-9A-Za-z]*$", registerDetails["email"]) is None:
             errorList.append("Invalid email")
@@ -107,39 +106,65 @@ class userController():
 
         return json.dumps(result)
 
-    def processSignInRequest(self, signInDetails):
+    def processSignInRequest(self, signInDetails, userAgent, clientAddress):
+
+        debug("[FUNC] processSignInRequest()")
 
         errorList = list()
 
         userData = databaseController.getUserByUsername(signInDetails["username"])
 
-        if((userData is None) or (signInDetails["password"]!=userData["password"])):
-            errorList.append("Wrong username or password")
+        debug("[INFO] Obtained user data")
 
-        if(len(errorList)==0):
-            session = base64.b64ncode(os.urandom(16))
-            hashinfo={
-                "session_id" : session,
-                "user_id": userData["user_id"],
-                "date_created": datetime.datetime.now(),
-                "date_espires": datetime.datetime.now() + datetime.timedelta(days=5),
-                "device": signInDetails["device"],
-                "ip":signInDetails["ip"]
-            }
-            databaseController.insertIntoSessions(hashinfo)
-            result={
-                "errors":errorList,
-                "success": (len(errorList)==0),
-                "username":userData["username"],
-                "sessionId":session
-                }
-            return result
+        debug(userData)
+
+        salt = userData[USER_SALT]
+
+        pwd = hashlib.pbkdf2_hmac('sha256', signInDetails["password"], salt, 50000)
+        finalPwd = binascii.hexlify(pwd)
+
+        debug(finalPwd)
+        debug(userData[USER_PASSWORD])
+
+        success = False
+
+        if userData is None or finalPwd != userData[USER_PASSWORD]:
+            errorList.append("Wrong username or password")
+            debug("[INFO] Password not valid")
         else:
-            result={
-                "errors":errorList,
-                "success":(len(errorList)==0)
+            success = True
+            debug("[INFO] Password valid")
+
+        result = dict()
+
+        if success:
+            session = base64.b64encode(os.urandom(16))
+
+            debug(session)
+
+            sessionData = {
+                "session_id" : session,
+                "user_id": userData[USER_ID],
+                "date_created": datetime.datetime.now(),
+                "device": userAgent,
+                "ip": clientAddress
             }
-            return result
+
+            debug(sessionData)
+
+            databaseController.insertIntoSessions(sessionData)
+
+            debug("[INFO] New session created")
+
+            result["username"] = userData["username"]
+            result["sessionId"] = session
+
+        result["success"] = (len(errorList) == 0)
+        result["errors"] = errorList
+
+        debug(result)
+
+        return result
 
 
 userController = userController()
