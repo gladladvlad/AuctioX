@@ -92,7 +92,7 @@ class databaseController():
     def getProducts(self):
         command= "select * from productdata"
         mycursor.execute(command)
-        columns = [column[0] for column in mycursor.description]
+        result = mycursor.fetchall()
         return result
 
     def getProductById(self,key):
