@@ -5,3 +5,4 @@ __pycache__/
 *.un~
 *~
 .idea
+./server/lib/databaseCredentials.py
