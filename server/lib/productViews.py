@@ -80,7 +80,8 @@ class searchProductIDsView(view):
         # how <=> asc/desc
         # query <=> string
         productsByQuery = productController.getProductsByFilter(None, None, None, self.urlArgs[searchQueryKey])
-        debug(productsByQuery)
+        debug('LENGTH OF QUERY')
+        debug(len(productsByQuery))
 
         for iter in xrange(0, len(productsByQuery)):
             productIDs.append(productsByQuery[iter][PROD_ID])
@@ -90,6 +91,26 @@ class searchProductIDsView(view):
 
 
 class searchPageView(view):
+    def getConditionStr(self, condInt):
+        if condInt == 0:
+            return 'boxed'
+        elif condInt == 1:
+            return 'new'
+        elif condInt == 2:
+            return 'slightly used'
+        elif condInt == 3:
+            return 'used'
+        elif condInt == 4:
+            return 'very used'
+        else:
+            return 'extremely used'
+
+    def getAuctionTypeStr(self, typeInt):
+        if typeInt == 0:
+            return 'Buy it now!'
+        else:
+            return 'Auction'
+
     def get(self):
         debug('[INFO] searchPageView reached')
 
@@ -108,19 +129,14 @@ class searchPageView(view):
         productsDone = 0
         itemKey = 'item{0}'.format(productIter)
 
-        debug('==================right before for==============')
-
         for i in xrange(0, (int(self.urlArgs[searchProductCountKey]))):
             if self.urlArgs.has_key(itemKey):
                 # TODO: get products based on query & filters
                 #tmpProduct = product(1, 2, self.urlArgs[itemKey], 'title', 'product description lorem gipsum gaudeamus igitur', [4], 4, 5, 6, 7, 8, 9, 10, 11, 12)
                 # end TODO
-                debug('getting prod{0}'.format(i))
-                debug('itemKey ' + itemKey)
-
                 tmpProduct = productController.getProductInstanceById(int(self.urlArgs[itemKey]))
-
-                debug(tmpProduct.images)
+                tmpProduct.auction = self.getAuctionTypeStr(tmpProduct.auction)
+                tmpProduct.condition = self.getConditionStr(tmpProduct.condition)
 
                 products.append(tmpProduct.asDict())
                 productsDone += 1
