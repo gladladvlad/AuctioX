@@ -176,13 +176,14 @@ class userController():
 
         debug("[FUNC] validateUserSession()")
 
-        if sessionData == "expired":
+        if sessionData == "expired" or sessionData is None or sessionData is False:
             return None
 
         userInfo = databaseController.getUserByUsername(sessionData["username"])
         sessionList = databaseController.getSessionById(sessionData["sessionId"])
 
         for session in sessionList:
+            debug(session)
             if userInfo[USER_ID] == session[2]:
                 return userInfo[USER_ID]
 
