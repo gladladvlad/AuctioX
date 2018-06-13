@@ -150,8 +150,8 @@ class databaseController():
         mariadb_connection.commit()
 
     def insertIntoProductdata(self,info):
-        lista = [info["user_id"],info["title"],info["description"],info["conditie"],info["country"],info["state"],info["city"],info["is_auction"],info["price"],info["shipping_type"],info["shipping_price"],info["date_added"],info["date_expires"],info["category"],info["subcategory"],info["views"],info["status"]]
-        command = "INSERT INTO productdata(user_id,title,description,conditie,country,state,city,is_auction,price,shipping_type,shipping_price,date_added,date_expires,category,subcategory,views,status) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+        lista = [info["user_id"],info["title"],info["description"],info["conditie"],info["country"],info["state"],info["city"],info["is_auction"],info["price"],info["currency"],info["shipping_type"],info["shipping_price"],info["date_added"],info["date_expires"],info["category"],info["subcategory"],info["views"],info["status"]]
+        command = "INSERT INTO productdata(user_id,title,description,conditie,country,state,city,is_auction,price,currency,shipping_type,shipping_price,date_added,date_expires,category,subcategory,views,status) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
         print command
         mycursor.execute(command,lista)
         mariadb_connection.commit()
@@ -239,7 +239,6 @@ class databaseController():
         mycursor.execute(command)
         result = mycursor.fetchall()
         command = "update userbid set status='won' where current_bid_id={result}".format(result=result[0][0])
-        print(command)
         mycursor.execute(command)
         mariadb_connection.commit()
 
@@ -254,6 +253,21 @@ class databaseController():
         mariadb_connection.commit()
         self.setInactiveInTransaction(key)
         self.setInactiveInUserbid(key)
+
+    def setSellerConfirm(self,user,produs):
+        command = "update transaction set seller_confirm = 1 where seller_user_id={user} and product_id={produs}".format(
+            user=user, produs=produs
+        )
+        mycursor.execute(command)
+        mariadb_connection.commit()
+
+    def setBuyerConfirm(self,user,product):
+        command = "update transaction set buyer_confirm = 1 where buyer_user_id={user} and product_id={produs}".format(
+            user=user, produs=product
+        )
+        print(command)
+        mycursor.execute(command)
+        mariadb_connection.commit()
 
     """Delete everything in database"""
     def resetAutoIncrement(self):
@@ -548,6 +562,7 @@ if __name__ == "__main__":
                 'city': 'vaslui',
                 'is_auction': 1,
                 'price': 700,
+                'currency':'eur',
                 'shipping_type': 'Malaysia Airways',
                 'shipping_price': 429,
                 'date_added': datetime.datetime.now(),
@@ -559,7 +574,7 @@ if __name__ == "__main__":
                 'user_id': 1,
                 'status':'ongoing'
                 }
-    #metod.insertIntoProductdata(prodData)
+    metod.insertIntoProductdata(prodData)
     #print metod.getUserByUsername('aa or 1=1')
     transactiondict={
         "seller_user_id":1,
@@ -576,6 +591,10 @@ if __name__ == "__main__":
         "device":'aici',
         'ip':'1111'
     }
+    reportmap={
+        "type":''
+    }
+
     #metod.insertIntoSessions(session)
     #print metod.getProductsByFilter({"min_price":200,"max_price":500,"views":445}, "date_added", "desc", "Air")
     #print metod.getUserById(1)
@@ -583,7 +602,9 @@ if __name__ == "__main__":
     #metod.removeSessionId('423545')
     #metod.deleteDatabase()
     #metod.setInactiveInTransaction(1)
-    metod.setInactiveInProduct(1)
+    #metod.setInactiveInProduct(1)
+    #metod.setSellerConfirm(2,1)
+    #metod.setBuyerConfirm(2,1)
 databaseController = databaseController()
 
 
