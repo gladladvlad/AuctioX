@@ -172,5 +172,21 @@ class userController():
 
         return result
 
+    def validateUserSession(self, sessionData):
+
+        debug("[FUNC] validateUserSession()")
+
+        if sessionData == "expired":
+            return None
+
+        userInfo = databaseController.getUserByUsername(sessionData["username"])
+        sessionList = databaseController.getSessionById(sessionData["sessionId"])
+
+        for session in sessionList:
+            if userInfo[USER_ID] == session[2]:
+                return userInfo[USER_ID]
+
+        return None
+
 
 userController = userController()

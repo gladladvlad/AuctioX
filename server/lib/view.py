@@ -6,6 +6,7 @@ from dispatcherMap import *
 from jinja2 import Template, Environment, FileSystemLoader, select_autoescape
 import json
 import traceback
+import base64
 
 from util import *
 
@@ -36,6 +37,13 @@ class view:
                 self.urlArgs[key] = self.urlArgs[key][0]
 
             # debug(self.urlAargs)
+
+            try:
+                self.sessionData = self.request.getCookie('user_session_identifier')
+                self.sessionData = json.loads(base64.b64decode(self.sessionData))
+                self.context["sessionData"] = self.sessionData
+            except:
+                pass
 
             self.requestType = self.request.requestline.split(' ')[0]
 

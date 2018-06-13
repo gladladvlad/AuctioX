@@ -56,7 +56,6 @@ class userSignInRequestView(view):
     def post(self):
         debug("[VIEW] userSignInRequest")
 
-        debug(self.parseJsonPost())
         result = userController.processSignInRequest(self.parseJsonPost(), self.request.headers["User-Agent"], self.request.client_address[0])
 
         if result["success"]:
@@ -64,3 +63,16 @@ class userSignInRequestView(view):
             self.cookies.append(cookie)
 
         return result
+
+class userSignOutRequestView(view):
+
+    def get(self):
+        debug("[VIEW] userSignOutRequestView")
+
+        cookie = "user_session_identifier={data}; Expires={exp}".format(data="expired",exp=datetime.datetime.now().strftime("%a, %d %b %Y %H:%M:%S GMT"))
+        self.cookies.append(cookie)
+
+        if "sessionData" in self.context:
+            del self.context["sessionData"]
+
+        return
