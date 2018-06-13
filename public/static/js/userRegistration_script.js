@@ -13,7 +13,8 @@ function sendUserRegisterRequest() {
     inputAddress2 = document.getElementById("inputAddress2");
     inputZipCode = document.getElementById("inputZipCode");
 
-    inputName = document.getElementById("inputName");
+    inputFirstName = document.getElementById("inputFirstName");
+    inputLastName = document.getElementById("inputLastName");
     inputTel = document.getElementById("inputTel");
 
     data = {}
@@ -28,7 +29,8 @@ function sendUserRegisterRequest() {
     data['address1'] = inputAddress1.value
     data['address2'] = inputAddress2.value
     data['zipCode'] = inputZipCode.value
-    data['name'] = inputName.value
+    data['firstName'] = inputFirstName.value
+    data['lastName'] = inputLastName.value
     data['tel'] = inputTel.value
 
     form = new FormData()
@@ -41,13 +43,17 @@ function sendUserRegisterRequest() {
     xhr.onreadystatechange = function()
     {
         if(xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200){
-            console.log(xhr.responseText)
-            return
             response = JSON.parse(xhr.responseText)
-            for(er in response["errors"]) {
-                errorField.innerHTML += er + "<br>"
+            errorList = response["errorList"]
+            for(i = 0; i < errorList.length; i++) {
+                errorField.innerHTML += " " + errorList[i] + "<br>"
             }
-            console.log(response["success"])
+
+            if(response["success"])
+            {
+                console.log("Registration successful!")
+            }
+
             return
         }
     }

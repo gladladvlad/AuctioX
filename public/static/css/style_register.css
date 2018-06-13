@@ -3,6 +3,12 @@ small{
 	color: var(--colorMainLight);
 }
 
+#errors{
+	margin-left: 0.5em;
+	color: var(--colorMainLight);
+	font-size: 0.9em;
+}
+
 .mainContainer{
 	display: flex;
 	flex-wrap: wrap;

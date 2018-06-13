@@ -11,7 +11,7 @@
 
         <div class="formElement" id="usernameField">
             <label class="formLabel" for="inputUsername">Username<small>*</small></label>
-            <small>Must be between 4 and 16 characters.</small><br>
+            <small>Must be between 4 and 16 characters that are alphanumeric or - _</small><br>
             <input id="inputUsername" type="text" required/>
         </div>
 
@@ -100,10 +100,16 @@
     <div id="contactSection" class="section">
             <div class="sectionLabel"><label>Contact information</label></div>
 
-            <div class="formElement" id="nameField">
-                <label class="formLabel">Full Name</label>
-                <small>e.g. John Salesman Doe</small><br>
-                <input id="inputName" type="text"/>
+            <div class="formElement" id="firstNameField">
+                <label class="formLabel">First Name</label>
+                <small>e.g. John</small><br>
+                <input id="inputFirstName" type="text"/>
+            </div>
+
+            <div class="formElement" id="lastNameField">
+                <label class="formLabel">Last Name</label>
+                <small>e.g. Doe</small><br>
+                <input id="inputLastName" type="text"/>
             </div>
 
             <div class="formElement" id="telField">
@@ -113,8 +119,8 @@
                 <input id="inputTel" type="tel"/>
             </div>
     </div>
-    <div>
-        <small id="errors"></small>
+    <div class="section" id="errors">
+
     </div>
     <div class="buttonContainer">
         <button class="button" onclick="sendUserRegisterRequest(); return false;">

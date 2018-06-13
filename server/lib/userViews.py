@@ -22,6 +22,8 @@ class userRegistrationRequestView(view):
 
         result = userController.createNewUser(self.parseJsonPost())
 
+        debug('[INFO] userRegistrationRequestView generated result')
+
         return result
 
 class userListingView(view):

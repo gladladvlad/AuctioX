@@ -3,6 +3,7 @@ from product import *
 import json
 import math
 from userController import *
+from productController import *
 
 
 class createListingView(view):
@@ -36,7 +37,7 @@ searchQueryKey = 'query'
 
 searchDefaultPageSize = 5
 
-productCount = 12
+#productCount = 12
 
 class searchView(view):
     def get(self):
@@ -67,13 +68,11 @@ class searchProductIDsView(view):
         self.setContentType('application/json')
 
 
-        # TODO: get product IDs based on query & filters
         productIDs = []
+        productsByQuery = productController.getProductsByQuery(self.urlArgs[searchQueryKey])
 
-        for iter in xrange(0, productCount):
-            productIDs.append((((iter * 2 - 1) * 3) / 2) * 10 + iter * 2)
-
-        # end TODO
+        for iter in xrange(0, len(productsByQuery)):
+            productIDs.append(productsByQuery[iter][PROD_ID])
 
 
         return json.dumps(productIDs)
@@ -98,12 +97,17 @@ class searchPageView(view):
         productsDone = 0
         itemKey = 'item{0}'.format(productIter)
 
+        debug('==================right before for==============')
 
-        for i in xrange(0, (int(self.urlArgs[searchProductCountKey]) - 1)):
+        for i in xrange(0, (int(self.urlArgs[searchProductCountKey]))):
             if self.urlArgs.has_key(itemKey):
                 # TODO: get products based on query & filters
-                tmpProduct = product(1, 2, self.urlArgs[itemKey], 'title', 'product description lorem gipsum gaudeamus igitur', [4], 4, 5, 6, 7, 8, 9, 10, 11, 12)
+                #tmpProduct = product(1, 2, self.urlArgs[itemKey], 'title', 'product description lorem gipsum gaudeamus igitur', [4], 4, 5, 6, 7, 8, 9, 10, 11, 12)
                 # end TODO
+                debug('getting prod{0}'.format(i))
+                debug('itemKey ' + itemKey)
+                tmpProduct = productController.getProductById(int(self.urlArgs[itemKey]))
+
                 products.append(tmpProduct.asDict())
                 productsDone += 1
 
@@ -112,6 +116,8 @@ class searchPageView(view):
             itemKey = 'item{0}'.format(productIter)
             if (productsDone == int(self.urlArgs[searchPageSizeKey])):
                 break
+
+        debug(len(products))
 
 
         pages = [dict()]
