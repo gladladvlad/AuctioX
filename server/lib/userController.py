@@ -4,6 +4,7 @@ import datetime
 import hashlib
 import os
 from hashlib import pbkdf2_hmac
+from util import *
 
 from databaseController import databaseController
 
@@ -35,8 +36,9 @@ class userController():
 
         errorList = list()
         status = True;
+        debug("Status changed")
 
-        existingUser = databaseController.getUserByUsername(registerDetails['user'])
+        existingUser = databaseController.getUserByUsername('aa')
 
         debug("searched in database for user")
 
