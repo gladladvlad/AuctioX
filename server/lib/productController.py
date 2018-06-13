@@ -33,7 +33,7 @@ class product():
                 'desc' : str(self.desc),
                 'category' : str(self.category),
                 'subcategory' : str(self.category),
-                'images' : str(self.images),
+                'images' : self.images,
                 'condition' : str(self.condition),
                 'country' : str(self.country),
                 'city' : str(self.city),
@@ -65,7 +65,7 @@ class productController():
 
         return products
 
-    def getProductById(self, productID):
+    def getProductInstanceById(self, productID):
         prodDB = databaseController.getProductDataById(productID)[0]
         images = databaseController.getImages(productID)
         debug('================')

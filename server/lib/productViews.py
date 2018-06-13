@@ -35,6 +35,12 @@ searchPageIndexKey = 'page'
 searchPageSizeKey = 'psize'
 searchQueryKey = 'query'
 
+searchFilterPriceMin = 'min_price'
+searchFilterPriceMax = 'max_price'
+searchFilterCondition = 'conditie'
+searchFilterDateAdded = 'date_added'
+searchFilterDateExpirese = 'date_expires'
+
 searchDefaultPageSize = 5
 
 #productCount = 12
@@ -69,7 +75,14 @@ class searchProductIDsView(view):
 
 
         productIDs = []
-        productsByQuery = productController.getProductsByQuery(self.urlArgs[searchQueryKey])
+        # info <=> {'min_price' : 2,
+        #           'max_price' : 5,
+        #           'conditie' : 2}
+        # order_by <=> string cu campu' dupa care ordonam
+        # how <=> asc/desc
+        # query <=> string
+        productsByQuery = productController.getProductsByFilter(None, None, None, self.urlArgs[searchQueryKey])
+        debug(productsByQuery)
 
         for iter in xrange(0, len(productsByQuery)):
             productIDs.append(productsByQuery[iter][PROD_ID])
@@ -106,7 +119,10 @@ class searchPageView(view):
                 # end TODO
                 debug('getting prod{0}'.format(i))
                 debug('itemKey ' + itemKey)
-                tmpProduct = productController.getProductById(int(self.urlArgs[itemKey]))
+
+                tmpProduct = productController.getProductInstanceById(int(self.urlArgs[itemKey]))
+
+                debug(tmpProduct.images)
 
                 products.append(tmpProduct.asDict())
                 productsDone += 1
