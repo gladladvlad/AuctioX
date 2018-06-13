@@ -5,21 +5,23 @@ import time
 import datetime
 
 PROD_ID = 0
-PROD_TITLE = 1
-PROD_DESCRIPTION = 2
-PROD_CONDITIE = 3
-PROD_COUNTRY = 4
-PROD_STATE = 5
-PROD_CITY = 6
-PROD_IS_AUCTION = 7
-PROD_PRICE = 8
-PROD_SHIPPING_TYPE = 9
-PROD_SHIPPING_PRICE = 10
-PROD_DATE_ADDED = 11
-PROD_DATE_EXPIRES = 12
-PROD_CATEGORY = 13
-PROD_SUBCATEGORY =14
-PROD_VIEWS = 15
+PROD_USER_ID = 1
+PROD_TITLE = 2
+PROD_DESCRIPTION = 3
+PROD_CONDITIE = 4
+PROD_COUNTRY = 5
+PROD_STATE = 6
+PROD_CITY = 7
+PROD_IS_AUCTION = 8
+PROD_PRICE = 9
+PROD_SHIPPING_TYPE = 10
+PROD_SHIPPING_PRICE = 11
+PROD_DATE_ADDED = 12
+PROD_DATE_EXPIRES = 13
+PROD_CATEGORY = 14
+PROD_SUBCATEGORY =15
+PROD_VIEWS = 16
+PROD_STATUS =17
 
 USER_ID =0
 USER_USERNAME = 1
@@ -38,7 +40,8 @@ USER_CELL_NUMBER =13
 USER_STATUS =14
 USER_SALT =15
 
-mariadb_connection = mariadb.connect(user='root', password='mancare', host='localhost', database='tw')
+import databaseCredentials
+mariadb_connection = mariadb.connect(user=databaseCredentials.user, password=databaseCredentials.password, host='localhost', database='tw')
 mycursor = mariadb_connection.cursor()
 
 
@@ -60,7 +63,7 @@ class databaseController():
             else:
                 command = "SELECT * FROM {table} WHERE {column}={key}".format(key=key, table=table, column=column)
         mycursor.execute(command)
-        result = mycursor.fetchone()
+        result = mycursor.fetchall()
         return result
 
     def getUserById(self,key):
@@ -85,16 +88,13 @@ class databaseController():
         return self.getItemsFromTable('question','question_id',key)
 
     def getProductDataById(self,key):
-        return self.getItemsFromTable('product_data','product_data_id',key)
+        return self.getItemsFromTable('productdata','product_data_id',key)
 
     def getProducts(self):
         command= "select * from productdata"
         mycursor.execute(command)
         result = mycursor.fetchall()
         return result
-
-    def getProductById(self,key):
-        return self.getItemsFromTable('product','product_id',key)
 
     def getNoticeById(self,key):
         return self.getItemsFromTable('notice','notice_id',key)
@@ -115,11 +115,24 @@ class databaseController():
 
     def getUserByUsername(self,key):
         command = "select * from user where username='{key}'".format(key=key)
-        print command
         mycursor.execute(command)
         result = mycursor.fetchone()
         return result
 
+    def getUserProducts(self,key):
+        command = "select * from productdata where user_id={key}".format(key=key)
+        mycursor.execute(command)
+        result = mycursor.fetchall()
+        return result
+
+    def getImages(self,key):
+        command = "select image from images where product_data_id={key}".format(key=key)
+        mycursor.execute(command)
+        result = mycursor.fetchall()
+        list = []
+        for i in result:
+            list.append(i[0])
+        return list
 
     #def advancedSearch(self):
 
@@ -136,31 +149,14 @@ class databaseController():
         mycursor.execute(command,lista)
         mariadb_connection.commit()
 
-    def insertIntoProduct(self,info):
-        command = "INSERT INTO product VALUES({product_id},{user_id},{product_data_id},'{title}','{status}')".format(
-            product_id=info["product_id"], user_id=info["user_id"], product_data_id=info["product_data_id"],
-            title=info["title"], status=info["status"]
-        )
-        mycursor.execute(command)
-        mariadb_connection.commit()
-
     def insertIntoProductdata(self,info):
-        lista = [info["title"],info["description"],info["conditie"],info["country"],info["state"],info["city"],info["is_auction"],info["price"],info["shipping_type"],info["shipping_price"],info["date_added"],info["date_expires"],info["category"],info["subcategory"],info["views"]]
-        command = "INSERT INTO productdata(title,description,conditie,country,state,city,is_auction,price,shipping_type,shipping_price,date_added,date_expires,category,subcategory,views) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+        lista = [info["user_id"],info["title"],info["description"],info["conditie"],info["country"],info["state"],info["city"],info["is_auction"],info["price"],info["shipping_type"],info["shipping_price"],info["date_added"],info["date_expires"],info["category"],info["subcategory"],info["views"],info["status"]]
+        command = "INSERT INTO productdata(user_id,title,description,conditie,country,state,city,is_auction,price,shipping_type,shipping_price,date_added,date_expires,category,subcategory,views,status) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
         mycursor.execute(command,lista)
-        print lista
         mariadb_connection.commit()
         command="select max(product_data_id) from productdata"
         mycursor.execute(command)
         result=mycursor.fetchone()
-        hashmap={
-            "product_id" : result[0],
-            "user_id" : info["user_id"],
-            "product_data_id" : result[0],
-            "title" : info["title"],
-            "status" : 'on_sale'
-        }
-        self.insertIntoProduct(hashmap)
         hashmap={
             "product_data_id" : result[0],
             "image" : info["image"]
@@ -260,6 +256,40 @@ class databaseController():
         self.setInactiveInUserbid(result)
 
     """Delete everything in database"""
+    def resetAutoIncrement(self):
+        command = "alter table user AUTO_INCREMENT = 1"
+        mycursor.execute(command)
+        mariadb_connection.commit()
+        command = "alter table userbid AUTO_INCREMENT = 1"
+        mycursor.execute(command)
+        mariadb_connection.commit()
+        command = "alter table transaction AUTO_INCREMENT = 1"
+        mycursor.execute(command)
+        mariadb_connection.commit()
+        command = "alter table sessions AUTO_INCREMENT = 1"
+        mycursor.execute(command)
+        mariadb_connection.commit()
+        command = "alter table response AUTO_INCREMENT = 1"
+        mycursor.execute(command)
+        mariadb_connection.commit()
+        command = "alter table report AUTO_INCREMENT = 1"
+        mycursor.execute(command)
+        mariadb_connection.commit()
+        command = "alter table question AUTO_INCREMENT = 1"
+        mycursor.execute(command)
+        mariadb_connection.commit()
+        command = "alter table productdata AUTO_INCREMENT = 1"
+        mycursor.execute(command)
+        mariadb_connection.commit()
+        command = "alter table notice AUTO_INCREMENT = 1"
+        mycursor.execute(command)
+        mariadb_connection.commit()
+        command = "alter table images AUTO_INCREMENT = 1"
+        mycursor.execute(command)
+        mariadb_connection.commit()
+        command = "alter table feedback AUTO_INCREMENT = 1"
+        mycursor.execute(command)
+        mariadb_connection.commit()
 
     def deleteDatabase(self):
         command = "delete from userbid"
@@ -280,9 +310,6 @@ class databaseController():
         command = "delete from images"
         mycursor.execute(command)
         mariadb_connection.commit()
-        command = "delete from product"
-        mycursor.execute(command)
-        mariadb_connection.commit()
         command = "delete from productdata"
         mycursor.execute(command)
         mariadb_connection.commit()
@@ -298,6 +325,7 @@ class databaseController():
         command = "delete from user"
         mycursor.execute(command)
         mariadb_connection.commit()
+        self.resetAutoIncrement()
 
     """Match chestii"""
     def matchText(self,info):
@@ -344,7 +372,7 @@ if __name__ == "__main__":
 
     #print json.dumps(metod.getUserById("user","country","'romania'"),indent=4)
 
-    """hashinfo={
+    hashinfo={
         "username":'aa',
         "password":'aaaa',
         "first_name": 'bbb',
@@ -360,7 +388,8 @@ if __name__ == "__main__":
         "cell_number":'asdsfsd',
         "status":'asfdfds',
         "salt":bytearray("dawdas")
-    }"""
+    }
+    #metod.insertIntoUser(hashinfo)
     prodData = {'title': 'Air guitar Epiphone les paul vasilescu',
                 'description': 'cea mia mijtoui s mora mama meu k ii sm3k mkatzash lorem gipsum jajaj jaj as lal qea j2qj h n asdasd, asdasldkj',
                 'conditie': 3,
@@ -376,10 +405,13 @@ if __name__ == "__main__":
                 'category': 'lol nu stiu',
                 'subcategory': 'yes',
                 'views': 420,
-                'image': [bytearray('asdasdasd')],
-                'user_id': 1}
+                'image': [bytearray('asdasdasd'),bytearray('sdagfdgfds')],
+                'user_id': 1,
+                'status':'ongoing'
+                }
     #print(hashinfo["condition"])
-    print metod.getUserByEmail('dddaas23d')
+    #metod.insertIntoProductdata(prodData)
+    print metod.getUserByUsername('aa or 1=1')
     #print json.dumps(metod.matchText("Gabi"),indent=4)
     #print metod.getProductsByFilter(hashinfo,'condition','asc','aaa')
     #metod.deleteDatabase()
