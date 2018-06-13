@@ -11,6 +11,7 @@ map = [
     #test views
     ('^/addprod', addProductView),
     ('^/adduser', addUserView),
+    ('^/setcookie', setCookieView),
     #
     ('^/public/*', publicFileView),
     ('^/jinjatest', jinjatest),

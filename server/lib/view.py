@@ -25,6 +25,7 @@ class view:
     def __init__(self, request):
 
         self.context = dict()
+        self.cookies = list()
         debug("View init: {0}".format(self.__class__.__name__))
         try:
             self.request = request
@@ -60,6 +61,7 @@ class view:
                     response += self.request.requestline + "\n\n"
                     response += "URL arguments:\n" + json.dumps(self.urlArgs, indent=4) + "\n\n"
                     response += "Headers:\n" + str(self.request.headers) + "\n\n"
+                    response += "Set cookies:\n" + json.dumps(self.context, indent=4) + "\n\n"
                     response += "Context:\n" + json.dumps(self.context, indent=4).replace('\\n', '\n').replace('\\t', '\t') + "\n\n"
                     response += "Response:\n" + oldResponse + "\n\n"
                 self.request.wfile.write(response)
@@ -68,6 +70,7 @@ class view:
         except Exception, e:
             self.request.send_response(404)
             self.request.send_header("Content-type", 'text/html')
+
             self.request.end_headers()
             response = "<body style='font-family: monospace'><h1>Error</h1><hr>"
             if DEBUG:
@@ -87,6 +90,8 @@ class view:
 
         self.request.send_response(200)
         self.request.send_header("Content-type", self.contentType)
+        for cookie in self.cookies:
+            self.request.setCookie(cookie)
         self.request.end_headers()
         self.request.wfile.write(self.response)
         return

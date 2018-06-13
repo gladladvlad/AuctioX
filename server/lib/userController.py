@@ -118,22 +118,25 @@ class userController():
 
         debug(userData)
 
-        salt = userData[USER_SALT]
-
-        pwd = hashlib.pbkdf2_hmac('sha256', signInDetails["password"], salt, 50000)
-        finalPwd = binascii.hexlify(pwd)
-
-        debug(finalPwd)
-        debug(userData[USER_PASSWORD])
-
         success = False
 
-        if userData is None or finalPwd != userData[USER_PASSWORD]:
-            errorList.append("Wrong username or password")
-            debug("[INFO] Password not valid")
-        else:
-            success = True
-            debug("[INFO] Password valid")
+        if userData is not None:
+
+            salt = userData[USER_SALT]
+
+            pwd = hashlib.pbkdf2_hmac('sha256', signInDetails["password"], salt, 50000)
+            finalPwd = binascii.hexlify(pwd)
+
+            debug(finalPwd)
+            debug(userData[USER_PASSWORD])
+
+
+
+            if finalPwd != userData[USER_PASSWORD]:
+                debug("[INFO] Password not valid")
+            else:
+                success = True
+                debug("[INFO] Password valid")
 
         result = dict()
 
@@ -143,9 +146,10 @@ class userController():
             debug(session)
 
             sessionData = {
-                "session_id" : session,
+                "session_id": session,
                 "user_id": userData[USER_ID],
                 "date_created": datetime.datetime.now(),
+                "last_connected": datetime.datetime.now(),
                 "device": userAgent,
                 "ip": clientAddress
             }
@@ -156,10 +160,12 @@ class userController():
 
             debug("[INFO] New session created")
 
-            result["username"] = userData["username"]
+            result["username"] = userData[USER_USERNAME]
             result["sessionId"] = session
+        else:
+            errorList.append("Wrong username or password")
 
-        result["success"] = (len(errorList) == 0)
+        result["success"] = success
         result["errors"] = errorList
 
         debug(result)

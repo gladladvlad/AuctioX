@@ -27,5 +27,6 @@ function signIn(){
 
     xhr.open("POST", "/signinrequest", true);
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    console.log(JSON.stringify(data))
     xhr.send(JSON.stringify(data));
 }

@@ -72,8 +72,15 @@ class addProductView(view):
                     'subcategory' : 'yes',
                     'views' : 420,
                     'image' : [bytearray('asdasdasd')],
-                    'user_id' : 1}
+                    'user_id' : 3,
+                    'status': 'ochei'}
 
         databaseController.insertIntoProductdata(prodData)
 
         return 'done'
+
+
+class setCookieView(view):
+    def get(self):
+        self.cookies.append('test={time}; Expires={exp}'.format(time=datetime.datetime.now(), exp=(datetime.datetime.now() + datetime.timedelta(minutes=2)).strftime("%a, %d %b %Y %H:%M:%S GMT")))
+        return "ok"
