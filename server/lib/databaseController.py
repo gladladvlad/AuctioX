@@ -240,6 +240,40 @@ class databaseController():
         self.setInactiveInUserbid(result)
 
     """Delete everything in database"""
+    def resetAutoIncrement(self):
+        command = "alter table user AUTO_INCREMENT = 1"
+        mycursor.execute(command)
+        mariadb_connection.commit()
+        command = "alter table userbid AUTO_INCREMENT = 1"
+        mycursor.execute(command)
+        mariadb_connection.commit()
+        command = "alter table transaction AUTO_INCREMENT = 1"
+        mycursor.execute(command)
+        mariadb_connection.commit()
+        command = "alter table sessions AUTO_INCREMENT = 1"
+        mycursor.execute(command)
+        mariadb_connection.commit()
+        command = "alter table response AUTO_INCREMENT = 1"
+        mycursor.execute(command)
+        mariadb_connection.commit()
+        command = "alter table report AUTO_INCREMENT = 1"
+        mycursor.execute(command)
+        mariadb_connection.commit()
+        command = "alter table question AUTO_INCREMENT = 1"
+        mycursor.execute(command)
+        mariadb_connection.commit()
+        command = "alter table productdata AUTO_INCREMENT = 1"
+        mycursor.execute(command)
+        mariadb_connection.commit()
+        command = "alter table notice AUTO_INCREMENT = 1"
+        mycursor.execute(command)
+        mariadb_connection.commit()
+        command = "alter table images AUTO_INCREMENT = 1"
+        mycursor.execute(command)
+        mariadb_connection.commit()
+        command = "alter table feedback AUTO_INCREMENT = 1"
+        mycursor.execute(command)
+        mariadb_connection.commit()
 
     def deleteDatabase(self):
         command = "delete from userbid"
@@ -260,9 +294,6 @@ class databaseController():
         command = "delete from images"
         mycursor.execute(command)
         mariadb_connection.commit()
-        command = "delete from product"
-        mycursor.execute(command)
-        mariadb_connection.commit()
         command = "delete from productdata"
         mycursor.execute(command)
         mariadb_connection.commit()
@@ -278,6 +309,7 @@ class databaseController():
         command = "delete from user"
         mycursor.execute(command)
         mariadb_connection.commit()
+        self.resetAutoIncrement()
 
     """Match chestii"""
     def matchText(self,info):
@@ -362,7 +394,7 @@ if __name__ == "__main__":
                 'status':'ongoing'
                 }
     #print(hashinfo["condition"])
-    metod.insertIntoProductdata(prodData)
+    #metod.insertIntoProductdata(prodData)
     #print json.dumps(metod.matchText("Gabi"),indent=4)
     #print metod.getProductsByFilter(hashinfo,'condition','asc','aaa')
     #metod.deleteDatabase()
