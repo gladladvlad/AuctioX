@@ -12,6 +12,9 @@ map = [
     ('^/addprod', addProductView),
     ('^/adduser', addUserView),
     #
+    ('^/setcookie', setCookieView),
+    ('^/sessiontest', sessionValidation),
+    #
     ('^/public/*', publicFileView),
     ('^/jinjatest', jinjatest),
 
@@ -22,12 +25,13 @@ map = [
     ('^/userlistings/?$', userListingView),
     ('^/signin/?$', userSignInView),
     ('^/signinrequest/?$', userSignInRequestView),
+    ('^/signout/?$', userSignOutRequestView),
 
     # User Views END
 
     # Product Views START
 
-    ('^/search_page', searchPageView),
+    ('^/searchpage', searchPageView),
     ('^/search', searchView),
     ('^/getproductids', searchProductIDsView),
     ('^/product', productView),

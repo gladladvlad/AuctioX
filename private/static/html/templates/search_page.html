@@ -7,7 +7,7 @@
 
 					<div class="prodContent">
 						<div class="prodImage">
-							<img src="https://i.ytimg.com/vi/aiWkZMMDLg4/maxresdefault.jpg" alt="product"/>
+							<img src="{{ product.images[0] }}" alt="product"/>
 						</div>
 						<div class="prodDesc">
 							<div class="prodDescLeft">
@@ -19,6 +19,7 @@
 								<span> Shipping method: {{ product.shippingType }} </span>
 								<span> Shipping cost: {{ product.shippingPrice }} currency </span>
 								<span> Date added: {{ product.dateAdded }} </span>
+								<span> Date expires: {{ product.dateExpires }} </span>
 							</div>
 							<div class="prodDescRight">
 								<p>

@@ -335,3 +335,7 @@ h3 {
     margin-bottom: 0.5em;
     height: 80%;
 }
+
+#errors {
+    color: red;
+}

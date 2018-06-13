@@ -65,6 +65,33 @@ body {
 	text-align: center;
 }
 
+#filtre > form > ul {
+	margin-left: 5%;
+	margin-right: 5%;
+	color: white;
+	list-style-type: none;
+	padding-bottom: 1em;
+	border-bottom: 1px solid gray;
+}
+
+#filtre > form > ul > li > a {
+	text-decoration: none;
+	color: white;
+}
+
+#filtre form h3, #filtre form h4 {
+	font-size: 120%;
+	text-decoration: none;
+	font-weight: normal;
+}
+
+#filtre > form > h3 {
+	padding-top: 0.5em;
+	padding-left: 1em;
+	color: white;
+	text-align: center;
+}
+
 .checkboxPossibilities {
 	display: flex;
 	flex-direction: column;
@@ -298,16 +325,24 @@ body {
 }
 
 @media only screen and (max-width: 611px) {
+	.searchBody {
+		flex-direction: column;
+	}
+
 	#content {
 		width: 100%;
 	}
 
 	#filtre {
-		width: 0%;
+		width: 100%;
 	}
 }
 
 @media only screen and (max-width: 366px) {
+	.searchBody {
+		flex-direction: column;
+	}
+
 	.prod > .prodContent {
 		flex-direction: column;
 		justify-content: center;

@@ -33,7 +33,7 @@ class product():
                 'desc' : str(self.desc),
                 'category' : str(self.category),
                 'subcategory' : str(self.category),
-                'images' : str(self.images),
+                'images' : self.images,
                 'condition' : str(self.condition),
                 'country' : str(self.country),
                 'city' : str(self.city),
@@ -61,15 +61,17 @@ class productController():
     # query <=> string
     def getProductsByFilter(self, info, order_by, how, query):
         #get all products from DB
+        debug('===========================')
+        debug(info)
         products = databaseController.getProductsByFilter(info, order_by, how, query)
+
+        debug(products)
 
         return products
 
-    def getProductById(self, productID):
+    def getProductInstanceById(self, productID):
         prodDB = databaseController.getProductDataById(productID)[0]
         images = databaseController.getImages(productID)
-        debug('================')
-        debug(images)
 
         productResult = product(prodDB[PROD_USER_ID], prodDB[PROD_ID], prodDB[PROD_STATUS], prodDB[PROD_TITLE], prodDB[PROD_DESCRIPTION], prodDB[PROD_CATEGORY], prodDB[PROD_SUBCATEGORY], images, prodDB[PROD_VIEWS], prodDB[PROD_CONDITIE], prodDB[PROD_COUNTRY], prodDB[PROD_CITY], prodDB[PROD_IS_AUCTION], prodDB[PROD_PRICE], prodDB[PROD_SHIPPING_TYPE], prodDB[PROD_SHIPPING_PRICE], prodDB[PROD_DATE_ADDED], prodDB[PROD_DATE_EXPIRES])
 

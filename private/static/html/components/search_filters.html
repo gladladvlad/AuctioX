@@ -8,111 +8,107 @@
 					<li><a href="search.html"> Collectibles &amp; art </a></li>
 					<li><a href="search.html"> Consumables </a></li>
 				</ul>
+				<form action="/search">
+					<h3> Filters: </h3> <!-- de bagat checkboxuri -->
+					<ul class="list">
+						<li>
+							<div class="dropdown">
+								<h4><label>Country:</label></h4>
+								<input id="country" name="country" list="countryList" />
 
-				<h3> Filters: </h3> <!-- de bagat checkboxuri -->
-				<ul class="list">
-					<li>
-						<div class="dropdown">
-							<h4><label>Country:</label></h4>
-							<input list="countryList" required/>
+								<datalist id="countryList">
+									<option value="Romania">
+									<option value="Vaslui">
+									<option value="Uganda">
+									<option value="Zimbabwe">
+									<option value="United States">
+								</datalist>
 
-							<datalist id="countryList">
-								<option value="Romania">
-								<option value="Vaslui">
-								<option value="Uganda">
-								<option value="Zimbabwe">
-								<option value="United States">
-							</datalist>
+							</div>
+						</li>
+						<li>
+							<div class="dropdown">
+								<h4><label>City:</label></h4>
+								<input id="city" name="city" list="countryList2" />
 
-						</div>
-					</li>
-					<li>
-						<div class="dropdown">
-							<h4><label>City:</label></h4>
-							<input list="countryList2" required/>
+								<datalist id="countryList2">
+									<option value="England">
+									<option value="Londonistan">
+									<option value="Berlinistan">
+									<option value="Moldova">
+									<option value="Parisistan">
+								</datalist>
 
-							<datalist id="countryList2">
-								<option value="England">
-								<option value="Londonistan">
-								<option value="Berlinistan">
-								<option value="Moldova">
-								<option value="Parisistan">
-							</datalist>
+							</div>
+						</li>
+						<li>
+							<div class="range">
+								<h4>Price range:</h4>
+								<div class="rangeInput">
+									<input id="from" name="min_price" type="text" name="minPrice">
+									<span> to </span>
+									<input id="to" name="max_price" type="text" name="maxPrice">
+								</div>
+							</div>
+						</li>
+						<li>
+							<h4>Condition:</h4>
+							<div class="checkboxPossibilities">
+								<div class="checkbox">
+									<input name="boxed" value="boxed" type="checkbox" />
+									<label for=""> boxed </label>
+								</div>
 
-						</div>
-					</li>
-					<li>
-						<div class="range">
-							<h4>Price range:</h4>
-							<div class="rangeInput">
-								<input id="from" type="text" name="minPrice">
-								<span> to </span>
-								<input id="to" type="text" name="maxPrice">
-							</div>
-						</div>
-					</li>
-					<li>
-						<h4>Condition:</h4>
-						<div class="checkboxPossibilities">
-							<div class="checkbox">
-								<input name="boxed" value="boxed" type="checkbox" />
-								<label for=""> boxed </label>
-							</div>
+								<div class="checkbox">
+									<input name="new" value="new" type="checkbox" />
+									<label for=""> new</label>
+								</div>
 
-							<div class="checkbox">
-								<input name="new" value="new" type="checkbox" />
-								<label for=""> new</label>
-							</div>
+								<div class="checkbox">
+									<input name="slightly used" value="slightly used" type="checkbox" />
+									<label for=""> slightly used</label>
+								</div>
 
-							<div class="checkbox">
-								<input name="slightly used" value="slightly used" type="checkbox" />
-								<label for=""> slightly used</label>
-							</div>
+								<div class="checkbox">
+									<input name="used" value="used" type="checkbox" />
+									<label for=""> used</label>
+								</div>
 
-							<div class="checkbox">
-								<input name="used" value="used" type="checkbox" />
-								<label for=""> used</label>
+								<div class="checkbox">
+									<input name="very used" value="very used" type="checkbox" />
+									<label for=""> very used</label>
+								</div>
 							</div>
+						</li>
+					</ul>
 
-							<div class="checkbox">
-								<input name="very used" value="very used" type="checkbox" />
-								<label for=""> very used</label>
+					<h3> Sort for: </h3>
+					<ul class="list">
+						<li>
+							<div class="radio">
+								<div class="radioItem">
+									<input type="radio" id="price" name="sort" value="priceAsc"/> Price: ascending
+								</div>
+								<div class="radioItem">
+									<input type="radio" id="price" name="sort" value="priceDesc"/> Price: descending
+								</div>
+								<div class="radioItem">
+									<input type="radio" id="condition" name="sort" value="priceAsc"/> Condition: ascending
+								</div>
+								<div class="radioItem">
+									<input type="radio" id="condition" name="sort" value="priceDesc"/> Condition: descending
+								</div>
+								<div class="radioItem">
+									<input type="radio" id="date" name="sort" value="priceAsc"/> Date: ascending
+								</div>
+								<div class="radioItem">
+									<input type="radio" id="date" name="sort" value="priceDesc"/> Date: descending
+								</div>
 							</div>
-						</div>
-					</li>
-				</ul>
-
-				<h3> Sort for: </h3>
-				<ul class="list">
-					<li>
-						<div class="radio">
-							<div class="radioItem">
-								<input type="radio" name="priceSort" value="asc"/> Price: ascending
-							</div>
-							<div class="radioItem">
-								<input type="radio" name="priceSort" value="desc"/> Price: descending
-							</div>
-						</div>
-					</li>
-					<li>
-						<div class="radio">
-							<div class="radioItem">
-								<input type="radio" name="condSort" value="asc"/> Condition: ascending
-							</div>
-							<div class="radioItem">
-								<input type="radio" name="condSort" value="desc"/> Condition: descending
-							</div>
-						</div>
-					</li>
-					<li>
-						<div class="radio">
-							<div class="radioItem">
-								<input type="radio" name="dateSort" value="asc"/> Date: ascending
-							</div>
-							<div class="radioItem">
-								<input type="radio" name="dateSort" value="desc"/> Date: descending
-							</div>
-						</div>
-					</li>
-				</ul>
+						</li>
+					</ul>
+					<ul>
+						<input type="submit" action="submit" value="Submit" style="margin-top: 1.5em; width: 100%;"/>
+					</ul>
+				</form>
 			</div>

@@ -11,9 +11,15 @@
     </form>
 
     <div class="navbarElement">
-        {% if sessionData %}<a id="linkMyAccount" href="/signout" target="_top">Logged as {{ sessionData.username }}</a>{% endif %}
-        <a id="linkCreateAuction" href="/createlisting" target="_top">Create Listing</a>
-        <a id="linkSignIn" href="/signin" target="_top">Sign in</a>
+        {% if sessionData %}
+            <a id="linkMyAccount" href="/signout" target="_top">Logged as {{ sessionData.username }}</a>
+            <a id="linkCreateAuction" href="/createlisting" target="_top">Create Listing</a>
+            <a id="linkSignOut" href="/signout" target="_top">Sign Out</a>
+        {% else %}
+            <a id="linkSignUp" href="/registration" target="_top">New Account</a>
+            <a id="linkSignIn" href="/signin" target="_top">Sign in</a>
+        {% endif %}
+
     </div>
 
 </div>

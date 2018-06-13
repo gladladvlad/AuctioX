@@ -1,6 +1,7 @@
 from view import *
 import datetime
 from databaseController import *
+from userController import *
 import os
 
 class jinjatest(view):
@@ -72,8 +73,26 @@ class addProductView(view):
                     'subcategory' : 'yes',
                     'views' : 420,
                     'image' : [bytearray('asdasdasd')],
-                    'user_id' : 1}
+                    'user_id' : 3,
+                    'status': 'ochei'}
 
         databaseController.insertIntoProductdata(prodData)
 
         return 'done'
+
+
+class setCookieView(view):
+    def get(self):
+        self.cookies.append('test={time}; Expires={exp}'.format(time=datetime.datetime.now(), exp=(datetime.datetime.now() + datetime.timedelta(minutes=2)).strftime("%a, %d %b %Y %H:%M:%S GMT")))
+        return "ok"
+
+
+class sessionValidation(view):
+    def get(self):
+
+        userId = userController.validateUserSession(self.sessionData)
+
+        if userId is not None:
+            return "You are now currently logged in as {0} with the ID {1}".format(self.sessionData["username"], userId)
+
+        return "You are not currently logged in"

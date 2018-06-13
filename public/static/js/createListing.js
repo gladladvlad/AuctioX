@@ -41,11 +41,13 @@ function readMultiFiles(files) {
     resultList = []
     var reader = new FileReader();
     function readFile(index) {
-        if( index >= files.length || files[index] == undefined) {
+        if( index >= files.length || !files[index]) {
             console.log("Finished reading");
-            console.log(resultList)
             data["photos"] = resultList
+            console.log("Sending data:")
+            console.log(data)
             sendRequest(data)
+            return
         }
         console.log("Reading " + index + " from " + files[index].type)
         var file = files[index];
