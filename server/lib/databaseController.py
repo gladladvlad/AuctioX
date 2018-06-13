@@ -239,7 +239,6 @@ class databaseController():
         mycursor.execute(command)
         result = mycursor.fetchall()
         command = "update userbid set status='won' where current_bid_id={result}".format(result=result[0][0])
-        print(command)
         mycursor.execute(command)
         mariadb_connection.commit()
 
@@ -254,6 +253,21 @@ class databaseController():
         mariadb_connection.commit()
         self.setInactiveInTransaction(key)
         self.setInactiveInUserbid(key)
+
+    def setSellerConfirm(self,user,produs):
+        command = "update transaction set seller_confirm = 1 where seller_user_id={user} and product_id={produs}".format(
+            user=user, produs=produs
+        )
+        mycursor.execute(command)
+        mariadb_connection.commit()
+
+    def setBuyerConfirm(self,user,product):
+        command = "update transaction set buyer_confirm = 1 where buyer_user_id={user} and product_id={produs}".format(
+            user=user, produs=product
+        )
+        print(command)
+        mycursor.execute(command)
+        mariadb_connection.commit()
 
     """Delete everything in database"""
     def resetAutoIncrement(self):
@@ -583,7 +597,9 @@ if __name__ == "__main__":
     #metod.removeSessionId('423545')
     #metod.deleteDatabase()
     #metod.setInactiveInTransaction(1)
-    metod.setInactiveInProduct(1)
+    #metod.setInactiveInProduct(1)
+    #metod.setSellerConfirm(2,1)
+    metod.setBuyerConfirm(2,1)
 databaseController = databaseController()
 
 
