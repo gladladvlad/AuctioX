@@ -34,7 +34,7 @@ class createListingRequestView(view):
         debug('got the user')
         result = productController.createListing(self.parseJsonPost(), user)
         success = False
-        if result is None:
+        if result is not None:
             success = True
         return json.dumps({'success': success, 'prodId': result})
 
