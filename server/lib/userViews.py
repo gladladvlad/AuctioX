@@ -99,7 +99,7 @@ class userMyListingsView(view):
 
         self.setContentType('text/html')
 
-        self.addItemToContext(products.asDict(), 'products', True)
+        self.addItemToContext(products, 'products', True)
 
         self.addComponentToContext('myListings_content.html', 'content', True)
         self.addComponentToContext('footer.html', 'footer', True)
