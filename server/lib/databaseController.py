@@ -538,7 +538,7 @@ class databaseController():
 
     """Set new session id"""
     def removeSessionId(self,session):
-        command = "delete from sessions where session_id={session}".format(session=session)
+        command = "delete from sessions where session_id='{session}'".format(session=session)
         print(command)
         mycursor.execute(command)
         mariadb_connection.commit()
@@ -644,7 +644,7 @@ if __name__ == "__main__":
     #print metod.getProductsByFilter(None, None, None, "Air")
     #print metod.getUserById(1)
     #metod.insertIntoTrasnaction(transactiondict)
-    #metod.removeSessionId('423545')
+    metod.removeSessionId('+0rmdycrS81ncphLJWJK5A==')
     #metod.deleteDatabase()
     #metod.setInactiveInTransaction(1)
     #metod.setInactiveInProduct(1)
