@@ -25,7 +25,6 @@
                         <td>No.</td>
                         <td>Title</td>
                         <td>Your bid</td>
-                        <td>Current bid (buyout)</td>
                         <td>Currency</td>
                         <td>Status</td>
                         <td>Start date</td>
@@ -33,16 +32,17 @@
                     </tr>
                 </thead>
                 <tbody>
+                {% for entry in bidprod %}
                     <tr>
-                        {% for entry in bidprod %}
-                        <td>{{ loop.index1 }}</td>
+                        <td>{{ loop.index }}</td>
                         <td>{{ entry[1].title }}</td>
                         <td>{{ entry[0].value }}</td>
                         <td>{{ entry[1].currency }}</td>
+                        <td>{{ entry[1].status }}</td>
                         <td>{{ entry[1].dateAdded }}</td>
                         <td>{{ entry[1].dateExpires }}</td>
-                        {% endfor %}
                     </tr>
+                {% endfor %}
                 </tbody>
             </table>
         </div>

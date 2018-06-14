@@ -95,6 +95,17 @@ class productController():
     def getUserBidProduct(self, userID):
         return databaseController.getUserBidProduct(userID)
 
+    def getUserProductsById(self, userID):
+        products = databaseController.getUserProducts(userID)
+
+        prodList = []
+        for prodDB in products:
+            prodBuf = product(prodDB[PROD_USER_ID], prodDB[PROD_ID], prodDB[PROD_STATUS], prodDB[PROD_TITLE], prodDB[PROD_DESCRIPTION], prodDB[PROD_CATEGORY], prodDB[PROD_SUBCATEGORY], [], prodDB[PROD_VIEWS], prodDB[PROD_CONDITIE], prodDB[PROD_COUNTRY], prodDB[PROD_CITY], prodDB[PROD_IS_AUCTION], prodDB[PROD_PRICE], prodDB[PROD_CURRENCY], prodDB[PROD_SHIPPING_TYPE], prodDB[PROD_SHIPPING_PRICE], prodDB[PROD_DATE_ADDED], prodDB[PROD_DATE_EXPIRES])
+
+            prodList.append(prodBuf)
+
+        return prodList
+
     def getConditionInt(self, condStr):
         if condStr == 'boxed':
             return 0

@@ -94,7 +94,13 @@ class userMyListingsView(view):
             self.switchView(userSignInView)
             return False
 
+        user = userController.getUserInstanceByUsername(self.sessionData['username'])
+        products = productController.getUserProductsById(user.UID)
+
         self.setContentType('text/html')
+
+        self.addItemToContext(products.asDict(), 'products', True)
+
         self.addComponentToContext('myListings_content.html', 'content', True)
         self.addComponentToContext('footer.html', 'footer', True)
         content = self.renderTemplate('myListings.html')
