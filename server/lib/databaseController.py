@@ -3,6 +3,7 @@ import mysql.connector as mariadb
 import  json
 import time
 import datetime
+from util import *
 
 PROD_ID = 0
 PROD_USER_ID = 1
@@ -160,7 +161,8 @@ class databaseController():
     def insertIntoProductdata(self,info):
         lista = [info["user_id"],info["title"],info["description"],info["conditie"],info["country"],info["state"],info["city"],info["is_auction"],info["price"],info["currency"],info["shipping_type"],info["shipping_price"],info["date_added"],info["date_expires"],info["category"],info["subcategory"],info["views"],info["status"]]
         command = "INSERT INTO productdata(user_id,title,description,conditie,country,state,city,is_auction,price,currency,shipping_type,shipping_price,date_added,date_expires,category,subcategory,views,status) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
-        print command
+        debug(lista)
+        debug(command)
         mycursor.execute(command,lista)
         mariadb_connection.commit()
         command="select max(product_data_id) from productdata"

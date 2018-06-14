@@ -145,11 +145,11 @@ class productController():
         debug(data)
 
         now = datetime.datetime.now()
-        expires = datetime.datetime(now.year + int(now.mont > 12), (now.month + 1) % 12 + 1, now.day)
+        expires = datetime.datetime(now.year + int(now.month > 12), (now.month + 1) % 12 + 1, now.day)
 
         info = {'title' : data['title'],
                     'description' : data['description'],
-                    'conditie' : getConditionInt(data['condition']),
+                    'conditie' : self.getConditionInt(data['condition']),
                     'country' : "",
                     'state' : "",
                     'city' : "",
@@ -160,10 +160,10 @@ class productController():
                     'shipping_price' : 0,
                     'date_added' : now,
                     'date_expires' : expires,
-                    'category' : getConditionInt(data['category']),
+                    'category' : self.getConditionInt(data['category']),
                     'subcategory' : "",
                     'views' : 0,
-                    'image' : getConditionInt(data['photos']),
+                    'image' : self.getConditionInt(data['photos']),
                     'status' : 'ongoing',
                     'user_id' : user.UID
                 }
