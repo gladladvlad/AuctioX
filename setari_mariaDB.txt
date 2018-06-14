@@ -1,0 +1,275 @@
+LastSessions<|||>1<|||>ProiectTW
+LastActiveSession<|||>1<|||>ProiectTW
+ColWidths_connform.ListSessions<|||>1<|||>163,50,50,50,50,50,53
+ColsVisible_connform.ListSessions<|||>1<|||>0
+ColPositions_connform.ListSessions<|||>1<|||>0,1,2,3,4,5,6
+ColSort_connform.ListSessions<|||>1<|||>0,0
+ExportSQL_Filenames<|||>1<|||>D:\TW\new_auction\creare_database.sql<{{{><}}}>D:\Programe\excport.sql<{{{><}}}>tw<{{{><}}}>
+ColWidths_frmTableEditor.listColumns<|||>1<|||>54,116,156,90,53,76,50,119,130,140,100,100
+ColsVisible_frmTableEditor.listColumns<|||>1<|||>0,1,2,3,4,5,6,7,8,9,10,11
+ColPositions_frmTableEditor.listColumns<|||>1<|||>0,1,2,3,4,5,6,7,8,9,10,11
+ColSort_frmTableEditor.listColumns<|||>1<|||>-1,0
+ColWidths_frmTableEditor.treeIndexes<|||>1<|||>341,100,80
+ColsVisible_frmTableEditor.treeIndexes<|||>1<|||>0,1,2
+ColPositions_frmTableEditor.treeIndexes<|||>1<|||>0,1,2
+ColSort_frmTableEditor.treeIndexes<|||>1<|||>-1,0
+ColWidths_frmTableEditor.listForeignKeys<|||>1<|||>10,147,143,136,80,80
+ColsVisible_frmTableEditor.listForeignKeys<|||>1<|||>0,1,2,3,4,5
+ColPositions_frmTableEditor.listForeignKeys<|||>1<|||>0,1,2,3,4,5
+ColSort_frmTableEditor.listForeignKeys<|||>1<|||>-1,0
+CoolBand0Index<|||>3<|||>0
+CoolBand0Break<|||>3<|||>1
+CoolBand0Width<|||>3<|||>1298
+CoolBand1Index<|||>3<|||>1
+CoolBand1Break<|||>3<|||>1
+CoolBand1Width<|||>3<|||>1298
+querymemoheight<|||>3<|||>209
+MainWinMaximized<|||>3<|||>1
+MainWinOnMonitor<|||>3<|||>0
+ColWidths_MainForm.ListDatabases<|||>1<|||>150,80,50,50,50,50,50,50,50,50,120
+ColsVisible_MainForm.ListDatabases<|||>1<|||>0,1,2,3,4,5,6,7,8,9,10
+ColPositions_MainForm.ListDatabases<|||>1<|||>0,1,2,3,4,5,6,7,8,9,10
+ColSort_MainForm.ListDatabases<|||>1<|||>0,0
+ColWidths_MainForm.ListVariables<|||>1<|||>160,200,275
+ColsVisible_MainForm.ListVariables<|||>1<|||>0,1,2
+ColPositions_MainForm.ListVariables<|||>1<|||>0,1,2
+ColSort_MainForm.ListVariables<|||>1<|||>0,0
+ColWidths_MainForm.ListStatus<|||>1<|||>160,275,100,100
+ColsVisible_MainForm.ListStatus<|||>1<|||>0,1,2,3
+ColPositions_MainForm.ListStatus<|||>1<|||>0,1,2,3
+ColSort_MainForm.ListStatus<|||>1<|||>0,0
+ColWidths_MainForm.ListProcesses<|||>1<|||>70,80,80,80,80,50,50,145
+ColsVisible_MainForm.ListProcesses<|||>1<|||>0,1,2,3,4,5,6,7
+ColPositions_MainForm.ListProcesses<|||>1<|||>0,1,2,3,4,5,6,7
+ColSort_MainForm.ListProcesses<|||>1<|||>0,1
+ColWidths_MainForm.ListCommandStats<|||>1<|||>120,100,100,100,215
+ColsVisible_MainForm.ListCommandStats<|||>1<|||>0,1,2,3,4
+ColPositions_MainForm.ListCommandStats<|||>1<|||>0,1,2,3,4
+ColSort_MainForm.ListCommandStats<|||>1<|||>1,1
+ColWidths_MainForm.ListTables<|||>1<|||>120,70,70,120,120,70,100,50,70,70,70,70,70,90,120,70,70,70,50
+ColsVisible_MainForm.ListTables<|||>1<|||>0,1,2,3,4,5,6,18
+ColPositions_MainForm.ListTables<|||>1<|||>0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18
+ColSort_MainForm.ListTables<|||>1<|||>0,0
+MemoEditorWidth<|||>3<|||>136
+ExportSQL_CreateDatabases<|||>3<|||>1
+ExportSQL_CreateTables<|||>3<|||>1
+Servers\ProiectTW\SessionCreated<|||>1<|||>2018-05-27 14:52:37
+Servers\ProiectTW\Host<|||>1<|||>127.0.0.1
+Servers\ProiectTW\WindowsAuth<|||>3<|||>0
+Servers\ProiectTW\User<|||>1<|||>root
+Servers\ProiectTW\Password<|||>1<|||>3
+Servers\ProiectTW\LoginPrompt<|||>3<|||>0
+Servers\ProiectTW\Port<|||>1<|||>3306
+Servers\ProiectTW\NetType<|||>3<|||>0
+Servers\ProiectTW\Compressed<|||>3<|||>0
+Servers\ProiectTW\LocalTimeZone<|||>3<|||>0
+Servers\ProiectTW\QueryTimeout<|||>3<|||>0
+Servers\ProiectTW\KeepAlive<|||>3<|||>0
+Servers\ProiectTW\FullTableStatus<|||>3<|||>1
+Servers\ProiectTW\Databases<|||>1<|||>
+Servers\ProiectTW\Comment<|||>1<|||>
+Servers\ProiectTW\StartupScriptFilename<|||>1<|||>
+Servers\ProiectTW\SSHtunnelHost<|||>1<|||>
+Servers\ProiectTW\SSHtunnelHostPort<|||>3<|||>0
+Servers\ProiectTW\SSHtunnelUser<|||>1<|||>
+Servers\ProiectTW\SSHtunnelPassword<|||>1<|||>5
+Servers\ProiectTW\SSHtunnelTimeout<|||>3<|||>4
+Servers\ProiectTW\SSHtunnelPrivateKey<|||>1<|||>
+Servers\ProiectTW\SSHtunnelPort<|||>3<|||>3307
+Servers\ProiectTW\SSL_Active<|||>3<|||>0
+Servers\ProiectTW\SSL_Key<|||>1<|||>
+Servers\ProiectTW\SSL_Cert<|||>1<|||>
+Servers\ProiectTW\SSL_CA<|||>1<|||>
+Servers\ProiectTW\SSL_Cipher<|||>1<|||>
+Servers\ProiectTW\ServerVersionFull<|||>1<|||>10.3.7-MariaDB - mariadb.org binary distribution
+Servers\ProiectTW\ConnectCount<|||>3<|||>14
+Servers\ProiectTW\ServerVersion<|||>3<|||>100307
+Servers\ProiectTW\LastConnect<|||>1<|||>2018-06-14 14:13:07
+Servers\ProiectTW\lastUsedDB<|||>1<|||>tw
+Servers\ProiectTW\RefusedCount<|||>3<|||>3
+Servers\ProiectTW\FavoriteObjects<|||>1<|||>
+Servers\ProiectTW\QueryHistory\2<|||>1<|||>2018-06-08 15:15:27|tw|125|insert into user values(1,"GabiHartobanu","mancare","Hirtobanu","Gabriel","gabi@yahoo.com","romania","","iasi","ciurebesti1","ciurbesti2","111","contacti1","0753******",123)
+Servers\ProiectTW\QueryHistory\3<|||>1<|||>2018-06-10 10:44:00|tw|78|delete from user where user_id = 5
+Servers\ProiectTW\QueryHistory\5<|||>1<|||>2018-06-10 11:07:59|tw|47|delete from testare
+Servers\ProiectTW\QueryHistory\6<|||>1<|||>2018-06-10 16:48:19|tw|46|SELECT user_id, MATCH (username) AGAINST ('a' IN NATURAL LANGUAGE MODE) AS score FROM user;
+Servers\ProiectTW\QueryHistory\8<|||>1<|||>2018-06-10 16:48:32|tw|0|SELECT user_id, MATCH (username) AGAINST ("a" IN NATURAL LANGUAGE MODE) AS score FROM user;
+Servers\ProiectTW\QueryHistory\7<|||>1<|||>2018-06-10 16:49:26|tw|0|SELECT user_id, MATCH (username) AGAINST ("Gabi" IN NATURAL LANGUAGE MODE) AS score FROM user;
+Servers\ProiectTW\QueryHistory\11<|||>1<|||>2018-06-10 16:57:38|tw|0|SELECT user_id, MATCH (username) AGAINST ('GabiHirtobanu' IN NATURAL LANGUAGE MODE) AS score FROM user;
+Servers\ProiectTW\QueryHistory\10<|||>1<|||>2018-06-10 16:57:43|tw|15|SELECT user_id, MATCH (username) AGAINST ('GabiHartobanu' IN NATURAL LANGUAGE MODE) AS score FROM user;
+Servers\ProiectTW\QueryHistory\9<|||>1<|||>2018-06-10 16:59:06|tw|0|SELECT user_id, MATCH (username) AGAINST ('Gab' IN NATURAL LANGUAGE MODE) AS score FROM user;
+Servers\ProiectTW\QueryHistory\14<|||>1<|||>2018-06-10 16:59:42|tw|0|SELECT user_id, MATCH (username) AGAINST ('Gabe Bepis' IN NATURAL LANGUAGE MODE) AS score FROM user;
+Servers\ProiectTW\QueryHistory\15<|||>1<|||>2018-06-10 16:59:47|tw|0|SELECT user_id, MATCH (username) AGAINST ('Gabi Bepis' IN NATURAL LANGUAGE MODE) AS score FROM user;
+Servers\ProiectTW\QueryHistory\13<|||>1<|||>2018-06-10 17:00:08|tw|0|SELECT user_id, MATCH (username) AGAINST ('Gabi Bepis von Gabi.stein' IN NATURAL LANGUAGE MODE) AS score FROM user;
+Servers\ProiectTW\QueryHistory\16<|||>1<|||>2018-06-10 17:00:17|tw|0|SELECT user_id, MATCH (username) AGAINST ('Gabi Bepis von Gabi stein' IN NATURAL LANGUAGE MODE) AS score FROM user;
+Servers\ProiectTW\QueryHistory\17<|||>1<|||>2018-06-10 17:00:30|tw|0|SELECT user_id, MATCH (username) AGAINST ('Gabi.' IN NATURAL LANGUAGE MODE) AS score FROM user;
+Servers\ProiectTW\QueryHistory\18<|||>1<|||>2018-06-10 17:00:44|tw|0|SELECT user_id, MATCH (username) AGAINST ('Gabi,' IN NATURAL LANGUAGE MODE) AS score FROM user;
+Servers\ProiectTW\QueryHistory\19<|||>1<|||>2018-06-10 17:00:49|tw|0|SELECT user_id, MATCH (username) AGAINST ('Gabi;' IN NATURAL LANGUAGE MODE) AS score FROM user;
+Servers\ProiectTW\QueryHistory\21<|||>1<|||>2018-06-10 17:01:27|tw|0|SELECT user_id, MATCH (username) AGAINST ('Gabi dfg dfgijdfsg sijfgsd' IN NATURAL LANGUAGE MODE) AS score FROM user;
+Servers\ProiectTW\QueryHistory\20<|||>1<|||>2018-06-10 17:01:32|tw|0|SELECT user_id, MATCH (username) AGAINST ('Gabi dfg dfgijdfsg sijfgsd gabi' IN NATURAL LANGUAGE MODE) AS score FROM user;
+Servers\ProiectTW\QueryHistory\23<|||>1<|||>2018-06-10 17:06:14|tw|16|SELECT user_id, MATCH (username) AGAINST ('Gabi dfg dfgijdfsg sijfgsd gabi' IN NATURAL LANGUAGE MODE) AS score FROM user where 'score'!=0
+Servers\ProiectTW\QueryHistory\24<|||>1<|||>2018-06-10 17:06:27|tw|0|SELECT user_id, MATCH (username) AGAINST ('Gabi dfg dfgijdfsg sijfgsd gabi' IN NATURAL LANGUAGE MODE) AS score FROM user where "score"!=0
+Servers\ProiectTW\QueryHistory\25<|||>1<|||>2018-06-10 17:07:02|tw|0|SELECT user_id, MATCH (username) AGAINST ('Gabi dfg dfgijdfsg sijfgsd gabi' IN NATURAL LANGUAGE MODE) AS "score" FROM user where "score"!=0
+Servers\ProiectTW\QueryHistory\22<|||>1<|||>2018-06-10 17:08:36|tw|0|SELECT user_id, MATCH (username) AGAINST ('Gabi dfg dfgijdfsg sijfgsd gabi' IN NATURAL LANGUAGE MODE) AS score FROM user where user_id=5
+Servers\ProiectTW\QueryHistory\26<|||>1<|||>2018-06-10 17:08:46|tw|0|SELECT user_id, MATCH (username) AGAINST ('Gabi' IN NATURAL LANGUAGE MODE) AS score FROM user;
+Servers\ProiectTW\QueryHistory\12<|||>1<|||>2018-06-10 17:08:59|tw|0|SELECT user_id, MATCH (username) AGAINST ('Gabi' IN NATURAL LANGUAGE MODE) AS score FROM user where user_id=5
+Servers\ProiectTW\QueryHistory\27<|||>1<|||>2018-06-10 17:09:17|tw|0|SELECT user_id, MATCH (username) AGAINST ('Gabi' IN NATURAL LANGUAGE MODE) AS score FROM user where 'score'!=0
+Servers\ProiectTW\QueryHistory\28<|||>1<|||>2018-06-10 17:09:24|tw|0|SELECT user_id, MATCH (username) AGAINST ('Gabi' IN NATURAL LANGUAGE MODE) AS score FROM user where "score"!=0
+Servers\ProiectTW\QueryHistory\29<|||>1<|||>2018-06-10 17:10:21|tw|0|SELECT user_id, MATCH (username) AGAINST ('Gabi' IN NATURAL LANGUAGE MODE) AS "score" FROM user where 'score' != null
+Servers\ProiectTW\QueryHistory\31<|||>1<|||>2018-06-10 17:10:31|tw|0|SELECT user_id, MATCH (username) AGAINST ('Gabi' IN NATURAL LANGUAGE MODE) AS "score" FROM user where 'score' != 0
+Servers\ProiectTW\QueryHistory\32<|||>1<|||>2018-06-10 17:10:37|tw|31|SELECT user_id, MATCH (username) AGAINST ('Gabi' IN NATURAL LANGUAGE MODE) AS "score" FROM user where 'score' != 0.
+Servers\ProiectTW\QueryHistory\33<|||>1<|||>2018-06-10 17:10:43|tw|0|SELECT user_id, MATCH (username) AGAINST ('Gabi' IN NATURAL LANGUAGE MODE) AS "score" FROM user where 'score' != 0.0
+Servers\ProiectTW\QueryHistory\36<|||>1<|||>2018-06-10 17:12:11|tw|0|SELECT user_id, MATCH (username) AGAINST ('Gabi' IN NATURAL LANGUAGE MODE) AS "score" FROM user where 'score'=0
+Servers\ProiectTW\QueryHistory\38<|||>1<|||>2018-06-10 17:12:40|tw|0|SELECT user_id, MATCH (username) AGAINST ('Gabi' IN NATURAL LANGUAGE MODE) AS score FROM user where 'score'='0'
+Servers\ProiectTW\QueryHistory\37<|||>1<|||>2018-06-10 17:12:56|tw|0|SELECT user_id, MATCH (username) AGAINST ('Gabi' IN NATURAL LANGUAGE MODE) AS score FROM user where "score"=0
+Servers\ProiectTW\QueryHistory\35<|||>1<|||>2018-06-10 17:14:01|tw|0|SELECT user_id, MATCH (username) AGAINST ('Gabi' IN NATURAL LANGUAGE MODE) AS score FROM user where 'score'=0
+Servers\ProiectTW\QueryHistory\39<|||>1<|||>2018-06-10 17:14:07|tw|0|SELECT user_id, MATCH (username) AGAINST ('Gabi' IN NATURAL LANGUAGE MODE) AS score FROM user where 'score'=0.0
+Servers\ProiectTW\QueryHistory\40<|||>1<|||>2018-06-10 17:36:48|tw|0|SELECT user_id, MATCH (username) AGAINST ('Gabi' IN NATURAL LANGUAGE MODE) AS "score" FROM user where "score"=0.00000000000
+Servers\ProiectTW\QueryHistory\43<|||>1<|||>2018-06-10 17:36:55|tw|0|SELECT user_id, MATCH (username) AGAINST ('Gabi' IN NATURAL LANGUAGE MODE) AS "score" FROM user where "score"=0.000000000000000000
+Servers\ProiectTW\QueryHistory\44<|||>1<|||>2018-06-10 17:37:17|tw|0|SELECT user_id, MATCH (username) AGAINST ('Gabi' IN NATURAL LANGUAGE MODE) AS "score" FROM user where "score"=0.0
+Servers\ProiectTW\QueryHistory\42<|||>1<|||>2018-06-10 17:38:16|tw|31|SELECT user_id, MATCH (username) AGAINST ('Gabi' IN NATURAL LANGUAGE MODE) AS "score" FROM user where floor("score")=0
+Servers\ProiectTW\QueryHistory\45<|||>1<|||>2018-06-10 17:38:32|tw|0|SELECT user_id, MATCH (username) AGAINST ('Gabi' IN NATURAL LANGUAGE MODE) AS "score" FROM user where ceil("score")=0
+Servers\ProiectTW\QueryHistory\46<|||>1<|||>2018-06-10 17:38:38|tw|0|SELECT user_id, MATCH (username) AGAINST ('Gabi' IN NATURAL LANGUAGE MODE) AS "score" FROM user where ceil("score")=0.0
+Servers\ProiectTW\QueryHistory\48<|||>1<|||>2018-06-10 17:39:29|tw|0|SELECT user_id, MATCH (username) AGAINST ('Gabi' IN NATURAL LANGUAGE MODE) AS "score" FROM user where "score">0
+Servers\ProiectTW\QueryHistory\47<|||>1<|||>2018-06-10 17:39:34|tw|0|SELECT user_id, MATCH (username) AGAINST ('Gabi' IN NATURAL LANGUAGE MODE) AS "score" FROM user where "score"=0
+Servers\ProiectTW\QueryHistory\49<|||>1<|||>2018-06-10 17:40:05|tw|0|SELECT user_id, MATCH (username) AGAINST ('Gabi' IN NATURAL LANGUAGE MODE) AS "score" FROM user where "score"!=0.0
+Servers\ProiectTW\QueryHistory\30<|||>1<|||>2018-06-10 17:40:40|tw|0|SELECT user_id, MATCH (username) AGAINST ('Gabi' IN NATURAL LANGUAGE MODE) AS "score" FROM user where "score"!=0
+Servers\ProiectTW\QueryHistory\41<|||>1<|||>2018-06-10 17:40:56|tw|0|SELECT user_id, MATCH (username) AGAINST ('Gabi' IN NATURAL LANGUAGE MODE) AS "score" FROM user
+Servers\ProiectTW\QueryHistory\50<|||>1<|||>2018-06-10 17:41:03|tw|0|SELECT user_id, MATCH (username) AGAINST ('Gabi' IN NATURAL LANGUAGE MODE) AS "score" FROM user order by score
+Servers\ProiectTW\QueryHistory\51<|||>1<|||>2018-06-10 17:41:07|tw|0|SELECT user_id, MATCH (username) AGAINST ('Gabi' IN NATURAL LANGUAGE MODE) AS "score" FROM user order by score desc
+Servers\ProiectTW\QueryHistory\34<|||>1<|||>2018-06-10 17:41:34|tw|0|SELECT user_id, MATCH (username) AGAINST ('Gabi' IN NATURAL LANGUAGE MODE) AS "score" FROM user where "score" order by score desc
+Servers\ProiectTW\QueryHistory\53<|||>1<|||>2018-06-10 17:41:57|tw|0|SELECT user_id, MATCH (username) AGAINST ('Gabi' IN NATURAL LANGUAGE MODE) AS "score" FROM user where "score" like 0 order by score desc
+Servers\ProiectTW\QueryHistory\54<|||>1<|||>2018-06-10 17:42:04|tw|0|SELECT user_id, MATCH (username) AGAINST ('Gabi' IN NATURAL LANGUAGE MODE) AS "score" FROM user where "score" not like 0 order by score desc
+Servers\ProiectTW\QueryHistory\52<|||>1<|||>2018-06-10 17:42:23|tw|31|SELECT user_id, MATCH (username) AGAINST ('Gabi' IN NATURAL LANGUAGE MODE) AS "score" FROM user where "score" not like 0 and "score">0 order by score desc
+Servers\ProiectTW\QueryHistory\55<|||>1<|||>2018-06-10 17:42:30|tw|0|SELECT user_id, MATCH (username) AGAINST ('Gabi' IN NATURAL LANGUAGE MODE) AS "score" FROM user where "score" not like 0 and "score">0.0 order by score desc
+Servers\ProiectTW\QueryHistory\56<|||>1<|||>2018-06-10 17:43:39|tw|0|SELECT user_id, MATCH (username) AGAINST ('Gabi' IN NATURAL LANGUAGE MODE) AS "score" FROM user where 'score'!=0 order by score desc
+Servers\ProiectTW\QueryHistory\57<|||>1<|||>2018-06-10 17:43:45|tw|0|SELECT user_id, MATCH (username) AGAINST ('Gabi' IN NATURAL LANGUAGE MODE) AS score FROM user where 'score'!=0 order by score desc
+Servers\ProiectTW\QueryHistory\58<|||>1<|||>2018-06-10 17:44:07|tw|0|SELECT user_id, MATCH (username) AGAINST ('Gabi' IN NATURAL LANGUAGE MODE) AS "score" FROM user where "score"!=0 order by score desc
+Servers\ProiectTW\QueryHistory\60<|||>1<|||>2018-06-10 17:47:17|tw|0|SELECT user_id, MATCH (username) AGAINST ('Gabi' IN NATURAL LANGUAGE MODE) AS "score" FROM user where "score" in ('0') order by score desc
+Servers\ProiectTW\QueryHistory\61<|||>1<|||>2018-06-10 17:47:24|tw|0|SELECT user_id, MATCH (username) AGAINST ('Gabi' IN NATURAL LANGUAGE MODE) AS "score" FROM user where "score" in (0) order by score desc
+Servers\ProiectTW\QueryHistory\59<|||>1<|||>2018-06-10 17:51:50|tw|31|SELECT user_id, MATCH (username) AGAINST ('Gabi' IN NATURAL LANGUAGE MODE) AS "score" FROM user where "score"= cast(0 as double) order by score desc
+Servers\ProiectTW\QueryHistory\62<|||>1<|||>2018-06-10 17:52:04|tw|0|SELECT user_id, MATCH (username) AGAINST ('Gabi' IN NATURAL LANGUAGE MODE) AS "score" FROM user where cast("score" as double)= cast(0 as double) order by score desc
+Servers\ProiectTW\QueryHistory\63<|||>1<|||>2018-06-10 17:53:32|tw|78|SELECT user_id, cast((MATCH (username) AGAINST ('Gabi' IN NATURAL LANGUAGE MODE)) as double) AS "score" FROM user where "score"= cast(0 as double) order by score desc
+Servers\ProiectTW\QueryHistory\64<|||>1<|||>2018-06-10 17:53:38|tw|0|SELECT user_id, cast((MATCH (username) AGAINST ('Gabi' IN NATURAL LANGUAGE MODE)) as double) AS "score" FROM user where cast("score" as double)= cast(0 as double) order by score desc
+Servers\ProiectTW\QueryHistory\65<|||>1<|||>2018-06-10 17:54:05|tw|0|SELECT user_id, MATCH (username) AGAINST ('Gabi' IN NATURAL LANGUAGE MODE) AS "score" FROM user 
+Servers\ProiectTW\QueryHistory\66<|||>1<|||>2018-06-10 17:54:22|tw|0|SELECT user_id, MATCH (username) AGAINST ('Gabi' IN NATURAL LANGUAGE MODE) AS 'score' FROM user 
+Servers\ProiectTW\QueryHistory\67<|||>1<|||>2018-06-10 17:54:30|tw|0|SELECT user_id, MATCH (username) AGAINST ('Gabi' IN NATURAL LANGUAGE MODE) AS score FROM user 
+Servers\ProiectTW\QueryHistory\68<|||>1<|||>2018-06-10 17:54:38|tw|0|SELECT user_id, MATCH (username) AGAINST ('Gabi' IN NATURAL LANGUAGE MODE) AS score FROM user order by score
+Servers\ProiectTW\QueryHistory\69<|||>1<|||>2018-06-10 17:54:42|tw|0|SELECT user_id, MATCH (username) AGAINST ('Gabi' IN NATURAL LANGUAGE MODE) AS score FROM user order by score desc
+Servers\ProiectTW\QueryHistory\70<|||>1<|||>2018-06-10 17:55:05|tw|0|SELECT user_id, MATCH (username) AGAINST ('Gabi' IN NATURAL LANGUAGE MODE) AS score FROM user where "score"=0 order by score desc
+Servers\ProiectTW\QueryHistory\71<|||>1<|||>2018-06-10 17:55:27|tw|0|SELECT user_id, MATCH (username) AGAINST ('Gabi' IN NATURAL LANGUAGE MODE) AS score FROM user where cast("score" as int)=0 order by score desc
+Servers\ProiectTW\QueryHistory\72<|||>1<|||>2018-06-10 17:55:41|tw|0|SELECT user_id, MATCH (username) AGAINST ('Gabi' IN NATURAL LANGUAGE MODE) AS score FROM user where cast("score" as int)=cast(0 as int) order by score desc
+Servers\ProiectTW\QueryHistory\74<|||>1<|||>2018-06-10 17:56:03|tw|0|SELECT user_id, MATCH (username) AGAINST ('Gabi' IN NATURAL LANGUAGE MODE) AS score FROM user where cast('score' as int)=cast(0 as int) order by score desc
+Servers\ProiectTW\QueryHistory\73<|||>1<|||>2018-06-10 17:58:10|tw|94|select * from ((SELECT user_id, MATCH (username) AGAINST ('Gabi' IN NATURAL LANGUAGE MODE) AS score FROM user) as cacat)
+Servers\ProiectTW\QueryHistory\76<|||>1<|||>2018-06-10 18:06:44|tw|0|select user_id from ((SELECT user_id, MATCH (username) AGAINST ('Gabi' IN NATURAL LANGUAGE MODE) AS score FROM user) as cacat) where score !=0
+Servers\ProiectTW\QueryHistory\77<|||>1<|||>2018-06-10 18:14:32|tw|0|select * from ((SELECT user_id, MATCH (username) AGAINST ('Gabi' IN NATURAL LANGUAGE MODE) AS score FROM user) as cacat) where score !=0
+Servers\ProiectTW\QueryHistory\75<|||>1<|||>2018-06-10 18:17:48|tw|0|select product_data_id from ((SELECT product_data_id, MATCH (title,description) AGAINST ("{info}" IN NATURAL LANGUAGE MODE) AS "score" FROM productdata) as intermediar_table) where score!=0<{{{><}}}>
+Servers\ProiectTW\QueryHistory\78<|||>1<|||>2018-06-11 14:30:43|tw|93|select user_id from ((SELECT user_id, MATCH (username) AGAINST ("Gabi" IN NATURAL LANGUAGE MODE) AS "score" FROM user) as intermediar_table) where user_id=5 <{{{><}}}>
+Servers\ProiectTW\QueryHistory\79<|||>1<|||>2018-06-11 14:30:57|tw|0|select user_id from ((SELECT user_id, MATCH (username) AGAINST ("Gabi" IN NATURAL LANGUAGE MODE) AS "score" FROM user) as intermediar_table)  <{{{><}}}>
+Servers\ProiectTW\QueryHistory\80<|||>1<|||>2018-06-11 14:31:05|tw|79|select user_id from ((SELECT user_id, MATCH (username) AGAINST ("Gabi" IN NATURAL LANGUAGE MODE) AS "score" FROM user) as intermediar_table) order by score <{{{><}}}>
+Servers\ProiectTW\QueryHistory\81<|||>1<|||>2018-06-11 14:31:09|tw|0|select user_id from ((SELECT user_id, MATCH (username) AGAINST ("Gabi" IN NATURAL LANGUAGE MODE) AS "score" FROM user) as intermediar_table) order by score desc <{{{><}}}>
+Servers\ProiectTW\QueryHistory\83<|||>1<|||>2018-06-11 14:31:55|tw|31|select * from ((SELECT user_id, MATCH (username) AGAINST ("Adrian" IN NATURAL LANGUAGE MODE) AS "score" FROM user) as intermediar_table) order by score desc <{{{><}}}>
+Servers\ProiectTW\QueryHistory\84<|||>1<|||>2018-06-11 14:32:01|tw|0|select * from ((SELECT user_id, MATCH (username) AGAINST ("Gabi" IN NATURAL LANGUAGE MODE) AS "score" FROM user) as intermediar_table) order by score desc <{{{><}}}>
+Servers\ProiectTW\QueryHistory\82<|||>1<|||>2018-06-11 14:32:07|tw|0|select * from ((SELECT user_id, MATCH (username) AGAINST ("Hartobanu" IN NATURAL LANGUAGE MODE) AS "score" FROM user) as intermediar_table) order by score desc <{{{><}}}>
+Servers\ProiectTW\QueryHistory\86<|||>1<|||>2018-06-11 14:34:55|tw|0|select * from ((SELECT user_id, MATCH (username) AGAINST ("Hartobanu" IN NATURAL LANGUAGE MODE) AS "score" FROM user) as intermediar_table) <{{{><}}}>
+Servers\ProiectTW\QueryHistory\85<|||>1<|||>2018-06-11 14:35:03|tw|0|select * from ((SELECT user_id, MATCH (username) AGAINST ("Gabi" IN NATURAL LANGUAGE MODE) AS "score" FROM user) as intermediar_table) <{{{><}}}>
+Servers\ProiectTW\QueryHistory\87<|||>1<|||>2018-06-11 14:36:01|tw|0|select * from ((SELECT user_id, MATCH (username) AGAINST ('Eu' IN NATURAL LANGUAGE MODE) AS "score" FROM user) as intermediar_table) <{{{><}}}>
+Servers\ProiectTW\QueryHistory\89<|||>1<|||>2018-06-11 14:37:30|tw|0|select * from ((SELECT user_id, MATCH (username) AGAINST ('Gabi' IN NATURAL LANGUAGE MODE) AS "score" FROM user) as intermediar_table) <{{{><}}}>
+Servers\ProiectTW\QueryHistory\91<|||>1<|||>2018-06-11 14:40:32|tw|0|select * from ((SELECT user_id, MATCH (username) AGAINST ('Eu' IN NATURAL LANGUAGE MODE) AS score FROM user) as intermediar_table) <{{{><}}}>
+Servers\ProiectTW\QueryHistory\92<|||>1<|||>2018-06-11 14:42:10|tw|0|select * from ((SELECT user_id, MATCH (username) AGAINST ("eu" IN NATURAL LANGUAGE MODE) AS score FROM user) as intermediar_table) <{{{><}}}>
+Servers\ProiectTW\QueryHistory\95<|||>1<|||>2018-06-11 14:44:52|tw|0|select * from ((SELECT user_id, MATCH (username) AGAINST ("Hartobanu " IN NATURAL LANGUAGE MODE) AS score FROM user) as intermediar_table) <{{{><}}}>
+Servers\ProiectTW\QueryHistory\94<|||>1<|||>2018-06-11 14:44:57|tw|0|select * from ((SELECT user_id, MATCH (username) AGAINST ("Hartobanu" IN NATURAL LANGUAGE MODE) AS score FROM user) as intermediar_table) <{{{><}}}>
+Servers\ProiectTW\QueryHistory\96<|||>1<|||>2018-06-11 14:45:05|tw|0|select * from ((SELECT user_id, MATCH (username) AGAINST ("Gabi" IN NATURAL LANGUAGE MODE) AS score FROM user) as intermediar_table) <{{{><}}}>
+Servers\ProiectTW\QueryHistory\93<|||>1<|||>2018-06-11 14:45:32|tw|0|select * from ((SELECT user_id, MATCH (username) AGAINST ('Gabi' IN NATURAL LANGUAGE MODE) AS score FROM user) as intermediar_table) <{{{><}}}>
+Servers\ProiectTW\QueryHistory\1<|||>1<|||>2018-06-11 14:53:27|tw|0|SELECT user_id, MATCH (username) AGAINST ('Gabi' IN NATURAL LANGUAGE MODE) AS score FROM user <{{{><}}}>
+Servers\ProiectTW\QueryHistory\90<|||>1<|||>2018-06-11 14:53:44|tw|0|SELECT user_id, MATCH (username) AGAINST ('Gabi' IN NATURAL LANGUAGE MODE) AS "score" FROM user <{{{><}}}>
+Servers\ProiectTW\QueryHistory\88<|||>1<|||>2018-06-11 14:56:57|tw|0|SELECT user_id, MATCH (username)<{{{><}}}>    AGAINST ('Gabi' IN NATURAL LANGUAGE MODE) AS score<{{{><}}}>    FROM user;
+Servers\ProiectTW\QueryHistory\99<|||>1<|||>2018-06-11 15:00:13|tw|0|SELECT user_id, MATCH (username)<{{{><}}}>    AGAINST ("Hirtobanu" IN NATURAL LANGUAGE MODE) AS score<{{{><}}}>    FROM user;
+Servers\ProiectTW\QueryHistory\98<|||>1<|||>2018-06-11 15:05:45|tw|0|SELECT user_id, MATCH (username)<{{{><}}}>    AGAINST ("Vitel" IN NATURAL LANGUAGE MODE) AS score<{{{><}}}>    FROM user;
+Servers\ProiectTW\QueryHistory\103<|||>1<|||>2018-06-11 15:10:14|tw|0|SELECT user_id, MATCH (username)<{{{><}}}>    AGAINST ("Vitel Silviu" IN NATURAL LANGUAGE MODE) AS score<{{{><}}}>    FROM user;
+Servers\ProiectTW\QueryHistory\104<|||>1<|||>2018-06-11 15:18:10|tw|0|SELECT user_id, MATCH (username)<{{{><}}}>    AGAINST ("gABI" IN BOOLEAN MODE) AS score<{{{><}}}>    FROM user;
+Servers\ProiectTW\QueryHistory\102<|||>1<|||>2018-06-11 15:19:00|tw|250|delete from user
+Servers\ProiectTW\QueryHistory\97<|||>1<|||>2018-06-11 15:19:54|tw|0|SELECT user_id, MATCH (username)<{{{><}}}>    AGAINST ("Ciulin" IN BOOLEAN MODE) AS score<{{{><}}}>    FROM user;
+Servers\ProiectTW\QueryHistory\106<|||>1<|||>2018-06-11 15:20:01|tw|0|SELECT user_id, MATCH (username)<{{{><}}}>    AGAINST ("Gabi" IN BOOLEAN MODE) AS score<{{{><}}}>    FROM user;
+Servers\ProiectTW\QueryHistory\105<|||>1<|||>2018-06-11 15:20:41|tw|0|SELECT user_id, MATCH (username)<{{{><}}}>    AGAINST ("Ciulin" IN NATURAL LANGUAGE MODE) AS score<{{{><}}}>    FROM user;
+Servers\ProiectTW\QueryHistory\100<|||>1<|||>2018-06-11 15:21:12|tw|0|SELECT user_id, MATCH (username)<{{{><}}}>    AGAINST ("Baisan" IN NATURAL LANGUAGE MODE) AS score<{{{><}}}>    FROM user;
+Servers\ProiectTW\QueryHistory\107<|||>1<|||>2018-06-11 15:21:25|tw|0|SELECT user_id, MATCH (username)<{{{><}}}>    AGAINST ("Razvan" IN NATURAL LANGUAGE MODE) AS score<{{{><}}}>    FROM user;
+Servers\ProiectTW\QueryHistory\108<|||>1<|||>2018-06-11 15:21:30|tw|0|SELECT user_id, MATCH (username)<{{{><}}}>    AGAINST ("Gabi" IN NATURAL LANGUAGE MODE) AS score<{{{><}}}>    FROM user;
+Servers\ProiectTW\QueryHistory\101<|||>1<|||>2018-06-11 15:21:53|tw|0|SELECT user_id, MATCH (username)<{{{><}}}>    AGAINST ("Gabi" IN boolean MODE) AS score<{{{><}}}>    FROM user;
+Servers\ProiectTW\QueryHistory\109<|||>1<|||>2018-06-11 15:22:00|tw|0|SELECT user_id, MATCH (username)<{{{><}}}>    AGAINST ("Razvan" IN boolean MODE) AS score<{{{><}}}>    FROM user;
+Servers\ProiectTW\QueryHistory\111<|||>1<|||>2018-06-11 15:23:42|tw|0|SELECT user_id, MATCH (username)<{{{><}}}>    AGAINST ("Razvan Baisan" IN boolean MODE) AS score<{{{><}}}>    FROM user;
+Servers\ProiectTW\QueryHistory\110<|||>1<|||>2018-06-11 15:47:41|tw|0|SELECT user_id, MATCH (username)<{{{><}}}>    AGAINST ("Razvan Baisan") AS score<{{{><}}}>    FROM user;
+Servers\ProiectTW\QueryHistory\112<|||>1<|||>2018-06-11 15:49:02|tw|0|SELECT user_id, MATCH (username)<{{{><}}}>    AGAINST ("Razvan Baisan*" in boolean mode) AS score<{{{><}}}>    FROM user;
+Servers\ProiectTW\QueryHistory\113<|||>1<|||>2018-06-11 15:49:07|tw|0|SELECT user_id, MATCH (username)<{{{><}}}>    AGAINST ("Razvan Baisan" in boolean mode) AS score<{{{><}}}>    FROM user;
+Servers\ProiectTW\QueryHistory\114<|||>1<|||>2018-06-11 15:51:30|tw|0|SELECT user_id, MATCH (username)<{{{><}}}>    AGAINST ("razvan Baisan" in boolean mode) AS score<{{{><}}}>    FROM user;
+Servers\ProiectTW\QueryHistory\115<|||>1<|||>2018-06-11 15:51:34|tw|0|SELECT user_id, MATCH (username)<{{{><}}}>    AGAINST ("razvan baisan" in boolean mode) AS score<{{{><}}}>    FROM user;
+Servers\ProiectTW\QueryHistory\116<|||>1<|||>2018-06-11 15:53:23|tw|0|SELECT user_id, MATCH (username)<{{{><}}}>    AGAINST ("baisan razvan" in boolean mode) AS score<{{{><}}}>    FROM user;
+Servers\ProiectTW\QueryHistory\117<|||>1<|||>2018-06-11 15:53:31|tw|0|SELECT user_id, MATCH (username)<{{{><}}}>    AGAINST ("baisan razvan gabi" in boolean mode) AS score<{{{><}}}>    FROM user;
+Servers\ProiectTW\QueryHistory\119<|||>1<|||>2018-06-11 15:53:36|tw|0|SELECT user_id, MATCH (username)<{{{><}}}>    AGAINST ("baisan razvan gabi silviu" in boolean mode) AS score<{{{><}}}>    FROM user;
+Servers\ProiectTW\QueryHistory\118<|||>1<|||>2018-06-11 15:53:43|tw|0|SELECT user_id, MATCH (username)<{{{><}}}>    AGAINST ("gabi silviu" in boolean mode) AS score<{{{><}}}>    FROM user;
+Servers\ProiectTW\QueryHistory\120<|||>1<|||>2018-06-11 15:53:49|tw|0|SELECT user_id, MATCH (username)<{{{><}}}>    AGAINST ("baisan gabi silviu" in boolean mode) AS score<{{{><}}}>    FROM user;
+Servers\ProiectTW\QueryHistory\122<|||>1<|||>2018-06-11 15:54:52|tw|0|SELECT user_id, MATCH (username)<{{{><}}}>    AGAINST ("baisan gabi adrian" in boolean mode) AS score<{{{><}}}>    FROM user;
+Servers\ProiectTW\QueryHistory\121<|||>1<|||>2018-06-11 15:54:59|tw|0|SELECT user_id, MATCH (username)<{{{><}}}>    AGAINST ("gabi adrian" in boolean mode) AS score<{{{><}}}>    FROM user;
+Servers\ProiectTW\QueryHistory\124<|||>1<|||>2018-06-11 15:55:16|tw|0|SELECT user_id, MATCH (username)<{{{><}}}>    AGAINST ("gabi" in natural language mode) AS score<{{{><}}}>    FROM user;
+Servers\ProiectTW\QueryHistory\125<|||>1<|||>2018-06-11 15:55:22|tw|0|SELECT user_id, MATCH (username)<{{{><}}}>    AGAINST ("gabi cosmin" in natural language mode) AS score<{{{><}}}>    FROM user;
+Servers\ProiectTW\QueryHistory\126<|||>1<|||>2018-06-11 15:55:28|tw|0|SELECT user_id, MATCH (username)<{{{><}}}>    AGAINST ("gabi cosmin silviu" in natural language mode) AS score<{{{><}}}>    FROM user;
+Servers\ProiectTW\QueryHistory\127<|||>1<|||>2018-06-11 15:55:32|tw|0|SELECT user_id, MATCH (username)<{{{><}}}>    AGAINST ("gabi cosmin silviu adrian" in natural language mode) AS score<{{{><}}}>    FROM user;
+Servers\ProiectTW\QueryHistory\128<|||>1<|||>2018-06-11 15:55:40|tw|0|SELECT user_id, MATCH (username)<{{{><}}}>    AGAINST ("cosmin silviu adrian" in natural language mode) AS score<{{{><}}}>    FROM user;
+Servers\ProiectTW\QueryHistory\129<|||>1<|||>2018-06-11 15:56:58|tw|0|SELECT user_id, MATCH (username)<{{{><}}}>    AGAINST ("cosmin silviu adrian" in boolean mode) AS score<{{{><}}}>    FROM user;
+Servers\ProiectTW\QueryHistory\130<|||>1<|||>2018-06-11 15:57:49|tw|0|SELECT user_id, MATCH (username)<{{{><}}}>    AGAINST ('cosmin silviu adrian' in boolean mode) AS score<{{{><}}}>    FROM user;
+Servers\ProiectTW\QueryHistory\131<|||>1<|||>2018-06-11 15:57:57|tw|16|SELECT user_id, MATCH (username)<{{{><}}}>    AGAINST ('cosmin "silviu" adrian' in boolean mode) AS score<{{{><}}}>    FROM user;
+Servers\ProiectTW\QueryHistory\132<|||>1<|||>2018-06-11 15:59:30|tw|0|SELECT user_id, MATCH (username)<{{{><}}}>    AGAINST ('+cosmin +silviu +adrian' in boolean mode) AS score<{{{><}}}>    FROM user;
+Servers\ProiectTW\QueryHistory\133<|||>1<|||>2018-06-11 15:59:36|tw|0|SELECT user_id, MATCH (username)<{{{><}}}>    AGAINST (' +silviu +adrian' in boolean mode) AS score<{{{><}}}>    FROM user;
+Servers\ProiectTW\QueryHistory\134<|||>1<|||>2018-06-11 15:59:45|tw|0|SELECT user_id, MATCH (username)<{{{><}}}>    AGAINST ('+silviu +adrian' in boolean mode) AS score<{{{><}}}>    FROM user;
+Servers\ProiectTW\QueryHistory\135<|||>1<|||>2018-06-11 15:59:57|tw|0|SELECT user_id, MATCH (username)<{{{><}}}>    AGAINST ('gabi' in boolean mode) AS score<{{{><}}}>    FROM user;
+Servers\ProiectTW\QueryHistory\136<|||>1<|||>2018-06-11 16:00:04|tw|0|SELECT user_id, MATCH (username)<{{{><}}}>    AGAINST ('+gabi' in boolean mode) AS score<{{{><}}}>    FROM user;
+Servers\ProiectTW\QueryHistory\137<|||>1<|||>2018-06-11 16:00:12|tw|0|SELECT user_id, MATCH (username)<{{{><}}}>    AGAINST ('+gabi hirtobanu' in boolean mode) AS score<{{{><}}}>    FROM user;
+Servers\ProiectTW\QueryHistory\139<|||>1<|||>2018-06-11 16:06:43|tw|0|SELECT user_id, MATCH (username)<{{{><}}}>    AGAINST ('gabi hirtobanu' in boolean mode) AS score<{{{><}}}>    FROM user;
+Servers\ProiectTW\QueryHistory\140<|||>1<|||>2018-06-11 16:07:16|tw|0|RESET QUERY CACHE;
+Servers\ProiectTW\QueryHistory\138<|||>1<|||>2018-06-11 16:10:03|tw|0|SELECT user_id, MATCH (username)<{{{><}}}>    AGAINST ('gabi hirtobanu silviu' in boolean mode) AS score<{{{><}}}>    FROM user;
+Servers\ProiectTW\QueryHistory\141<|||>1<|||>2018-06-11 16:10:15|tw|0|SELECT user_id, MATCH (username)<{{{><}}}>    AGAINST ("gabi" in boolean mode) AS score<{{{><}}}>    FROM user;
+Servers\ProiectTW\QueryHistory\123<|||>1<|||>2018-06-11 16:10:23|tw|0|SELECT user_id, MATCH (username)<{{{><}}}>    AGAINST ("silviu" in boolean mode) AS score<{{{><}}}>    FROM user;
+Servers\ProiectTW\QueryHistory\142<|||>1<|||>2018-06-11 16:10:35|tw|0|SELECT user_id, MATCH (username)<{{{><}}}>    AGAINST ("silviu" in natural language mode) AS score<{{{><}}}>    FROM user;
+Servers\ProiectTW\QueryHistory\143<|||>1<|||>2018-06-11 16:12:25|tw|672|ALTER TABLE user ADD FULLTEXT INDEX (username);
+Servers\ProiectTW\QueryHistory\144<|||>1<|||>2018-06-11 16:14:53|tw|0|SELECT user_id from user where match (username) against ('Gabi')!=0
+Servers\ProiectTW\QueryHistory\145<|||>1<|||>2018-06-11 16:15:01|tw|0|SELECT user_id from user where match (username) against ('Gabi')
+Servers\ProiectTW\QueryHistory\146<|||>1<|||>2018-06-11 16:15:13|tw|0|SELECT * from user where match (username) against ('Gabi')
+Servers\ProiectTW\QueryHistory\147<|||>1<|||>2018-06-11 16:15:41|tw|0|SELECT * from user where match (username) against ('Gabriel')
+Servers\ProiectTW\QueryHistory\148<|||>1<|||>2018-06-11 16:16:24|tw|0|SELECT * from user where match (username) against ('Gabriel gabi')
+Servers\ProiectTW\QueryHistory\149<|||>1<|||>2018-06-11 16:19:08|tw|78|SELECT * from user where match (username) against ('Gabriel gabi') and user_id<20
+Servers\ProiectTW\QueryHistory\150<|||>1<|||>2018-06-11 16:24:01|tw|16|SELECT * from user where match (username) against ('Gabriel gabi') and user_id<20 order by match (username) against ('Gabriel gabi')
+Servers\ProiectTW\QueryHistory\152<|||>1<|||>2018-06-11 16:24:23|tw|0|SELECT * from user where match (username) against ('Gabriel gabi') 
+Servers\ProiectTW\QueryHistory\153<|||>1<|||>2018-06-11 16:24:27|tw|0|SELECT * from user where match (username) against ('Gabriel gabi') order by match (username) against ('Gabriel gabi')
+Servers\ProiectTW\QueryHistory\155<|||>1<|||>2018-06-11 16:25:05|tw|0|SELECT * from user where match (username) against ('Gabriel gabi Adrian') order by match (username) against ('Gabriel gabi') desc
+Servers\ProiectTW\QueryHistory\156<|||>1<|||>2018-06-11 16:25:28|tw|0|SELECT * from user where match (username) against ('Gabriel gabi Adrian') order by match (username) against ('Gabriel gabi') 
+Servers\ProiectTW\QueryHistory\157<|||>1<|||>2018-06-11 16:25:54|tw|0|SELECT * from user where match (username) against ('Gabriel gabi') order by match (username) against ('Gabriel gabi') 
+Servers\ProiectTW\QueryHistory\154<|||>1<|||>2018-06-11 16:26:07|tw|0|SELECT * from user where match (username) against ('Gabriel gabi') order by match (username) against ('Gabriel gabi') desc
+Servers\ProiectTW\QueryHistory\151<|||>1<|||>2018-06-11 16:26:30|tw|0|SELECT * from user where match (username) against ('Gabriel gabi') order by match (username) against ('Gabriel gabi' in boolean mode) desc
+Servers\ProiectTW\QueryHistory\158<|||>1<|||>2018-06-11 16:26:41|tw|0|SELECT * from user where match (username) against ('Gabriel gabi Adrian') order by match (username) against ('Gabriel gabi' in boolean mode) desc
+Servers\ProiectTW\QueryHistory\159<|||>1<|||>2018-06-11 16:27:22|tw|0|SELECT user_id, match (username) against ('Gabriel gabi Adrian') from user 
+Servers\ProiectTW\QueryHistory\160<|||>1<|||>2018-06-11 16:28:57|tw|0|SELECT * from user order by match (username) against ('Gabriel gabi' in boolean mode) desc
+Servers\ProiectTW\QueryHistory\161<|||>1<|||>2018-06-11 16:30:28|tw|0|SELECT * from user where match (username) against ('Gabriel gabi' in boolean mode) order by match (username) against ('Gabriel gabi' in boolean mode) desc
+Servers\ProiectTW\QueryHistory\163<|||>1<|||>2018-06-11 16:43:00|tw|0|SELECT * from user where match (username) against ('Gabriel gabi' in boolean mode) order by user_id asc ,(match (username) against ('Gabriel gabi' in boolean mode)) desc
+Servers\ProiectTW\QueryHistory\162<|||>1<|||>2018-06-11 16:43:31|tw|0|SELECT * from user where match (username) against ('Gabriel gabi' in boolean mode) order by user_id asc ,(match (username) against ('Gabriel gabi')) desc
+Servers\ProiectTW\QueryHistory\164<|||>1<|||>2018-06-11 16:56:40|tw|0|select product_data_id from productdata where (match(title,description,category,subcategory) against('a'))  order by (match (title,description,category,subcategory) against ('a')) desc<{{{><}}}>
+Servers\ProiectTW\QueryHistory\165<|||>1<|||>2018-06-11 16:58:06|tw|0|select product_data_id from productdata where (match(title,description,category,subcategory) against('a')) and product_data_id=1  order by (match (title,description,category,subcategory) against ('a')) desc<{{{><}}}>
+Servers\ProiectTW\QueryHistory\166<|||>1<|||>2018-06-11 16:58:17|tw|47|select product_data_id from productdata where (match(title,description,category,subcategory) against('a')) and product_data_id=1 and city="a" order by (match (title,description,category,subcategory) against ('a')) desc<{{{><}}}>
+Servers\ProiectTW\QueryHistory\167<|||>1<|||>2018-06-11 17:21:08|tw|0|select product_data_id from productdata where (match(title,description,category,subcategory) against('aaa')) order by 'condition' asc<{{{><}}}>
+Servers\ProiectTW\QueryHistory\168<|||>1<|||>2018-06-11 17:22:06|tw|0|select product_data_id from productdata where (match(title,description,category,subcategory) against('aaa')) order by 'condition' asc,(match (title,description,category,subcategory) against ('aaa')) desc<{{{><}}}>
+Servers\ProiectTW\QueryHistory\169<|||>1<|||>2018-06-11 17:27:11|tw|0|select * from productdata where 'condition' = 'ceva'
+Servers\ProiectTW\QueryHistory\170<|||>1<|||>2018-06-11 18:12:13|tw|109|insert into productdata (product_data_id,title,description) values (1,'acum','sunt')
+Servers\ProiectTW\QueryHistory\171<|||>1<|||>2018-06-11 18:13:24|tw|62|insert into productdata (product_data_id,title,description,conditie) values (2,'acum','sunt','nervos')
+Servers\ProiectTW\QueryHistory\172<|||>1<|||>2018-06-11 18:15:10|tw|110|INSERT INTO productdata(product_data_id,title,description,conditie,country,state,city,is_auction,price,shipping_type,shipping_price,date_added,date_expires,category,subcategory,views) values <{{{><}}}>(3,'Telefon bengos','Cel mai tare din parcare',<{{{><}}}>'bulit',<{{{><}}}>'blocuri ciurea',<{{{><}}}>'aci',<{{{><}}}>'iasi',<{{{><}}}>1,<{{{><}}}>100,<{{{><}}}>'pa jos',<{{{><}}}>1000,<{{{><}}}>null,<{{{><}}}>null,<{{{><}}}>'haur',<{{{><}}}>'land',<{{{><}}}>20)<{{{><}}}>
+Servers\ProiectTW\QueryHistory\173<|||>1<|||>2018-06-11 18:19:08|tw|32|select * from productdata where product_data_id=last_insert_id()
+Servers\ProiectTW\QueryHistory\174<|||>1<|||>2018-06-11 18:20:27|tw|0|select last_insert_id()
+Servers\ProiectTW\QueryHistory\175<|||>1<|||>2018-06-11 18:20:50|tw|0|select last_insert_id() from productdata
+Servers\ProiectTW\QueryHistory\176<|||>1<|||>2018-06-11 18:21:04|tw|47|select *,last_insert_id() from productdata
+Servers\ProiectTW\QueryHistory\177<|||>1<|||>2018-06-11 18:21:41|tw|47|select max(product_data_id),last_insert_id() from productdata
+Servers\ProiectTW\QueryHistory\178<|||>1<|||>2018-06-11 18:21:50|tw|0|select max(product_data_id) from productdata
+Servers\ProiectTW\QueryHistory\179<|||>1<|||>2018-06-11 18:46:55|tw|187|ALTER TABLE user AUTO_INCREMENT = 1
+Servers\ProiectTW\QueryHistory\4<|||>1<|||>2018-06-11 18:47:08|tw|62|ALTER TABLE productdata AUTO_INCREMENT = 1
+Servers\ProiectTW\QueryHistory\180<|||>1<|||>2018-06-11 18:47:12|tw|109|ALTER TABLE product AUTO_INCREMENT = 1
+Servers\ProiectTW\QueryHistory\181<|||>1<|||>2018-06-13 23:43:33|tw|78|update userbid set value=900 where user_id=2
+Servers\ProiectTW\QueryHistory\182<|||>1<|||>2018-06-14 00:33:14|tw|0|update transaction set seller_confirm=1 where transaction_id=5
+Servers\ProiectTW\QueryHistory\183<|||>1<|||>2018-06-14 00:33:46|tw|62|update transaction set seller_confirm=0 where transaction_id=5
+Servers\ProiectTW\QueryHistory\185<|||>1<|||>2018-06-14 00:42:20|tw|78|update transaction set seller_confirm=0
+Servers\ProiectTW\tw|user\Sort<|||>1<|||>0_user_id|
