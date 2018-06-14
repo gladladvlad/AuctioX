@@ -161,8 +161,6 @@ class databaseController():
     def insertIntoProductdata(self,info):
         lista = [info["user_id"],info["title"],info["description"],info["conditie"],info["country"],info["state"],info["city"],info["is_auction"],info["price"],info["currency"],info["shipping_type"],info["shipping_price"],info["date_added"],info["date_expires"],info["category"],info["subcategory"],info["views"],info["status"]]
         command = "INSERT INTO productdata(user_id,title,description,conditie,country,state,city,is_auction,price,currency,shipping_type,shipping_price,date_added,date_expires,category,subcategory,views,status) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
-        debug(lista)
-        debug(command)
         mycursor.execute(command,lista)
         mariadb_connection.commit()
         command="select max(product_data_id) from productdata"
@@ -173,7 +171,6 @@ class databaseController():
             "image" : info["image"]
         }
         self.insertIntoImages(hashmap)
-        debug("Returninng {0}".format(result[0]))
         return result[0]
 
 
@@ -185,7 +182,6 @@ class databaseController():
 
     def insertIntoImages(self,info):
         for i in info["image"]:
-            debug(i)
             lista = [info["product_data_id"], i]
             command = "INSERT INTO images(product_data_id,image) VALUES(%s,%s)"
             mycursor.execute(command, lista)

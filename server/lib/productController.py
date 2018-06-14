@@ -51,10 +51,9 @@ class product():
         return result
 
 class productController():
-    def viewPostData(self, postData):
-        debug(postData)
-
+    
     def getAllProducts(self):
+        logger.info('[START] getAllProducts()')
         return databaseController.getProducts()
 
     # info <=> {'min_price' : 2,
@@ -63,17 +62,14 @@ class productController():
     # order_by <=> string cu campu' dupa care ordonam
     # how <=> asc/desc
     # query <=> string
+    
     def getProductsByFilter(self, info, order_by, how, query):
-        #get all products from DB
-        debug('===========================')
-        debug(info)
+        logger.info('[START] getProductsByFilter()')
         products = databaseController.getProductsByFilter(info, order_by, how, query)
-
-        debug(products)
-
         return products
 
     def getProductInstanceById(self, productID):
+        logger.info('[START] getProductInstanceById()')
         prodDB = databaseController.getProductDataById(productID)[0]
         images = databaseController.getImages(productID)
 
@@ -82,6 +78,7 @@ class productController():
         return productResult
 
     def getHighestBidById(self, productID):
+        logger.info('[START] getHighestBidById()')
         highestBid = databaseController.executeSQLCommand('select value from userbid where product_id = {0} order by value desc'.format(productID), True)
 
         if highestBid == []:
@@ -93,19 +90,20 @@ class productController():
         return highestBid
 
     def getUserBidProduct(self, userID):
+        logger.info('[START] getUserBidProduct()')
         return databaseController.getUserBidProduct(userID)
 
     def getUserProductsById(self, userID):
+        logger.info('[START] getUserProductsById()')
         products = databaseController.getUserProducts(userID)
 
         prodList = []
         for prodDB in products:
             prodBuf = product(prodDB[PROD_USER_ID], prodDB[PROD_ID], prodDB[PROD_STATUS], prodDB[PROD_TITLE], prodDB[PROD_DESCRIPTION], prodDB[PROD_CATEGORY], prodDB[PROD_SUBCATEGORY], [], prodDB[PROD_VIEWS], prodDB[PROD_CONDITIE], prodDB[PROD_COUNTRY], prodDB[PROD_CITY], prodDB[PROD_IS_AUCTION], prodDB[PROD_PRICE], prodDB[PROD_CURRENCY], prodDB[PROD_SHIPPING_TYPE], prodDB[PROD_SHIPPING_PRICE], prodDB[PROD_DATE_ADDED], prodDB[PROD_DATE_EXPIRES])
-
             prodList.append(prodBuf)
 
         return prodList
-
+    
     def getConditionInt(self, condStr):
         if condStr == 'boxed':
             return 0
@@ -141,8 +139,7 @@ class productController():
             return 'Auction'
 
     def createListing(self, data, user):
-        debug("in productController: creating listing")
-        debug(data)
+        logger.info("[START] createListing()")
 
         now = datetime.datetime.now()
         expires = datetime.datetime(now.year + int(now.month > 12), (now.month + 1) % 12 + 1, now.day)
@@ -169,7 +166,7 @@ class productController():
                 }
 
         prodId = databaseController.insertIntoProductdata(info)
-        debug("in productController: createdlisting")
+        logger.debug("Created listing")
         return prodId
 
 

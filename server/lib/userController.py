@@ -66,24 +66,27 @@ class user():
         return passwordHash == self.passwordHash
 
 
-
 class userController():
 
     def createNewUser(self, registerDetails):
+        logger.info("[START] createNewUser()")
 
         errorList = list()
         success = True
 
         existingUser = databaseController.getUserByUsername(registerDetails['username'])
 
-        debug("searched in database for user")
+        logger.debug("Searched in database for user")
 
         if existingUser is not None:
             errorList.append("Username already taken")
             success = False
 
         existingUser = databaseController.getUserByEmail(registerDetails['email'])
-        debug(existingUser)
+
+        logger.debug("existingUser:")
+        logger.debug(existingUser)
+
         if len(existingUser) > 0:
             errorList.append("Email is already in use")
             success = False
@@ -135,23 +138,21 @@ class userController():
 
             databaseController.insertIntoUser(info)
 
-        debug("inserted user into database")
+        logger.debug("User inserted into database")
 
-        result = {"success": success, "errorList": errorList}
+        result = {"success": success, "errors": errorList}
 
         return json.dumps(result)
 
     def processSignInRequest(self, signInDetails, userAgent, clientAddress):
-
-        debug("[FUNC] processSignInRequest()")
+        logger.info("[START] processSignInRequest()")
 
         errorList = list()
 
         userData = databaseController.getUserByUsername(signInDetails["username"])
 
-        debug("[INFO] Obtained user data")
-
-        debug(userData)
+        logger.debug("userData:")
+        logger.debug(userData)
 
         success = False
 
@@ -162,23 +163,26 @@ class userController():
             pwd = hashlib.pbkdf2_hmac('sha256', signInDetails["password"], salt, 50000)
             finalPwd = binascii.hexlify(pwd)
 
-            debug(finalPwd)
-            debug(userData[USER_PASSWORD])
+            logger.debug("finalPwd:")
+            logger.debug(finalPwd)
+            logger.debug("userData[USER_PASSWORD]:")
+            logger.debug(userData[USER_PASSWORD])
 
 
 
             if finalPwd != userData[USER_PASSWORD]:
-                debug("[INFO] Password not valid")
+                logger.debug("Password not valid")
             else:
                 success = True
-                debug("[INFO] Password valid")
+                logger.debug("Password valid")
 
         result = dict()
 
         if success:
             session = base64.b64encode(os.urandom(16))
 
-            debug(session)
+            logger.debug("session:")
+            logger.debug(session)
 
             sessionData = {
                 "session_id": session,
@@ -189,11 +193,12 @@ class userController():
                 "ip": clientAddress
             }
 
-            debug(sessionData)
+            logger.debug("sessionData:")
+            logger.debug(sessionData)
 
             databaseController.insertIntoSessions(sessionData)
 
-            debug("[INFO] New session created")
+            logger.debug("New session created")
 
             result["username"] = userData[USER_USERNAME]
             result["sessionId"] = session
@@ -203,13 +208,13 @@ class userController():
         result["success"] = success
         result["errors"] = errorList
 
-        debug(result)
+        logger.debug("result:")
+        logger.debug(result)
 
         return json.dumps(result), success
 
     def validateUserSession(self, sessionData):
-
-        debug("[FUNC] validateUserSession()")
+        logger.info("[START] validateUserSession()")
 
         if sessionData == "expired" or sessionData is None or sessionData is False:
             return None
@@ -217,29 +222,35 @@ class userController():
         userInfo = databaseController.getUserByUsername(sessionData["username"])
         sessionList = databaseController.getSessionById(sessionData["sessionId"])
 
+        logger.debug("Found {0} sessions for user {1}".format(len(sessionList), userInfo[USER_USERNAME]))
+
         for session in sessionList:
-            debug(session)
             if userInfo[USER_ID] == session[2]:
                 return userInfo[USER_ID]
 
         return None
 
-
     def getUserInstanceById(self, userID):
+        logger.info("[START] getUserInstanceById()")
+
         userBD = databaseController.getUserById(userID)[0]
         session = databaseController.getSessionById(userID)
-
 
         resultUser = user(userBD[USER_ID], session, userBD[USER_USERNAME], 50000, userBD[USER_SALT], userBD[USER_PASSWORD], userBD[USER_EMAIL], userBD[USER_CELL_NUMBER], userBD[USER_FIRST_NAME], userBD[USER_LAST_NAME], userBD[USER_COUNTRY], userBD[USER_STATE], userBD[USER_CITY], userBD[USER_ADRESS_1], userBD[USER_ADRESS_2], userBD[USER_ZIP_CODE], userBD[USER_CONTACT_INFO], userBD[USER_STATUS])
 
         return resultUser
 
     def getUserInstanceByUsername(self, key):
-        debug('================getUserInstanceByUsername==================')
+        logger.info("[START] getUserInstanceByUsername()")
+
         userBD = databaseController.getUserByUsername(key)
-        debug(userBD)
+
+        logger.debug("userBD:")
+        logger.debug(userBD)
         session = databaseController.getSessionById(userBD[USER_ID])
-        debug(session)
+
+        logger.debug("session:")
+        logger.debug(session)
 
         resultUser = user(userBD[USER_ID], session, userBD[USER_USERNAME], 50000, userBD[USER_SALT], userBD[USER_PASSWORD], userBD[USER_EMAIL], userBD[USER_CELL_NUMBER], userBD[USER_FIRST_NAME], userBD[USER_LAST_NAME], userBD[USER_COUNTRY], userBD[USER_STATE], userBD[USER_CITY], userBD[USER_ADRESS_1], userBD[USER_ADRESS_2], userBD[USER_ZIP_CODE], userBD[USER_CONTACT_INFO], userBD[USER_STATUS])
 

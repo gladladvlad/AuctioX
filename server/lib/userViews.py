@@ -2,11 +2,13 @@ from view import *
 from userController import *
 from productController import *
 from bidController import *
+from util import *
+
 
 class userRegistrationPageView(view):
 
     def get(self):
-
+        logger.info("[VIEW] userRegistrationPageView")
         self.addItemToContext('Register', 'title')
 
         self.addComponentToContext('navbar.html')
@@ -20,18 +22,18 @@ class userRegistrationPageView(view):
 class userRegistrationRequestView(view):
 
     def post(self):
-        debug('[INFO] userRegistrationRequestView reached')
+        logger.info("[VIEW] userRegistrationRequestView")
 
         result = userController.createNewUser(self.parseJsonPost())
 
-        debug('[INFO] userRegistrationRequestView generated result')
+        logger.debug('userRegistrationRequestView generated result')
 
         return result
 
 class userListingView(view):
 
     def get(self):
-        debug('[INFO] userListings reached')
+        logger.info("[VIEW] userListingView")
 
         self.addComponentToContext('userlisting_styles.html', 'style', True)
         self.setContentType('text/html')
@@ -44,6 +46,7 @@ class userListingView(view):
 
 class userSignInView(view):
     def get(self):
+        logger.info("[VIEW] userSignInView")
         self.addComponentToContext('userSignIn_styles.html', 'style', True)
         self.setContentType('text/html')
         self.addComponentToContext('navbar.html', 'navbar', True)
@@ -56,7 +59,7 @@ class userSignInView(view):
 class userSignInRequestView(view):
 
     def post(self):
-        debug("[VIEW] userSignInRequest")
+        logger.info("[VIEW] userSignInRequestView")
 
         result, success = userController.processSignInRequest(self.parseJsonPost(), self.request.headers["User-Agent"], self.request.client_address[0])
 
@@ -69,7 +72,7 @@ class userSignInRequestView(view):
 class userSignOutRequestView(view):
 
     def get(self):
-        debug("[VIEW] userSignOutRequestView")
+        logger.info("[VIEW] userSignOutRequestView")
 
         cookie = "user_session_identifier={data}; Expires={exp}".format(data="expired",exp=datetime.datetime.now().strftime("%a, %d %b %Y %H:%M:%S GMT"))
         self.cookies.append(cookie)
@@ -87,10 +90,10 @@ class userSignOutRequestView(view):
 class userMyListingsView(view):
 
     def get(self):
-        debug("[VIEW] userMyListingsView")
+        logger.info("[VIEW] userMyListingsView")
 
         if userController.validateUserSession(self.sessionData) is None:
-            debug("[INFO] No active session. Redirecting to sign in.")
+            logger.warning("No active session. Redirecting to sign in.")
             self.switchView(userSignInView)
             return False
 
@@ -109,10 +112,10 @@ class userMyListingsView(view):
 class userMyBidsView(view):
 
     def get(self):
-        debug("[VIEW] userMyBidsView")
+        logger.info("[VIEW] userMyBidsView")
 
         if userController.validateUserSession(self.sessionData) is None:
-            debug("[INFO] No active session. Redirecting to sign in.")
+            logger.warning("No active session. Redirecting to sign in.")
             self.switchView(userSignInView)
             return False
 

@@ -4,9 +4,11 @@ from databaseController import *
 from userController import *
 import os
 
+
 class jinjatest(view):
 
     def get(self):
+        logger.info("[TEST VIEW] jinjatest")
         self.addComponentToContext('navbar.html')
         self.addItemToContext('Jinja Test Page', 'title')
         return self.renderTemplate('jinjatest.html')
@@ -15,12 +17,13 @@ class jinjatest(view):
 class globalFavicon(view):
 
     def get(self):
+        logger.info("[TEST VIEW] globalFavicon")
         return open("..\\public\\static\\png\\favicon.png", "rb").read()
+
 
 class addUserView(view):
     def get(self):
-        debug('[INFO] addUserView')
-
+        logger.info("[TEST VIEW] addUserView")
 
         userData = {'username' : 'gunondwarf',
                     'password' : 'pass123',
@@ -46,7 +49,7 @@ class addUserView(view):
 
 class getUserView(view):
     def get(self):
-        debug('[INFO] addUserView')
+        logger.info("[TEST VIEW] getUserView")
 
         user = databaseController.getUserByUsername('gunondwarf')
 
@@ -55,7 +58,7 @@ class getUserView(view):
 
 class addProductView(view):
     def get(self):
-        debug('[INFO] addProductView')
+        logger.info("[TEST VIEW] addProductView")
 
         prodData = {'title' : 'Air guitar Epiphone les paul vasilescu',
                     'description' : 'cea mia mijtoui s mora mama meu k ii sm3k mkatzash lorem gipsum jajaj jaj as lal qea j2qj h n asdasd, asdasldkj',
@@ -83,13 +86,14 @@ class addProductView(view):
 
 class setCookieView(view):
     def get(self):
+        logger.info("[TEST VIEW] setCookieView")
         self.cookies.append('test={time}; Expires={exp}'.format(time=datetime.datetime.now(), exp=(datetime.datetime.now() + datetime.timedelta(minutes=2)).strftime("%a, %d %b %Y %H:%M:%S GMT")))
         return "ok"
 
 
 class sessionValidation(view):
     def get(self):
-
+        logger.info("[TEST VIEW] sessionValidation")
         userId = userController.validateUserSession(self.sessionData)
 
         if userId is not None:

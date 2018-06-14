@@ -42,7 +42,7 @@ function sendUserRegisterRequest() {
     {
         if(xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200){
             response = JSON.parse(xhr.responseText)
-            errorList = response["errorList"]
+            errorList = response["errors"]
             for(i = 0; i < errorList.length; i++) {
                 errorField.innerHTML += " " + errorList[i]
                 if(i < errorList.length - 1) {

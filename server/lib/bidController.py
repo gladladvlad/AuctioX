@@ -1,4 +1,5 @@
 from databaseController import *
+from util import *
 
 class bid():
     def __init__(self, newBidID, newUserID, newProductID, newStatus, newValue):
@@ -21,6 +22,7 @@ class bid():
 
 class bidController():
     def getUserBidInstancesById(self, userID):
+        logger.info("[START] getUserBidInstancesById()")
         bids = databaseController.executeSQLCommand('select * from userbid where user_id = {0} order by value desc'.format(userID), True)
 
         bidFinalList = []

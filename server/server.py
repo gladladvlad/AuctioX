@@ -2,14 +2,7 @@ import BaseHTTPServer
 import SocketServer
 import re
 from lib import dispatcher
-
-DEBUG = False
-
-
-def debug(msg):
-    if DEBUG:
-        print msg
-
+from lib.util import *
 
 PORT = 8000
 
@@ -63,11 +56,11 @@ class RequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
         requestHandler.send_header('Set-Cookie', pair)
 
     def do_POST(self):
-        debug(self.requestline)
+        logger.debug("[START] do_POST [{0}]".format(self.requestline))
         disp.dispatch(self)
 
     def do_GET(self):
-        debug(self.requestline)
+        logger.debug("[START] do_GET [{0}]".format(self.requestline))
         disp.dispatch(self)
 
 

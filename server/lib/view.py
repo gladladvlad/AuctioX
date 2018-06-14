@@ -24,10 +24,11 @@ class view:
     jinja2Env = Environment(loader=FileSystemLoader(TEMPLATE_DIRECTORY), autoescape=select_autoescape(['xml']))
 
     def __init__(self, request):
+        logger.info("[START] __init__ [{0}]".format(self.__class__.__name__))
 
         self.context = dict()
         self.cookies = list()
-        debug("View init: {0}".format(self.__class__.__name__))
+
         try:
             self.request = request
             self.contentType = "text/plain"  # this is by default
@@ -35,8 +36,6 @@ class view:
             self.urlArgs = parse_qs(urlparse(request.path).query)  # get args from url
             for key in self.urlArgs:
                 self.urlArgs[key] = self.urlArgs[key][0]
-
-            # debug(self.urlAargs)
 
             try:
                 self.sessionData = self.request.getCookie('user_session_identifier')
@@ -51,11 +50,11 @@ class view:
                 content_length = int(self.request.headers['Content-Length'])
                 self.postData = self.request.rfile.read(content_length)
 
-                debug("Calling {0}.post()".format(self.__class__.__name__))
+                logger.debug("Calling {0}.post()".format(self.__class__.__name__))
                 self.response = self.post()
 
             else:
-                debug("Calling {0}.get()".format(self.__class__.__name__))
+                logger.debug("Calling {0}.get()".format(self.__class__.__name__))
                 self.response = self.get()
 
             if self.response is False:
@@ -152,8 +151,8 @@ class view:
                 key = componentName
 
         if key in self.context and override is False:
-            debug(
-                "[WARNING] Could not add component '{componentName}' to context because the key '{key}' is already used. Use override=True in order to overwrite the old context entry".format(
+            logger.warning(
+                "Could not add component '{componentName}' to context because the key '{key}' is already used. Use override=True in order to overwrite the old context entry".format(
                     componentName=componentName, key=key))
             return
 
@@ -163,8 +162,8 @@ class view:
     def addItemToContext(self, item, key, override=False):
 
         if key in self.context and override is False:
-            debug(
-                "[WARNING] Could not add {itemType} item to context because the key '{key}' is already used. Use override=True in order to overwrite the old context entry".format(
+            logger.warning(
+                "Could not add {itemType} item to context because the key '{key}' is already used. Use override=True in order to overwrite the old context entry".format(
                     itemType=type(item), key=key))
             return
 

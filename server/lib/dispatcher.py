@@ -1,6 +1,7 @@
 import re
 from dispatcherMap import map
 import BaseHTTPServer
+from util import *
 
 class dispatcher:
 
@@ -26,12 +27,8 @@ class dispatcher:
     def dispatch(self, request):
 
         view = dispatcher.matchView(self, request.path)
-
-        print "[INFO] received request for path '{0}'".format(request.path)
-
         if view is None:
-
-            print "[WARNINIG] Could not find view for path '{0}'".format(request.path)
+            logger.error("[WARNINIG] Could not find view for path '{0}'".format(request.path))
             return
 
         view(request)

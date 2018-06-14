@@ -7,38 +7,6 @@ from productController import *
 from userViews import *
 
 
-class createListingView(view):
-    def get(self):
-        debug('[INFO] createListings reached')
-
-        if userController.validateUserSession(self.sessionData) is None:
-            debug("[INFO] No active session. Redirecting to sign in.")
-            self.switchView(userSignInView)
-            return False
-
-        self.addComponentToContext('createlisting_styles.html', 'style', True)
-        self.setContentType('text/html')
-        self.addComponentToContext('navbar.html', 'navbar', True)
-        self.addComponentToContext('createlisting_content.html', 'content', True)
-        self.addComponentToContext('footer.html', 'footer', True)
-        content = self.renderTemplate('createlisting.html')
-
-        return content
-
-
-class createListingRequestView(view):
-    def post(self):
-        debug('[VIEW] createListingsRequestView')
-        debug('asd')
-        user = userController.getUserInstanceById(userController.validateUserSession(self.sessionData))
-        debug('got the user')
-        result = productController.createListing(self.parseJsonPost(), user)
-        success = False
-        if result is not None:
-            success = True
-        return json.dumps({'success': success, 'prodId': result})
-
-
 searchProductCountKey = 'prods'
 searchPageIndexKey = 'page'
 searchPageSizeKey = 'psize'
@@ -54,10 +22,44 @@ searchDefaultPageSize = 5
 
 #productCount = 12
 
+productIDKey = "prodid"
+
+
+class createListingView(view):
+    def get(self):
+        logger.info('[VIEW] createListings')
+
+        if userController.validateUserSession(self.sessionData) is None:
+            logger.debug("No active session. Redirecting to sign in.")
+            self.switchView(userSignInView)
+            return False
+
+        self.addComponentToContext('createlisting_styles.html', 'style', True)
+        self.setContentType('text/html')
+        self.addComponentToContext('navbar.html', 'navbar', True)
+        self.addComponentToContext('createlisting_content.html', 'content', True)
+        self.addComponentToContext('footer.html', 'footer', True)
+        content = self.renderTemplate('createlisting.html')
+
+        return content
+
+
+class createListingRequestView(view):
+    def post(self):
+        logger.info('[VIEW] createListingsRequestView')
+        logger.debug('asd')
+        user = userController.getUserInstanceById(userController.validateUserSession(self.sessionData))
+        logger.debug('got the user')
+        result = productController.createListing(self.parseJsonPost(), user)
+        success = False
+        if result is not None:
+            success = True
+        return json.dumps({'success': success, 'prodId': result})
+
+
 class searchView(view):
     def get(self):
-        debug('[INFO] searchView reached')
-
+        logger.info('[VIEW] searchView reached')
 
         self.setContentType('text/html')
 
@@ -67,7 +69,6 @@ class searchView(view):
         self.addComponentToContext('navbar.html', 'navbar', True)
         self.addComponentToContext('footer.html', 'footer', True)
 
-
         content = self.renderTemplate('search.html')
 
         return content
@@ -75,13 +76,12 @@ class searchView(view):
 
 class searchProductIDsView(view):
     def get(self):
-        debug('[INFO] searchProductIDsView reached')
+        logger.info('[VIEW] searchProductIDsView reached')
 
         if not self.urlArgs.has_key(searchQueryKey):
             self.urlArgs[searchQueryKey] = ''
 
         self.setContentType('application/json')
-
 
         info = dict()
         if self.urlArgs.has_key('min_price'):
@@ -102,8 +102,8 @@ class searchProductIDsView(view):
         # how <=> asc/desc
         # query <=> string
         productsByQuery = productController.getProductsByFilter(info, None, None, self.urlArgs[searchQueryKey])
-        debug('LENGTH OF QUERY')
-        debug(len(productsByQuery))
+        logger.debug('LENGTH OF QUERY')
+        logger.debug(len(productsByQuery))
 
         productIDs = []
         for iter in xrange(0, len(productsByQuery)):
@@ -115,7 +115,7 @@ class searchProductIDsView(view):
 
 class searchPageView(view):
     def get(self):
-        debug('[INFO] searchPageView reached')
+        logger.info('[VIEW] searchPageView')
 
         if not self.urlArgs.has_key(searchPageSizeKey):
             self.urlArgs[searchPageSizeKey] = searchDefaultPageSize
@@ -124,7 +124,6 @@ class searchPageView(view):
             raise ValueError("Did not receive product count!")
 
         self.setContentType('text/html')
-
 
         products = []
 
@@ -151,8 +150,7 @@ class searchPageView(view):
             if (productsDone == int(self.urlArgs[searchPageSizeKey])):
                 break
 
-        debug(len(products))
-
+        logger.debug(len(products))
 
         pages = [dict()]
 
@@ -162,7 +160,6 @@ class searchPageView(view):
             pages.append(dicterator)
 
         self.addItemToContext(pages, 'pages', True)
-
 
         self.addComponentToContext('search_filters.html', 'search_filters', True)
         self.addComponentToContext('search_styles.html', 'search_styles', True)
@@ -176,27 +173,24 @@ class searchPageView(view):
         return page
 
 
-productIDKey = "prodid"
-
 class productView(view):
     def get(self):
-        debug('[INFO] productView reached')
+        logger.info('[VIEW] productView reached')
 
         if not self.urlArgs.has_key(productIDKey):
             raise ValueError("No product provided!")
 
-        debug('=====================================')
         product = productController.getProductInstanceById(int(self.urlArgs[productIDKey]))
         product.condition = productController.getConditionStr(product.condition)
         product.auction = productController.getAuctionTypeStr(product.auction)
 
-        debug(product.asDict())
+        logger.debug(product.asDict())
 
         self.addItemToContext(product, 'product', True)
 
         seller = userController.getUserInstanceById(int(product.ownerID))
 
-        debug(seller.asDict())
+        logger.debug(seller.asDict())
 
         self.addItemToContext(seller, 'seller', True)
 
@@ -208,12 +202,14 @@ class productView(view):
 
         content = self.renderTemplate('product.html')
         
-        debug('content rendered!')
+        logger.debug('content rendered!')
 
         return content
 
+
 class bidView(view):
     def get(self):
+        logger.info("[VIEW] bidView")
 
         if not self.urlArgs.has_key('prodid'):
             return 'Fail! No product provided!'
@@ -226,18 +222,16 @@ class bidView(view):
         if userId is None:
             return 'Fail! You must be logged in!'
 
-
         bidAmount = int(self.urlArgs['amount'])
         highestBid = productController.getHighestBidById(self.urlArgs['prodid'])
 
         if not bidAmount > highestBid:
             return 'Fail! You cannot bid lower than the highest bid!'
 
-
-        bidEntry = {'user_id' : userId,
-                'product_id' : int(self.urlArgs['prodid']),
-                    'status' : 'ongoing',
-                    'value' : bidAmount}
+        bidEntry = {'user_id': userId,
+                    'product_id': int(self.urlArgs['prodid']),
+                    'status': 'ongoing',
+                    'value': bidAmount}
 
         databaseController.insertIntoUserbid(bidEntry)
 
