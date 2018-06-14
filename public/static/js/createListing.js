@@ -53,8 +53,8 @@ function readMultiFiles(files) {
         console.log("Reading " + index + " from " + files[index].type)
         var file = files[index];
         reader.onload = function() {
-            b64 = btoa(reader.result)
-            resultList.push("data:" + files[index].type + ";base64," + b64)
+            b64 = reader.result
+            resultList.push(b64)
             readFile(index+1)
         }
         reader.readAsDataURL(file);
