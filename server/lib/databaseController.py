@@ -361,17 +361,18 @@ class databaseController():
     def getProductsByFilter(self,info,order_by,how,query):
         where_clause = ""
         if (info is None) and (order_by is None) and (how is None) and (query == ''):
-            command = "select * from productdata where status = 'ongoing'"
+            command = "select * from productdata where status = 'ongoing' order by views desc"
             mycursor.execute(command)
             result = mycursor.fetchall()
             return result
         elif (info is None) and (order_by is None) and (how is None) and (query != ''):
-            command = "select * from productdata where (match(title,description,category,subcategory) against( '{query}' ))"
+            command = "select * from productdata where (match(title,description,category,subcategory) against( '{query}' )) order by views desc".format(query=query)
+            print command
             mycursor.execute(command)
             result =mycursor.fetchall()
             return result
         elif (info is None) and (order_by is not None) and (how is None) and (query != ''):
-            command = "select * from productdata where (match(title,description,category,subcategory) against( '{query}' )) order by {orderby}".format(
+            command = "select * from productdata where (match(title,description,category,subcategory) against( '{query}' )) order by {orderby} asc, views desc".format(
                 query=query, orderby=order_by
             )
             mycursor.execute(command)
@@ -383,14 +384,14 @@ class databaseController():
             result = mycursor.fetchall()
             return result
         elif (info is None) and (order_by is not None) and (how is not None) and (query == ''):
-            command = 'select * from productdata order by {orderby} {how}'.format(
+            command = 'select * from productdata order by {orderby} {how}, views desc'.format(
                 orderby=order_by, how=how
             )
             mycursor.execute(command)
             result = mycursor.fetchall()
             return result
         elif (info is None) and (order_by is not None) and (how is not None) and (query != ''):
-            command = "select * from productdata where (match(title,description,category,subcategory) against( '{query}' )) order by {orderby} {how}".format(
+            command = "select * from productdata where (match(title,description,category,subcategory) against( '{query}' )) order by {orderby} {how}, views desc".format(
                 query=query, orderby=order_by, how=how
             )
             mycursor.execute(command)
@@ -412,7 +413,7 @@ class databaseController():
                         where_clause = where_clause + "and {key}={value} ".format(key=key, value=value)
                     elif isinstance(value, basestring):
                         where_clause = where_clause + "and {key}='{value}' ".format(key=key, value=value)
-            command = "select * from productdata where 1=1 {where_clause}".format(
+            command = "select * from productdata where 1=1 {where_clause} order by views desc".format(
                 query=query, where_clause=where_clause
             )
             print(command)
@@ -435,7 +436,7 @@ class databaseController():
                         where_clause = where_clause + "and {key}={value} ".format(key=key, value=value)
                     elif isinstance(value, basestring):
                         where_clause = where_clause + "and {key}='{value}' ".format(key=key, value=value)
-            command = "select * from productdata where (match(title,description,category,subcategory) against( '{query}' )) {where_clause}".format(
+            command = "select * from productdata where (match(title,description,category,subcategory) against( '{query}' )) {where_clause} order by views desc".format(
                 query=query, where_clause=where_clause
             )
             mycursor.execute(command)
@@ -457,7 +458,7 @@ class databaseController():
                         where_clause = where_clause + "and {key}={value} ".format(key=key, value=value)
                     elif isinstance(value, basestring):
                         where_clause = where_clause + "and {key}='{value}' ".format(key=key, value=value)
-            command = "select * from productdata where 1=1 {clause} order by {order}".format(
+            command = "select * from productdata where 1=1 {clause} order by {order} asc, views desc".format(
                 clause=where_clause, order=order_by
             )
             mycursor.execute(command)
@@ -479,7 +480,7 @@ class databaseController():
                         where_clause = where_clause + "and {key}={value} ".format(key=key, value=value)
                     elif isinstance(value, basestring):
                         where_clause = where_clause + "and {key}='{value}' ".format(key=key, value=value)
-            command = "select * from productdata where (match(title,description,category,subcategory) against( '{query}' )) {clause} order by {order} asc".format(
+            command = "select * from productdata where (match(title,description,category,subcategory) against( '{query}' )) {clause} order by {order} asc, views desc".format(
                 query=query, clause=where_clause, order=order_by
             )
             mycursor.execute(command)
@@ -501,7 +502,7 @@ class databaseController():
                         where_clause = where_clause + "and {key}={value} ".format(key=key, value=value)
                     elif isinstance(value, basestring):
                         where_clause = where_clause + "and {key}='{value}' ".format(key=key, value=value)
-            command = "select * from productdata where 1=1 {clause} order by {order} {how}".format(
+            command = "select * from productdata where 1=1 {clause} order by {order} {how}, views desc".format(
                 clause=where_clause, order=order_by, how=how
             )
             mycursor.execute(command)
@@ -523,7 +524,7 @@ class databaseController():
                         where_clause = where_clause + "and {key}={value} ".format(key=key, value=value)
                     elif isinstance(value, basestring):
                         where_clause = where_clause + "and {key}='{value}' ".format(key=key, value=value)
-            command= "select * from productdata where (match(title,description,category,subcategory) against( '{query}' )) {clause} order by {order} {how}".format(
+            command= "select * from productdata where (match(title,description,category,subcategory) against( '{query}' )) {clause} order by {order} {how}, views desc".format(
                 query=query, clause=where_clause, order=order_by, how=how
             )
             print(command)
@@ -583,7 +584,7 @@ if __name__ == "__main__":
                 'user_id': 3,
                 'status':'ongoing'
                 }
-    metod.insertIntoProductdata(prodData)
+    #metod.insertIntoProductdata(prodData)
     #print metod.getUserByUsername('aa or 1=1')
     transactiondict={
         "seller_user_id":1,
@@ -637,7 +638,7 @@ if __name__ == "__main__":
     }
     #metod.insertIntoFeedback(feedback)
     #metod.insertIntoSessions(session)
-    print metod.getProductsByFilter({"min_price":200,"max_price":500,"views":445}, None, None, "Air")
+    print metod.getProductsByFilter(None, None, None, "Air")
     #print metod.getUserById(1)
     #metod.insertIntoTrasnaction(transactiondict)
     #metod.removeSessionId('423545')
