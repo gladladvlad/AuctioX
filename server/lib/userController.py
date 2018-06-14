@@ -9,6 +9,7 @@ import json
 import re
 
 from databaseController import *
+from bidController import *
 
 
 #nu stiu daca trebuie :csf:
@@ -228,6 +229,14 @@ class userController():
         userBD = databaseController.getUserById(userID)[0]
         session = databaseController.getSessionById(userID)
 
+
+        resultUser = user(userBD[USER_ID], session, userBD[USER_USERNAME], 50000, userBD[USER_SALT], userBD[USER_PASSWORD], userBD[USER_EMAIL], userBD[USER_CELL_NUMBER], userBD[USER_FIRST_NAME], userBD[USER_LAST_NAME], userBD[USER_COUNTRY], userBD[USER_STATE], userBD[USER_CITY], userBD[USER_ADRESS_1], userBD[USER_ADRESS_2], userBD[USER_ZIP_CODE], userBD[USER_CONTACT_INFO], userBD[USER_STATUS])
+
+        return resultUser
+
+    def getUserInstanceByUsername(self, key):
+        userBD = databaseController.getUserByUsername(key)
+        session = databaseController.getSessionById(userBD[USER_ID])
 
         resultUser = user(userBD[USER_ID], session, userBD[USER_USERNAME], 50000, userBD[USER_SALT], userBD[USER_PASSWORD], userBD[USER_EMAIL], userBD[USER_CELL_NUMBER], userBD[USER_FIRST_NAME], userBD[USER_LAST_NAME], userBD[USER_COUNTRY], userBD[USER_STATE], userBD[USER_CITY], userBD[USER_ADRESS_1], userBD[USER_ADRESS_2], userBD[USER_ZIP_CODE], userBD[USER_CONTACT_INFO], userBD[USER_STATUS])
 

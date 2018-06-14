@@ -92,6 +92,9 @@ class productController():
 
         return highestBid
 
+    def getUserBidProduct(self, userID):
+        return databaseController.getUserBidProduct(userID)
+
     def getConditionInt(self, condStr):
         if condStr == 'boxed':
             return 0

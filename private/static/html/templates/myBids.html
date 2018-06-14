@@ -1,7 +1,54 @@
 {% extends "base.html" %}
 
 {% block content %}
-    {{ content }}
+<div class="baseContainer">
+    <div class="title">
+        <h1>
+            My bids
+        </h1>
+        <a href="/mylistings">
+            My listings
+        </a>
+        <a href="#accountsettings">
+            Account settings
+        </a>
+        <a href="#help">
+            Help
+        </a>
+    </div>
+
+    <div class="mainContainer">
+        <div class="containerFull">
+            <table class="listingsTable">
+                <thead>
+                    <tr>
+                        <td>No.</td>
+                        <td>Title</td>
+                        <td>Your bid</td>
+                        <td>Current bid (buyout)</td>
+                        <td>Currency</td>
+                        <td>Status</td>
+                        <td>Start date</td>
+                        <td>End date</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        {% for entry in bidprod %}
+                        <td>{{ loop.index1 }}</td>
+                        <td>{{ entry[1].title }}</td>
+                        <td>{{ entry[0].value }}</td>
+                        <td>{{ entry[1].currency }}</td>
+                        <td>{{ entry[1].dateAdded }}</td>
+                        <td>{{ entry[1].dateExpires }}</td>
+                        {% endfor %}
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
 {% endblock %}
 
 {% block footer %}

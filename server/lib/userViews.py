@@ -1,5 +1,7 @@
 from view import *
 from userController import *
+from productController import *
+from bidController import *
 
 class userRegistrationPageView(view):
 
@@ -108,7 +110,20 @@ class userMyBidsView(view):
             self.switchView(userSignInView)
             return False
 
+        user = userController.getUserInstanceByUsername(self.sessionData['username'])
+        bids = bidController.getUserBidInstancesById(user.UID)
+
+        bidProdList = []
+        for bid in bids:
+            bidProduct = productController.getProductInstanceById(bid.productID)
+
+            bidProdList.append((bid, bidProduct))
+
         self.setContentType('text/html')
+
+        self.addItemToContext(user, 'user', True)
+        self.addItemToContext(bidProdList, 'bidprod', True)
+
         self.addComponentToContext('myBids_content.html', 'content', True)
         self.addComponentToContext('footer.html', 'footer', True)
         content = self.renderTemplate('myBids.html')
