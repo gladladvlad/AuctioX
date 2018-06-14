@@ -9,9 +9,9 @@ logger = logging.getLogger("Logger")
 logger.setLevel(logging.DEBUG)
 
 fileHandler = logging.FileHandler("server.log", "w")
-fileHandler.setLevel(logging.DEBUG)
+fileHandler.setLevel(fileDebugLevel)
 consoleHandler = logging.StreamHandler()
-consoleHandler.setLevel(logging.DEBUG)
+consoleHandler.setLevel(consoleDebugLevel)
 
 formatter = logging.Formatter('[%(asctime)s] %(funcName)s: %(message)s')
 fileHandler.setFormatter(formatter)
@@ -21,4 +21,4 @@ logger.addHandler(fileHandler)
 logger.addHandler(consoleHandler)
 logging.root = logger
 
-logger.info("Started Collector Logger!")
+logger.info("Started Logger!")
