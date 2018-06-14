@@ -173,6 +173,8 @@ class databaseController():
             "image" : info["image"]
         }
         self.insertIntoImages(hashmap)
+        debug("Returninng {0}".format(result[0]))
+        return result[0]
 
 
     def insertIntoFeedback(self,info):

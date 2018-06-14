@@ -170,6 +170,7 @@ class productController():
 
         prodId = databaseController.insertIntoProductdata(info)
         debug("in productController: createdlisting")
+        return prodId
 
 
 

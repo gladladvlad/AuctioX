@@ -86,11 +86,11 @@ function sendRequest(data) {
     {
         if(xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200){
             response = JSON.parse(xhr.responseText)
-
+            console.log(response)
             if(response["success"])
             {
-                alert("Registration successful!")
-                window.location = "/product?prodid=" + response["result"]
+                alert("Product created!")
+                window.location = "/product?prodid=" + response["prodId"]
             }
         }
     }
