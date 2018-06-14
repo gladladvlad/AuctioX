@@ -580,10 +580,10 @@ if __name__ == "__main__":
                 'subcategory': 'yes',
                 'views': 445,
                 'image': [bytearray('asdasdasd'),bytearray('sdagfdgfds')],
-                'user_id': 1,
+                'user_id': 3,
                 'status':'ongoing'
                 }
-    #metod.insertIntoProductdata(prodData)
+    metod.insertIntoProductdata(prodData)
     #print metod.getUserByUsername('aa or 1=1')
     transactiondict={
         "seller_user_id":1,
