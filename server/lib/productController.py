@@ -168,8 +168,9 @@ class productController():
                     'user_id' : user.UID
                 }
 
-        databaseController.insertIntoProductdata(info)
+        prodId = databaseController.insertIntoProductdata(info)
         debug("in productController: createdlisting")
+
 
 
 productController = productController()

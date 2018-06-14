@@ -33,7 +33,10 @@ class createListingRequestView(view):
         user = userController.getUserInstanceById(userController.validateUserSession(self.sessionData))
         debug('got the user')
         result = productController.createListing(self.parseJsonPost(), user)
-        return result
+        success = False
+        if result is None:
+            success = True
+        return json.dumps({'success': success, 'prodId': result})
 
 
 searchProductCountKey = 'prods'

@@ -85,9 +85,13 @@ function sendRequest(data) {
     xhr.onreadystatechange = function()
     {
         if(xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200){
-            console.log(xhr.responseText)
             response = JSON.parse(xhr.responseText)
-            return;
+
+            if(response["success"])
+            {
+                alert("Registration successful!")
+                window.location = "/product?prodid=" + response["result"]
+            }
         }
     }
 
