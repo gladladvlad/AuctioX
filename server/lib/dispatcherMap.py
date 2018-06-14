@@ -22,10 +22,13 @@ map = [
 
     ('^/registration/?$', userRegistrationPageView),
     ('^/registrationrequest/?$', userRegistrationRequestView),
-    ('^/userlistings/?$', userListingView),
     ('^/signin/?$', userSignInView),
     ('^/signinrequest/?$', userSignInRequestView),
     ('^/signout/?$', userSignOutRequestView),
+
+    ('^/userlistings/?$', userListingView),
+    ('^/mylistings/?$', userMyListingsView),
+    ('^/mybids/?$', userMyBidsView),
 
     # User Views END
 
@@ -45,3 +48,4 @@ map = [
     ('^/', homepageView),
     ('*', view)
 ]
+

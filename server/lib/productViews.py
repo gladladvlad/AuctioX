@@ -12,6 +12,7 @@ class createListingView(view):
         debug('[INFO] createListings reached')
 
         if userController.validateUserSession(self.sessionData) is None:
+            debug("[INFO] No active session. Redirecting to sign in.")
             self.switchView(userSignInView)
             return False
 

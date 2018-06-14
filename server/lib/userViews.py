@@ -81,3 +81,35 @@ class userSignOutRequestView(view):
         self.addComponentToContext('footer.html', 'footer', True)
         content = self.renderTemplate('userSignOut.html')
         return content
+
+class userMyListingsView(view):
+
+    def get(self):
+        debug("[VIEW] userMyListingsView")
+
+        if userController.validateUserSession(self.sessionData) is None:
+            debug("[INFO] No active session. Redirecting to sign in.")
+            self.switchView(userSignInView)
+            return False
+
+        self.setContentType('text/html')
+        self.addComponentToContext('myListings_content.html', 'content', True)
+        self.addComponentToContext('footer.html', 'footer', True)
+        content = self.renderTemplate('myListings.html')
+        return content
+
+class userMyBidsView(view):
+
+    def get(self):
+        debug("[VIEW] userMyBidsView")
+
+        if userController.validateUserSession(self.sessionData) is None:
+            debug("[INFO] No active session. Redirecting to sign in.")
+            self.switchView(userSignInView)
+            return False
+
+        self.setContentType('text/html')
+        self.addComponentToContext('myBids_content.html', 'content', True)
+        self.addComponentToContext('footer.html', 'footer', True)
+        content = self.renderTemplate('myBids.html')
+        return content

@@ -339,3 +339,11 @@ h3 {
 #errors {
     color: red;
 }
+
+.listingsTable {
+    width: 100%;
+}
+
+.listingsTable > tbody > *:hover {
+    background-color: #FF000020;
+}
