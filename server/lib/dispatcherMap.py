@@ -15,7 +15,6 @@ map = [
     ('^/setcookie', setCookieView),
     ('^/sessiontest', sessionValidation),
     #
-    ('^/public/*', publicFileView),
     ('^/jinjatest', jinjatest),
 
     # User Views START
@@ -44,7 +43,7 @@ map = [
 
     # Product Views END
 
-
+    ('^/public/*', publicFileView),
     ('^/', homepageView),
     ('*', view)
 ]

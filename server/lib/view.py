@@ -8,6 +8,7 @@ import json
 import traceback
 import base64
 
+from userController import *
 from util import *
 
 # Aici sunt view-urile. Un view (la noi) este o functie care primeste un request si pregateste raspunsul (care e trimis dupaia inapoi)
@@ -40,7 +41,10 @@ class view:
             try:
                 self.sessionData = self.request.getCookie('user_session_identifier')
                 self.sessionData = json.loads(base64.b64decode(self.sessionData))
-                self.context["sessionData"] = self.sessionData
+                if userController.validateUserSession(self):
+                    self.context["sessionData"] = self.sessionData
+                else:
+                    self.sessionData = None
             except:
                 pass
 
@@ -88,20 +92,23 @@ class view:
         except Exception, e:
             self.request.send_response(404)
             self.request.send_header("Content-type", 'text/html')
-
             self.request.end_headers()
+            errorType, value, tb = sys.exc_info()
             response = "<body style='font-family: monospace'><h1>Error</h1><hr>"
             if DEBUG:
                 response += self.request.requestline + "<hr>"
                 response += "URL arguments:<br><pre>" + json.dumps(self.urlArgs, indent=4) + "</pre><hr>"
                 response += "Headers:<br><pre>" + str(self.request.headers) + "</pre><hr>"
-                response += "Error:<br><pre>" + str(e.message) + "</pre><hr>"
-                # response += "Stack:<br><pre>" + str(traceback.extract_stack(sys.exc_info()[2])) + "<pre><hr>"
+                response += "Error:<br><pre>" + "({0})".format(traceback.format_exception_only(errorType, value)) + "</pre><hr>"
                 try:
-                    response += "Stack:<br><pre>"
-                    stack = traceback.extract_stack()
-                    response += json.dumps(stack, indent=4) + "</pre"
+                    response += "Traceback:<br><pre>"
+                    for entry in traceback.extract_tb(tb):
+                        response += "{0} [{1}]\n".format(entry[0], entry[1])
+                        response += "{0} >>> {1}".format(entry[2], entry[3])
+                        response += "\n\n===\n\n"
+                    response += "</pre>"
                 except:
+                    logger.warning("Could not get traceback")
                     pass
             self.request.wfile.write(response)
             return

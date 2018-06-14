@@ -92,7 +92,7 @@ class userMyListingsView(view):
     def get(self):
         logger.info("[VIEW] userMyListingsView")
 
-        if userController.validateUserSession(self.sessionData) is None:
+        if userController.validateUserSession(self) is None:
             logger.warning("No active session. Redirecting to sign in.")
             self.switchView(userSignInView)
             return False
@@ -114,7 +114,7 @@ class userMyBidsView(view):
     def get(self):
         logger.info("[VIEW] userMyBidsView")
 
-        if userController.validateUserSession(self.sessionData) is None:
+        if userController.validateUserSession(self) is None:
             logger.warning("No active session. Redirecting to sign in.")
             self.switchView(userSignInView)
             return False

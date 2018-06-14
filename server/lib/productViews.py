@@ -29,7 +29,7 @@ class createListingView(view):
     def get(self):
         logger.info('[VIEW] createListings')
 
-        if userController.validateUserSession(self.sessionData) is None:
+        if userController.validateUserSession(self) is None:
             logger.debug("No active session. Redirecting to sign in.")
             self.switchView(userSignInView)
             return False
@@ -48,7 +48,7 @@ class createListingRequestView(view):
     def post(self):
         logger.info('[VIEW] createListingsRequestView')
         logger.debug('asd')
-        user = userController.getUserInstanceById(userController.validateUserSession(self.sessionData))
+        user = userController.getUserInstanceById(userController.validateUserSession(self))
         logger.debug('got the user')
         result = productController.createListing(self.parseJsonPost(), user)
         success = False
@@ -217,7 +217,7 @@ class bidView(view):
         if not self.urlArgs.has_key('amount'):
             return 'Fail! No amount provided!'
 
-        userId = userController.validateUserSession(self.sessionData)
+        userId = userController.validateUserSession(self)
 
         if userId is None:
             return 'Fail! You must be logged in!'

@@ -213,14 +213,23 @@ class userController():
 
         return json.dumps(result), success
 
-    def validateUserSession(self, sessionData):
+    def validateUserSession(self, view):
         logger.info("[START] validateUserSession()")
 
-        if sessionData == "expired" or sessionData is None or sessionData is False:
+        if not hasattr(view, "sessionData"):
             return None
 
-        userInfo = databaseController.getUserByUsername(sessionData["username"])
-        sessionList = databaseController.getSessionById(sessionData["sessionId"])
+        if view.sessionData is None:
+            return None
+
+        if view.sessionData == "expired" or view.sessionData is False:
+            return None
+
+        userInfo = databaseController.getUserByUsername(view.sessionData["username"])
+        sessionList = databaseController.getSessionById(view.sessionData["sessionId"])
+
+        if userInfo is None:
+            return None
 
         logger.debug("Found {0} sessions for user {1}".format(len(sessionList), userInfo[USER_USERNAME]))
 

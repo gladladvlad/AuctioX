@@ -94,7 +94,7 @@ class setCookieView(view):
 class sessionValidation(view):
     def get(self):
         logger.info("[TEST VIEW] sessionValidation")
-        userId = userController.validateUserSession(self.sessionData)
+        userId = userController.validateUserSession(self)
 
         if userId is not None:
             return "You are now currently logged in as {0} with the ID {1}".format(self.sessionData["username"], userId)
