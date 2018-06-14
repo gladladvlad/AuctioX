@@ -320,6 +320,9 @@ class databaseController():
         command = "delete from userbid"
         mycursor.execute(command)
         mariadb_connection.commit()
+        command = "delete from feedback"
+        mycursor.execute(command)
+        mariadb_connection.commit()
         command = "delete from transaction"
         mycursor.execute(command)
         mariadb_connection.commit()
@@ -335,16 +338,13 @@ class databaseController():
         command = "delete from images"
         mycursor.execute(command)
         mariadb_connection.commit()
+        command = "delete from response"
+        mycursor.execute(command)
+        mariadb_connection.commit()
         command = "delete from productdata"
         mycursor.execute(command)
         mariadb_connection.commit()
-        command = "delete from feedback"
-        mycursor.execute(command)
-        mariadb_connection.commit()
         command = "delete from notice"
-        mycursor.execute(command)
-        mariadb_connection.commit()
-        command = "delete from response"
         mycursor.execute(command)
         mariadb_connection.commit()
         command = "delete from user"
@@ -640,16 +640,24 @@ if __name__ == "__main__":
     }
     #metod.insertIntoFeedback(feedback)
     #metod.insertIntoSessions(session)
-    print metod.getProductsByFilter(None, None, None, "Air")
+    #print metod.getProductsByFilter(None, None, None, "Air")
     #print metod.getUserById(1)
     #metod.insertIntoTrasnaction(transactiondict)
     #metod.removeSessionId('423545')
-    #metod.deleteDatabase()
+    metod.deleteDatabase()
     #metod.setInactiveInTransaction(1)
     #metod.setInactiveInProduct(1)
     #metod.setSellerConfirm(2,1)
     #metod.setBuyerConfirm(2,1)
     #print metod.getUserBidProduct(2)
+    prod ={'category': u'Consumables', 'city': '', 'user_id': 3, 'description': u'wdasfaeger erh er her h',
+     'date_expires': datetime.datetime(2018, 8, 14, 0, 0), 'title': u'wasd', 'country': '', 'price': u'13', 'views': 0,
+     'is_auction': 1, 'currency': u'EUR', 'conditie': 1, 'state': '', 'status': 'ongoing',
+     'shipping_type': '', 'date_added': datetime.datetime(2018, 6, 14, 11, 59, 54, 235000),
+     'image': [u'data:image/png;base64,ZGF0YTppbWFnZS9wbmc7YmFzZ...GlWQk9SdzBLR2dvQUFBQU5TVWhFVWdBQU'],
+     'shipping_price': 0, 'subcategory': ''}
+    #metod.insertIntoProductdata(prod)
+    #metod.setInactiveInUser(1)
 
 databaseController = databaseController()
 
