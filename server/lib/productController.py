@@ -140,13 +140,16 @@ class productController():
         else:
             return 'Auction'
 
-    def createListing(self, data):
+    def createListing(self, data, user):
         debug("in productController: creating listing")
         debug(data)
 
+        now = datetime.datetime.now()
+        expires = datetime.datetime(now.year + int(now.mont > 12), (now.month + 1) % 12 + 1, now.day)
+
         info = {'title' : data['title'],
                     'description' : data['description'],
-                    'conditie' : getConditionInt(data['description']),
+                    'conditie' : getConditionInt(data['condition']),
                     'country' : "",
                     'state' : "",
                     'city' : "",
@@ -155,13 +158,14 @@ class productController():
                     'currency' : data['currency'],
                     'shipping_type' : "",
                     'shipping_price' : 0,
-                    'date_added' : datetime.datetime.now(),
-                    'date_expires' : datetime.datetime.now(),
+                    'date_added' : now,
+                    'date_expires' : expires,
                     'category' : getConditionInt(data['category']),
                     'subcategory' : "",
                     'views' : 0,
                     'image' : getConditionInt(data['photos']),
-                    'user_id' : ""
+                    'status' : 'ongoing',
+                    'user_id' : user.UID
                 }
 
         databaseController.insertIntoProductdata(info)

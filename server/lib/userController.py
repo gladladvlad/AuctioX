@@ -235,8 +235,11 @@ class userController():
         return resultUser
 
     def getUserInstanceByUsername(self, key):
+        debug('================getUserInstanceByUsername==================')
         userBD = databaseController.getUserByUsername(key)
+        debug(userBD)
         session = databaseController.getSessionById(userBD[USER_ID])
+        debug(session)
 
         resultUser = user(userBD[USER_ID], session, userBD[USER_USERNAME], 50000, userBD[USER_SALT], userBD[USER_PASSWORD], userBD[USER_EMAIL], userBD[USER_CELL_NUMBER], userBD[USER_FIRST_NAME], userBD[USER_LAST_NAME], userBD[USER_COUNTRY], userBD[USER_STATE], userBD[USER_CITY], userBD[USER_ADRESS_1], userBD[USER_ADRESS_2], userBD[USER_ZIP_CODE], userBD[USER_CONTACT_INFO], userBD[USER_STATUS])
 

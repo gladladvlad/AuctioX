@@ -27,10 +27,12 @@ class createListingView(view):
 
 
 class createListingRequestView(view):
-
     def post(self):
         debug('[VIEW] createListingsRequestView')
-        result = productController.createListing(self.parseJsonPost())
+        debug('asd')
+        user = userController.getUserInstanceById(self.sessionData['username'])
+        debug('got the user')
+        result = productController.createListing(self.parseJsonPost(), user)
         return result
 
 

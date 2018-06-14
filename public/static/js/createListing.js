@@ -11,6 +11,7 @@ window.onload = function(){
     inputListingType = document.getElementById("inputListingType");
     inputPrice = document.getElementById("inputPrice");
     inputCurrency = document.getElementById("selectCurrency");
+    inputCondition = document.getElementById("inputCondition");
     preview = document.getElementById("preview");
 
     createListingButton.onclick = createListing;
@@ -73,6 +74,7 @@ function createListing(){
         data["is_auction"] = 0;
     data["price"] = inputPrice.value;
     data["currency"] = inputCurrency.value;
+    data["condition"] = inputCondition.value;
     readMultiFiles(photoFiles);
 }
 
@@ -90,6 +92,6 @@ function sendRequest(data) {
     }
 
     xhr.open("POST", "/createlistingrequest", true);
-    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhr.setRequestHeader("Content-type", "application/json");
     xhr.send(JSON.stringify(data));
 }
