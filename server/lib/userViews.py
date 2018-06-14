@@ -74,6 +74,8 @@ class userSignOutRequestView(view):
     def get(self):
         logger.info("[VIEW] userSignOutRequestView")
 
+        databaseController.removeSessionId(self.sessionData["sessionId"])
+
         cookie = "user_session_identifier={data}; Expires={exp}".format(data="expired",exp=datetime.datetime.now().strftime("%a, %d %b %Y %H:%M:%S GMT"))
         self.cookies.append(cookie)
 
