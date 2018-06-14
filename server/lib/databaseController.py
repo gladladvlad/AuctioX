@@ -566,13 +566,13 @@ if __name__ == "__main__":
     prodData = {'title': 'Air guitar Epiphone les paul vasilescu',
                 'description': 'cea mia mijtoui s mora mama meu k ii sm3k mkatzash lorem gipsum jajaj jaj as lal qea j2qj h n asdasd, asdasldkj',
                 'conditie': 1,
-                'country': 'vaslui kong',
-                'state': 'triburile romane unite',
-                'city': 'vaslui',
+                'country': 'spain',
+                'state': '',
+                'city': 'madrid',
                 'is_auction': 1,
-                'price': 700,
+                'price': 367,
                 'currency':'eur',
-                'shipping_type': 'Malaysia Airways',
+                'shipping_type': '',
                 'shipping_price': 429,
                 'date_added': datetime.datetime.now(),
                 'date_expires': datetime.datetime.now(),
@@ -637,7 +637,7 @@ if __name__ == "__main__":
     }
     #metod.insertIntoFeedback(feedback)
     #metod.insertIntoSessions(session)
-    #print metod.getProductsByFilter({"min_price":200,"max_price":500,"views":445}, "date_added", "desc", "Air")
+    print metod.getProductsByFilter({"min_price":200,"max_price":500,"views":445}, None, None, "Air")
     #print metod.getUserById(1)
     #metod.insertIntoTrasnaction(transactiondict)
     #metod.removeSessionId('423545')
@@ -646,7 +646,8 @@ if __name__ == "__main__":
     #metod.setInactiveInProduct(1)
     #metod.setSellerConfirm(2,1)
     #metod.setBuyerConfirm(2,1)
-    print metod.getUserBidProduct(2)
+    #print metod.getUserBidProduct(2)
+
 databaseController = databaseController()
 
 
