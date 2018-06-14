@@ -149,7 +149,7 @@ class productController():
 
         info = {'title' : data['title'],
                     'description' : data['description'],
-                    'conditie' : self.getConditionInt(data['condition']),
+                    'conditie' : data['condition'],
                     'country' : "",
                     'state' : "",
                     'city' : "",
@@ -160,10 +160,10 @@ class productController():
                     'shipping_price' : 0,
                     'date_added' : now,
                     'date_expires' : expires,
-                    'category' : self.getConditionInt(data['category']),
+                    'category' : data['category'],
                     'subcategory' : "",
                     'views' : 0,
-                    'image' : self.getConditionInt(data['photos']),
+                    'image' : data['photos'],
                     'status' : 'ongoing',
                     'user_id' : user.UID
                 }
