@@ -14,7 +14,7 @@
 			</div>
 			<div class="containerFull" id="photoList">
 				{% for productImage in product.images %}
-					<img onclick="document.getElementById('currentPhoto').src = this.src;" src="" alt="product"/>
+					<img onclick="document.getElementById('currentPhoto').src = this.src;" src="{{productImage}}" alt="product"/>
 				{% endfor %}
 			</div>
 		</div>

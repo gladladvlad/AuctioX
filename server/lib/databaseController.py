@@ -183,6 +183,7 @@ class databaseController():
 
     def insertIntoImages(self,info):
         for i in info["image"]:
+            debug(i)
             lista = [info["product_data_id"], i]
             command = "INSERT INTO images(product_data_id,image) VALUES(%s,%s)"
             mycursor.execute(command, lista)
@@ -320,6 +321,9 @@ class databaseController():
         command = "delete from userbid"
         mycursor.execute(command)
         mariadb_connection.commit()
+        command = "delete from feedback"
+        mycursor.execute(command)
+        mariadb_connection.commit()
         command = "delete from transaction"
         mycursor.execute(command)
         mariadb_connection.commit()
@@ -335,16 +339,13 @@ class databaseController():
         command = "delete from images"
         mycursor.execute(command)
         mariadb_connection.commit()
+        command = "delete from response"
+        mycursor.execute(command)
+        mariadb_connection.commit()
         command = "delete from productdata"
         mycursor.execute(command)
         mariadb_connection.commit()
-        command = "delete from feedback"
-        mycursor.execute(command)
-        mariadb_connection.commit()
         command = "delete from notice"
-        mycursor.execute(command)
-        mariadb_connection.commit()
-        command = "delete from response"
         mycursor.execute(command)
         mariadb_connection.commit()
         command = "delete from user"
@@ -565,7 +566,7 @@ if __name__ == "__main__":
         "status":'asfdfds',
         "salt":bytearray("dawdas")
     }
-    #metod.insertIntoUser(hashinfo)
+    metod.insertIntoUser(hashinfo)
     prodData = {'title': 'Air guitar Epiphone les paul vasilescu',
                 'description': 'cea mia mijtoui s mora mama meu k ii sm3k mkatzash lorem gipsum jajaj jaj as lal qea j2qj h n asdasd, asdasldkj',
                 'conditie': 1,
@@ -640,7 +641,7 @@ if __name__ == "__main__":
     }
     #metod.insertIntoFeedback(feedback)
     #metod.insertIntoSessions(session)
-    print metod.getProductsByFilter(None, None, None, "Air")
+    #print metod.getProductsByFilter(None, None, None, "Air")
     #print metod.getUserById(1)
     #metod.insertIntoTrasnaction(transactiondict)
     #metod.removeSessionId('423545')
@@ -650,6 +651,14 @@ if __name__ == "__main__":
     #metod.setSellerConfirm(2,1)
     #metod.setBuyerConfirm(2,1)
     #print metod.getUserBidProduct(2)
+    prod ={'category': u'Consumables', 'city': '', 'user_id': 1, 'description': u'wdasfaeger erh er her h',
+     'date_expires': datetime.datetime(2018, 8, 14, 0, 0), 'title': u'wasd', 'country': '', 'price': u'13', 'views': 0,
+     'is_auction': 1, 'currency': u'EUR', 'conditie': 1, 'state': '', 'status': 'ongoing',
+     'shipping_type': '', 'date_added': datetime.datetime(2018, 6, 14, 11, 59, 54, 235000),
+     'image': [u'data:image/png;base64,ZGF0YTppbWFnZS9wbmc7YmFzZ...GlWQk9SdzBLR2dvQUFBQU5TVWhFVWdBQU'],
+     'shipping_price': 0, 'subcategory': ''}
+    #metod.insertIntoProductdata(prod)
+    #metod.setInactiveInUser(1)
 
 databaseController = databaseController()
 

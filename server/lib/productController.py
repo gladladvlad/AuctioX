@@ -147,25 +147,25 @@ class productController():
         now = datetime.datetime.now()
         expires = datetime.datetime(now.year + int(now.month > 12), (now.month + 1) % 12 + 1, now.day)
 
-        info = {'title' : data['title'],
-                    'description' : data['description'],
-                    'conditie' : data['condition'],
-                    'country' : "",
-                    'state' : "",
-                    'city' : "",
-                    'is_auction' : data['is_auction'],
-                    'price' : data['price'],
-                    'currency' : data['currency'],
-                    'shipping_type' : "",
-                    'shipping_price' : 0,
-                    'date_added' : now,
-                    'date_expires' : expires,
-                    'category' : data['category'],
-                    'subcategory' : "",
-                    'views' : 0,
-                    'image' : data['photos'],
-                    'status' : 'ongoing',
-                    'user_id' : user.UID
+        info = {'title': data['title'],
+                'description': data['description'],
+                'conditie': self.getConditionInt(data['condition']),
+                'country': "",
+                'state': "",
+                'city': "",
+                'is_auction': data['is_auction'],
+                'price': int(data['price']),
+                'currency': data['currency'],
+                'shipping_type': "",
+                'shipping_price': 0,
+                'date_added': now,
+                'date_expires': expires,
+                'category': data['category'],
+                'subcategory': "",
+                'views': 0,
+                'image': data['photos'],
+                'status': 'ongoing',
+                'user_id': user.UID
                 }
 
         prodId = databaseController.insertIntoProductdata(info)
