@@ -1,4 +1,6 @@
+
 photoFiles = []
+previewDict = {}
 data = {}
 
 window.onload = function(){
@@ -14,11 +16,9 @@ window.onload = function(){
     inputCondition = document.getElementById("inputCondition");
     preview = document.getElementById("preview");
 
-    createListingButton.onclick = createListing;
 }
 
 function submitPhoto(){
-
 
     var currentFiles = photos.files;
 
@@ -33,6 +33,7 @@ function submitPhoto(){
         }
         photo = document.createElement('img');
         photo.src = URL.createObjectURL(currentFiles[i]);
+        photo.onclick = function () {removePhoto(event);}
         photoFiles.push(currentFiles[i])
         preview.append(photo)
     }
@@ -98,4 +99,25 @@ function sendRequest(data) {
     xhr.open("POST", "/createlistingrequest", true);
     xhr.setRequestHeader("Content-type", "application/json");
     xhr.send(JSON.stringify(data));
+}
+
+function removePhoto(e) {
+    src = e.target.src
+    imgList = preview.children
+    index = null
+    for(i = 0; i < imgList.length; i++) {
+        if (imgList[i].src == src) {
+            index = i
+            break
+        }
+    }
+
+    if (index == null) {
+        console.log("Index null")
+    }
+    else {
+        console.log(index)
+    }
+    delete photoFiles.splice(index, 1);
+    e.target.parentElement.removeChild(e.target);
 }
