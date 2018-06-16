@@ -37,7 +37,6 @@ class createListingView(view):
         self.addComponentToContext('createlisting_styles.html', 'style', True)
         self.setContentType('text/html')
         self.addComponentToContext('navbar.html', 'navbar', True)
-        self.addComponentToContext('createlisting_content.html', 'content', True)
         self.addComponentToContext('footer.html', 'footer', True)
         content = self.renderTemplate('createlisting.html')
 
@@ -63,7 +62,6 @@ class searchView(view):
 
         self.setContentType('text/html')
 
-        self.addComponentToContext('search_content.html', 'search_content', True)
         self.addComponentToContext('search_filters.html', 'search_filters', True)
         self.addComponentToContext('search_styles.html', 'search_styles', True)
         self.addComponentToContext('navbar.html', 'navbar', True)
@@ -195,7 +193,6 @@ class productView(view):
         self.addItemToContext(seller, 'seller', True)
 
 
-        self.addComponentToContext('product_content.html', 'product_content', True)
         self.addComponentToContext('product_styles.html', 'product_styles', True)
         self.addComponentToContext('navbar.html', 'navbar', True)
         self.addComponentToContext('footer.html', 'footer', True)

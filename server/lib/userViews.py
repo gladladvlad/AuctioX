@@ -38,7 +38,6 @@ class userListingView(view):
         self.addComponentToContext('userlisting_styles.html', 'style', True)
         self.setContentType('text/html')
         self.addComponentToContext('navbar.html', 'navbar', True)
-        self.addComponentToContext('userlisting_content.html', 'content', True)
         self.addComponentToContext('footer.html', 'footer', True)
         content = self.renderTemplate('userlistings.html')
 
@@ -106,7 +105,6 @@ class userMyListingsView(view):
 
         self.addItemToContext(products, 'products', True)
 
-        self.addComponentToContext('myListings_content.html', 'content', True)
         self.addComponentToContext('footer.html', 'footer', True)
         content = self.renderTemplate('myListings.html')
         return content
@@ -135,7 +133,6 @@ class userMyBidsView(view):
         self.addItemToContext(user, 'user', True)
         self.addItemToContext(bidProdList, 'bidprod', True)
 
-        self.addComponentToContext('myBids_content.html', 'content', True)
         self.addComponentToContext('footer.html', 'footer', True)
         content = self.renderTemplate('myBids.html')
         return content
