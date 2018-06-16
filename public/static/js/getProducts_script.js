@@ -1,65 +1,73 @@
-var productIDs;
+var productIDs = [];
 var products;
 var productPage;
 
-var lastQuery;
-var pageSize;
+var args = {}
 
-var filters = {}
+var conditionKey = "cond"
+var condMin = 0, condMax = 4;
 
 window.onload = function(){
-    lastQuery = getHTTPGArg("query");
-    if (typeof lastQuery == "undefined")
-        lastQuery = "";
-    lastQuery = lastQuery.replace("+", " ");
+    getArgsFromUrl();
 
-    pageSize = getHTTPGArg("psize");
-    if (typeof pageSize == "undefined")
-        pageSize = 5;
-    else pageSize = parseInt(pageSize);
+    if (typeof args['query'] != "undefined")
+        document.getElementById("searchBox").value = args['query'];
 
-
-    document.getElementById("searchBox").value = lastQuery;
-
-    getFiltersFromUrl();
-    requestProductIDs(filters);
+    requestProductIDs(args);
     updateProductPage(0);
 
     console.log("onload() finished");
 }
 
-function getFiltersFromUrl () {
-    /*filters = {"min_price" : getHTTPGArg("min_price"),
-                    "max_price" : getHTTPGArg("max_price"),
-                    "condition" : getHTTPGArg("condition"),
-                    "country" : getHTTPGArg("country"),
-                    "city" : getHTTPGArg("city"),
-                    "sortby" : getHTTPGArg("sort") }*/
-    console.log("fetching filters");
+function getArgsFromUrl() {
+    console.log("fetching args");
+
+    tmpObject = getHTTPGArg("query");
+    if (typeof tmpObject != "undefined")
+            tmpObject = tmpObject.replace("+", " ");
+
+    tmpObject = getHTTPGArg("psize");
+    if (typeof tmpObject == "undefined")
+        tmpObject = 5;
+    else tmpObject = parseInt(pageSize);
+    args['psize'] = tmpObject;
+
 
     var tmpObj = getHTTPGArg("min_price")
-    if (typeof tmpObj != "undefined")
-        filters['min_price'] = tmpObj;
+    if (typeof tmpObj != "undefined" && tmpObj != "")
+        args['min_price'] = tmpObj;
     tmpObj = getHTTPGArg("max_price")
-    if (typeof tmpObj != "undefined")
-        filters['max_price'] = tmpObj;
+    if (typeof tmpObj != "undefined" && tmpObj != "")
+        args['max_price'] = tmpObj;
     tmpObj = getHTTPGArg("country")
-    if (typeof tmpObj != "undefined")
-        filters['country'] = tmpObj;
+    if (typeof tmpObj != "undefined" && tmpObj != "")
+        args['country'] = tmpObj;
     tmpObj = getHTTPGArg("city")
-    if (typeof tmpObj != "undefined")
-        filters['city'] = tmpObj;
+    if (typeof tmpObj != "undefined" && tmpObj != "")
+        args['city'] = tmpObj;
     tmpObj = getHTTPGArg("sortby")
-    if (typeof tmpObj != "undefined")
-        filters['sortby'] = tmpObj;
+    if (typeof tmpObj != "undefined" && tmpObj != "")
+        args['sortby'] = tmpObj;
     tmpObj = getHTTPGArg("query")
-    if (typeof tmpObj != "undefined")
-        filters['query'] = tmpObj;
+    if (typeof tmpObj != "undefined" && tmpObj != "")
+        args['query'] = tmpObj;
 
-    console.log(filters);
+    tmpCondList = []
+    for (i = condMin; i < condMax; i++) {
+       tmpObj = getHTTPGArg(conditionKey + "_" + i);
+       if (typeof tmpObj != "undefined")
+            tmpCondList.push(parseInt(tmpObj));
+    }
+
+    if (tmpCondList.length != 0) {
+        args['conditie'] = tmpCondList;
+    }
+
+    console.log(args);
 }
 
 function updateProductPage(page) {
+    var pageSize = parseInt(args['psize']);
     var from = page * pageSize;
     var to = ((page + 1) * pageSize) - 1;
     if (to < 0 || productIDs.length <= 0){
@@ -82,6 +90,7 @@ function updateProductPage(page) {
 function requestProductIDs(args){
     var request = "/getproductids";
 
+    /*
     var firstFlag = 0;
     for (var key in args) {
         if (args[key] == "undefined") {
@@ -99,6 +108,7 @@ function requestProductIDs(args){
         }
     }
     console.log("request will be " + request)
+    */
 
     var xhr = new XMLHttpRequest();
 
@@ -108,11 +118,12 @@ function requestProductIDs(args){
         }
     }
 
-    xhr.open("GET", request, false);
+    xhr.open("POST", request, false);
     xhr.setRequestHeader("Content-type", "application/json");
-    xhr.send();
+    console.log("requesting /getproductids with: ");
+    console.log(args);
+    xhr.send(JSON.stringify(args));
 }
-
 
 function requestProductPage(fromIndex, toIndex){
     console.log("requestProductPage(); (from, to) = (" + fromIndex + ", " + toIndex + ")");
@@ -120,7 +131,7 @@ function requestProductPage(fromIndex, toIndex){
     if (fromIndex < 0) throw "Left index lower than 0!";
     if (fromIndex > toIndex) throw "Inverted indexes!";
 
-    var request = "/searchpage?prods=" + productIDs.length + "&psize=" + pageSize + "&";
+    var request = "/searchpage?prods=" + productIDs.length + "&psize=" + args['psize'] + "&";
     var argIter = "";
 
     console.log("request is " + request)
