@@ -35,6 +35,7 @@ class createListingView(view):
             return False
 
         self.addComponentToContext('createlisting_styles.html', 'style', True)
+        self.addComponentToContext('createlisting_content.html', 'content', True)
         self.setContentType('text/html')
         self.addComponentToContext('navbar.html', 'navbar', True)
         self.addComponentToContext('footer.html', 'footer', True)

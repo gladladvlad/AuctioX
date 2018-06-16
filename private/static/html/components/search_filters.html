@@ -1,15 +1,29 @@
 			<div id="filtre">
 				<h3> Category: </h3>
 				<ul class="list">
-					<li><a href="search.html"> Clothing &amp; accessories </a></li>
-					<li><a href="search.html"> Electronics </a></li>
-					<li><a href="search.html"> Home &amp; outdoors </a></li>
-					<li><a href="search.html"> Vehicles </a></li>
-					<li><a href="search.html"> Collectibles &amp; art </a></li>
-					<li><a href="search.html"> Consumables </a></li>
+					<div class="radio">
+						<div class="radioItem">
+							<input type="radio" name="categ" value="Clothing"/> Clothing &amp; accessories
+						</div>
+						<div class="radioItem">
+							<input type="radio" name="categ" value="Electronics"/> Electronics
+						</div>
+						<div class="radioItem">
+							<input type="radio" name="categ" value="Home"/> Home &amp; outdoors
+						</div>
+						<div class="radioItem">
+							<input type="radio" name="categ" value="Vehicles"/> Vehicles
+						</div>
+						<div class="radioItem">
+							<input type="radio" name="categ" value="Art"/> Collectibles &amp; art
+						</div>
+						<div class="radioItem">
+							<input type="radio" name="categ" value="Consumables"/> Consumables
+						</div>
+					</div>
 				</ul>
 				<form action="/search">
-					<h3> Filters: </h3> <!-- de bagat checkboxuri -->
+					<h3> Filters: </h3>
 					<ul class="list">
 						<li>
 							<div class="dropdown">
@@ -87,22 +101,22 @@
 						<li>
 							<div class="radio">
 								<div class="radioItem">
-									<input type="radio" id="price" name="sort" value="priceAsc"/> Price: ascending
+									<input type="radio" name="sort" value="priceAsc"/> Price: ascending
 								</div>
 								<div class="radioItem">
-									<input type="radio" id="price" name="sort" value="priceDesc"/> Price: descending
+									<input type="radio" name="sort" value="priceDesc"/> Price: descending
 								</div>
 								<div class="radioItem">
-									<input type="radio" id="condition" name="sort" value="priceAsc"/> Condition: ascending
+									<input type="radio" name="sort" value="condAsc"/> Condition: ascending
 								</div>
 								<div class="radioItem">
-									<input type="radio" id="condition" name="sort" value="priceDesc"/> Condition: descending
+									<input type="radio" name="sort" value="condDesc"/> Condition: descending
 								</div>
 								<div class="radioItem">
-									<input type="radio" id="date" name="sort" value="priceAsc"/> Date: ascending
+									<input type="radio" name="sort" value="dateAsc"/> Date: ascending
 								</div>
 								<div class="radioItem">
-									<input type="radio" id="date" name="sort" value="priceDesc"/> Date: descending
+									<input type="radio" name="sort" value="dateDesc"/> Date: descending
 								</div>
 							</div>
 						</li>
