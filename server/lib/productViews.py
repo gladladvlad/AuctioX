@@ -215,12 +215,12 @@ class bidView(view):
             return 'Fail! No amount provided!'
 
         userId = userController.validateUserSession(self)
-
         if userId is None:
             return 'Fail! You must be logged in!'
 
+
         bidAmount = int(self.urlArgs['amount'])
-        highestBid = productController.getHighestBidById(self.urlArgs['prodid'])
+        highestBid = int(productController.getHighestBidById(self.urlArgs['prodid']))
 
         if not bidAmount > highestBid:
             return 'Fail! You cannot bid lower than the highest bid!'

@@ -16,7 +16,7 @@ function bid() {
     }
 
     xhr.open("GET", request, false);
-    xhr.setRequestHeader("Content-type", "application/json");
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhr.send();
 
     if (testSuccessRe.test(answer)) {

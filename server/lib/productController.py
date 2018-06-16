@@ -87,7 +87,7 @@ class productController():
         if highestBid[0] == []:
             return 0
 
-        return highestBid
+        return highestBid[0][0]
 
     def getUserBidProduct(self, userID):
         logger.info('[START] getUserBidProduct()')
