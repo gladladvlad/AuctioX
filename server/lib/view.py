@@ -38,15 +38,16 @@ class view:
             for key in self.urlArgs:
                 self.urlArgs[key] = self.urlArgs[key][0]
 
-            try:
-                self.sessionData = self.request.getCookie('user_session_identifier')
-                self.sessionData = json.loads(base64.b64decode(self.sessionData))
-                if userController.validateUserSession(self):
-                    self.context["sessionData"] = self.sessionData
-                else:
-                    self.sessionData = None
-            except:
-                pass
+            if not hasattr(self, "skipUserValidation"):
+                try:
+                    self.sessionData = self.request.getCookie('user_session_identifier')
+                    self.sessionData = json.loads(base64.b64decode(self.sessionData))
+                    if userController.validateUserSession(self):
+                        self.context["sessionData"] = self.sessionData
+                    else:
+                        self.sessionData = None
+                except:
+                    pass
 
             self.requestType = self.request.requestline.split(' ')[0]
 

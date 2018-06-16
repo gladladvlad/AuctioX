@@ -99,6 +99,7 @@ function sendRequest(data) {
     xhr.open("POST", "/createlistingrequest", true);
     xhr.setRequestHeader("Content-type", "application/json");
     xhr.send(JSON.stringify(data));
+    
 }
 
 function removePhoto(e) {

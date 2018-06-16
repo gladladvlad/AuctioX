@@ -1,15 +1,17 @@
-import BaseHTTPServer
+from BaseHTTPServer import BaseHTTPRequestHandler, HTTPServer
+from SocketServer import ThreadingMixIn
 import SocketServer
 import re
 from lib import dispatcher
 from lib.util import *
 
 PORT = 8000
+THREADED = True
 
 disp = dispatcher.dispatcher()
 
 
-class RequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
+class RequestHandler(BaseHTTPRequestHandler):
 
     def getCookie (self, key):
         requestHandler = self
@@ -66,7 +68,19 @@ class RequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
 
 Handler = RequestHandler
 
-httpd = SocketServer.TCPServer(("", PORT), Handler)
 
-print "Serving at port {0}".format(PORT)
-httpd.serve_forever()
+if THREADED:
+
+    class ThreadedHTTPServer(ThreadingMixIn, HTTPServer):
+        """Handle requests in a separate thread."""
+
+    server = ThreadedHTTPServer(("", PORT), Handler)
+    print "Serving at port {0}".format(PORT)
+    server.serve_forever()
+
+else:
+
+    server = SocketServer.TCPServer(("", PORT), Handler)
+
+    print "Serving at port {0}".format(PORT)
+    server.serve_forever()

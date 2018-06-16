@@ -60,9 +60,6 @@
 
 
 .button {
-	margin: auto;
-	margin-top: 1em;
-	margin-bottom: 0.5em;
 	min-width: 6em;
     padding: 0.25em 0.5em 0.25em 0.5em;
     width: 50%;

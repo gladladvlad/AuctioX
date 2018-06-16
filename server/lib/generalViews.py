@@ -3,7 +3,11 @@ from mimetypes import MimeTypes
 
 from productController import *
 
+
 class publicFileView(view):
+
+    skipUserValidation = True
+
     def get(self):
         logger.info("[VIEW] publicFileView")
 
