@@ -74,25 +74,37 @@ class searchView(view):
 
 
 class searchProductIDsView(view):
-    def get(self):
+    def post(self):
         logger.info('[VIEW] searchProductIDsView reached')
-
-        if not self.urlArgs.has_key(searchQueryKey):
-            self.urlArgs[searchQueryKey] = ''
+        logger.info('=======================================')
+        logger.info('=======================================')
+        logger.info('=======================================')
 
         self.setContentType('application/json')
 
+
+        args = self.parseJsonPost()
+        if not args.has_key('query'):
+            args['query'] = ''
+
         info = dict()
-        if self.urlArgs.has_key('min_price'):
-            info['min_price'] = int(self.urlArgs['min_price'])
-        if self.urlArgs.has_key('max_price'):
-            info['max_price'] = int(self.urlArgs['max_price'])
-        if self.urlArgs.has_key('condition'):
-            info['conditie'] = int(self.urlArgs['conditie'])
-        if self.urlArgs.has_key('country'):
-            info['country'] = int(self.urlArgs['country'])
-        if self.urlArgs.has_key('city'):
-            info['city'] = int(self.urlArgs['city'])
+
+        if args.has_key('min_price'):
+            info['min_price'] = int(args['min_price'])
+        if args.has_key('max_price'):
+            info['max_price'] = int(args['max_price'])
+        if args.has_key('conditie'):
+            info['conditie'] = args['conditie']
+        if args.has_key('country'):
+            info['country'] = args['country']
+        if args.has_key('city'):
+            info['city'] = args['city']
+        if args.has_key('category'):
+            info['category'] = args['category']
+
+        logger.info(args)
+        logger.info(info)
+
 
         # info <=> {'min_price' : 2,
         #           'max_price' : 5,
@@ -100,9 +112,8 @@ class searchProductIDsView(view):
         # order_by <=> string cu campu' dupa care ordonam
         # how <=> asc/desc
         # query <=> string
-        productsByQuery = productController.getProductsByFilter(info, None, None, self.urlArgs[searchQueryKey])
-        logger.debug('LENGTH OF QUERY')
-        logger.debug(len(productsByQuery))
+        productsByQuery = productController.getProductsByFilter(info, None, None, args['query'])
+        logger.info('==============================')
 
         productIDs = []
         for iter in xrange(0, len(productsByQuery)):
@@ -199,7 +210,7 @@ class productView(view):
         self.addComponentToContext('footer.html', 'footer', True)
 
         content = self.renderTemplate('product.html')
-        
+
         logger.debug('content rendered!')
 
         return content
