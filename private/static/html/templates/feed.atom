@@ -1,0 +1,36 @@
+
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title>AuctioX feed - Newest listings</title>
+  <link href="localhost:8000/feed"/>
+  <updated>{{ dateUpdated }}</updated>
+  <id>localhost:8000/feed</id>
+
+  {% for product in products%}
+  <entry>
+    <title>{{product.title}}</title>
+
+    <link href="/product?prodid={{ product.productID }}"/>
+
+    <author>{{product.ownerID}}</author>
+
+    <content type="text">
+        Condition: {{product.condition}}
+        Price: {{product.price}} {{product.currency}}
+        Expiration date: {{product.dateExpires}}
+    </content>
+
+    <summary>
+        {{product.desc[0:200]}}
+    </summary>
+
+    <category term="{{product.category}}" label="Category: {{product.category}}"/>
+
+    <published>
+        {{product.dateAdded}}
+    </published>
+  </entry>
+  {% endfor %}
+
+</feed>

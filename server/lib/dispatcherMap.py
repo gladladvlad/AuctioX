@@ -52,6 +52,7 @@ map = [
 
     # API / Export END
 
+    ('^/feed/?$', feedView),
     ('^/public/*', publicFileView),
     ('^/$', homepageView),
     ('*', view)
