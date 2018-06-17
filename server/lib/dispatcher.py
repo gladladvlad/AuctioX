@@ -3,6 +3,7 @@ from dispatcherMap import map
 import BaseHTTPServer
 from util import *
 
+
 class dispatcher:
 
     # functie pentru gasit view-ul care corespunde path-ului din request
@@ -26,9 +27,12 @@ class dispatcher:
 
     def dispatch(self, request):
 
-        view = dispatcher.matchView(self, request.path)
+        view = dispatcher.matchView(request.path)
         if view is None:
             logger.error("[WARNINIG] Could not find view for path '{0}'".format(request.path))
             return
 
         view(request)
+
+
+dispatcher = dispatcher()
