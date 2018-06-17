@@ -38,11 +38,7 @@
 			<div class="containerFull" id="bidPanel">
 				<div id="bidInfo">
 					<div id="currentBid">
-						{% if product.auction == 'Auction' %}
-							<h4>Current bid: </h4><h2 id="price"> {{ product.price }} </h2><h2> {{ product.currency }} </h2>
-						{% else %}
-							<h4>Price: </h4><h2 id="price"> {{ product.price }}</h2><h2> {{ product.currency }} </h2>
-						{% endif %}
+						<h4>{% if product.auction == 'Auction' %}Current bid:{% else %}Price:{% endif %}</h4><h2 id="price"> {{ product.price }} </h2><h2> {{ product.currency }} </h2>
 					</div>
 				</div>
 				<div id="bidControl">
