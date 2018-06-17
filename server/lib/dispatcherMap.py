@@ -29,6 +29,7 @@ map = [
     ('^/userlistings/?$', userListingView),
     ('^/mylistings/?$', userMyListingsView),
     ('^/mybids/?$', userMyBidsView),
+    ('^/mytransactions', userTransactionsView),
 
     # User Views END
 
@@ -52,7 +53,7 @@ map = [
     # API / Export END
 
     ('^/public/*', publicFileView),
-    ('^/', homepageView),
+    ('^/$', homepageView),
     ('*', view)
 ]
 

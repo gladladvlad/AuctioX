@@ -81,6 +81,18 @@ class databaseController():
     def getTransactionById(self,key):
         return self.getItemsFromTable('transaction','transaction_id',key)
 
+    def getTransactionBySellerId(self, userID):
+        command= "select * from transaction join user on seller_user_id = user_id"
+        mycursor.execute(command)
+        result = mycursor.fetchall()
+        return result
+
+    def getTransactionByBuyerId(self, userID):
+        command= "select * from transaction join user on buyer_user_id = user_id"
+        mycursor.execute(command)
+        result = mycursor.fetchall()
+        return result
+
     def getResponseById(self,key):
         return self.getItemsFromTable('response','response_id',key)
 

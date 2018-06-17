@@ -145,3 +145,25 @@ class userMyBidsView(view):
         self.addComponentToContext('footer.html', 'footer', True)
         content = self.renderTemplate('myBids.html')
         return content
+
+class userTransactionsView(view):
+    def get(self):
+        logger.info("[VIEW] transactionsView")
+
+        self.setContentType('text/html')
+
+        userId = userController.validateUserSession(self)
+        if userId is None:
+            return 'Fail! You must be logged in!'
+
+
+        transactionsSelling = productController.getTransactionsBySellerId(userId)
+        self.addItemToContext(transactionsSelling, 'transell', True)
+
+        self.addComponentToContext('transactions_styles.html', 'style', True)
+
+        self.addComponentToContext('navbar.html', 'navbar', True)
+        self.addComponentToContext('footer.html', 'footer', True)
+        content = self.renderTemplate('myTransactions.html')
+
+        return content

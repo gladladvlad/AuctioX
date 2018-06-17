@@ -266,4 +266,11 @@ class userController():
         return resultUser
 
 
+
+    def getTransactionsBySellerId(self, userID):
+        return databaseController.getTransactionBySellerId(userID)
+
+    def getTransactionsByBuyerId(self, userID):
+        return databaseController.getTransactionByBuyerId(userID)
+
 userController = userController()
