@@ -213,7 +213,7 @@ class databaseController():
         mycursor.execute(command,lista)
         mariadb_connection.commit()
 
-    def insertIntoTrasnaction(self,info):
+    def insertIntoTransaction(self,info):
         current_date = datetime.datetime.now()
         date_expires = self.getDate('productdata','product_data_id','date_expires',info["product_data_id"])
         lista = [info["seller_user_id"],info["buyer_user_id"],info["product_data_id"],info["has_ended"],current_date,date_expires]
