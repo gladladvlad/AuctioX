@@ -29,6 +29,7 @@ map = [
     ('^/userlistings/?$', userListingView),
     ('^/mylistings/?$', userMyListingsView),
     ('^/mybids/?$', userMyBidsView),
+    ('^/mytransactions', userTransactionsView),
 
     # User Views END
 
@@ -39,6 +40,7 @@ map = [
     ('^/getproductids', searchProductIDsView),
     ('^/product', productView),
     ('^/bid', bidView),
+    ('^/buy', buyView),
     ('^/createlistingrequest/?$', createListingRequestView),
     ('^/createlisting/?$', createListingView),
 
@@ -51,7 +53,7 @@ map = [
     # API / Export END
 
     ('^/public/*', publicFileView),
-    ('^/', homepageView),
+    ('^/$', homepageView),
     ('*', view)
 ]
 

@@ -74,9 +74,6 @@ class searchProductIDsView(view):
     skipUserValidation = True
     def post(self):
         logger.info('[VIEW] searchProductIDsView reached')
-        logger.info('=======================================')
-        logger.info('=======================================')
-        logger.info('=======================================')
 
         self.setContentType('application/json')
 
@@ -107,11 +104,7 @@ class searchProductIDsView(view):
         # order_by <=> string cu campu' dupa care ordonam
         # how <=> asc/desc
         # query <=> string
-        logger.info('getting products')
         productsByQuery = productController.getProductsByFilter(info, None, None, args['query'])
-        logger.info('here are the products')
-        #logger.info(type(productsByQuery[0]))
-        #logger.info(productsByQuery)
 
         productIDs = []
         for iter in xrange(0, len(productsByQuery)):
@@ -242,10 +235,9 @@ class buyView(view):
         if not self.urlArgs.has_key('prodid'):
             return 'Fail! No product provided!'
 
-
         userId = userController.validateUserSession(self)
         if userId is None:
             return 'Fail! You must be logged in!'
 
-        return 'Success! Please look out for your transaction page.'
+        return productController.buy(userId, int(self.urlArgs['prodid']))
 
