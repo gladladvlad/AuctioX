@@ -245,10 +245,9 @@ class buyView(view):
         if not self.urlArgs.has_key('prodid'):
             return 'Fail! No product provided!'
 
-
         userId = userController.validateUserSession(self)
         if userId is None:
             return 'Fail! You must be logged in!'
 
-        return 'Success! Please look out for your transaction page.'
+        return productController.buy(userId, int(self.urlArgs['prodid']))
 

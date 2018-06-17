@@ -29,24 +29,24 @@ class product():
         for image in self.images:
             image = str(image)
 
-        result = {'ownerID' : str(self.ownerID),
-                'productID' : str(self.productID),
-                'status' : str(self.status),
-                'title' : str(self.title),
-                'desc' : str(self.desc),
-                'category' : str(self.category),
-                'subcategory' : str(self.category),
+        result = {'ownerID' : self.ownerID,
+                'productID' : self.productID,
+                'status' : self.status,
+                'title' : self.title,
+                'desc' : self.desc,
+                'category' : self.category,
+                'subcategory' : self.category,
                 'images' : self.images,
-                'condition' : str(self.condition),
-                'country' : str(self.country),
-                'city' : str(self.city),
-                'auction' : str(self.auction),
-                'price' : str(self.price),
-                'currency' : str(self.currency),
-                'shippingType' : str(self.shippingType),
-                'shippingPrice' : str(self.shippingPrice),
-                'dateAdded' : str(self.dateAdded),
-                'dateExpires' : str(self.dateExpires)}
+                'condition' : self.condition,
+                'country' : self.country,
+                'city' : self.city,
+                'auction' : self.auction,
+                'price' : self.price,
+                'currency' : self.currency,
+                'shippingType' : self.shippingType,
+                'shippingPrice' : self.shippingPrice,
+                'dateAdded' : self.dateAdded,
+                'dateExpires' : self.dateExpires}
 
         return result
 
@@ -111,8 +111,15 @@ class productController():
         if bidAmount < self.getHighestBidById(productID):
             return 'Fail! You cannot bid lower than the highest bid!'
 
-        if self.getProductInstanceById(productID).status != 'ongoing':
+        product = self.getProductInstanceById(productID)
+        if product.status != 'ongoing':
             return 'Fail! You cannot bid on a product that doesn\'t exist!'
+
+        if product.auction != 1:
+            return 'Fail! You cannot bid on a product that\'s not up for auction!'
+
+        if product.ownerID == userID:
+            return 'Fail! You cannot bid on a product that you sell!'
 
         bidEntry = {'user_id': userID,
                     'product_id': productID,
@@ -124,17 +131,24 @@ class productController():
 
 
     def buy(self, userID, productID):
-        if self.getProductInstanceById(productID).status != 'ongoing':
+        product = self.getProductInstanceById(productID)
+        if product.status  !=  'ongoing':
             return 'Fail! You cannot bid on a product that doesn\'t exist!'
 
-        bidEntry = {'user_id': userID,
-                    'product_id': productID,
-                    'status': 'ongoing',
-                    'value': bidAmount}
+        if product.auction != 0:
+            return 'Fail! You cannot buy an auctioned product!'
 
-        databaseController.insertIntoUserbid(bidEntry)
+        if product.ownerID == userID:
+            return 'Fail! You cannot buy a product that you sell!'
 
-        return 'Success! You bid {0}'.format(bidAmount)
+        transactionEntry = {'seller_user_id' : product.ownerID,
+                            'product_data_id' : productID,
+                            'buyer_user_id' : userID,
+                            'has_ended' : 'ongoing'}
+
+        databaseController.insertIntoTransaction(transactionEntry)
+
+        return 'Success! Please look out for your transaction page.'
 
 
 
@@ -205,7 +219,7 @@ class productController():
         logger.info("[START] createListing()")
 
         now = datetime.datetime.now()
-        expires = datetime.datetime(now.year + int(now.month > 12), (now.month + 1) % 12 + 1, now.day)
+        expires = now + datetime.timedelta(weeks = 4)
 
         info = {'title': data['title'],
                 'description': data['description'],
