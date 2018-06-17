@@ -214,11 +214,12 @@ CREATE TABLE IF NOT EXISTS `user` (
   `cell_number` varchar(32) NOT NULL,
   `status` varchar(50) NOT NULL DEFAULT 'active',
   `salt` tinyblob DEFAULT NULL,
+  `is_admin` bit(1) DEFAULT b'0',
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `user_id_username` (`user_id`,`username`),
   FULLTEXT KEY `username` (`username`),
   FULLTEXT KEY `username_2` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
 
 -- Data exporting was unselected.
 -- Dumping structure for table tw.userbid

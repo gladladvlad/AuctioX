@@ -64,6 +64,7 @@ class databaseController():
                 command = "SELECT * FROM {table} WHERE {column}='{key}'".format(key=key,table=table,column=column)
             else:
                 command = "SELECT * FROM {table} WHERE {column}={key}".format(key=key, table=table, column=column)
+        logger.debug("")
         mycursor.execute(command)
         result = mycursor.fetchall()
         return result
@@ -219,13 +220,6 @@ class databaseController():
         command = "INSERT INTO transaction(seller_user_id,buyer_user_id,product_id,has_ended,date_initiated,date_ended) VALUES(%s,%s,%s,%s,%s,%s)"
         mycursor.execute(command,lista)
         mariadb_connection.commit()
-        hashmap={
-            "user_id" : info["buyer_user_id"],
-            "product_id" : info["product_data_id"],
-            "status" : 'ongoing',
-            "value" : info["value"]
-        }
-        self.insertIntoUserbid(hashmap)
 
     def insertIntoSessions(self,info):
         lista=[info["session_id"],info["user_id"],info["date_created"],info["last_connected"],info["device"],info["ip"]]
@@ -657,7 +651,7 @@ if __name__ == "__main__":
     }
     #metod.insertIntoFeedback(feedback)
     #metod.insertIntoSessions(session)
-    #print metod.getProductsByFilter(None, None, None, "Air")
+    #print metod.getProductsByFilter(None, None, None, "")
     #print metod.getUserById(1)
     #metod.insertIntoTrasnaction(transactiondict)
     #metod.removeSessionId('+0rmdycrS81ncphLJWJK5A==')
@@ -674,7 +668,7 @@ if __name__ == "__main__":
      'image': [u'data:image/png;base64,ZGF0YTppbWFnZS9wbmc7YmFzZ...GlWQk9SdzBLR2dvQUFBQU5TVWhFVWdBQU'],
      'shipping_price': 0, 'subcategory': ''}
     #metod.incrementView(2)
-    metod.setAdminPrivileges(3,4,0)
+    #metod.setAdminPrivileges(3,4,0)
     #metod.insertIntoProductdata(prod)
     #metod.setInactiveInUser(1)
 
