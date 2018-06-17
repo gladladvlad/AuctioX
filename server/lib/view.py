@@ -176,6 +176,21 @@ class view:
 
         self.context[key] = item
 
+    def addFileToContext(self, filePath, key, override=False):
+
+        if key in self.context and override is False:
+            logger.warning(
+                "Could not file {file} item to context because the key '{key}' is already used. Use override=True in order to overwrite the old context entry".format(
+                    file=type(filePath), key=key))
+            return
+
+        try:
+            content = open(filePath, 'rb').read()
+            self.context[key] = content
+        except:
+            logger.error("Could not load file {0}".format(filePath))
+
+        
     def switchView(self, newView):
 
         newView(self.request)
