@@ -103,9 +103,6 @@ class searchProductIDsView(view):
         if args.has_key('category'):
             info['category'] = args['category']
 
-        logger.info(args)
-        logger.info(info)
-
 
         # info <=> {'min_price' : 2,
         #           'max_price' : 5,
@@ -113,12 +110,15 @@ class searchProductIDsView(view):
         # order_by <=> string cu campu' dupa care ordonam
         # how <=> asc/desc
         # query <=> string
+        logger.info('getting products')
         productsByQuery = productController.getProductsByFilter(info, None, None, args['query'])
-        logger.info('==============================')
+        logger.info('here are the products')
+        #logger.info(type(productsByQuery[0]))
+        #logger.info(productsByQuery)
 
         productIDs = []
         for iter in xrange(0, len(productsByQuery)):
-            productIDs.append(productsByQuery[iter][PROD_ID])
+            productIDs.append(productsByQuery[iter].productID)
 
 
         return json.dumps(productIDs)
