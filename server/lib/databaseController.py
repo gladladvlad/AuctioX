@@ -215,7 +215,7 @@ class databaseController():
 
     def insertIntoTransaction(self,info):
         current_date = datetime.datetime.now()
-        date_expires = self.getDate('productdata','product_data_id','date_expires',info["product_data_id"])
+        date_expires = current_date + datetime.timedelta(weeks = 2)
         lista = [info["seller_user_id"],info["buyer_user_id"],info["product_data_id"],info["has_ended"],current_date,date_expires]
         command = "INSERT INTO transaction(seller_user_id,buyer_user_id,product_id,has_ended,date_initiated,date_ended) VALUES(%s,%s,%s,%s,%s,%s)"
         mycursor.execute(command,lista)
