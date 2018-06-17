@@ -279,6 +279,24 @@ class databaseController():
         mycursor.execute(command)
         mariadb_connection.commit()
 
+    def setAdminPrivileges(self,id1,id2,what):
+        command = "select user_id from user where user_id={id1} and is_admin=1".format(id1=id1)
+        mycursor.execute(command)
+        result= mycursor.fetchone()
+        if result is None:
+            print "Nu esti admin"
+        else:
+            command = "update user set is_admin = {privilege} where user_id={id2}".format(
+                id2=id2, privilege=what
+            )
+            mycursor.execute(command)
+            mariadb_connection.commit()
+
+    def incrementView(self,product):
+        command = "update productdata set views = views +1 where product_data_id = {product}".format(product=product)
+        mycursor.execute(command)
+        mariadb_connection.commit()
+
     """Delete everything in database"""
     def resetAutoIncrement(self):
         command = "alter table user AUTO_INCREMENT = 1"
@@ -564,7 +582,7 @@ if __name__ == "__main__":
         "status":'asfdfds',
         "salt":bytearray("dawdas")
     }
-    metod.insertIntoUser(hashinfo)
+    #metod.insertIntoUser(hashinfo)
     prodData = {'title': 'Air guitar Epiphone les paul vasilescu',
                 'description': 'cea mia mijtoui s mora mama meu k ii sm3k mkatzash lorem gipsum jajaj jaj as lal qea j2qj h n asdasd, asdasldkj',
                 'conditie': 1,
@@ -642,7 +660,7 @@ if __name__ == "__main__":
     #print metod.getProductsByFilter(None, None, None, "Air")
     #print metod.getUserById(1)
     #metod.insertIntoTrasnaction(transactiondict)
-    metod.removeSessionId('+0rmdycrS81ncphLJWJK5A==')
+    #metod.removeSessionId('+0rmdycrS81ncphLJWJK5A==')
     #metod.deleteDatabase()
     #metod.setInactiveInTransaction(1)
     #metod.setInactiveInProduct(1)
@@ -655,6 +673,8 @@ if __name__ == "__main__":
      'shipping_type': '', 'date_added': datetime.datetime(2018, 6, 14, 11, 59, 54, 235000),
      'image': [u'data:image/png;base64,ZGF0YTppbWFnZS9wbmc7YmFzZ...GlWQk9SdzBLR2dvQUFBQU5TVWhFVWdBQU'],
      'shipping_price': 0, 'subcategory': ''}
+    #metod.incrementView(2)
+    metod.setAdminPrivileges(3,4,0)
     #metod.insertIntoProductdata(prod)
     #metod.setInactiveInUser(1)
 
