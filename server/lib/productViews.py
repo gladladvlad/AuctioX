@@ -232,17 +232,21 @@ class bidView(view):
 
 
         bidAmount = int(self.urlArgs['amount'])
-        highestBid = int(productController.getHighestBidById(self.urlArgs['prodid']))
 
-        if not bidAmount > highestBid:
-            return 'Fail! You cannot bid lower than the highest bid!'
+        return productController.bid(userId, int(self.urlArgs['prodid']), bidAmount)
 
-        bidEntry = {'user_id': userId,
-                    'product_id': int(self.urlArgs['prodid']),
-                    'status': 'ongoing',
-                    'value': bidAmount}
 
-        databaseController.insertIntoUserbid(bidEntry)
+class buyView(view):
+    def get(self):
+        logger.info("[VIEW] bidView")
+
+        if not self.urlArgs.has_key('prodid'):
+            return 'Fail! No product provided!'
+
+
+        userId = userController.validateUserSession(self)
+        if userId is None:
+            return 'Fail! You must be logged in!'
 
         return 'Success! You bid ' + str(bidAmount)
 

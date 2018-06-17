@@ -62,7 +62,6 @@ class productController():
     # order_by <=> string cu campu' dupa care ordonam
     # how <=> asc/desc
     # query <=> string
-    
     def getProductsByFilter(self, info, order_by, how, query):
         logger.info('[START] getProductsByFilter()')
         products = databaseController.getProductsByFilter(info, order_by, how, query)
@@ -91,6 +90,22 @@ class productController():
             return 0
 
         return highestBid[0][0]
+
+    def bid(self, userID, productID, bidAmount):
+        if bidAmount < self.getHighestBidById(productID):
+            return 'Fail! You cannot bid lower than the highest bid!'
+
+        if self.getProductInstanceById(productID).status != 'ongoing':
+            return 'Fail! You cannot bid on a product that doesn\'t exist!'
+
+        bidEntry = {'user_id': userID,
+                    'product_id': productID,
+                    'status': 'ongoing',
+                    'value': bidAmount}
+
+        databaseController.insertIntoUserbid(bidEntry)
+
+        return 'Success! You bid {0}'.format(bidAmount)
 
     def getUserBidProduct(self, userID):
         logger.info('[START] getUserBidProduct()')
