@@ -74,6 +74,7 @@ class searchView(view):
 
 
 class searchProductIDsView(view):
+    skipUserValidation = True
     def post(self):
         logger.info('[VIEW] searchProductIDsView reached')
         logger.info('=======================================')
@@ -124,6 +125,7 @@ class searchProductIDsView(view):
 
 
 class searchPageView(view):
+    skipUserValidation = True
     def get(self):
         logger.info('[VIEW] searchPageView')
 
@@ -248,5 +250,5 @@ class buyView(view):
         if userId is None:
             return 'Fail! You must be logged in!'
 
-        return 'Success! You bid ' + str(bidAmount)
+        return 'Success! Please look out for your transaction page.'
 

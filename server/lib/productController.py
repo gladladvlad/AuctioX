@@ -51,7 +51,7 @@ class product():
         return result
 
 class productController():
-    
+
     def getAllProducts(self):
         logger.info('[START] getAllProducts()')
         return databaseController.getProducts()
@@ -67,6 +67,8 @@ class productController():
         products = databaseController.getProductsByFilter(info, order_by, how, query)
         return products
 
+
+
     def getProductInstanceById(self, productID):
         logger.info('[START] getProductInstanceById()')
         prodDB = databaseController.getProductDataById(productID)[0]
@@ -79,6 +81,8 @@ class productController():
 
         return productResult
 
+
+
     def getHighestBidById(self, productID):
         logger.info('[START] getHighestBidById()')
         highestBid = databaseController.executeSQLCommand('select value from userbid where product_id = {0} order by value desc'.format(productID), True)
@@ -90,6 +94,8 @@ class productController():
             return 0
 
         return highestBid[0][0]
+
+
 
     def bid(self, userID, productID, bidAmount):
         if bidAmount < self.getHighestBidById(productID):
@@ -105,11 +111,28 @@ class productController():
 
         databaseController.insertIntoUserbid(bidEntry)
 
+
+
+    def buy(self, userID, productID):
+        if self.getProductInstanceById(productID).status != 'ongoing':
+            return 'Fail! You cannot bid on a product that doesn\'t exist!'
+
+        bidEntry = {'user_id': userID,
+                    'product_id': productID,
+                    'status': 'ongoing',
+                    'value': bidAmount}
+
+        databaseController.insertIntoUserbid(bidEntry)
+
         return 'Success! You bid {0}'.format(bidAmount)
+
+
 
     def getUserBidProduct(self, userID):
         logger.info('[START] getUserBidProduct()')
         return databaseController.getUserBidProduct(userID)
+
+
 
     def getUserProductsById(self, userID):
         logger.info('[START] getUserProductsById()')
@@ -125,7 +148,9 @@ class productController():
             prodList.append(prodBuf)
 
         return prodList
-    
+
+
+
     def getConditionInt(self, condStr):
         if condStr == 'boxed':
             return 0
@@ -139,6 +164,8 @@ class productController():
             return 4
         else:
             return 5
+
+
 
     def getConditionStr(self, condInt):
         if condInt == 0:
@@ -154,11 +181,15 @@ class productController():
         else:
             return 'extremely used'
 
+
+
     def getAuctionTypeStr(self, typeInt):
         if typeInt == 0:
             return 'Buy it now!'
         else:
             return 'Auction'
+
+
 
     def createListing(self, data, user):
         logger.info("[START] createListing()")

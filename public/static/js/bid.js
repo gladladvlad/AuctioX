@@ -26,6 +26,25 @@ function bid() {
     alert(answer);
 }
 
+function buy() {
+    productID = getHTTPGArg('prodid')
+    var request = "/buy?prodid=" + productID;
+
+    var xhr = new XMLHttpRequest();
+
+    xhr.onreadystatechange = function(){
+        if(xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200){
+            answer = xhr.responseText;
+        }
+    }
+
+    xhr.open("GET", request, false);
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhr.send();
+
+    alert(answer);
+}
+
 
 function getHTTPGArg(key) {
     //return window.location.href.split(new RegExp("[?&]" + key + "="))[1];
