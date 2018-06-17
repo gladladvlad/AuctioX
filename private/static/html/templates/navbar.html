@@ -12,7 +12,7 @@
 
     <div class="navbarElement">
         {% if sessionData %}
-            <a id="linkMyAccount" href="/signout" target="_top">Logged as {{ sessionData.username }}</a>
+            <p>Logged as <a href="/myaccount"><b>{{ sessionData.username }}</b></a></p>
             <a id="linkMyListings" href="/mylistings" target="_top">My Listings</a>
             <a id="linkCreateAuction" href="/createlisting" target="_top">Create Listing</a>
             <a id="linkSignOut" href="/signout" target="_top">Sign Out</a>

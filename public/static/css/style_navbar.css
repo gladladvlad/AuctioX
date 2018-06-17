@@ -19,12 +19,17 @@
     color: white;
 }
 
-.navbarElement > a {
+.navbarElement > a, .navbarElement > p  {
     margin: 0 0.5em 0 0.5em;
     max-width: 5rem;
 
     color: var(--lnk1);
     text-align: center;
+}
+
+.navbarElement > p > a {
+
+    color: var(--lnk1);
 }
 
 .navbarLogo {

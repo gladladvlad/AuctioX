@@ -1,15 +1,14 @@
 <ul>
 	{% for product in products %}
 	<li class="prod">
-		<div class="prodTitle">
-			<h3><a href="/product?prodid={{ product.productID }}"> {{ product.title }} </a></h3>
-		</div>
-
 		<div class="prodContent">
 			<div class="prodImage">
 				<img src="{{ product.images[0] }}" alt="product"/>
 			</div>
 			<div class="prodDesc">
+				<div class="prodTitle">
+					<h3><a href="/product?prodid={{ product.productID }}"> {{ product.title }} </a></h3>
+				</div>
 				<div class="prodDescLeft">
 					<span> Condition: {{ product.condition }} </span>
 					<span> Country: {{ product.country }} </span>

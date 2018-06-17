@@ -30,6 +30,7 @@ class userRegistrationRequestView(view):
 
         return result
 
+
 class userListingView(view):
 
     def get(self):
@@ -43,6 +44,7 @@ class userListingView(view):
 
         return content
 
+
 class userSignInView(view):
     def get(self):
         logger.info("[VIEW] userSignInView")
@@ -54,6 +56,7 @@ class userSignInView(view):
         content = self.renderTemplate('userSignIn.html')
 
         return content
+
 
 class userSignInRequestView(view):
 
@@ -68,12 +71,16 @@ class userSignInRequestView(view):
 
         return result
 
+
 class userSignOutRequestView(view):
 
     def get(self):
         logger.info("[VIEW] userSignOutRequestView")
 
-        databaseController.removeSessionId(self.sessionData["sessionId"])
+        try:
+            databaseController.removeSessionId(self.sessionData["sessionId"])
+        except:
+            pass
 
         cookie = "user_session_identifier={data}; Expires={exp}".format(data="expired",exp=datetime.datetime.now().strftime("%a, %d %b %Y %H:%M:%S GMT"))
         self.cookies.append(cookie)
@@ -87,6 +94,7 @@ class userSignOutRequestView(view):
         self.addComponentToContext('footer.html', 'footer', True)
         content = self.renderTemplate('userSignOut.html')
         return content
+
 
 class userMyListingsView(view):
 
@@ -108,6 +116,7 @@ class userMyListingsView(view):
         self.addComponentToContext('footer.html', 'footer', True)
         content = self.renderTemplate('myListings.html')
         return content
+
 
 class userMyBidsView(view):
 

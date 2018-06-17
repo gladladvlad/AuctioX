@@ -3,6 +3,7 @@ from testViews import *
 from generalViews import *
 from userViews import *
 from productViews import *
+from apiViews import *
 
 # Aici mapam expresii regulate view-urilor. Cand se primeste un request, dispatcherul verifica toate expresiile regulate in ordine si apeleaza view-ul corespunzator
 
@@ -42,6 +43,12 @@ map = [
     ('^/createlisting/?$', createListingView),
 
     # Product Views END
+
+    # API / Export START
+
+    ('^/api/json/?', jsonExportView),
+
+    # API / Export END
 
     ('^/public/*', publicFileView),
     ('^/', homepageView),

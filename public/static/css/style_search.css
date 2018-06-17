@@ -163,6 +163,7 @@ body {
 	padding-bottom: 0.25em;
 
 	background-color: var(--colorMain);
+	background-color: var(--colorMain);
 
 }
 
@@ -212,13 +213,18 @@ body {
 }
 
 .prodTitle {
-	text-align: center;
+	width: 100%;
+}
+
+.prodTitle > h3 > a {
+    color: var(--colorMainLight);
 }
 
 .prod > .prodContent > .prodDesc {
 	padding-left: 1em;
 
 	display: flex;
+	flex-wrap: wrap;
 	flex-direction: row;
 
 	line-height: 1.6;

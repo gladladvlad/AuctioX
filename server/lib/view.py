@@ -104,9 +104,8 @@ class view:
                 try:
                     response += "Traceback:<br><pre>"
                     for entry in traceback.extract_tb(tb):
-                        response += "{0} [{1}]\n".format(entry[0], entry[1])
-                        response += "{0} >>> {1}".format(entry[2], entry[3])
-                        response += "\n\n===\n\n"
+                        response += "File {0}, line {1}, in {2}\n".format(entry[0], entry[1], entry[2])
+                        response += "\t{0}\n\n".format(entry[3])
                     response += "</pre>"
                 except:
                     logger.warning("Could not get traceback")
