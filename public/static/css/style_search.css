@@ -23,8 +23,8 @@ body {
 }
 
 .searchBody > div {
-	border-bottom: 1px solid var(--colorMain);
-	border-right: 1px solid var(--colorMain);
+	/*border-bottom: 1px solid var(--colorMain);*/
+	/*border-right: 1px solid var(--colorMain);*/
 	float: left;
 }
 
@@ -131,7 +131,6 @@ body {
 /* lista de produse */
 #content {
 	width: 70%;
-	background-color: white;
 }
 
 #content > ul {
@@ -190,94 +189,100 @@ body {
 /* produs */
 
 /*#content > ul > li { */
+
 .prod {
+    margin: 0.75em;
+    padding: 1em;
+
 	display: flex;
 	flex-direction: column;
+    height: auto;
 
-	border-bottom: 1px solid var(--colorMain);
-	width: 100%;
-	height: auto;
+	border-bottom: 4px solid var(--colorMain);
 
-	padding: 1em;
+	background-color: white;
 }
 
-.prod > .prodContent {
+.prodContent {
+    display: flex;
+}
+
+.prodImage {
+    width: 256px;
+    height: 256px;
+
 	display: flex;
-	flex-direction: row;
+
+	background-color: black;
 }
 
-.prod > .prodContent > .prodTitle > h3 {
-	padding-top: 0.5em;
-	font-style: normal;
-	font-size: 125%;
+.prodImage > img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+    flex-grow: 1;
+}
+
+.prodData {
+    margin-left: 1em;
+    flex-grow: 1;
+
+    display:flex;
+    flex-direction: column;
+
 }
 
 .prodTitle {
-	width: 100%;
+    padding: 0.5em;
+    width: 100%;
+
+    font-size: 1.25em;
+
 }
 
-.prodTitle > h3 > a {
-    color: var(--colorMainLight);
+.prodInfo {
+    flex-grow: 1;
+
+    display: flex;
+    flex-direction: row;
+
 }
 
-.prod > .prodContent > .prodDesc {
-	padding-left: 1em;
+.prodDetails {
+    padding: 0.5em;
+    width: 50%;
 
-	display: flex;
-	flex-wrap: wrap;
-	flex-direction: row;
-
-	line-height: 1.6;
 }
 
-.prod > .prodContent > .prodDesc > .prodDescLeft {
-	display: flex;
-	flex-direction: column;
-	width: 43%;
-	/* flex-grow: 1; */
+.prodDetails > table {
+    width: 100%;
 
-	border-right: 1px solid var(--colorMain);
 }
 
-.prod > .prodContent > .prodDesc > .prodDescRight {
-	width: 43%;
-	padding-left: 2%;
-	/* flex-grow: 1; */
+.prodDetails td {
+    padding: 0.25;
 }
 
-.prod > .prodContent > .prodImage {
-	max-width: 25%;
-	max-height: 50%;
-	object-fit: contain;
-	display: flex;
-	flex-direction: column;
-
-	/*
-	box-sizing: border-box;
-	padding-top: 50%;
-	padding-bottom: 50%;
-	*/
+.prodDetails tr:nth-child(even){
+    background-color: #00000008;
 }
 
-.prod > .prodContent > .prodImage > img {
-	width: 100%;
-	margin: auto;
-	align-items: center;
+.prodDesc {
+    padding: 0.5em;
+    width: 50%;
 
-	/*min-width: 0;
-	min-height: 0;
-	object-fit: contain;
-	width: 33%;
-	flex-grow: 2;*/
 }
 
-.prod > .prodContent > .prodOtherImages > img {
-	max-width: 5%;
-	object-fit: contain;
-}
+@media only screen and (max-width: 366px) {
+	.prod > .prodContent {
+		flex-direction: column;
+		justify-content: center;
+	}
 
-/* END produs */
-/* END lista de produse */
+	.prod > .prodContent > .prodImage {
+		width: 100%;
+	}
+}
 
 @media only screen and (max-width: 917px) {
 	#content {
@@ -347,15 +352,5 @@ body {
 @media only screen and (max-width: 366px) {
 	.searchBody {
 		flex-direction: column;
-	}
-
-	.prod > .prodContent {
-		flex-direction: column;
-		justify-content: center;
-	}
-
-	.prod > .prodContent > .prodImage {
-		max-width: 65%;
-		width: 100%;
 	}
 }

@@ -5,30 +5,49 @@
 			<div class="prodImage">
 				<img src="{{ product.images[0] }}" alt="product"/>
 			</div>
-			<div class="prodDesc">
-				<div class="prodTitle">
-					<h3><a href="/product?prodid={{ product.productID }}"> {{ product.title }} </a></h3>
-				</div>
-				<div class="prodDescLeft">
-					<span> Condition: {{ product.condition }} </span>
-					<span> Country: {{ product.country }} </span>
-					<span> City: {{ product.city }} </span>
-					<span> Listing type: {{ product.auction }} </span>
-					{% if product.auction == 'Auction' %}
-						<span> Highest bid: {{ product.price }} {{ product.currency }} </span>
-					{% else %}
-						<span> Price: {{ product.price }} {{ product.currency }} </span>
-					{% endif %}
-					<span> Shipping method: {{ product.shippingType }} </span>
-					<span> Shipping cost: {{ product.shippingPrice }} {{ product.currency }} </span>
-					<span> Date added: {{ product.dateAdded }} </span>
-					<span> Date expires: {{ product.dateExpires }} </span>
-				</div>
-				<div class="prodDescRight">
-					<p>
-						{{product.desc }}
-					</p>
-				</div>
+			<div class="prodData">
+                <div class="prodTitle">
+				    <a href="/product?prodid={{ product.productID }}"> {{ product.title }} </a>
+                </div>
+                <div class="prodInfo">
+                    <div class="prodDetails">
+                        <table>
+                            <tr>
+                                <td>Condition</td>
+                                <td>{{ product.condition }}</td>
+                            </tr>
+                            {% if product.country != "" %}
+                            <tr>
+                                <td>Location</td>
+                                <td>{{ product.country }} {% if product.city != "" %}, {{ product.city }}{% endif %}</td>
+                            </tr>
+                            {% endif %}
+                            <tr>
+                                <td>
+                                    {% if product.auction == 'Auction' %}
+                                        Highest bid
+                                    {% else %}
+                                        Price
+                                    {% endif %}
+                                </td>
+                                <td>{{ product.price }} {{ product.currency }}</td>
+                            </tr>
+                            <tr>
+                                <td>Added at</td>
+                                <td>{{ product.dateAdded }}</td>
+                            </tr>
+                            <tr>
+                                <td>Ends at</td>
+                                <td>{{ product.dateExpires }}</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="prodDesc">
+                        <p>
+                            {{product.desc }}
+                        </p>
+                    </div>
+                </div>
 			</div>
 		</div>
 	</li>
