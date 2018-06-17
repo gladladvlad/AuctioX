@@ -2,14 +2,12 @@ from BaseHTTPServer import BaseHTTPRequestHandler, HTTPServer
 from SocketServer import ThreadingMixIn
 import SocketServer
 import re
-from lib import dispatcher
+from lib.dispatcher import dispatcher
 from lib.util import *
+from lib.daemon import daemon
 
 PORT = 8000
 THREADED = True
-
-disp = dispatcher.dispatcher()
-
 
 class RequestHandler(BaseHTTPRequestHandler):
 
@@ -59,15 +57,16 @@ class RequestHandler(BaseHTTPRequestHandler):
 
     def do_POST(self):
         logger.debug("[START] do_POST [{0}]".format(self.requestline))
-        disp.dispatch(self)
+        dispatcher.dispatch(self)
 
     def do_GET(self):
         logger.debug("[START] do_GET [{0}]".format(self.requestline))
-        disp.dispatch(self)
+        dispatcher.dispatch(self)
 
 
 Handler = RequestHandler
 
+daemon.start()
 
 if THREADED:
 
@@ -84,3 +83,4 @@ else:
 
     print "Serving at port {0}".format(PORT)
     server.serve_forever()
+
