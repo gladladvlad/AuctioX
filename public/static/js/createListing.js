@@ -1,4 +1,3 @@
-
 photoFiles = []
 previewDict = {}
 data = {}
@@ -16,6 +15,25 @@ window.onload = function(){
     inputCondition = document.getElementById("inputCondition");
     preview = document.getElementById("preview");
 
+    inputTime = document.getElementById("inputTime");
+    inputDate = document.getElementById("inputDate");
+
+    errorField = document.getElementById("errors")
+
+    defaultDate = new Date()
+    defaultDate.setDate(defaultDate.getDate() + 30)
+    inputDate.valueAsDate = defaultDate;
+
+    inputListingType.onchange = function () {
+        div = document.getElementById("auctionEndInputs")
+
+        if (inputListingType.value == "Auction") {
+            div.style.display = "flex"
+        }
+        else {
+            div.style.display = "none"
+        }
+    }
 }
 
 function submitPhoto(){
@@ -64,7 +82,7 @@ function readMultiFiles(files) {
 }
 
 function createListing(){
-
+    errorField.innerHTML = ""
     data = {}
     data["title"] = inputTitle.value;
     data["category"] = inputCategory.value;
@@ -76,6 +94,8 @@ function createListing(){
     data["price"] = inputPrice.value;
     data["currency"] = inputCurrency.value;
     data["condition"] = inputCondition.value;
+    data["endDate"] = inputDate.value;
+    data["endTime"] = inputTime.value;
     readMultiFiles(photoFiles);
 }
 
@@ -88,6 +108,15 @@ function sendRequest(data) {
         if(xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200){
             response = JSON.parse(xhr.responseText)
             console.log(response)
+
+            errorList = response["errors"]
+            for(i = 0; i < errorList.length; i++) {
+                errorField.innerHTML += " " + errorList[i]
+                if(i < errorList.length - 1) {
+                    errorField.innerHTML += "<br>"
+                }
+            }
+
             if(response["success"])
             {
                 alert("Product created!")

@@ -47,14 +47,11 @@ class createListingView(view):
 class createListingRequestView(view):
     def post(self):
         logger.info('[VIEW] createListingsRequestView')
-        logger.debug('asd')
         user = userController.getUserInstanceById(userController.validateUserSession(self))
-        logger.debug('got the user')
+
         result = productController.createListing(self.parseJsonPost(), user)
-        success = False
-        if result is not None:
-            success = True
-        return json.dumps({'success': success, 'prodId': result})
+
+        return result
 
 
 class searchView(view):

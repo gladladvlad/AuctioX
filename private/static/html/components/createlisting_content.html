@@ -60,7 +60,7 @@
 							</div>
 						</div>
 						<div class="containerHalf">
-							<div class="formElement">
+							<div class="formElement" style="display: none;">
 								<label class="formLabel">Specifications</label>
 								<small>(e.g. production year, consumption, frequency etc.)</small><br>
 								<table id="tableSpecs">
@@ -86,7 +86,7 @@
 								<label class="formLabel" for="inputPhotos">Photos</label>
 								<small>A picture is worth a thousand words (you can add more than 1 though)</small><br>
 								<input type="file" id="inputPhotos" accept="image/*" multiple>
-								<button class="button" type="button" id="submitButton" onclick="submitPhoto(); return false;">Submit</button>
+								<button class="button" type="button" id="submitButton" onclick="submitPhoto(); return false;">Submit Photos</button>
 								<div id="preview" class="formPhotosPreview">
 								</div>
 							</div>
@@ -96,6 +96,11 @@
 									<option>Auction</option>
 									<option>Buy it now</option>
 								</select>
+                                <h3>End date</h3>
+                                <div id="auctionEndInputs" class="auctionEndInputs">
+                                    <input id="inputDate" type="date">
+                                    <input id="inputTime" type="time" value="00:00">
+                                </div>
 							</div>
 							<div class="formElement">
 								<label class="formLabel" for="inputPrice">Starting price</label>
@@ -109,6 +114,9 @@
 							</div>
 						</div>
 					</div>
+					<div class="section" id="errors">
+
+        			</div>
 					<div class="buttonContainer">
 						<button class="button" id="createListingButton" onclick="createListing(); return false;">
 							Create Auction

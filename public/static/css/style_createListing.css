@@ -11,7 +11,7 @@ small {
 }
 
 #submitButton{
-    margin: 0.5em 0.3em 0.25em 1.2em;
+    width: 100%;
     padding: 0.5em 1em 0.5em 1em;
 }
 .formLabel {
@@ -27,15 +27,24 @@ small {
 	
 }
 
-.formElement > input, .formElement select, .formElement textarea, .formElement table, .formPhotosPreview {
-	margin: 2.5% 2.5% 2.5% 2.5%;
+.formElement > input, .formElement select, .formElement textarea, .formElement table, .formPhotosPreview, .auctionEndInputs > input {
+
+    margin: 0.5em 0 0.5em 0;
 	min-height: 1.5em;
-	width: 90%;
+	width: 100%;
 
 	background-color: var(--inputbg);
 	border: 1px solid gray;
 	border-radius: 3px;
 	font-size: 1.15em;
+}
+
+.auctionEndInputs {
+    display: flex;
+}
+
+.auctionEndInputs > input {
+    width: 50%;
 }
 
 .formPhotosPreview {
@@ -59,13 +68,18 @@ small {
 }
 
 .formElement > textarea {
-	max-width: 90%;
 	min-width: 90%;
 	min-height: 6em;
 }
 
 .formElement td {
 	width: 50%;
+	height: auto;
+}
+
+.formElement h3 {
+	margin: 0.25em 0 0.25em 0;
+	padding: 0;
 	height: auto;
 }
 

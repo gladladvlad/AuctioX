@@ -204,34 +204,92 @@ class productController():
     def createListing(self, data, user):
         logger.info("[START] createListing()")
 
+        errors = list()
+        resultDict = dict()
         now = datetime.datetime.now()
-        expires = datetime.datetime(now.year + int(now.month > 12), (now.month + 1) % 12 + 1, now.day)
 
-        info = {'title': data['title'],
-                'description': data['description'],
-                'conditie': self.getConditionInt(data['condition']),
-                'country': "",
-                'state': "",
-                'city': "",
-                'is_auction': data['is_auction'],
-                'price': int(data['price']),
-                'currency': data['currency'],
-                'shipping_type': "",
-                'shipping_price': 0,
-                'date_added': now,
-                'date_expires': expires,
-                'category': data['category'],
-                'subcategory': "",
-                'views': 0,
-                'image': data['photos'],
-                'status': 'ongoing',
-                'user_id': user.UID
-                }
+        if data["price"] == "":
+            errors.append("You must specify a price")
 
-        prodId = databaseController.insertIntoProductdata(info)
-        logger.debug("Created listing")
-        return prodId
+        if data["title"] == "":
+            errors.append("You must provide a title")
 
+        if data["description"] == "":
+            errors.append("You must provide a description")
+
+        if data["is_auction"]:
+
+            logger.debug("Checking auction end time")
+
+            datetimeString = "{0} {1}".format(data['endDate'], data["endTime"]).split(',')[0]
+
+            logger.debug("Received {0}, (now is {1})".format(datetimeString, datetime.datetime.now().strftime("%Y-%m-%d %H:%M")))
+
+            validTime = False
+            correctTime = False
+
+            try:
+                endTime = datetime.datetime.strptime(datetimeString, "%Y-%m-%d %H:%M")
+                validTime = True
+                logger.debug("Time validated OK")
+            except:
+                logger.error("Could not parse date string '{0}'".format(datetimeString))
+                errors.append("Bad date/time.")
+                pass
+
+            if validTime and endTime > datetime.datetime.now():
+                logger.debug("Time is correct")
+                correctTime = True
+            else:
+                errors.append("Invalid auction end time")
+
+            if correctTime and (endTime - datetime.datetime.now()).seconds/3600 > 1:
+                logger.debug("Timedelta is ok")
+            else:
+                errors.append("Auctions must be available for at least 1 hour")
+
+        if len(errors) == 0:
+
+            info = {'title': data['title'],
+                    'description': data['description'],
+                    'conditie': self.getConditionInt(data['condition']),
+                    'country': "",
+                    'state': "",
+                    'city': "",
+                    'is_auction': data['is_auction'],
+                    'price': int(data['price']),
+                    'currency': data['currency'],
+                    'shipping_type': "",
+                    'shipping_price': 0,
+                    'date_added': now,
+                    'date_expires': endTime,
+                    'category': data['category'],
+                    'subcategory': "",
+                    'views': 0,
+                    'image': data['photos'],
+                    'status': 'ongoing',
+                    'user_id': user.UID
+                    }
+
+            prodId = databaseController.insertIntoProductdata(info)
+
+            if prodId is not None:
+                logger.debug("Created listing")
+                resultDict["prodId"] = prodId
+            else:
+                errors.append("Could not add product")
+        else:
+            logger.warning("Product not valid. Not adding to database.")
+
+        resultDict["success"] = False
+        if len(errors) == 0:
+            resultDict["success"] = True
+
+        resultDict["errors"] = errors
+
+        logger.debug(resultDict)
+
+        return json.dumps(resultDict)
 
 
 productController = productController()
