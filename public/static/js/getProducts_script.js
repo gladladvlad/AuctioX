@@ -74,7 +74,6 @@ function updateProductPage(page) {
         return;
     }
 
-
     if (to > (productIDs.length - 1)) { 
         console.log("updateProductPage() firs if: page is " + page);
         requestProductPage(from, productIDs.length - 1);
@@ -136,6 +135,8 @@ function requestProductPage(fromIndex, toIndex){
 
     console.log("request is " + request)
     console.log("argIter is " + argIter)
+
+    document.getElementsByClassName("navbar")[0].scrollIntoView();
 
     console.log("beginning loop")
     for (var i = fromIndex; i <= toIndex; i++) {
