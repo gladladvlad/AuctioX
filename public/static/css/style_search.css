@@ -212,14 +212,15 @@ body {
     height: 256px;
 
 	display: flex;
+	flex-shrink: 0;
 
-	background-color: black;
+	background-color: #000000F0;
 }
 
 .prodImage > img {
     max-width: 100%;
     max-height: 100%;
-    object-fit: cover;
+    object-fit: contain;
     flex-grow: 1;
 }
 
@@ -237,7 +238,10 @@ body {
     width: 100%;
 
     font-size: 1.25em;
+}
 
+.prodTitle > a {
+    color: var(--colorMainLight);
 }
 
 .prodInfo {
@@ -273,18 +277,38 @@ body {
 
 }
 
-@media only screen and (max-width: 366px) {
-	.prod > .prodContent {
+@media only screen and (max-width: 1000px) {
+    .prod {
+        padding: 0;
+    }
+
+	.prodContent {
 		flex-direction: column;
 		justify-content: center;
 	}
 
-	.prod > .prodContent > .prodImage {
+	.prodImage {
+	    height: auto;
+	    max-height: 256px;
 		width: 100%;
 	}
+
+	.prodImage > img {
+        object-fit: cover;
+    }
 }
 
-@media only screen and (max-width: 917px) {
+@media only screen and (max-width: 1000px) {
+    .prodInfo {
+        flex-direction: column;
+    }
+
+    .prodInfo > div {
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 1000px) {
 	#content {
 		width: 77.5%;
 	}
@@ -294,7 +318,7 @@ body {
 	}
 }
 
-@media only screen and (max-width: 830px) {
+@media only screen and (max-width: 1000px) {
 	.quickCriteria {
 		display:flex;
 		justify-content: center;
