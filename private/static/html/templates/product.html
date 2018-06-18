@@ -26,13 +26,17 @@
 					<td>Condition</td>
 					<td> {{ product.condition }} </td>
 				</tr>
+                <tr>
+					<td>Created at </td>
+					<td> {{ product.dateAdded }} </td>
+				</tr>
 				<tr>
 					<td>Expires at </td>
 					<td> {{ product.dateExpires }} </td>
 				</tr>
 				<tr>
-					<td>Shipping method</td>
-					<td> {{ product.shippingType }} </td>
+					<td>Views </td>
+					<td>{{ product.views }}</td>
 				</tr>
 			</table>
 
@@ -55,25 +59,26 @@
 				<h5>Seller info</h5>
 				<table id="sellerInfoTable">
 				<tr>
-					<td>account</td>
+					<td>seller</td>
 					<td><a href="userListings.html"> {{ seller.username }} </a></td>
-				</tr>
-				<tr>
-					<td>views: </td>
-					<td>{{ product.views }}</td>
 				</tr>
 				<tr>
 					<td>email</td>
 					<td> {{ seller.email }} </td>
 				</tr>
+                {% if product.country != "" %}
 				<tr>
 					<td>location</td>
-					<td> {{ product.country }}, {{ product.city }} </td>
+					<td> {{ product.country }}, {% if product.city != "" %}{{ product.city }}{% endif %} </td>
 				</tr>
+                {% endif %}
 			</table> 					
 			</div>
 		</div>
 	</div>
+	<div class="productDescription">
+        {{ product.description }}
+    </div>
 </div>
 {% endblock %}
 

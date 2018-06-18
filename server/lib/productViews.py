@@ -182,6 +182,8 @@ class productView(view):
         if not self.urlArgs.has_key(productIDKey):
             raise ValueError("No product provided!")
 
+
+
         product = productController.getProductInstanceById(int(self.urlArgs[productIDKey]))
         product.condition = productController.getConditionStr(product.condition)
         product.auction = productController.getAuctionTypeStr(product.auction)
@@ -202,6 +204,8 @@ class productView(view):
         self.addComponentToContext('footer.html', 'footer', True)
 
         content = self.renderTemplate('product.html')
+
+        databaseController.incrementView(product.productID)
 
         logger.debug('content rendered!')
 
