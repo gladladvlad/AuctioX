@@ -314,6 +314,13 @@ class databaseController():
         mycursor.execute(command)
         mariadb_connection.commit()
 
+    def stergeBid(self,bid_id):
+        command = "delete from userbid where current_bid_id={id}".format(
+            id=bid_id
+        )
+        mycursor.execute(command)
+        mariadb_connection.commit()
+
     """Delete everything in database"""
     def resetAutoIncrement(self):
         command = "alter table user AUTO_INCREMENT = 1"
@@ -694,8 +701,15 @@ if __name__ == "__main__":
     #metod.setAdminPrivileges(3,4,0)
     #metod.insertIntoProductdata(prod)
     #metod.setInactiveInUser(1)
-    metod.setNewPrice(2,100)
-
+    #metod.setNewPrice(2,100)
+    mapa={
+        "user_id": 2,
+        "product_id":2,
+        "status":"ongoing",
+        "value":100
+    }
+    #metod.insertIntoUserbid(mapa)
+    metod.stergeBid(1)
 databaseController = databaseController()
 
 
