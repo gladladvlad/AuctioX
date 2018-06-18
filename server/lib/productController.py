@@ -85,7 +85,7 @@ class productController():
 
         newProdList = []
 
-        for product in products:
+        for product in prodList:
             images = databaseController.getImages(product.productID)
             product.images = images
 
