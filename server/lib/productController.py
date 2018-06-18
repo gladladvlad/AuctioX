@@ -221,15 +221,22 @@ class productController():
         errors = list()
         resultDict = dict()
         now = datetime.datetime.now()
+        endTime = now
 
         if data["price"] == "":
             errors.append("You must specify a price")
+        else:
+            logger.debug("Price OK")
 
         if data["title"] == "":
             errors.append("You must provide a title")
+        else:
+            logger.debug("Title OK")
 
         if data["description"] == "":
             errors.append("You must provide a description")
+        else:
+            logger.debug("Description OK")
 
         if data["is_auction"]:
 
@@ -285,7 +292,9 @@ class productController():
                     'user_id': user.UID
                     }
 
+            logger.debug("Database insertion starting")
             prodId = databaseController.insertIntoProductdata(info)
+            logger.debug("Database insertion done")
 
             if prodId is not None:
                 logger.debug("Created listing")

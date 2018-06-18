@@ -14,13 +14,6 @@ class jinjatest(view):
         return self.renderTemplate('jinjatest.html')
 
 
-class globalFavicon(view):
-
-    def get(self):
-        logger.info("[TEST VIEW] globalFavicon")
-        return open("..\\public\\static\\png\\favicon.png", "rb").read()
-
-
 class addUserView(view):
     def get(self):
         logger.info("[TEST VIEW] addUserView")

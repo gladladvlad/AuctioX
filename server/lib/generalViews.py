@@ -38,6 +38,13 @@ class homepageView(view):
         return content
 
 
+class globalFavicon(view):
+
+    def get(self):
+        logger.info("[TEST VIEW] globalFavicon")
+        return open("..\\public\\static\\png\\favicon.png", "rb").read()
+
+
 class feedView(view):
     def get(self):
         logger.info('[INFO] feedView reached')

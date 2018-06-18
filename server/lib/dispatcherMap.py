@@ -49,10 +49,11 @@ map = [
     # API / Export START
 
     ('^/api/json/?', jsonExportView),
+    ('^/feed/?$', feedView),
 
     # API / Export END
 
-    ('^/feed/?$', feedView),
+    ('^/favicon.ico$', globalFavicon),
     ('^/public/*', publicFileView),
     ('^/$', homepageView),
     ('*', view)
