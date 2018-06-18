@@ -83,7 +83,13 @@ class searchProductIDsView(view):
         query = args.pop('query', '')
         args.pop('psize', None)
 
-        productsByQuery = productController.getProductsByFilter(args, None, None, query)
+        sortBy, sortHow = None, None
+        sort = args.pop('sort', None)
+        if not sort is None:
+            sortBy = sort[0]
+            sortHow = sort[1]
+
+        productsByQuery = productController.getProductsByFilter(args, sortBy, sortHow, query)
 
 
         productIDs = []
