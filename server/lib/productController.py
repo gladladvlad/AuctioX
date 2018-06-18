@@ -124,12 +124,17 @@ class productController():
 
 
     def bid(self, userID, productID, bidAmount):
-        if bidAmount < self.getHighestBidById(productID):
-            return 'Fail! You cannot bid lower than the highest bid!'
-
         product = self.getProductInstanceById(productID)
         if product.status != 'ongoing':
             return 'Fail! You cannot bid on a product that doesn\'t exist!'
+
+
+        highestBid = self.getHighestBidById(productID)
+        if highestBid != 0 and bidAmount < highestBid:
+                return 'Fail! You cannot bid lower than the highest bid!'
+        elif bidAmount < product.price:
+                return 'Fail! You cannot bid lower than the highest bid!'
+
 
         if product.auction != 1:
             return 'Fail! You cannot bid on a product that\'s not up for auction!'
@@ -143,6 +148,10 @@ class productController():
                     'value': bidAmount}
 
         databaseController.insertIntoUserbid(bidEntry)
+
+        databaseController.setNewPrice(productID, bidAmount)
+
+        return 'Success! You bid {0}'.format(bidAmount)
 
 
 
@@ -163,6 +172,8 @@ class productController():
                             'has_ended' : 'ongoing'}
 
         databaseController.insertIntoTransaction(transactionEntry)
+
+        databaseController.setInactiveInProduct(productID)
 
         return 'Success! Please look out for your transaction page.'
 
