@@ -118,9 +118,6 @@ class searchPageView(view):
                 tmpProduct = productController.getProductInstanceById(int(self.urlArgs[itemKey]))
                 tmpProduct.auction = productController.getAuctionTypeStr(tmpProduct.auction)
                 tmpProduct.condition = productController.getConditionStr(tmpProduct.condition)
-                if (tmpProduct.auction == 'Auction'):
-                    highestBid = productController.getHighestBidById(tmpProduct.productID)
-                    tmpProduct.price = highestBid
 
 
                 products.append(tmpProduct.asDict())
