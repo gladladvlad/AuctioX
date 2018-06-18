@@ -55,6 +55,7 @@ class feedView(view):
             products[i].condition = productController.getConditionStr(products[i].condition)
             products[i].ownerID = userController.getUserInstanceById(products[i].ownerID).username
 
+        self.addItemToContext("localhost:8000", 'domain', True)
         self.addItemToContext(date, 'dateUpdated', True)
         self.addItemToContext(products, 'products', True)
         content = self.renderTemplate('feed.atom')

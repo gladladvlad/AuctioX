@@ -1,5 +1,5 @@
 from view import *
-from product import *
+from productController import *
 import json
 import math
 from userController import *
