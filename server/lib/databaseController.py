@@ -49,6 +49,17 @@ BID_PROD_ID = 2
 BID_STATUS =3
 BID_VALUE = 4
 
+TRANSACTION_ID = 0
+TRANSACTION_SELLER_ID = 1
+TRANSACTION_BUYER_ID = 2
+TRANSACTION_PRODUCT_ID = 3
+TRANSACTION_STATUS = 4
+TRANSACTION_DATE_CREATED = 5
+TRANSACTION_DATE_EXPIRES = 6
+TRANSACTION_SELLER_CONFIRM = 7
+TRANSACTION_BUYER_CONFIRM = 8
+
+
 import databaseCredentials
 mariadb_connection = mariadb.connect(user=databaseCredentials.user, password=databaseCredentials.password, host='localhost', database='tw')
 mycursor = mariadb_connection.cursor()
@@ -242,7 +253,7 @@ class databaseController():
 
     def insertIntoTransaction(self,info):
         current_date = datetime.datetime.now()
-        date_expires = current_date + datetime.timedelta(weeks = 2)
+        date_expires = current_date + datetime.timedelta(weeks=2)
         lista = [info["seller_user_id"],info["buyer_user_id"],info["product_data_id"],info["has_ended"],current_date,date_expires]
         command = "INSERT INTO transaction(seller_user_id,buyer_user_id,product_id,has_ended,date_initiated,date_ended) VALUES(%s,%s,%s,%s,%s,%s)"
         mycursor.execute(command,lista)

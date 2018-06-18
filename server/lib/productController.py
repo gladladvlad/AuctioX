@@ -285,7 +285,7 @@ class productController():
             else:
                 errors.append("Invalid auction end time")
 
-            if correctTime and (endTime - datetime.datetime.now()).seconds/3600 > 1:
+            if correctTime and (endTime - datetime.datetime.now()).seconds/3600 >= 0: # > 1: temporarily removed 1h requirement for daemon testing
                 logger.debug("Timedelta is ok")
             else:
                 errors.append("Auctions must be available for at least 1 hour")
