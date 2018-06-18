@@ -39,25 +39,25 @@ class homepageView(view):
             products = productController.getProductsByFilter(None, "date_added", "desc", "")
         elif category == "mostPopular":
             category = "Most popular listings"
-            products = productController.getProductsByFilter(None, "date_added", "desc", "")
+            products = productController.getProductsByFilter(None, "views", "desc", "")
         elif category == "clothingAndAccessories":
-            category = "Clothing and Accessories"
-            products = productController.getProductsByFilter(None, "date_added", "desc", "")
+            category = "Clothing & Accessories"
+            products = productController.getProductsByFilter({"category": category}, "date_added", "desc", "")
         elif category == "electronics":
             category = "Electronics"
-            products = productController.getProductsByFilter(None, "date_added", "desc", "")
+            products = productController.getProductsByFilter({"category": category}, "date_added", "desc", "")
         elif category == "homeAndOutdoors":
-            category = "Home and Outdoors"
-            products = productController.getProductsByFilter(None, "date_added", "desc", "")
+            category = "Home & Outdoors"
+            products = productController.getProductsByFilter({"category": category}, "date_added", "desc", "")
         elif category == "vehicles":
             category = "Vehicles"
-            products = productController.getProductsByFilter(None, "date_added", "desc", "")
+            products = productController.getProductsByFilter({"category": category}, "date_added", "desc", "")
         elif category == "collectiblesAndArt":
-            category = "Collectibles and Art"
-            products = productController.getProductsByFilter(None, "date_added", "desc", "")
+            category = "Collectibles & Art"
+            products = productController.getProductsByFilter({"category": category}, "date_added", "desc", "")
         elif category == "consumables":
             category = "Consumables"
-            products = productController.getProductsByFilter(None, "date_added", "desc", "")
+            products = productController.getProductsByFilter({"category": category}, "date_added", "desc", "")
 
         products = productController.getProductImages(products)
         products = products[0:13]
