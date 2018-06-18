@@ -56,7 +56,7 @@ mycursor = mariadb_connection.cursor()
 
 class databaseController():
 
-    def executeSQLCommand(self,command,commit):
+    def executeSQLCommand(self, command, commit=False):
         mycursor.execute(command)
         result = mycursor.fetchall()
         if commit == True:
