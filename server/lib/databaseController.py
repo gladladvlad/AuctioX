@@ -41,6 +41,13 @@ USER_CONTACT_INFO = 12
 USER_CELL_NUMBER = 13
 USER_STATUS = 14
 USER_SALT = 15
+USER_ADMIN = 16
+
+BID_ID = 0
+BID_USER_ID = 1
+BID_PROD_ID = 2
+BID_STATUS =3
+BID_VALUE = 4
 
 import databaseCredentials
 mariadb_connection = mariadb.connect(user=databaseCredentials.user, password=databaseCredentials.password, host='localhost', database='tw')
@@ -154,6 +161,14 @@ class databaseController():
         print(command)
         mycursor.execute(command)
         result=mycursor.fetchall()
+        return result
+
+    def getBiggestBidForProduct(self,prod_id):
+        command = "select max(value) from userbid where product_id={id}".format(
+            id=prod_id
+        )
+        mycursor.execute(command)
+        result = mycursor.fetchone()
         return result
 
     #def advancedSearch(self):
@@ -681,7 +696,7 @@ if __name__ == "__main__":
     }
     #metod.insertIntoFeedback(feedback)
     #metod.insertIntoSessions(session)
-    print metod.getProductsByFilter({"conditie":[5,0]}, None, None, "")
+    #print metod.getProductsByFilter({"conditie":[5,0]}, None, None, "")
     #print metod.getUserById(1)
     #metod.insertIntoTrasnaction(transactiondict)
     #metod.removeSessionId('+0rmdycrS81ncphLJWJK5A==')
@@ -710,6 +725,7 @@ if __name__ == "__main__":
     }
     #metod.insertIntoUserbid(mapa)
     #metod.stergeBid(1)
+    print metod.getBiggestBidForProduct(2)
 databaseController = databaseController()
 
 
