@@ -76,8 +76,8 @@ class view:
                     response += self.request.requestline + "\n\n"
                     response += "URL arguments:\n" + json.dumps(self.urlArgs, indent=4) + "\n\n"
                     response += "Headers:\n" + str(self.request.headers) + "\n\n"
-                    response += "Set cookies:\n" + json.dumps(self.context, indent=4) + "\n\n"
-                    response += "Context:\n" + json.dumps(self.context, indent=4).replace('\\n', '\n').replace('\\t', '\t') + "\n\n"
+                    response += "Set cookies:\n" + json.dumps(self.cookies, indent=4) + "\n\n"
+                    response += "Context:\n" + str(self.context) + "\n\n"
                     response += "Response:\n" + oldResponse + "\n\n"
                 self.request.wfile.write(response)
                 return

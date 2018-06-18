@@ -1,6 +1,7 @@
 import time
 import logging
 from threading import Thread
+from productController import *
 
 daemonLog = logging.getLogger("Daemon Logger")
 daemonLog.setLevel(logging.DEBUG)
