@@ -79,32 +79,12 @@ class searchProductIDsView(view):
 
 
         args = self.parseJsonPost()
-        if not args.has_key('query'):
-            args['query'] = ''
 
-        info = dict()
+        query = args.pop('query', '')
+        args.pop('psize', None)
 
-        if args.has_key('min_price'):
-            info['min_price'] = int(args['min_price'])
-        if args.has_key('max_price'):
-            info['max_price'] = int(args['max_price'])
-        if args.has_key('conditie'):
-            info['conditie'] = args['conditie']
-        if args.has_key('country'):
-            info['country'] = args['country']
-        if args.has_key('city'):
-            info['city'] = args['city']
-        if args.has_key('category'):
-            info['category'] = args['category']
+        productsByQuery = productController.getProductsByFilter(args, None, None, query)
 
-
-        # info <=> {'min_price' : 2,
-        #           'max_price' : 5,
-        #           'conditie' : 2}
-        # order_by <=> string cu campu' dupa care ordonam
-        # how <=> asc/desc
-        # query <=> string
-        productsByQuery = productController.getProductsByFilter(info, None, None, args['query'])
 
         productIDs = []
         for iter in xrange(0, len(productsByQuery)):

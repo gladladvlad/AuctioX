@@ -51,6 +51,10 @@ function getArgsFromUrl() {
     tmpObj = getHTTPGArg("query")
     if (typeof tmpObj != "undefined" && tmpObj != "")
         args['query'] = tmpObj;
+    tmpObj = getHTTPGArg("categ");
+    if (typeof tmpObj != "undefined" && tmpObj != "")
+        args['category'] = decodeURIComponent(tmpObj).replace(/\+/g, " ");
+
 
     tmpCondList = []
     for (i = condMin; i < condMax; i++) {
