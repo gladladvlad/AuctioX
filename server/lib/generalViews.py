@@ -27,11 +27,19 @@ class homepageView(view):
 
         self.setContentType('text/html')
 
+        products = []
+        products = productController.getProductsByFilter(None, "date_added", "desc", "")
+        products = productController.getProductImages(products)
+        products = products[0:13]
+        category = "All products"
+
         self.addComponentToContext('home_styles.html', 'style', True)
         self.addComponentToContext('navbar.html', 'navbar', True)
-        self.addComponentToContext('home_content.html', 'content', True)
         self.addComponentToContext('home_homebar.html', 'homebar', True)
         self.addComponentToContext('footer.html', 'footer', True)
+
+        self.addItemToContext(category, 'category', True)
+        self.addItemToContext(products, 'products', True)
 
         content = self.renderTemplate('home.html')
 
