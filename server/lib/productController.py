@@ -70,9 +70,6 @@ class productController():
         for prodDB in products:
             prodBuf = product(prodDB[PROD_USER_ID], prodDB[PROD_ID], prodDB[PROD_STATUS], prodDB[PROD_TITLE], prodDB[PROD_DESCRIPTION], prodDB[PROD_CATEGORY], prodDB[PROD_SUBCATEGORY], [], prodDB[PROD_VIEWS], prodDB[PROD_CONDITIE], prodDB[PROD_COUNTRY], prodDB[PROD_CITY], prodDB[PROD_IS_AUCTION], prodDB[PROD_PRICE], prodDB[PROD_CURRENCY], prodDB[PROD_SHIPPING_TYPE], prodDB[PROD_SHIPPING_PRICE], prodDB[PROD_DATE_ADDED], prodDB[PROD_DATE_EXPIRES])
 
-            if (prodBuf.auction == 1):
-                prodBuf.price = int(productController.getHighestBidById(prodBuf.productID))
-
             prodList.append(prodBuf)
 
         return prodList
@@ -102,9 +99,6 @@ class productController():
 
         productResult = product(prodDB[PROD_USER_ID], prodDB[PROD_ID], prodDB[PROD_STATUS], prodDB[PROD_TITLE], prodDB[PROD_DESCRIPTION], prodDB[PROD_CATEGORY], prodDB[PROD_SUBCATEGORY], images, prodDB[PROD_VIEWS], prodDB[PROD_CONDITIE], prodDB[PROD_COUNTRY], prodDB[PROD_CITY], prodDB[PROD_IS_AUCTION], prodDB[PROD_PRICE], prodDB[PROD_CURRENCY], prodDB[PROD_SHIPPING_TYPE], prodDB[PROD_SHIPPING_PRICE], prodDB[PROD_DATE_ADDED], prodDB[PROD_DATE_EXPIRES])
 
-        if (productResult.auction == 1):
-            productResult.price = int(productController.getHighestBidById(productResult.productID))
-
         return productResult
 
 
@@ -112,6 +106,8 @@ class productController():
     def getHighestBidById(self, productID):
         logger.info('[START] getHighestBidById()')
         highestBid = databaseController.executeSQLCommand('select value from userbid where product_id = {0} order by value desc'.format(productID), True)
+
+        logger.info('for ' + str(productID) + ' bid is ' + str(highestBid))
 
         if highestBid == []:
             return 0
@@ -128,11 +124,12 @@ class productController():
         if product.status != 'ongoing':
             return 'Fail! You cannot bid on a product that doesn\'t exist!'
 
-
         highestBid = self.getHighestBidById(productID)
-        if highestBid != 0 and bidAmount < highestBid:
+        if highestBid != 0:
+            if bidAmount < highestBid:
                 return 'Fail! You cannot bid lower than the highest bid!'
-        elif bidAmount < product.price:
+        else:
+            if bidAmount < product.price:
                 return 'Fail! You cannot bid lower than the highest bid!'
 
 
@@ -192,9 +189,6 @@ class productController():
         prodList = []
         for prodDB in products:
             prodBuf = product(prodDB[PROD_USER_ID], prodDB[PROD_ID], prodDB[PROD_STATUS], prodDB[PROD_TITLE], prodDB[PROD_DESCRIPTION], prodDB[PROD_CATEGORY], prodDB[PROD_SUBCATEGORY], [], prodDB[PROD_VIEWS], prodDB[PROD_CONDITIE], prodDB[PROD_COUNTRY], prodDB[PROD_CITY], prodDB[PROD_IS_AUCTION], prodDB[PROD_PRICE], prodDB[PROD_CURRENCY], prodDB[PROD_SHIPPING_TYPE], prodDB[PROD_SHIPPING_PRICE], prodDB[PROD_DATE_ADDED], prodDB[PROD_DATE_EXPIRES])
-
-            if (prodBuf.auction == 1):
-                prodBuf.price = int(productController.getHighestBidById(prodBuf.productID))
 
             prodList.append(prodBuf)
 
