@@ -126,10 +126,10 @@ class productController():
 
         highestBid = self.getHighestBidById(productID)
         if highestBid != 0:
-            if bidAmount < highestBid:
+            if bidAmount <= highestBid:
                 return 'Fail! You cannot bid lower than the highest bid!'
         else:
-            if bidAmount < product.price:
+            if bidAmount <= product.price:
                 return 'Fail! You cannot bid lower than the highest bid!'
 
 
