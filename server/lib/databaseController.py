@@ -264,11 +264,13 @@ class databaseController():
         mariadb_connection.commit()
 
     def setInactiveInProduct(self, key):
-        command = "update productdata set status='sold' where product_data_id={key}".format(key=key)
+        command = "update productdata set status='ended' where product_data_id={key}".format(key=key)
         mycursor.execute(command)
         mariadb_connection.commit()
         self.setInactiveInTransaction(key)
         self.setInactiveInUserbid(key)
+
+    """Setari in baza de date"""
 
     def setSellerConfirm(self,user,produs):
         command = "update transaction set seller_confirm = 1 where seller_user_id={user} and product_id={produs}".format(
@@ -298,8 +300,17 @@ class databaseController():
             mycursor.execute(command)
             mariadb_connection.commit()
 
+    """Diverse"""
+
     def incrementView(self,product):
         command = "update productdata set views = views +1 where product_data_id = {product}".format(product=product)
+        mycursor.execute(command)
+        mariadb_connection.commit()
+
+    def setNewPrice(self,id_prod,new_price):
+        command = "update productdata set price={new_price} where product_data_id={id}".format(
+            new_price=new_price, id=id_prod
+        )
         mycursor.execute(command)
         mariadb_connection.commit()
 
@@ -683,6 +694,7 @@ if __name__ == "__main__":
     #metod.setAdminPrivileges(3,4,0)
     #metod.insertIntoProductdata(prod)
     #metod.setInactiveInUser(1)
+    metod.setNewPrice(2,100)
 
 databaseController = databaseController()
 
