@@ -41,6 +41,13 @@ USER_CONTACT_INFO = 12
 USER_CELL_NUMBER = 13
 USER_STATUS = 14
 USER_SALT = 15
+USER_ADMIN = 16
+
+BID_ID = 0
+BID_USER_ID = 1
+BID_PROD_ID = 2
+BID_STATUS =3
+BID_VALUE = 4
 
 import databaseCredentials
 mariadb_connection = mariadb.connect(user=databaseCredentials.user, password=databaseCredentials.password, host='localhost', database='tw')
@@ -156,6 +163,14 @@ class databaseController():
         result=mycursor.fetchall()
         return result
 
+    def getBiggestBidForProduct(self,prod_id):
+        command = "select max(value) from userbid where product_id={id}".format(
+            id=prod_id
+        )
+        mycursor.execute(command)
+        result = mycursor.fetchone()
+        return result
+
     #def advancedSearch(self):
 
     """Inserting data into tables"""
@@ -264,11 +279,13 @@ class databaseController():
         mariadb_connection.commit()
 
     def setInactiveInProduct(self, key):
-        command = "update productdata set status='sold' where product_data_id={key}".format(key=key)
+        command = "update productdata set status='ended' where product_data_id={key}".format(key=key)
         mycursor.execute(command)
         mariadb_connection.commit()
         self.setInactiveInTransaction(key)
         self.setInactiveInUserbid(key)
+
+    """Setari in baza de date"""
 
     def setSellerConfirm(self,user,produs):
         command = "update transaction set seller_confirm = 1 where seller_user_id={user} and product_id={produs}".format(
@@ -298,8 +315,24 @@ class databaseController():
             mycursor.execute(command)
             mariadb_connection.commit()
 
+    """Diverse"""
+
     def incrementView(self,product):
         command = "update productdata set views = views +1 where product_data_id = {product}".format(product=product)
+        mycursor.execute(command)
+        mariadb_connection.commit()
+
+    def setNewPrice(self,id_prod,new_price):
+        command = "update productdata set price={new_price} where product_data_id={id}".format(
+            new_price=new_price, id=id_prod
+        )
+        mycursor.execute(command)
+        mariadb_connection.commit()
+
+    def stergeBid(self,bid_id):
+        command = "delete from userbid where current_bid_id={id}".format(
+            id=bid_id
+        )
         mycursor.execute(command)
         mariadb_connection.commit()
 
@@ -391,13 +424,13 @@ class databaseController():
             result = mycursor.fetchall()
             return result
         elif (info is None) and (order_by is None) and (how is None) and (query != ''):
-            command = "select * from productdata where (match(title,description,category,subcategory) against( '{query}' )) order by views desc".format(query=query)
+            command = "select * from productdata where (match(title,description,category,subcategory) against( '{query}' )) and status = 'ongoing' order by views desc".format(query=query)
             print command
             mycursor.execute(command)
             result =mycursor.fetchall()
             return result
         elif (info is None) and (order_by is not None) and (how is None) and (query != ''):
-            command = "select * from productdata where (match(title,description,category,subcategory) against( '{query}' )) order by {orderby} asc, views desc".format(
+            command = "select * from productdata where (match(title,description,category,subcategory) against( '{query}' )) and status = 'ongoing' order by {orderby} asc, views desc".format(
                 query=query, orderby=order_by
             )
             mycursor.execute(command)
@@ -416,7 +449,7 @@ class databaseController():
             result = mycursor.fetchall()
             return result
         elif (info is None) and (order_by is not None) and (how is not None) and (query != ''):
-            command = "select * from productdata where (match(title,description,category,subcategory) against( '{query}' )) order by {orderby} {how}, views desc".format(
+            command = "select * from productdata where (match(title,description,category,subcategory) against( '{query}' )) and status = 'ongoing' order by {orderby} {how}, views desc".format(
                 query=query, orderby=order_by, how=how
             )
             mycursor.execute(command)
@@ -438,7 +471,7 @@ class databaseController():
                         where_clause = where_clause + "and {key}={value} ".format(key=key, value=value)
                     elif isinstance(value, basestring):
                         where_clause = where_clause + "and {key}='{value}' ".format(key=key, value=value)
-            command = "select * from productdata where 1=1 {where_clause} order by views desc".format(
+            command = "select * from productdata where 1=1 {where_clause} and status = 'ongoing' order by views desc".format(
                 query=query, where_clause=where_clause
             )
             print(command)
@@ -461,7 +494,7 @@ class databaseController():
                         where_clause = where_clause + "and {key}={value} ".format(key=key, value=value)
                     elif isinstance(value, basestring):
                         where_clause = where_clause + "and {key}='{value}' ".format(key=key, value=value)
-            command = "select * from productdata where (match(title,description,category,subcategory) against( '{query}' )) {where_clause} order by views desc".format(
+            command = "select * from productdata where (match(title,description,category,subcategory) against( '{query}' )) {where_clause} and status = 'ongoing' order by views desc".format(
                 query=query, where_clause=where_clause
             )
             mycursor.execute(command)
@@ -505,7 +538,7 @@ class databaseController():
                         where_clause = where_clause + "and {key}={value} ".format(key=key, value=value)
                     elif isinstance(value, basestring):
                         where_clause = where_clause + "and {key}='{value}' ".format(key=key, value=value)
-            command = "select * from productdata where (match(title,description,category,subcategory) against( '{query}' )) {clause} order by {order} asc, views desc".format(
+            command = "select * from productdata where (match(title,description,category,subcategory) against( '{query}' )) {clause} and status = 'ongoing' order by {order} asc, views desc".format(
                 query=query, clause=where_clause, order=order_by
             )
             mycursor.execute(command)
@@ -527,7 +560,7 @@ class databaseController():
                         where_clause = where_clause + "and {key}={value} ".format(key=key, value=value)
                     elif isinstance(value, basestring):
                         where_clause = where_clause + "and {key}='{value}' ".format(key=key, value=value)
-            command = "select * from productdata where 1=1 {clause} order by {order} {how}, views desc".format(
+            command = "select * from productdata where 1=1 {clause} and status = 'ongoing' order by {order} {how}, views desc".format(
                 clause=where_clause, order=order_by, how=how
             )
             mycursor.execute(command)
@@ -549,7 +582,7 @@ class databaseController():
                         where_clause = where_clause + "and {key}={value} ".format(key=key, value=value)
                     elif isinstance(value, basestring):
                         where_clause = where_clause + "and {key}='{value}' ".format(key=key, value=value)
-            command= "select * from productdata where (match(title,description,category,subcategory) against( '{query}' )) {clause} order by {order} {how}, views desc".format(
+            command= "select * from productdata where (match(title,description,category,subcategory) against( '{query}' )) {clause} and status = 'ongoing' order by {order} {how}, views desc".format(
                 query=query, clause=where_clause, order=order_by, how=how
             )
             print(command)
@@ -663,7 +696,7 @@ if __name__ == "__main__":
     }
     #metod.insertIntoFeedback(feedback)
     #metod.insertIntoSessions(session)
-    #print metod.getProductsByFilter(None, None, None, "")
+    #print metod.getProductsByFilter({"conditie":[5,0]}, None, None, "")
     #print metod.getUserById(1)
     #metod.insertIntoTrasnaction(transactiondict)
     #metod.removeSessionId('+0rmdycrS81ncphLJWJK5A==')
@@ -683,7 +716,16 @@ if __name__ == "__main__":
     #metod.setAdminPrivileges(3,4,0)
     #metod.insertIntoProductdata(prod)
     #metod.setInactiveInUser(1)
-
+    #metod.setNewPrice(2,100)
+    mapa={
+        "user_id": 2,
+        "product_id":2,
+        "status":"ongoing",
+        "value":100
+    }
+    #metod.insertIntoUserbid(mapa)
+    #metod.stergeBid(1)
+    print metod.getBiggestBidForProduct(2)
 databaseController = databaseController()
 
 

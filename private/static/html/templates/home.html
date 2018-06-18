@@ -7,3 +7,37 @@
 {% block footer %}
     {{ footer }}
 {% endblock %}
+
+{% block content %}
+     <div class="baseContainer">
+        <div class="home">
+
+            <div class="section">
+
+                <h3>{{category}}</h3>
+
+                {% for product in products %}
+                <div class="homeProduct"><a href="{{domain}}/product?prodid={{ product.productID }}">
+                    <div class="productImage">
+                        {% if product.images[0] is defined%}
+                            <img src="{{ product.images[0] }}" alt="{{product.title}}"/>
+                        {% else %}
+                            <img src="/public/resource/img/notfound.jpg" alt="{{product.title}}"/>
+                        {% endif %}
+                    </div>
+                    <div class="productInformation">
+                        <h2>{{product.title}}</h2>
+                        <h3>{{product.price}} {{product.currency}}</h3>
+                        <h5>{{product.desc[0:100]}}
+                            {% if product.desc|length > 100%}
+                            ...
+                            {% endif %}
+                        </h5>
+                    </div>
+                </a></div>
+                {% endfor %}
+
+            </div>
+
+    </div>
+{% endblock %}

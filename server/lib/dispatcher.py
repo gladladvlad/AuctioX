@@ -17,9 +17,11 @@ class dispatcher:
             if view is not None:
                  break
 
-            if re.match(pair[0], path) is not None:
-
-                view = pair[1]
+            try:
+                if re.match(pair[0], path) is not None:
+                    view = pair[1]
+            except:
+                logger.error("Could not find mathing view for regex '{0}'".format(pair[0]))
 
         return view
 

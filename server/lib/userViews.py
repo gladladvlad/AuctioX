@@ -157,7 +157,7 @@ class userTransactionsView(view):
             return 'Fail! You must be logged in!'
 
 
-        transactionsSelling = productController.getTransactionsBySellerId(userId)
+        transactionsSelling = userController.getTransactionsBySellerId(userId)
         self.addItemToContext(transactionsSelling, 'transell', True)
 
         self.addComponentToContext('transactions_styles.html', 'style', True)

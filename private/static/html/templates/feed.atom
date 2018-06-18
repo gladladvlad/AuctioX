@@ -3,15 +3,15 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title>AuctioX feed - Newest listings</title>
-  <link href="localhost:8000/feed"/>
+  <link href="{{domain}}/feed"/>
   <updated>{{ dateUpdated }}</updated>
-  <id>localhost:8000/feed</id>
+  <id>fbc23082-fcf0-4f7c-9f63-f6398feed8b4</id>
 
   {% for product in products%}
   <entry>
     <title>{{product.title}}</title>
 
-    <link href="/product?prodid={{ product.productID }}"/>
+    <link href="{{domain}}/product?prodid={{ product.productID }}"/>
 
     <author>{{product.ownerID}}</author>
 

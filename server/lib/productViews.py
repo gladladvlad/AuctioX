@@ -1,5 +1,5 @@
 from view import *
-from product import *
+from productController import *
 import json
 import math
 from userController import *
@@ -79,32 +79,18 @@ class searchProductIDsView(view):
 
 
         args = self.parseJsonPost()
-        if not args.has_key('query'):
-            args['query'] = ''
 
-        info = dict()
+        query = args.pop('query', '')
+        args.pop('psize', None)
 
-        if args.has_key('min_price'):
-            info['min_price'] = int(args['min_price'])
-        if args.has_key('max_price'):
-            info['max_price'] = int(args['max_price'])
-        if args.has_key('conditie'):
-            info['conditie'] = args['conditie']
-        if args.has_key('country'):
-            info['country'] = args['country']
-        if args.has_key('city'):
-            info['city'] = args['city']
-        if args.has_key('category'):
-            info['category'] = args['category']
+        sortBy, sortHow = None, None
+        sort = args.pop('sort', None)
+        if not sort is None:
+            sortBy = sort[0]
+            sortHow = sort[1]
 
+        productsByQuery = productController.getProductsByFilter(args, sortBy, sortHow, query)
 
-        # info <=> {'min_price' : 2,
-        #           'max_price' : 5,
-        #           'conditie' : 2}
-        # order_by <=> string cu campu' dupa care ordonam
-        # how <=> asc/desc
-        # query <=> string
-        productsByQuery = productController.getProductsByFilter(info, None, None, args['query'])
 
         productIDs = []
         for iter in xrange(0, len(productsByQuery)):
@@ -138,9 +124,6 @@ class searchPageView(view):
                 tmpProduct = productController.getProductInstanceById(int(self.urlArgs[itemKey]))
                 tmpProduct.auction = productController.getAuctionTypeStr(tmpProduct.auction)
                 tmpProduct.condition = productController.getConditionStr(tmpProduct.condition)
-                if (tmpProduct.auction == 'Auction'):
-                    highestBid = productController.getHighestBidById(tmpProduct.productID)
-                    tmpProduct.price = highestBid
 
 
                 products.append(tmpProduct.asDict())

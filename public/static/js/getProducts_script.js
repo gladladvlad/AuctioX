@@ -24,7 +24,7 @@ function getArgsFromUrl() {
 
     tmpObject = getHTTPGArg("query");
     if (typeof tmpObject != "undefined")
-            tmpObject = tmpObject.replace("+", " ");
+            tmpObject = decodeURIComponent(tmpObj).replace(/\+/g, " ");
 
     tmpObject = getHTTPGArg("psize");
     if (typeof tmpObject == "undefined")
@@ -51,6 +51,24 @@ function getArgsFromUrl() {
     tmpObj = getHTTPGArg("query")
     if (typeof tmpObj != "undefined" && tmpObj != "")
         args['query'] = tmpObj;
+    tmpObj = getHTTPGArg("categ");
+    if (typeof tmpObj != "undefined" && tmpObj != "")
+        args['category'] = decodeURIComponent(tmpObj).replace(/\+/g, " ");
+
+
+    tmpObj = getHTTPGArg("sort");
+    if (typeof tmpObj != "undefined" && tmpObj != "") {
+        tmpObj = decodeURIComponent(tmpObj).split("+");
+
+        // this really shouldn't be here but...
+        if (tmpObj[1] == "desc") tmpObj[1] = "asc";
+        else tmpObj[1] = "desc";
+        // necessary; condition is stored as int with lower
+        // being a better condition
+
+        args['sort'] = [tmpObj[0], tmpObj[1]];
+    }
+
 
     tmpCondList = []
     for (i = condMin; i < condMax; i++) {
