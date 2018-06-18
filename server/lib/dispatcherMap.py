@@ -55,6 +55,7 @@ map = [
 
     ('^/favicon.ico$', globalFavicon),
     ('^/public/*', publicFileView),
+    ('^/home', homepageView),
     ('^/$', homepageView),
     ('*', view)
 ]

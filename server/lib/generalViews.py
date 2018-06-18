@@ -27,11 +27,40 @@ class homepageView(view):
 
         self.setContentType('text/html')
 
+        if "category" in self.urlArgs:
+            category = self.urlArgs['category']
+        else:
+            category = "newest"
+
         products = []
-        products = productController.getProductsByFilter(None, "date_added", "desc", "")
+
+        if category == "newest":
+            category = "Newest listings"
+            products = productController.getProductsByFilter(None, "date_added", "desc", "")
+        elif category == "mostPopular":
+            category = "Most popular listings"
+            products = productController.getProductsByFilter(None, "date_added", "desc", "")
+        elif category == "clothingAndAccessories":
+            category = "Clothing and Accessories"
+            products = productController.getProductsByFilter(None, "date_added", "desc", "")
+        elif category == "electronics":
+            category = "Electronics"
+            products = productController.getProductsByFilter(None, "date_added", "desc", "")
+        elif category == "homeAndOutdoors":
+            category = "Home and Outdoors"
+            products = productController.getProductsByFilter(None, "date_added", "desc", "")
+        elif category == "vehicles":
+            category = "Vehicles"
+            products = productController.getProductsByFilter(None, "date_added", "desc", "")
+        elif category == "collectiblesAndArt":
+            category = "Collectibles and Art"
+            products = productController.getProductsByFilter(None, "date_added", "desc", "")
+        elif category == "consumables":
+            category = "Consumables"
+            products = productController.getProductsByFilter(None, "date_added", "desc", "")
+
         products = productController.getProductImages(products)
         products = products[0:13]
-        category = "All products"
 
         self.addComponentToContext('home_styles.html', 'style', True)
         self.addComponentToContext('navbar.html', 'navbar', True)

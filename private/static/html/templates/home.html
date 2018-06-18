@@ -27,7 +27,10 @@
                     </div>
                     <div class="productInformation">
                         <h2>{{product.title}}</h2>
-                        <h3>{{product.price}} {{product.currency}}</h3>
+                        <h3>{% if product.auction == 1%}
+                            Last bid:
+                            {% endif %}
+                            {{product.price}} {{product.currency}}</h3>
                         <h5>{{product.desc[0:100]}}
                             {% if product.desc|length > 100%}
                             ...
