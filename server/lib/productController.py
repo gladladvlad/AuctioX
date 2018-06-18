@@ -79,6 +79,22 @@ class productController():
 
 
 
+    def getProductImages(self, prodList):
+        logger.info('[START] getProductImages()')
+
+
+        newProdList = []
+
+        for product in products:
+            images = databaseController.getImages(product.productID)
+            product.images = images
+
+            newProdList.append(product)
+
+        return newProdList
+
+
+
     def getProductInstanceById(self, productID):
         logger.info('[START] getProductInstanceById()')
         prodDB = databaseController.getProductDataById(productID)[0]
