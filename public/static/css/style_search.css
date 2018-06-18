@@ -213,6 +213,7 @@ body {
 
 	display: flex;
 	flex-shrink: 0;
+	justify-content: center;
 
 	background-color: #000000F0;
 }
@@ -222,6 +223,12 @@ body {
     max-height: 100%;
     object-fit: contain;
     flex-grow: 1;
+}
+
+.prodImage > h3 {
+    padding: 1;
+    color: white;
+    align-self: center;
 }
 
 .prodData {

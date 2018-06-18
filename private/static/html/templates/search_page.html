@@ -1,9 +1,13 @@
 <ul>
 	{% for product in products %}
-	<li class="prod">
+	<li class="prod" >
 		<div class="prodContent">
 			<div class="prodImage">
-				<img src="{{ product.images[0] }}" alt="product"/>
+				{% if product.images[0] is defined%}
+                    <img src="{{ product.images[0] }}" alt="{{product.title}}"/>
+                {% else %}
+                    <h3>No picture available</h3>
+                {% endif %}
 			</div>
 			<div class="prodData">
                 <div class="prodTitle">
