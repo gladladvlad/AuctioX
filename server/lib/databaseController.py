@@ -313,14 +313,28 @@ class databaseController():
         )
         mycursor.execute(command)
         mariadb_connection.commit()
+        command = "select buyer_confirm from transaction where seller_user_id={user} and product_id={produs}".format(
+            user=user, produs=produs
+        )
+        mycursor.execute(command)
+        result = mycursor.fetchone()
+        if result[0] == 1:
+            self.setInactiveInTransaction(produs)
 
     def setBuyerConfirm(self,user,product):
         command = "update transaction set buyer_confirm = 1 where buyer_user_id={user} and product_id={produs}".format(
             user=user, produs=product
         )
-        print(command)
+        #print(command)
         mycursor.execute(command)
         mariadb_connection.commit()
+        command = "select seller_confirm from transaction where buyer_user_id={user} and product_id={produs}".format(
+            user=user, produs=product
+        )
+        mycursor.execute(command)
+        result = mycursor.fetchone()
+        if result[0] == 1:
+            self.setInactiveInTransaction(product)
 
     def setAdminPrivileges(self,id1,id2,what):
         command = "select user_id from user where user_id={id1} and is_admin=1".format(id1=id1)
@@ -665,9 +679,9 @@ if __name__ == "__main__":
     #metod.insertIntoProductdata(prodData)
     #print metod.getUserByUsername('aa or 1=1')
     transactiondict={
-        "seller_user_id":1,
+        "seller_user_id":2,
         "buyer_user_id":3,
-        "product_data_id":1,
+        "product_data_id":2,
         "has_ended":'ongoing',
         "value": 1000
     }
@@ -718,7 +732,7 @@ if __name__ == "__main__":
     #metod.insertIntoSessions(session)
     #print metod.getProductsByFilter({"conditie":[5,0]}, None, None, "")
     #print metod.getUserById(1)
-    #metod.insertIntoTrasnaction(transactiondict)
+    #metod.insertIntoTransaction(transactiondict)
     #metod.removeSessionId('+0rmdycrS81ncphLJWJK5A==')
     #metod.deleteDatabase()
     #metod.setInactiveInTransaction(1)
@@ -745,7 +759,10 @@ if __name__ == "__main__":
     }
     #metod.insertIntoUserbid(mapa)
     #metod.stergeBid(1)
-    print metod.getBiggestBidForProduct(2)
+    #print metod.getBiggestBidForProduct(2)
+    #metod.setBuyerConfirm(3,2)
+    metod.setSellerConfirm(2,2)
+
 databaseController = databaseController()
 
 
