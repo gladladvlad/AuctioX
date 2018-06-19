@@ -50,7 +50,9 @@ class daemon(Thread):
 
                     daemonLog.debug("Listing {0} is AUCTION".format(product[PROD_ID]))
 
-                    highestBid = databaseController.getBiggestBidForProduct(product[PROD_ID])
+                    highestBid = databaseController.executeSQLCommand("select * from userbid where product_id={0} order by value desc".format(product[PROD_ID]))[0]
+
+                    print highestBid
 
                     if highestBid == 0:
                         daemonLog.debug("There are no bids for the product {0}".format(product[PROD_ID]))

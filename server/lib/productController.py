@@ -1,5 +1,6 @@
 from view import *
 from databaseController import *
+from userController import *
 
 class product():
     def __init__(self, newOwnerID, newProductID, newStatus, newTitle, newDesc, newCategory, newSubCategory, newImages, newViews, newCondition, newCountry, newCity, newAuction, newPrice, newCurrency, newShippingType, newShippingPrice, newDateAdded, newDateExpires):
@@ -157,8 +158,9 @@ class productController():
 
     def buy(self, userID, productID):
         product = self.getProductInstanceById(productID)
+
         if product.status  !=  'ongoing':
-            return 'Fail! You cannot bid on a product that doesn\'t exist!'
+            return 'Fail! You cannot buy a product that doesn\'t exist!'
 
         if product.auction != 0:
             return 'Fail! You cannot buy an auctioned product!'
@@ -176,6 +178,32 @@ class productController():
         databaseController.setInactiveInProduct(productID)
 
         return 'Success! Please look out for your transaction page.'
+
+
+
+
+    def confirmTransaction(self, userID, transID):
+        logger.info('==============================')
+        logger.info('==============================')
+        logger.info('==============================')
+        logger.info('==============================')
+        from userController import userController
+        transaction = userController.getTransactionInstanceById(transID)
+        logger.info('done')
+        product = productController.getProductInstanceById(transaction.productId)
+        if product.ownerID == userID:
+            databaseController.setSellerConfirm(userID, product.productID)
+        else:
+            databaseController.setBuyerConfirm(userID, product.productID)
+
+        return 'Success! Transaction confirmed!'
+
+
+
+
+
+    def cancelTransaction(self, userID, transID):
+        print 'asd'
 
 
 
@@ -262,36 +290,34 @@ class productController():
         else:
             logger.debug("Description OK")
 
-        if data["is_auction"]:
+        logger.debug("Checking auction end time")
 
-            logger.debug("Checking auction end time")
+        datetimeString = "{0} {1}".format(data['endDate'], data["endTime"]).split(',')[0]
 
-            datetimeString = "{0} {1}".format(data['endDate'], data["endTime"]).split(',')[0]
+        logger.debug("Received {0}, (now is {1})".format(datetimeString, datetime.datetime.now().strftime("%Y-%m-%d %H:%M")))
 
-            logger.debug("Received {0}, (now is {1})".format(datetimeString, datetime.datetime.now().strftime("%Y-%m-%d %H:%M")))
+        validTime = False
+        correctTime = False
 
-            validTime = False
-            correctTime = False
+        try:
+            endTime = datetime.datetime.strptime(datetimeString, "%Y-%m-%d %H:%M")
+            validTime = True
+            logger.debug("Time validated OK")
+        except:
+            logger.error("Could not parse date string '{0}'".format(datetimeString))
+            errors.append("Bad date/time.")
+            pass
 
-            try:
-                endTime = datetime.datetime.strptime(datetimeString, "%Y-%m-%d %H:%M")
-                validTime = True
-                logger.debug("Time validated OK")
-            except:
-                logger.error("Could not parse date string '{0}'".format(datetimeString))
-                errors.append("Bad date/time.")
-                pass
+        if validTime and endTime > datetime.datetime.now():
+            logger.debug("Time is correct")
+            correctTime = True
+        else:
+            errors.append("Invalid auction end time")
 
-            if validTime and endTime > datetime.datetime.now():
-                logger.debug("Time is correct")
-                correctTime = True
-            else:
-                errors.append("Invalid auction end time")
-
-            if correctTime and (endTime - datetime.datetime.now()).seconds/3600 >= 0: # > 1: temporarily removed 1h requirement for daemon testing
-                logger.debug("Timedelta is ok")
-            else:
-                errors.append("Auctions must be available for at least 1 hour")
+        if correctTime and (endTime - datetime.datetime.now()).seconds/3600 >= 0: # > 1: temporarily removed 1h requirement for daemon testing
+            logger.debug("Timedelta is ok")
+        else:
+            errors.append("Auctions must be available for at least 1 hour")
 
         if len(errors) == 0:
 

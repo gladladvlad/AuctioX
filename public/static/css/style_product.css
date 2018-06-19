@@ -137,10 +137,11 @@ body{
     color: var(--colorMainDarker);
 }
 
-.answer > p {
+.answer > * {
     margin: 0.5em;
     padding: 0.5em;
     width: 90%;
+
     background-color: #80808030;
 }
 
@@ -161,4 +162,38 @@ body{
 
 .askQuestion > button {
     width: 100%;
+}
+
+.notAnswered {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+}
+
+.notAnswered > * {
+    margin: 0.25em;
+}
+
+.answerButton {
+    width: auto;
+    height: auto;
+}
+
+.answerInput {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.answerBox {
+    display: none;
+    flex-grow: 1;
+    flex-wrap: wrap;
+}
+
+.answerBox > * {
+    width: 100%;
+}
+
+#errors {
+    padding: 1;
 }

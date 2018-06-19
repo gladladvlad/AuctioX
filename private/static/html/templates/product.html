@@ -38,6 +38,10 @@
 					<td>Views </td>
 					<td>{{ product.views }}</td>
 				</tr>
+                <tr>
+					<td>Listing ID</td>
+					<td>{{ product.productID }}</td>
+				</tr>
 			</table>
 
 			<div class="containerFull" id="bidPanel">
@@ -84,28 +88,57 @@
     <h3>Questions and Answers</h3>
     <div class="questions">
         <ul>
+            {% for pair in qaList%}
             <li class="qaPair">
                 <div class="question">
                     <p class="questionText">
-                        Hi. Is this the best thing to invest into right now? I have recently stumbled upon large sum of money and I would like to make an investment.
-                        <small>asked by <a href="#yeshedoes">godlovesme147</a></small>
+                        {{ pair.questionText }}
+                        <small>asked by <a href="#userid{{pair.userId}}">{{ pair.username }}</a></small>
                     </p>
                 </div>
                 <div class="answer">
+                    {% if pair.answerText is defined %}
                     <p class="answerText">
-                        Hello. Unfortunately, this market segment is very crowded at the moment. Any form of investment will take a lot of time to fully pay off. Have a nice day!
+                        {{ pair.answerText }}
                     </p>
+                    {% else %}
+					<div class="answerInput">
+						<div class="notAnswered">
+							<p>
+							Not answered
+							<p>
+                        {% if sessionData is defined %}
+                        {% if seller.username == sessionData.username %}
+							<button class="button answerButton" onclick="ToggleAnswerBox('{{pair.answerKey}}')">Answer this question</button>
+						</div>
+                        <div class="answerBox" id="{{pair.answerKey}}">
+                            <textarea id="text_{{pair.answerKey}}"></textarea>
+                            <button class="button answerButton" onclick="sendAnswerRequest('{{pair.answerKey}}', {{product.productID}})">Submit answer</button>
+                        {% endif %}
+                        {% endif %}
+                        </div>
+					</div>
+                    {% endif %}
                 </div>
             </li>
+            {% endfor %}
         </ul>
     </div>
-
+    {% if sessionData is defined %}
+    {% if sessionData.username != seller.username%}
     <h3>Ask a question</h3>
     <div class="askQuestion">
-        <textarea></textarea>
-        <button class="button">Submit question</button>
+        <textarea id="questionBox"></textarea>
+        <button class="button" onclick="sendQuestionRequest({{product.productID}})">Submit question</button>
+        <div id="errors"></div>
     </div>
-
+    {% endif %}
+    {% else %}
+    <h3>Ask a question</h3>
+    <div class="askQuestion">
+        You must be logged in to ask questions.
+    </div>
+    {% endif %}
 </div>
 {% endblock %}
 

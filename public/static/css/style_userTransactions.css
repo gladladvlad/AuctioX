@@ -2,6 +2,15 @@
 	min-height: 4em;
 }
 
+.containerFull {
+	display: flex;
+	flex-direction: column;
+}
+
+.transactionsTable > tbody > tr > td > a {
+	cursor: pointer;
+}
+
 .stdTable {
     width: 100%;
 }

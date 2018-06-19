@@ -30,6 +30,8 @@ map = [
     ('^/mylistings/?$', userMyListingsView),
     ('^/mybids/?$', userMyBidsView),
     ('^/mytransactions', userTransactionsView),
+    ('^/conftrans', confirmTransactionView),
+    ('^/canctrans', cancelTransactionView),
     ('^/reportdashboard', reportDashboardView),
 
     # User Views END
@@ -45,14 +47,19 @@ map = [
     ('^/createlistingrequest/?$', createListingRequestView),
     ('^/createlisting/?$', createListingView),
 
+    # QA
+
+    ('^/postquestionrequest/?$', postQuestionRequestView),
+    ('^/postanswerrequest/?$', postAnswerRequestView),
+
     # Product Views END
 
     # API / Export START
 
     ('^/api/json/?', jsonExportView),
     ('^/feed/?$', feedView),
-    ('^/api/xml?$', xmlView),
-    ('^/api/pdf?$', pdfView),
+    ('^/api/xml', xmlView),
+    ('^/api/pdf', pdfView),
 
 
     # API / Export END

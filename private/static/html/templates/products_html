@@ -14,16 +14,13 @@
         <title>AuctioX</title>
 
     </head>
-
-    <h1>AuctioX - Products</h1>
-
     <ul>
 	{% for product in products %}
         <li class="prod" >
             <div class="prodContent">
                 <div class="prodData">
                     <div class="prodTitle">
-                        <h3 href="/product?prodid={{ product.productID }}"> {{ product.title }} </h3>
+                        <h3> {{ product.title }} </h3>
                     </div>
                     <div class="prodInfo">
                         <div class="prodDetails">

@@ -158,7 +158,9 @@ class userTransactionsView(view):
 
 
         transactionsSelling = userController.getTransactionsBySellerId(userId)
+        transactionsBuying = userController.getTransactionsByBuyerId(userId)
         self.addItemToContext(transactionsSelling, 'transell', True)
+        self.addItemToContext(transactionsBuying, 'tranbuy', True)
 
         self.addComponentToContext('transactions_styles.html', 'style', True)
 

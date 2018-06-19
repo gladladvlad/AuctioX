@@ -23,17 +23,6 @@ window.onload = function(){
     defaultDate = new Date()
     defaultDate.setDate(defaultDate.getDate() + 30)
     inputDate.valueAsDate = defaultDate;
-
-    inputListingType.onchange = function () {
-        div = document.getElementById("auctionEndInputs")
-
-        if (inputListingType.value == "Auction") {
-            div.style.display = "flex"
-        }
-        else {
-            div.style.display = "none"
-        }
-    }
 }
 
 function submitPhoto(){
