@@ -29,24 +29,27 @@ class product():
         for image in self.images:
             image = str(image)
 
-        result = {'ownerID' : self.ownerID,
-                'productID' : self.productID,
-                'status' : self.status,
-                'title' : self.title,
-                'desc' : self.desc,
-                'category' : self.category,
-                'subcategory' : self.category,
-                'images' : self.images,
-                'condition' : self.condition,
-                'country' : self.country,
-                'city' : self.city,
-                'auction' : self.auction,
-                'price' : self.price,
-                'currency' : self.currency,
-                'shippingType' : self.shippingType,
-                'shippingPrice' : self.shippingPrice,
-                'dateAdded' : self.dateAdded,
-                'dateExpires' : self.dateExpires}
+        result = {
+            'ownerID' : self.ownerID,
+            'productID' : self.productID,
+            'status' : self.status,
+            'title' : self.title,
+            'desc' : self.desc,
+            'category' : self.category,
+            'subcategory' : self.category,
+            'images' : self.images,
+            'condition' : self.condition,
+            'country' : self.country,
+            'city' : self.city,
+            'auction' : self.auction,
+            'price' : self.price,
+            'currency' : self.currency,
+            'shippingType' : self.shippingType,
+            'shippingPrice' : self.shippingPrice,
+            'dateAdded' : self.dateAdded,
+            'dateExpires' : self.dateExpires,
+            'views': self.views
+        }
 
         return result
 

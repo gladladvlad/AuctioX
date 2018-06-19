@@ -76,9 +76,36 @@
 			</div>
 		</div>
 	</div>
+    <h3>Description</h3>
 	<div class="productDescription">
-        {{ product.description }}
+        <p>{{ product.desc }}</p>
     </div>
+
+    <h3>Questions and Answers</h3>
+    <div class="questions">
+        <ul>
+            <li class="qaPair">
+                <div class="question">
+                    <p class="questionText">
+                        Hi. Is this the best thing to invest into right now? I have recently stumbled upon large sum of money and I would like to make an investment.
+                        <small>asked by <a href="#yeshedoes">godlovesme147</a></small>
+                    </p>
+                </div>
+                <div class="answer">
+                    <p class="answerText">
+                        Hello. Unfortunately, this market segment is very crowded at the moment. Any form of investment will take a lot of time to fully pay off. Have a nice day!
+                    </p>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <h3>Ask a question</h3>
+    <div class="askQuestion">
+        <textarea></textarea>
+        <button class="button">Submit question</button>
+    </div>
+
 </div>
 {% endblock %}
 

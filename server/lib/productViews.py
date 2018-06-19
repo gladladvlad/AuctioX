@@ -173,13 +173,13 @@ class productView(view):
 
         logger.debug(product.asDict())
 
-        self.addItemToContext(product, 'product', True)
+        self.addItemToContext(product.asDict(), 'product', True)
 
         seller = userController.getUserInstanceById(int(product.ownerID))
 
         logger.debug(seller.asDict())
 
-        self.addItemToContext(seller, 'seller', True)
+        self.addItemToContext(seller.asDict(), 'seller', True)
 
 
         self.addComponentToContext('product_styles.html', 'product_styles', True)

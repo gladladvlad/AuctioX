@@ -103,3 +103,62 @@ body{
     border: 2px solid var(--inputbg);
     border-radius: 0.3em;
 }
+
+.productDescription {
+    padding: 0.5em;
+}
+
+.qaPair {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.question, .answer {
+    display: flex;
+    width: 100%;
+}
+
+.answer {
+    justify-content: flex-end;
+}
+
+.question > p {
+    margin: 0.5em;
+    padding: 0.5em;
+    width: 90%;
+    background-color: #80003030;
+}
+
+.question small {
+    opacity: 0.65;
+}
+
+.question a {
+    color: var(--colorMainDarker);
+}
+
+.answer > p {
+    margin: 0.5em;
+    padding: 0.5em;
+    width: 90%;
+    background-color: #80808030;
+}
+
+.askQuestion {
+    margin: 0.5em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.askQuestion > textarea {
+    min-width: 100%;
+    max-width: 100%;
+    min-height: 4em;
+    padding: 0.5em;
+    font-size: 1em;
+}
+
+.askQuestion > button {
+    width: 100%;
+}

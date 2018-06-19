@@ -77,7 +77,16 @@ class view:
                     response += "URL arguments:\n" + json.dumps(self.urlArgs, indent=4) + "\n\n"
                     response += "Headers:\n" + str(self.request.headers) + "\n\n"
                     response += "Set cookies:\n" + json.dumps(self.cookies, indent=4) + "\n\n"
-                    response += "Context:\n" + str(self.context) + "\n\n"
+
+                    try:
+                        tempContext = json.dumps(self.context, indent=4)
+                    except Exception, e:
+                        logger.warning(e.message)
+                        tempContext = ""
+                        for item in self.context:
+                            tempContext += '"{item}": {value}\n\n'.format(item=item, value=self.context[item])
+
+                    response += "Context:\n" + tempContext + "\n\n"
                     response += "Response:\n" + oldResponse + "\n\n"
                 self.request.wfile.write(response)
                 return
