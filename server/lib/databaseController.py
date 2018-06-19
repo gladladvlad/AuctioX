@@ -100,13 +100,13 @@ class databaseController():
         return self.getItemsFromTable('transaction','transaction_id',key)
 
     def getTransactionBySellerId(self, userID):
-        command= "select * from transaction join user on seller_user_id = {0}".format(userID)
+        command= "select * from transaction join user on seller_user_id = {0} and user_id = {0}".format(userID)
         mycursor.execute(command)
         result = mycursor.fetchall()
         return result
 
     def getTransactionByBuyerId(self, userID):
-        command= "select * from transaction join user on buyer_user_id = {0}".format(userID)
+        command= "select * from transaction join user on buyer_user_id = {0} and user_id = {0}".format(userID)
         mycursor.execute(command)
         result = mycursor.fetchall()
         return result

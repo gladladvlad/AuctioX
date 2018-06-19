@@ -158,12 +158,6 @@ class productController():
     def buy(self, userID, productID):
         product = self.getProductInstanceById(productID)
 
-        logger.info('================================================')
-        logger.info('================================================')
-        logger.info('================================================')
-        logger.info('received request for:')
-        logger.info(product.asDict())
-
         if product.status  !=  'ongoing':
             return 'Fail! You cannot buy a product that doesn\'t exist!'
 
@@ -178,12 +172,9 @@ class productController():
                             'buyer_user_id' : userID,
                             'has_ended' : 'ongoing'}
 
-        logger.info('done')
         databaseController.insertIntoTransaction(transactionEntry)
-        logger.info('done')
 
         databaseController.setInactiveInProduct(productID)
-        logger.info('done')
 
         return 'Success! Please look out for your transaction page.'
 

@@ -285,7 +285,11 @@ class userController():
 
 
     def getTransactionsBySellerId(self, userID):
+        logger.info("[START] getTransactionsBySellerId()")
         transBD = databaseController.getTransactionBySellerId(userID)
+
+        #logger.info(transBD[0])
+        #logger.info(transBD[1])
 
         resTransList = []
         for trans in transBD:
@@ -302,7 +306,11 @@ class userController():
 
 
     def getTransactionsByBuyerId(self, userID):
+        logger.info("[START] getTransactionsByBuyerId()")
         transBD = databaseController.getTransactionByBuyerId(userID)
+
+        #logger.info(transBD[0])
+        #logger.info(transBD[1])
 
         resTransList = []
         for trans in transBD:
