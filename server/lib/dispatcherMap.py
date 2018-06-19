@@ -30,6 +30,7 @@ map = [
     ('^/mylistings/?$', userMyListingsView),
     ('^/mybids/?$', userMyBidsView),
     ('^/mytransactions', userTransactionsView),
+    ('^/reportdashboard', reportDashboardView),
 
     # User Views END
 

@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="baseContainer">
+    <div class="title">
+        <h1>
+            My listings
+        </h1>
+        <a href="/mybids">
+            My bids
+        </a>
+        <a href="#accountsettings">
+            Account settings
+        </a>
+        <a href="#help">
+            Help
+        </a>
+    </div>
+
+    <div class="mainContainer">
+        <div class="containerFull">
+            <table class="listingsTable">
+                <thead>
+                    <tr>
+                        <td>Report ID</td>
+                        <td>Type</td>
+                        <td>From</td>
+                        <td>To</td>
+                        <td>Product ID</td>
+                        <td>Reason</td>
+                        <td>Resolved</td>
+                        <td>Validity</td>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block footer %}
+    {{ footer }}
+{% endblock %}

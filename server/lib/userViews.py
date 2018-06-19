@@ -167,3 +167,11 @@ class userTransactionsView(view):
         content = self.renderTemplate('myTransactions.html')
 
         return content
+
+class reportDashboardView(view):
+
+    def get(self):
+        logger.info("[VIEW] userRegistrationPageView")
+
+        content =  self.renderTemplate('reportDashboard.html')
+        return content
