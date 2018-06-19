@@ -66,6 +66,21 @@ class user():
         return passwordHash == self.passwordHash
 
 
+
+class transaction():
+    def __init__(self, newTransactionId, newTransactionSellerId, newTransactionBuyerId, newTransactionProductId, newTransactionStatus, newTransactionDateCreated, newTransactionDateExpires, newTransactionSellerConfirm, newTransactionBuyerConfirm):
+        self.transactionId = newTransactionId
+        self.transactionSellerId = newTransactionSellerId
+        self.transactionBuyerId = newTransactionBuyerId
+        self.transactionProductId = newTransactionProductId
+        self.transactionStatus = newTransactionStatus
+        self.transactionDateCreated = newTransactionDateCreated
+        self.transactionDateExpires = newTransactionDateExpires
+        self.transactionSellerConfirm = newTransactionSellerConfirm
+        self.transactionBuyerConfirm = newTransactionBuyerConfirm
+
+
+
 class userController():
 
     def createNewUser(self, registerDetails):
@@ -268,9 +283,27 @@ class userController():
 
 
     def getTransactionsBySellerId(self, userID):
-        return databaseController.getTransactionBySellerId(userID)
+        transBD = databaseController.getTransactionBySellerId(userID)
+
+        resTransList = []
+        for transaction in transactions:
+            transBuf = transaction(transBD[TRANSACTION_ID], transBD[TRANSACTION_SELLER_ID], transBD[TRANSACTION_BUYER_ID], transBD[TRANSACTION_PRODUCT_ID], transBD[TRANSACTION_STATUS], transBD[TRANSACTION_DATE_CREATED], transBD[TRANSACTION_DATE_EXPIRES], transBD[TRANSACTION_SELLER_CONFIRM], transBD[TRANSACTION_BUYER_CONFIRM])
+
+            resTransList.append(transBuf)
+
+        return resTransList
+
+
 
     def getTransactionsByBuyerId(self, userID):
-        return databaseController.getTransactionByBuyerId(userID)
+        transBD = databaseController.getTransactionByBuyerId(userID)
+
+        resTransList = []
+        for transaction in transactions:
+            transBuf = transaction(transBD[TRANSACTION_ID], transBD[TRANSACTION_SELLER_ID], transBD[TRANSACTION_BUYER_ID], transBD[TRANSACTION_PRODUCT_ID], transBD[TRANSACTION_STATUS], transBD[TRANSACTION_DATE_CREATED], transBD[TRANSACTION_DATE_EXPIRES], transBD[TRANSACTION_SELLER_CONFIRM], transBD[TRANSACTION_BUYER_CONFIRM])
+
+            resTransList.append(transBuf)
+
+        return resTransList
 
 userController = userController()
