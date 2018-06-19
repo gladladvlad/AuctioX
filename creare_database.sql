@@ -192,7 +192,7 @@ CREATE TABLE IF NOT EXISTS `transaction` (
   CONSTRAINT `FK_transaction_product` FOREIGN KEY (`product_id`) REFERENCES `productdata` (`product_data_id`),
   CONSTRAINT `FK_transaction_user` FOREIGN KEY (`seller_user_id`) REFERENCES `user` (`user_id`),
   CONSTRAINT `FK_transaction_user_2` FOREIGN KEY (`buyer_user_id`) REFERENCES `user` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 -- Data exporting was unselected.
 -- Dumping structure for table tw.user
@@ -235,7 +235,7 @@ CREATE TABLE IF NOT EXISTS `userbid` (
   KEY `FK_userbid_product` (`product_id`),
   CONSTRAINT `FK_userbid_product` FOREIGN KEY (`product_id`) REFERENCES `productdata` (`product_data_id`),
   CONSTRAINT `FK_userbid_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 -- Data exporting was unselected.
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
