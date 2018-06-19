@@ -59,6 +59,17 @@ TRANSACTION_DATE_EXPIRES = 6
 TRANSACTION_SELLER_CONFIRM = 7
 TRANSACTION_BUYER_CONFIRM = 8
 
+QUESTION_ID = 0
+QUESTION_PRODUCT_ID = 1
+QUESTION_USER_ID = 2
+QUESTION_ANSWER_KEY = 3
+QUESTION_CONTENT = 4
+
+RESPONSE_ID = 0
+RESPONSE_PRODUCT_ID = 1
+RESPONSE_USER_ID = 2
+RESPONSE_ANSWER_KEY = 3
+RESPONSE_CONTENT = 4
 
 import databaseCredentials
 mariadb_connection = mariadb.connect(user=databaseCredentials.user, password=databaseCredentials.password, host='localhost', database='tw')

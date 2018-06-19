@@ -181,7 +181,34 @@ class productView(view):
 
         self.addItemToContext(seller.asDict(), 'seller', True)
 
+        qaList = list()
 
+        questionList = databaseController.executeSQLCommand("select * from question where product_id={0}".format(product.productID))
+        responseList = databaseController.executeSQLCommand("select * from response where product_id={0}".format(product.productID))
+
+        for q in questionList:
+
+            qaPair = dict()
+
+            qaPair["questionText"] = q[QUESTION_CONTENT]
+
+            for r in responseList:
+
+                if r[RESPONSE_ANSWER_KEY] == q[QUESTION_ANSWER_KEY]:
+                    qaPair["answerText"] = r[RESPONSE_CONTENT]
+                    break
+
+            qaPair["answerKey"] = q[QUESTION_ANSWER_KEY]
+
+            userData = databaseController.getUserById(q[QUESTION_USER_ID])[0]
+            print userData
+
+            qaPair["userId"] = q[QUESTION_USER_ID]
+            qaPair["username"] = userData[USER_USERNAME]
+
+            qaList.append(qaPair)
+
+        self.addItemToContext(qaList, 'qaList')
         self.addComponentToContext('product_styles.html', 'product_styles', True)
         self.addComponentToContext('navbar.html', 'navbar', True)
         self.addComponentToContext('footer.html', 'footer', True)
@@ -227,4 +254,108 @@ class buyView(view):
             return 'Fail! You must be logged in!'
 
         return productController.buy(userId, int(self.urlArgs['prodid']))
+
+
+class postQuestionRequestView(view):
+    def post(self):
+        logger.info("[VIEW] postQuestionRequestView")
+        data = self.parseJsonPost()
+
+        userId = None
+        productData = None
+
+        try:
+            logger.debug("Validating user session")
+            userId = userController.validateUserSession(self)
+            logger.debug("Gathering product data")
+            productData = databaseController.getProductDataById(data["productId"])[0]
+        except:
+            pass
+
+        logger.debug("Validating question")
+
+        errors = list()
+        success = False
+
+        if data["text"] == "":
+            errors.append("You must enter a question.")
+            logger.debug("User question is empty.")
+
+        if userId is None:
+            errors.append("You must be signed in in order to post questions.")
+            logger.debug("User is not signed in")
+
+        if productData is None:
+            errors.append("Product non existent.")
+            logger.debug("Product non existent")
+
+        if productData is not None and userId is not None:
+            if productData[PROD_USER_ID] == userId:
+                errors.append("You cannot ask questions about your own product.")
+                logger.debug("User tried asking question on own listing")
+
+        if len(errors) == 0:
+            logger.debug("No errors found. Inserting question")
+
+            answerKey = "{0}_{1}".format(data["productId"], binascii.hexlify(os.urandom(2)))
+
+            databaseController.insertIntoQuestion({"product_id": data["productId"], "user_id": userId, "title": answerKey, "content": data["text"]})
+
+            success = True
+        else:
+            logger.debug("Errors have been found.")
+
+        return json.dumps({"success": success, "errors": errors})
+
+
+class postAnswerRequestView(view):
+    def post(self):
+        logger.info("[VIEW] postAnswerRequestView")
+        data = self.parseJsonPost()
+
+        userId = None
+        productData = None
+
+        try:
+            logger.debug("Validating user session")
+            userId = userController.validateUserSession(self)
+            logger.debug("Gathering product data")
+            productData = databaseController.getProductDataById(data["productId"])[0]
+        except:
+            pass
+
+        logger.debug("Validating question")
+
+        errors = list()
+        success = False
+
+        if data["text"] == "":
+            errors.append("You must enter an answer.")
+            logger.debug("User answer is empty.")
+
+        if userId is None:
+            errors.append("You must be signed in in order to answer questions.")
+            logger.debug("User is not signed in")
+
+        if productData is None:
+            errors.append("Product non existent.")
+            logger.debug("Product non existent")
+
+        if productData is not None and userId is not None:
+            if productData[PROD_USER_ID] != userId:
+                errors.append("You can only answer questions about your listing.")
+                logger.debug("User tried answering question on someone else's listing")
+
+        if len(errors) == 0:
+            logger.debug("No errors found. Inserting question")
+
+            answerKey = data["answerKey"]
+
+            databaseController.insertIntoResponse({"product_id": data["productId"], "user_id": userId, "title": answerKey, "content": data["text"]})
+
+            success = True
+        else:
+            logger.debug("Errors have been found.")
+
+        return json.dumps({"success": success, "errors": errors})
 
