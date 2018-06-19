@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<productlist>
+    {% for product in products%}
+    <product>
+        <title>{{product.title}}</title>
+        <link>{{domain}}/product?prodid={{ product.productID }}</link>
+        <owner>{{product.ownerID}}</owner>
+        <condition{{product.condition}}></condition>
+        <price>{{product.price}} {{product.currency}}</price>
+        <enddate>{{product.dateExpires}}</enddate>
+        <description>{{product.desc[0:200]}}</description>
+        <category>{{product.category}}</category>
+        <published>{{product.dateAdded}}</published>
+    </product>
+  {% endfor %}
+</productlist>
