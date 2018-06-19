@@ -187,7 +187,8 @@ class productController():
         logger.info('==============================')
         logger.info('==============================')
         logger.info('==============================')
-        transaction = userController.getTransactionById(transID)
+        from userController import userController
+        transaction = userController.getTransactionInstanceById(transID)
         logger.info('done')
         product = productController.getProductInstanceById(transaction.productId)
         if product.ownerID == userID:
