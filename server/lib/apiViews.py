@@ -58,8 +58,6 @@ class pdfView(view):
     def get(self):
         logger.info('[INFO] feedView reached')
 
-        self.setContentType('application/pdf')
-
         tim = datetime.datetime.now()
         date = tim.strftime("%Y-%m-%dT%XZ")
 
@@ -74,6 +72,9 @@ class pdfView(view):
         self.addItemToContext(date, 'dateUpdated', True)
         self.addItemToContext(products, 'products', True)
         content = self.renderTemplate('products_html')
+
+        self.setContentType('application/pdf')
+
         result = StringIO.StringIO()
         pdf = pisa.pisaDocument(StringIO.StringIO(content), dest=result)
         return result.getvalue()
