@@ -61,8 +61,10 @@ function getArgsFromUrl() {
         tmpObj = decodeURIComponent(tmpObj).split("+");
 
         // this really shouldn't be here but...
-        if (tmpObj[1] == "desc") tmpObj[1] = "asc";
-        else tmpObj[1] = "desc";
+        if (tmpObj[0] == "conditie") {
+            if (tmpObj[1] == "desc") tmpObj[1] = "asc";
+            else tmpObj[1] = "desc";
+        }
         // necessary; condition is stored as int with lower
         // being a better condition
 
