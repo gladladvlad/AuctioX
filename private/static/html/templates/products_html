@@ -14,20 +14,16 @@
         <title>AuctioX</title>
 
     </head>
+
+    <h1>AuctioX - Products</h1>
+
     <ul>
 	{% for product in products %}
         <li class="prod" >
             <div class="prodContent">
-                <div class="prodImage">
-                    {% if product.images[0] is defined%}
-                        <img src="{{ product.images[0] }}" alt="{{product.title}}"/>
-                    {% else %}
-                        <h3>No picture available</h3>
-                    {% endif %}
-                </div>
                 <div class="prodData">
                     <div class="prodTitle">
-                        <a href="/product?prodid={{ product.productID }}"> {{ product.title }} </a>
+                        <h3 href="/product?prodid={{ product.productID }}"> {{ product.title }} </h3>
                     </div>
                     <div class="prodInfo">
                         <div class="prodDetails">
