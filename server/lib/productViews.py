@@ -256,6 +256,37 @@ class buyView(view):
         return productController.buy(userId, int(self.urlArgs['prodid']))
 
 
+
+class cancelTransactionView(view):
+    def get(self):
+        logger.info("[VIEW] cancelTransactionView")
+
+        if not self.urlArgs.has_key('prodid'):
+            return 'Fail! No product provided!'
+
+        userId = userController.validateUserSession(self)
+        if userId is None:
+            return 'Fail! You must be logged in!'
+
+        return productController.cancelTransaction(userId, int(self.urlArgs['prodid']))
+
+
+
+class confirmTransactionView(view):
+    def get(self):
+        logger.info("[VIEW] confirmTransactionView")
+
+        if not self.urlArgs.has_key('prodid'):
+            return 'Fail! No product provided!'
+
+        userId = userController.validateUserSession(self)
+        if userId is None:
+            return 'Fail! You must be logged in!'
+
+        return productController.confirmTransaction(userId, int(self.urlArgs['prodid']))
+
+
+
 class postQuestionRequestView(view):
     def post(self):
         logger.info("[VIEW] postQuestionRequestView")

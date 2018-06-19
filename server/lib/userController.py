@@ -284,6 +284,12 @@ class userController():
 
 
 
+    def getTransactionInstanceById(self, transID):
+        trans = databaseController.getTransactionById(transID)
+        return transaction(trans[TRANSACTION_ID], None, trans[TRANSACTION_SELLER_ID], trans[TRANSACTION_BUYER_ID], trans[TRANSACTION_PRODUCT_ID], trans[TRANSACTION_STATUS], trans[TRANSACTION_DATE_CREATED], trans[TRANSACTION_DATE_EXPIRES], trans[TRANSACTION_SELLER_CONFIRM], trans[TRANSACTION_BUYER_CONFIRM])
+
+
+
     def getTransactionsBySellerId(self, userID):
         logger.info("[START] getTransactionsBySellerId()")
         transBD = databaseController.getTransactionBySellerId(userID)

@@ -1,5 +1,6 @@
 from view import *
 from databaseController import *
+from userController import *
 
 class product():
     def __init__(self, newOwnerID, newProductID, newStatus, newTitle, newDesc, newCategory, newSubCategory, newImages, newViews, newCondition, newCountry, newCity, newAuction, newPrice, newCurrency, newShippingType, newShippingPrice, newDateAdded, newDateExpires):
@@ -177,6 +178,31 @@ class productController():
         databaseController.setInactiveInProduct(productID)
 
         return 'Success! Please look out for your transaction page.'
+
+
+
+
+    def confirmTransaction(self, userID, transID):
+        logger.info('==============================')
+        logger.info('==============================')
+        logger.info('==============================')
+        logger.info('==============================')
+        transaction = userController.getTransactionById(transID)
+        logger.info('done')
+        product = productController.getProductInstanceById(transaction.productId)
+        if product.ownerID == userID:
+            databaseController.setSellerConfirm(userID, product.productID)
+        else:
+            databaseController.setBuyerConfirm(userID, product.productID)
+
+        return 'Success! Transaction confirmed!'
+
+
+
+
+
+    def cancelTransaction(self, userID, transID):
+        print 'asd'
 
 
 
