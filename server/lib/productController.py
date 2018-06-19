@@ -157,8 +157,9 @@ class productController():
 
     def buy(self, userID, productID):
         product = self.getProductInstanceById(productID)
+
         if product.status  !=  'ongoing':
-            return 'Fail! You cannot bid on a product that doesn\'t exist!'
+            return 'Fail! You cannot buy a product that doesn\'t exist!'
 
         if product.auction != 0:
             return 'Fail! You cannot buy an auctioned product!'

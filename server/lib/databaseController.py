@@ -111,13 +111,13 @@ class databaseController():
         return self.getItemsFromTable('transaction','transaction_id',key)
 
     def getTransactionBySellerId(self, userID):
-        command= "select * from transaction join user on seller_user_id = user_id"
+        command= "select * from transaction join user on seller_user_id = {0} and user_id = {0}".format(userID)
         mycursor.execute(command)
         result = mycursor.fetchall()
         return result
 
     def getTransactionByBuyerId(self, userID):
-        command= "select * from transaction join user on buyer_user_id = user_id"
+        command= "select * from transaction join user on buyer_user_id = {0} and user_id = {0}".format(userID)
         mycursor.execute(command)
         result = mycursor.fetchall()
         return result
@@ -304,8 +304,6 @@ class databaseController():
         command = "update productdata set status='ended' where product_data_id={key}".format(key=key)
         mycursor.execute(command)
         mariadb_connection.commit()
-        self.setInactiveInTransaction(key)
-        self.setInactiveInUserbid(key)
 
     """Setari in baza de date"""
 
