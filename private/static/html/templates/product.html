@@ -107,12 +107,14 @@
 							<p>
 							Not answered
 							<p>
+                        {% if sessionData is defined %}
                         {% if seller.username == sessionData.username %}
 							<button class="button answerButton" onclick="ToggleAnswerBox('{{pair.answerKey}}')">Answer this question</button>
 						</div>
                         <div class="answerBox" id="{{pair.answerKey}}">
                             <textarea id="text_{{pair.answerKey}}"></textarea>
                             <button class="button answerButton" onclick="sendAnswerRequest('{{pair.answerKey}}', {{product.productID}})">Submit answer</button>
+                        {% endif %}
                         {% endif %}
                         </div>
 					</div>
@@ -122,6 +124,7 @@
             {% endfor %}
         </ul>
     </div>
+    {% if sessionData is defined %}
     {% if sessionData.username != seller.username%}
     <h3>Ask a question</h3>
     <div class="askQuestion">
@@ -130,7 +133,12 @@
         <div id="errors"></div>
     </div>
     {% endif %}
-
+    {% else %}
+    <h3>Ask a question</h3>
+    <div class="askQuestion">
+        You must be logged in to ask questions.
+    </div>
+    {% endif %}
 </div>
 {% endblock %}
 
