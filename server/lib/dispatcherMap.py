@@ -51,6 +51,7 @@ map = [
     ('^/api/json/?', jsonExportView),
     ('^/feed/?$', feedView),
     ('^/api/xml?$', xmlView),
+    ('^/api/pdf?$', pdfView),
 
 
     # API / Export END

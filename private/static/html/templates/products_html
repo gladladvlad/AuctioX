@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+
+        <meta name="viewport" content="width=device-width,initial-scale=1"/>
+
+        <link rel="stylesheet" type="text/css" href="/public/static/css/style.css">
+
+        {% block style %}
+            {{ style }}
+        {% endblock %}
+
+        <title>AuctioX</title>
+
+    </head>
+    <ul>
+	{% for product in products %}
+        <li class="prod" >
+            <div class="prodContent">
+                <div class="prodImage">
+                    {% if product.images[0] is defined%}
+                        <img src="{{ product.images[0] }}" alt="{{product.title}}"/>
+                    {% else %}
+                        <h3>No picture available</h3>
+                    {% endif %}
+                </div>
+                <div class="prodData">
+                    <div class="prodTitle">
+                        <a href="/product?prodid={{ product.productID }}"> {{ product.title }} </a>
+                    </div>
+                    <div class="prodInfo">
+                        <div class="prodDetails">
+                            <table>
+                                <tr>
+                                    <td>Condition</td>
+                                    <td>{{ product.condition }}</td>
+                                </tr>
+                                {% if product.country != "" %}
+                                <tr>
+                                    <td>Location</td>
+                                    <td>{{ product.country }} {% if product.city != "" %}, {{ product.city }}{% endif %}</td>
+                                </tr>
+                                {% endif %}
+                                <tr>
+                                    <td>
+                                        {% if product.auction == 'Auction' %}
+                                            Highest bid
+                                        {% else %}
+                                            Price
+                                        {% endif %}
+                                    </td>
+                                    <td>{{ product.price }} {{ product.currency }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Views</td>
+                                    <td>{{ product.views }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Added at</td>
+                                    <td>{{ product.dateAdded }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Ends at</td>
+                                    <td>{{ product.dateExpires }}</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="prodDesc">
+                            <p>
+                                {{product.desc }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </li>
+	{% endfor %}
+    </ul>
+</html>
