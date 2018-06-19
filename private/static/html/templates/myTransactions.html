@@ -6,7 +6,7 @@
         <h1>
             My transactions
         </h1>
-        <a href="/mytransactions">
+        <a href="/mybids">
             My bids
         </a>
         <a href="#accountsettings">
@@ -19,13 +19,14 @@
 
     <div class="mainContainer">
         <div class="containerFull">
+            <h3> Transactions - selling </h3>
             <table class="transactionsTable">
                 <thead>
                     <tr>
                         <td>No.</td>
                         <td>Title</td>
                         <td>Type</td>
-                        <td>Current bid (buyout)/ Price</td>
+                        <td>User bid / Price</td>
                         <td>Currency</td>
                         <td>Start date</td>
                         <td>End date</td>
@@ -35,13 +36,42 @@
                 {% for entry in transell %}
                     <tr>
                         <td>{{ loop.index }}</td>
-                        <td>{{ entry.title }}</td>
-                        <td>{{ entry.auction }}</td>
-                        <td>{{ entry.price }}</td>
-                        <td>{{ entry.currency }}</td>
-                        <td>{{ entry.dateAdded }}</td>
-                        <td>{{ entry.dateExpired }}</td>
+                        <td><a href="/product?prodid={{ entry.product.productID }}">{{ entry.product.title }}</a></td>
+                        <td>{{ entry.product.auction }}</td>
+                        <td>{{ entry.product.price }}</td>
+                        <td>{{ entry.product.currency }}</td>
+                        <td>{{ entry.dateCreated }}</td>
+                        <td>{{ entry.dateExpires }}</td>
+                        </tr>
+                    </a>
+                {% endfor %}
+                </tbody>
+            </table>
+            <h3> Transactions - buying</h3>
+            <table class="transactionsTable">
+                <thead>
+                    <tr>
+                        <td>No.</td>
+                        <td>Title</td>
+                        <td>Type</td>
+                        <td>Your bid / Price</td>
+                        <td>Currency</td>
+                        <td>Start date</td>
+                        <td>End date</td>
                     </tr>
+                </thead>
+                <tbody>
+                {% for entry in tranbuy %}
+                    <tr>
+                        <td>{{ loop.index }}</td>
+                        <td><a href="/product?prodid={{ entry.product.productID }}">{{ entry.product.title }}</a></td>
+                        <td>{{ entry.product.auction }}</td>
+                        <td>{{ entry.product.price }}</td>
+                        <td>{{ entry.product.currency }}</td>
+                        <td>{{ entry.dateCreated }}</td>
+                        <td>{{ entry.dateExpires }}</td>
+                        </tr>
+                    </a>
                 {% endfor %}
                 </tbody>
             </table>

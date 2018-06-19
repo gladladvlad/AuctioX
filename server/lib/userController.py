@@ -10,6 +10,7 @@ import re
 
 from databaseController import *
 from bidController import *
+from productController import *
 
 
 #nu stiu daca trebuie :csf:
@@ -68,16 +69,17 @@ class user():
 
 
 class transaction():
-    def __init__(self, newTransactionId, newTransactionSellerId, newTransactionBuyerId, newTransactionProductId, newTransactionStatus, newTransactionDateCreated, newTransactionDateExpires, newTransactionSellerConfirm, newTransactionBuyerConfirm):
-        self.transactionId = newTransactionId
-        self.transactionSellerId = newTransactionSellerId
-        self.transactionBuyerId = newTransactionBuyerId
-        self.transactionProductId = newTransactionProductId
-        self.transactionStatus = newTransactionStatus
-        self.transactionDateCreated = newTransactionDateCreated
-        self.transactionDateExpires = newTransactionDateExpires
-        self.transactionSellerConfirm = newTransactionSellerConfirm
-        self.transactionBuyerConfirm = newTransactionBuyerConfirm
+    def __init__(self, newTransactionId, newProduct, newTransactionSellerId, newTransactionBuyerId, newTransactionProductId, newTransactionStatus, newTransactionDateCreated, newTransactionDateExpires, newTransactionSellerConfirm, newTransactionBuyerConfirm):
+        self.id = newTransactionId
+        self.product = newProduct
+        self.sellerId = newTransactionSellerId
+        self.buyerId = newTransactionBuyerId
+        self.productId = newTransactionProductId
+        self.status = newTransactionStatus
+        self.dateCreated = newTransactionDateCreated
+        self.dateExpires = newTransactionDateExpires
+        self.sellerConfirm = newTransactionSellerConfirm
+        self.buyerConfirm = newTransactionBuyerConfirm
 
 
 
@@ -286,8 +288,12 @@ class userController():
         transBD = databaseController.getTransactionBySellerId(userID)
 
         resTransList = []
-        for transaction in transactions:
-            transBuf = transaction(transBD[TRANSACTION_ID], transBD[TRANSACTION_SELLER_ID], transBD[TRANSACTION_BUYER_ID], transBD[TRANSACTION_PRODUCT_ID], transBD[TRANSACTION_STATUS], transBD[TRANSACTION_DATE_CREATED], transBD[TRANSACTION_DATE_EXPIRES], transBD[TRANSACTION_SELLER_CONFIRM], transBD[TRANSACTION_BUYER_CONFIRM])
+        for trans in transBD:
+            productBuf = productController.getProductInstanceById(trans[TRANSACTION_PRODUCT_ID])
+            productBuf.auction = productController.getAuctionTypeStr(productBuf.auction)
+            productBuf.condition = productController.getConditionStr(productBuf.condition)
+
+            transBuf = transaction(trans[TRANSACTION_ID], productBuf, trans[TRANSACTION_SELLER_ID], trans[TRANSACTION_BUYER_ID], trans[TRANSACTION_PRODUCT_ID], trans[TRANSACTION_STATUS], trans[TRANSACTION_DATE_CREATED], trans[TRANSACTION_DATE_EXPIRES], trans[TRANSACTION_SELLER_CONFIRM], trans[TRANSACTION_BUYER_CONFIRM])
 
             resTransList.append(transBuf)
 
@@ -299,8 +305,12 @@ class userController():
         transBD = databaseController.getTransactionByBuyerId(userID)
 
         resTransList = []
-        for transaction in transactions:
-            transBuf = transaction(transBD[TRANSACTION_ID], transBD[TRANSACTION_SELLER_ID], transBD[TRANSACTION_BUYER_ID], transBD[TRANSACTION_PRODUCT_ID], transBD[TRANSACTION_STATUS], transBD[TRANSACTION_DATE_CREATED], transBD[TRANSACTION_DATE_EXPIRES], transBD[TRANSACTION_SELLER_CONFIRM], transBD[TRANSACTION_BUYER_CONFIRM])
+        for trans in transBD:
+            productBuf = productController.getProductInstanceById(trans[TRANSACTION_PRODUCT_ID])
+            productBuf.auction = productController.getAuctionTypeStr(productBuf.auction)
+            productBuf.condition = productController.getConditionStr(productBuf.condition)
+
+            transBuf = transaction(trans[TRANSACTION_ID], productBuf, trans[TRANSACTION_SELLER_ID], trans[TRANSACTION_BUYER_ID], trans[TRANSACTION_PRODUCT_ID], trans[TRANSACTION_STATUS], trans[TRANSACTION_DATE_CREATED], trans[TRANSACTION_DATE_EXPIRES], trans[TRANSACTION_SELLER_CONFIRM], trans[TRANSACTION_BUYER_CONFIRM])
 
             resTransList.append(transBuf)
 

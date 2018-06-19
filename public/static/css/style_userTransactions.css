@@ -2,6 +2,11 @@
 	min-height: 4em;
 }
 
+.containerFull {
+	display: flex;
+	flex-direction: column;
+}
+
 .stdTable {
     width: 100%;
 }
