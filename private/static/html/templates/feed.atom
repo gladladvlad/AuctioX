@@ -24,8 +24,6 @@
         {{product.desc[0:200]}}
     </summary>
 
-    <category term="{{product.category}}" label="Category: {{product.category}}"/>
-
     <published>
         {{product.dateAdded}}
     </published>
