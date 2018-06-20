@@ -74,7 +74,6 @@
                 </tbody>
             </table>
 
-            {% if userlog.UID == userreq.UID or userlog.isAdmin == 1 %}
             <h3> Listings </h3>
             <table class="listingsTable">
                 <thead>
@@ -92,18 +91,19 @@
                 {% for entry in products %}
                     <tr id="product{{ entry.productID }}">
                         <td>{{ loop.index }}</td>
-                        <td>{{ entry.title }}</td>
+                        <td><a href="/product?prodid={{ entry.productID }}">{{ entry.title }}</a></td>
                         <td>{{ entry.auction }}</td>
                         <td>{{ entry.price }}</td>
                         <td>{{ entry.currency }}</td>
                         <td>{{ entry.dateAdded }}</td>
-                        <td>{{ entry.dateExpired }}</td>
+                        <td>{{ entry.dateExpires }}</td>
                         {#<td><a onclick="cancelProduct({{ entry.productID }});"> cancel </a></td>#}
                     </tr>
                 {% endfor %}
                 </tbody>
             </table>
 
+            {% if userlog.UID == userreq.UID or userlog.isAdmin == 1 %}
             <h3> Bids </h3>
             <table class="listingsTable">
                 <thead>
@@ -121,7 +121,7 @@
                 {% for entry in bidprod %}
                     <tr id="bid{{entry[0].bidID}}">
                         <td>{{ loop.index }}</td>
-                        <td>{{ entry[1].title }}</td>
+                        <td><a href="/product?prodid={{ entry[1].productID }}">{{ entry[1].title }} </a></td>
                         <td>{{ entry[0].value }}</td>
                         <td>{{ entry[1].currency }}</td>
                         <td>{{ entry[1].status }}</td>
