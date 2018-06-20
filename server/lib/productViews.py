@@ -297,7 +297,7 @@ class cancelTransactionView(view):
         if transaction is None:
             return 'Fail! Transaction does not exist!'
 
-        if userID != transaction.sellerId and userID != transaction.buyerId and user.isAdmin != 1:
+        if userId != transaction.sellerId and userId != transaction.buyerId and user.isAdmin != 1:
             return 'Fail! You cannot cancel someone else\'s transaction!'
 
         return productController.cancelTransaction(userId, int(self.urlArgs['transid']))
