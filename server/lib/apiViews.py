@@ -13,8 +13,6 @@ class feedView(view):
     def get(self):
         logger.info('[INFO] feedView reached')
 
-        self.setContentType('text/atom')
-
         tim = datetime.datetime.now()
         date = tim.strftime("%Y-%m-%dT%XZ")
 
@@ -30,13 +28,12 @@ class feedView(view):
         self.addItemToContext(date, 'dateUpdated', True)
         self.addItemToContext(products, 'products', True)
         content = self.renderTemplate('feed.atom')
+        self.setContentType('application/atom+xml')
         return content
 
 class xmlView(view):
     def get(self):
         logger.info('[INFO] feedView reached')
-
-        self.setContentType('text/xml')
 
         tim = datetime.datetime.now()
         date = tim.strftime("%Y-%m-%dT%XZ")
@@ -52,6 +49,7 @@ class xmlView(view):
         self.addItemToContext(date, 'dateUpdated', True)
         self.addItemToContext(products, 'products', True)
         content = self.renderTemplate('products.xml')
+        self.setContentType('text/xml')
         return content
 
 class pdfView(view):
