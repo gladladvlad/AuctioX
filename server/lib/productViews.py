@@ -274,6 +274,12 @@ class cancelTransactionView(view):
         if userId is None:
             return 'Fail! You must be logged in!'
 
+        user = userController.getUserInstanceById(userId)
+        user.setAdmin()
+
+        if userID != transaction.sellerId and userID != transaction.buyerId and user.isAdmin != 1:
+            return 'Fail! You cannot cancel someone else\'s transaction!'
+
         return productController.cancelTransaction(userId, int(self.urlArgs['prodid']))
 
 
@@ -288,6 +294,14 @@ class confirmTransactionView(view):
         userId = userController.validateUserSession(self)
         if userId is None:
             return 'Fail! You must be logged in!'
+
+
+        user = userController.getUserInstanceById(userId)
+        user.setAdmin()
+
+        if userID != transaction.sellerId and userID != transaction.buyerId and user.isAdmin != 1:
+            return 'Fail! You cannot confirm someone else\'s transaction!'
+
 
         return productController.confirmTransaction(userId, int(self.urlArgs['prodid']))
 

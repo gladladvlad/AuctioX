@@ -85,3 +85,26 @@ function cancelProduct(id) {
 
     alert(answer);
 }
+
+function cancelReport(id) {
+    var request = "/cancrep?repid=" + id;
+
+    var xhr = new XMLHttpRequest();
+
+    xhr.onreadystatechange = function(){
+        if(xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200){
+            answer = xhr.responseText;
+        }
+    }
+
+    xhr.open("GET", request, false);
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhr.send();
+
+    if (testSuccessRe.test(answer)) {
+        document.getElementById("report" + id).innerHTML = "";
+    }
+
+    alert(answer);
+}
+

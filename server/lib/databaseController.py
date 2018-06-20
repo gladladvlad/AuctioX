@@ -151,6 +151,11 @@ class databaseController():
         result = mycursor.fetchall()
         return result
 
+    def invalidateReport(self, repId):
+        command = "update report set is_valid = 0 where report_id = {0}".format(repId)
+        mycursor.execute(command)
+        mariadb_connection.commit()
+
     def getQuestionById(self,key):
         return self.getItemsFromTable('question','question_id',key)
 

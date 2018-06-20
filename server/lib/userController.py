@@ -322,6 +322,19 @@ class userController():
 
         return resRepList
 
+    def getReportById(self, repId):
+        logger.info("[START] getReportByFromUserId()")
+        rep = databaseController.getReportById(repId)
+
+        resReport = report(rep[REPORT_ID], rep[REPORT_TYPE], rep[REPORT_FROM], rep[REPORT_TO], rep[REPORT_PRODUCT_ID], rep[REPORT_REASON], rep[REPORT_DETAILS], rep[REPORT_RESOLVED], rep[REPORT_DATE_RESOLVED], rep[REPORT_IS_VALID])
+
+        return resReport
+
+    def cancelReport(self, reportId):
+        databaseController.invalidateReport(reportId)
+
+        return "Success! Report {0} has been invalidated!".format(reportId)
+
 
 
     def getTransactionInstanceById(self, transID):

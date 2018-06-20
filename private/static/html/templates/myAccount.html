@@ -31,7 +31,7 @@
                         <td>{{ entry.details }}</td>
                         <td>{{ entry.resolved }}</td>
                         <td>{{ entry.dateResolved }}</td>
-                        {% if userlog.is_admin == 1 %}
+                        {% if userlog.isAdmin == 1 %}
                         <td><a onclick="cancelReport({{ entry.id}});"> cancel </a></td>
                         {% endif %}
                     </tr>
@@ -66,7 +66,7 @@
                         <td>{{ entry.details }}</td>
                         <td>{{ entry.resolved }}</td>
                         <td>{{ entry.dateResolved }}</td>
-                        {% if userlog.is_admin == 1 %}
+                        {% if userlog.isAdmin == 1 %}
                         <td><a onclick="cancelReport({{ entry.id }});"> cancel </a></td>
                         {% endif %}
                     </tr>

@@ -246,12 +246,39 @@ class cancelBidView(view):
         if userId is None:
             return 'Fail! You must be logged in!'
 
+
+        user = userController.getUserInstanceById(userId)
+        user.setAdmin()
+
+
         bid = bidController.getBidById(int(self.urlArgs['bidid']))
-        if bid.userID != userId:
+        if bid.userID != userId and user.isAdmin != 1:
             return 'Fail! You cannot cancel someone else\'s bid!'
 
 
         answer = bidController.cancelBid(int(self.urlArgs['bidid']))
+        return answer
+
+class cancelReportView(view):
+    def get(self):
+        logger.info("[VIEW] cancelReport")
+        
+        if not self.urlArgs.has_key('repid'):
+            return 'Fail! No report provided!'
+
+        userId = userController.validateUserSession(self)
+        if userId is None:
+            return 'Fail! You must be logged in!'
+
+
+        user = userController.getUserInstanceById(userId)
+        user.setAdmin()
+
+        if user.isAdmin != 1:
+            return 'Fail! You cannot cancel someone a report unless you are an admin!'
+
+
+        answer = userController.cancelReport(int(self.urlArgs['repid']))
         return answer
 
 class reportDashboardView(view):

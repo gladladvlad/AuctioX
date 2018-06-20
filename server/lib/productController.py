@@ -204,8 +204,6 @@ class productController():
         from userController import userController
 
         transaction = userController.getTransactionInstanceById(transID)
-        if userID != transaction.sellerId and userID != transaction.buyerId:
-            return 'Fail! You cannot cancel someone else\'s transaction!'
 
         product = productController.getProductInstanceById(transaction.productId)
 
