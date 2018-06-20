@@ -182,6 +182,25 @@ class productController():
 
 
 
+    def getTransactionInstanceByProductId(self, productID):
+        from userController import transaction
+        trans = databaseController.getTransactionByProductId(productID)
+
+        logger.info('====================')
+        logger.info('====================')
+        logger.info('====================')
+        logger.info('====================')
+        logger.info(trans)
+
+        if len(trans) == 0:
+            return None
+
+        resTrans = transaction(trans[TRANSACTION_ID], None, trans[TRANSACTION_SELLER_ID], trans[TRANSACTION_BUYER_ID], trans[TRANSACTION_PRODUCT_ID], trans[TRANSACTION_STATUS], trans[TRANSACTION_DATE_CREATED], trans[TRANSACTION_DATE_EXPIRES], trans[TRANSACTION_SELLER_CONFIRM], trans[TRANSACTION_BUYER_CONFIRM])
+
+        return resTrans
+
+
+
 
     def cancelProduct(self, productID):
         #product = productController.getProductInstanceById(productID)

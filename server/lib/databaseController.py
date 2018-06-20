@@ -122,7 +122,7 @@ class databaseController():
         return self.getItemsFromTable('transaction','transaction_id',key)
 
     def getTransactionByProductId(self, prodId):
-        command= "select * from transaction join productdata on product_id = {0} where has_ended != \"ended\"".format(prodId)
+        command= "select * from transaction where product_id = {0} and has_ended != \"ended\"".format(prodId)
         mycursor.execute(command)
         result = mycursor.fetchall()
         return result

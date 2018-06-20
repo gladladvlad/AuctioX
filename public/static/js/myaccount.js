@@ -3,7 +3,7 @@ var answer;
 testSuccessRe = new RegExp("Success!")
 
 function confirmTransaction(id) {
-    var request = "/conftrans?prodid=" + id;
+    var request = "/conftrans?transid=" + id;
 
     var xhr = new XMLHttpRequest();
 
@@ -21,7 +21,7 @@ function confirmTransaction(id) {
 }
 
 function cancelTransaction(id) {
-    var request = "/canctrans?prodid=" + id;
+    var request = "/canctrans?transid=" + id;
 
     var xhr = new XMLHttpRequest();
 

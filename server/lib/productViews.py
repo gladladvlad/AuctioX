@@ -268,21 +268,13 @@ class cancelProductView(view):
         if userId is None:
             return 'Fail! You must be logged in!'
 
-        logger.info("======================")
-        logger.info("======================")
-        logger.info("======================")
-        logger.info("DONE")
         user = userController.getUserInstanceById(userId)
-        logger.info("DONE")
         user.setAdmin()
-        logger.info("DONE")
         product = productController.getProductInstanceById(int(self.urlArgs['prodid']))
-        logger.info("DONE")
 
         if userId != product.ownerID and user.isAdmin != 1:
             return 'Fail! You cannot cancel someone else\'s listing!'
 
-        logger.info("DONE")
         return productController.cancelProduct(int(self.urlArgs['prodid']))
 
 
@@ -291,8 +283,8 @@ class cancelTransactionView(view):
     def get(self):
         logger.info("[VIEW] cancelTransactionView")
 
-        if not self.urlArgs.has_key('prodid'):
-            return 'Fail! No product provided!'
+        if not self.urlArgs.has_key('transid'):
+            return 'Fail! No transaction provided!'
 
         userId = userController.validateUserSession(self)
         if userId is None:
@@ -301,10 +293,14 @@ class cancelTransactionView(view):
         user = userController.getUserInstanceById(userId)
         user.setAdmin()
 
+        transaction = userController.getTransactionInstanceById(int(self.urlArgs['transid']))
+        if transaction is None:
+            return 'Fail! Transaction does not exist!'
+
         if userID != transaction.sellerId and userID != transaction.buyerId and user.isAdmin != 1:
             return 'Fail! You cannot cancel someone else\'s transaction!'
 
-        return productController.cancelTransaction(userId, int(self.urlArgs['prodid']))
+        return productController.cancelTransaction(userId, int(self.urlArgs['transid']))
 
 
 
@@ -312,8 +308,8 @@ class confirmTransactionView(view):
     def get(self):
         logger.info("[VIEW] confirmTransactionView")
 
-        if not self.urlArgs.has_key('prodid'):
-            return 'Fail! No product provided!'
+        if not self.urlArgs.has_key('transid'):
+            return 'Fail! No transaction provided!'
 
         userId = userController.validateUserSession(self)
         if userId is None:
@@ -322,12 +318,15 @@ class confirmTransactionView(view):
 
         user = userController.getUserInstanceById(userId)
         user.setAdmin()
+        transaction = userController.getTransactionInstanceById(int(self.urlArgs['transid']))
+        if transaction is None:
+            return 'Fail! Transaction does not exist!'
 
-        if userID != transaction.sellerId and userID != transaction.buyerId and user.isAdmin != 1:
+        if userId != transaction.sellerId and userId != transaction.buyerId and user.isAdmin != 1:
             return 'Fail! You cannot confirm someone else\'s transaction!'
 
 
-        return productController.confirmTransaction(userId, int(self.urlArgs['prodid']))
+        return productController.confirmTransaction(userId, int(self.urlArgs['transid']))
 
 
 
