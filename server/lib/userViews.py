@@ -184,6 +184,14 @@ class myAccountView(view):
         user = userController.getUserInstanceByUsername(self.sessionData['username'])
 
 
+
+        reportsFrom = userController.getReportsByFromUserId(user.UID)
+        reportsTo = userController.getReportsByToUserId(user.UID)
+
+        self.addItemToContext(reportsFrom, 'repfrom', True)
+        self.addItemToContext(reportsTo, 'repto', True)
+
+
         products = productController.getUserProductsById(user.UID)
 
         self.addItemToContext(products, 'products', True)

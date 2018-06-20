@@ -4,6 +4,72 @@
 <div class="baseContainer">
     <div class="mainContainer">
         <div class="containerFull">
+            <h3> Reports incoming </h3>
+            <table class="listingsTable">
+                <thead>
+                    <tr>
+                        <td>No.</td>
+                        <td>Report ID</td>
+                        <td>From user</td>
+                        <td>Type</td>
+                        <td>Product ID</td>
+                        <td>Reason</td>
+                        <td>Details</td>
+                        <td>Resolved</td>
+                        <td>Date resolved</td>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for entry in repfrom %}
+                    <tr id="report{{ entry.id }}">
+                        <td>{{ loop.index }}</td>
+                        <td>{{ entry.id }}</td>
+                        <td>{{ entry.fromId }}</td>
+                        <td>{{ entry.type }}</td>
+                        <td>{{ entry.productId }}</td>
+                        <td>{{ entry.reason }}</td>
+                        <td>{{ entry.details }}</td>
+                        <td>{{ entry.resolved }}</td>
+                        <td>{{ entry.dateResolved }}</td>
+                        <td><a onclick="cancelProduct({{ entry.productID }});"> cancel </a></td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+            <h3> Reports outgoing </h3>
+            <table class="listingsTable">
+                <thead>
+                    <tr>
+                        <td>No.</td>
+                        <td>Report ID</td>
+                        <td>To user</td>
+                        <td>Type</td>
+                        <td>Product ID</td>
+                        <td>Reason</td>
+                        <td>Details</td>
+                        <td>Resolved</td>
+                        <td>Date resolved</td>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for entry in repfrom %}
+                    <tr id="report{{ entry.id }}">
+                        <td>{{ loop.index }}</td>
+                        <td>{{ entry.id }}</td>
+                        <td>{{ entry.toId }}</td>
+                        <td>{{ entry.type }}</td>
+                        <td>{{ entry.productId }}</td>
+                        <td>{{ entry.reason }}</td>
+                        <td>{{ entry.details }}</td>
+                        <td>{{ entry.resolved }}</td>
+                        <td>{{ entry.dateResolved }}</td>
+                        <td><a onclick="cancelProduct({{ entry.productID }});"> cancel </a></td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
             <h3> Listings </h3>
             <table class="listingsTable">
                 <thead>

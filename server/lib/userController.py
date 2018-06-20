@@ -83,6 +83,21 @@ class transaction():
 
 
 
+class report():
+    def __init__(self, newReportId, newReportType, newReportFrom,  newReportTo, newReportProductId,  newReportReason, newReportDetails,  newReportResolved, newReportDateResolved,  newReportIsValid):
+        self.id = newReportId
+        self.type = newReportType
+        self.fromId = newReportFrom
+        self.toId = newReportTo
+        self.productId = newReportProductId
+        self.reason = newReportReason
+        self.details = newReportDetails
+        self.resolved = newReportResolved
+        self.dateResolved = newReportDateResolved
+        self.isValid = newReportIsValid
+
+
+
 class userController():
 
     def createNewUser(self, registerDetails):
@@ -276,6 +291,32 @@ class userController():
         resultUser = user(userBD[USER_ID], session, userBD[USER_USERNAME], 50000, userBD[USER_SALT], userBD[USER_PASSWORD], userBD[USER_EMAIL], userBD[USER_CELL_NUMBER], userBD[USER_FIRST_NAME], userBD[USER_LAST_NAME], userBD[USER_COUNTRY], userBD[USER_STATE], userBD[USER_CITY], userBD[USER_ADRESS_1], userBD[USER_ADRESS_2], userBD[USER_ZIP_CODE], userBD[USER_CONTACT_INFO], userBD[USER_STATUS])
 
         return resultUser
+
+
+    def getReportsByFromUserId(self, userID):
+        logger.info("[START] getReportByFromUserId()")
+        repBD = databaseController.getReportByFromUserId(userID)
+
+        resRepList = []
+        for rep in repBD:
+            repBuf = report(rep[REPORT_ID], rep[REPORT_TYPE], rep[REPORT_FROM], rep[REPORT_TO], rep[REPORT_PRODUCT_ID], rep[REPORT_REASON], rep[REPORT_DETAILS], rep[REPORT_RESOLVED], rep[REPORT_DATE_RESOLVED], rep[REPORT_IS_VALID])
+
+            resRepList.append(repBuf)
+
+        return resRepList
+
+
+    def getReportsByToUserId(self, userID):
+        logger.info("[START] getReportByFromUserId()")
+        repBD = databaseController.getReportByToUserId(userID)
+
+        resRepList = []
+        for rep in repBD:
+            repBuf = report(rep[REPORT_ID], rep[REPORT_TYPE], rep[REPORT_FROM], rep[REPORT_TO], rep[REPORT_PRODUCT_ID], rep[REPORT_REASON], rep[REPORT_DETAILS], rep[REPORT_RESOLVED], rep[REPORT_DATE_RESOLVED], rep[REPORT_IS_VALID])
+
+            resRepList.append(repBuf)
+
+        return resRepList
 
 
 

@@ -71,6 +71,17 @@ RESPONSE_USER_ID = 2
 RESPONSE_ANSWER_KEY = 3
 RESPONSE_CONTENT = 4
 
+REPORT_ID = 0
+REPORT_TYPE = 1
+REPORT_FROM = 2
+REPORT_TO = 3
+REPORT_PRODUCT_ID = 4
+REPORT_REASON = 5
+REPORT_DETAILS = 6
+REPORT_RESOLVED = 7
+REPORT_DATE_RESOLVED = 8
+REPORT_IS_VALID = 9
+
 import databaseCredentials
 mariadb_connection = mariadb.connect(user=databaseCredentials.user, password=databaseCredentials.password, host='localhost', database='tw')
 mycursor = mariadb_connection.cursor()
@@ -127,6 +138,18 @@ class databaseController():
 
     def getReportById(self,key):
         return self.getItemsFromTable('report','report_id',key)
+
+    def getReportByToUserId(self, userID):
+        command= "select * from report where to_uid = {0} and is_valid = 1".format(userID)
+        mycursor.execute(command)
+        result = mycursor.fetchall()
+        return result
+
+    def getReportByFromUserId(self, userID):
+        command= "select * from report where from_uid = {0} and is_valid = 1".format(userID)
+        mycursor.execute(command)
+        result = mycursor.fetchall()
+        return result
 
     def getQuestionById(self,key):
         return self.getItemsFromTable('question','question_id',key)
