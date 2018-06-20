@@ -183,6 +183,18 @@ class productController():
 
 
 
+    def cancelProduct(self, productID):
+        #product = productController.getProductInstanceById(productID)
+        databaseController.setInactiveInProduct(productID)
+        transaction = databaseController.getTransactionByProductId(productID)
+        if len(transaction) != 0:
+            logger.info(transaction)
+            databaseController.setInactiveInTransaction(transaction[0][TRANSACTION_ID])
+
+        return 'Success! Listing canceled!'
+
+
+
     def confirmTransaction(self, userID, transID):
         from userController import userController
 

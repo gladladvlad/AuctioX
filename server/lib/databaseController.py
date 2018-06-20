@@ -121,6 +121,12 @@ class databaseController():
     def getTransactionById(self,key):
         return self.getItemsFromTable('transaction','transaction_id',key)
 
+    def getTransactionByProductId(self, prodId):
+        command= "select * from transaction join productdata on product_id = {0} where has_ended != \"ended\"".format(prodId)
+        mycursor.execute(command)
+        result = mycursor.fetchall()
+        return result
+
     def getTransactionBySellerId(self, userID):
         command= "select * from transaction join user on seller_user_id = {0} and user_id = {0} and not has_ended = \"ended\"".format(userID)
         mycursor.execute(command)
@@ -326,7 +332,7 @@ class databaseController():
     """Setari inactiv in baza de date"""
 
     def setInactiveInTransaction(self, key):
-        command = "UPDATE transaction set has_ended ='ended' where transaction_id={key}".format(key=key)
+        command = "update transaction set has_ended ='ended' where transaction_id={key}".format(key=key)
         mycursor.execute(command)
         mariadb_connection.commit()
 

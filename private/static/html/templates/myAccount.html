@@ -83,6 +83,7 @@
                         <td>Type</td>
                         <td>Current bid / Price</td>
                         <td>Currency</td>
+                        <td>Status</td>
                         <td>Start date</td>
                         <td>End date</td>
                     </tr>
@@ -95,9 +96,12 @@
                         <td>{{ entry.auction }}</td>
                         <td>{{ entry.price }}</td>
                         <td>{{ entry.currency }}</td>
+                        <td id="product_status_{{ entry.productID }}">{{ entry.status }}</td>
                         <td>{{ entry.dateAdded }}</td>
                         <td>{{ entry.dateExpires }}</td>
-                        {#<td><a onclick="cancelProduct({{ entry.productID }});"> cancel </a></td>#}
+                        {% if userlog.UID == userreq.UID or userlog.isAdmin == 1 %}
+                        <td><a onclick="cancelProduct({{ entry.productID }});"> cancel </a></td>
+                        {% endif %}
                     </tr>
                 {% endfor %}
                 </tbody>

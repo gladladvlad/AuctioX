@@ -259,7 +259,31 @@ class buyView(view):
 
 class cancelProductView(view):
     def get(self):
-        return 'unexpected'
+        logger.info("[VIEW] bidView")
+
+        if not self.urlArgs.has_key('prodid'):
+            return 'Fail! No product provided!'
+
+        userId = userController.validateUserSession(self)
+        if userId is None:
+            return 'Fail! You must be logged in!'
+
+        logger.info("======================")
+        logger.info("======================")
+        logger.info("======================")
+        logger.info("DONE")
+        user = userController.getUserInstanceById(userId)
+        logger.info("DONE")
+        user.setAdmin()
+        logger.info("DONE")
+        product = productController.getProductInstanceById(int(self.urlArgs['prodid']))
+        logger.info("DONE")
+
+        if userId != product.ownerID and user.isAdmin != 1:
+            return 'Fail! You cannot cancel someone else\'s listing!'
+
+        logger.info("DONE")
+        return productController.cancelProduct(int(self.urlArgs['prodid']))
 
 
 

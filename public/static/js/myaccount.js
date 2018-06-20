@@ -65,7 +65,7 @@ function cancelBid(id) {
 }
 
 function cancelProduct(id) {
-    var request = "/cancprod?bidid=" + id;
+    var request = "/cancprod?prodid=" + id;
 
     var xhr = new XMLHttpRequest();
 
@@ -80,7 +80,7 @@ function cancelProduct(id) {
     xhr.send();
 
     if (testSuccessRe.test(answer)) {
-        document.getElementById("product" + id).innerHTML = "";
+        document.getElementById("product_status_" + id).innerHTML = "ended";
     }
 
     alert(answer);
