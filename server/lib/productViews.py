@@ -257,6 +257,12 @@ class buyView(view):
 
 
 
+class cancelProductView(view):
+    def get(self):
+        return 'unexpected'
+
+
+
 class cancelTransactionView(view):
     def get(self):
         logger.info("[VIEW] cancelTransactionView")

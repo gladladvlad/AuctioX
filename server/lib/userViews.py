@@ -214,6 +214,10 @@ class myAccountView(view):
 
         return content
 
+class cancelBidView(view):
+    def get():
+        return 'unexpected'
+
 class reportDashboardView(view):
 
     def get(self):

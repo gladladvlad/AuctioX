@@ -7,7 +7,7 @@
 	flex-direction: column;
 }
 
-.transactionsTable > tbody > tr > td > a {
+.listingsTable > tbody > tr > td > a {
 	cursor: pointer;
 }
 

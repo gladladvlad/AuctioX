@@ -19,7 +19,7 @@
                 </thead>
                 <tbody>
                 {% for entry in products %}
-                    <tr>
+                    <tr id="product{{ entry.productID }}">
                         <td>{{ loop.index }}</td>
                         <td>{{ entry.title }}</td>
                         <td>{{ entry.auction }}</td>
@@ -27,6 +27,7 @@
                         <td>{{ entry.currency }}</td>
                         <td>{{ entry.dateAdded }}</td>
                         <td>{{ entry.dateExpired }}</td>
+                        <td><a onclick="cancelProduct({{ entry.productID }});"> cancel </a></td>
                     </tr>
                 {% endfor %}
                 </tbody>
@@ -47,7 +48,7 @@
                 </thead>
                 <tbody>
                 {% for entry in bidprod %}
-                    <tr>
+                    <tr id="bid{{entry[0].bidID}}">
                         <td>{{ loop.index }}</td>
                         <td>{{ entry[1].title }}</td>
                         <td>{{ entry[0].value }}</td>
@@ -55,13 +56,14 @@
                         <td>{{ entry[1].status }}</td>
                         <td>{{ entry[1].dateAdded }}</td>
                         <td>{{ entry[1].dateExpires }}</td>
+                        <td><a onclick="cancelBid({{ entry[0].bidID }});"> cancel </a></td>
                     </tr>
                 {% endfor %}
                 </tbody>
             </table>
 
             <h3> Transactions - selling </h3>
-            <table class="transactionsTable">
+            <table class="listingsTable">
                 <thead>
                     <tr>
                         <td>No.</td>
@@ -76,7 +78,7 @@
                 </thead>
                 <tbody>
                 {% for entry in transell %}
-                    <tr>
+                    <tr id="transaction{{ entry.id }}">
                         <td>{{ loop.index }}</td>
                         <td><a href="/product?prodid={{ entry.product.productID }}">{{ entry.product.title }}</a></td>
                         <td>{{ entry.product.auction }}</td>
@@ -93,7 +95,7 @@
                 </tbody>
             </table>
             <h3> Transactions - buying</h3>
-            <table class="transactionsTable">
+            <table class="listingsTable">
                 <thead>
                     <tr>
                         <td>No.</td>
@@ -108,7 +110,7 @@
                 </thead>
                 <tbody>
                 {% for entry in tranbuy %}
-                    <tr>
+                    <tr id="transaction{{ entry.id }}">
                         <td>{{ loop.index }}</td>
                         <td><a href="/product?prodid={{ entry.product.productID }}">{{ entry.product.title }}</a></td>
                         <td>{{ entry.product.auction }}</td>
@@ -119,7 +121,7 @@
                         <td>{% if entry.buyerConfirm == 1 %} yes {% else %} no {% endif %}</td>
                         <td><a onclick="confirmTransaction({{ entry.id }});"> confirm </a></td>
                         <td><a onclick="cancelTransaction({{ entry.id }});"> cancel </a></td>
-                        </tr>
+                    </tr>
                     </a>
                 {% endfor %}
                 </tbody>
