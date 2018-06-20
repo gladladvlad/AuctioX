@@ -42,6 +42,7 @@
                         <td>{{ entry.product.currency }}</td>
                         <td>{{ entry.dateCreated }}</td>
                         <td>{{ entry.dateExpires }}</td>
+                        <td>{% if entry.sellerConfirm == 1 %} yes {% else %} no {% endif %}</td>
                         <td><a onclick="confirmTransaction({{ entry.id }});"> confirm </a></td>
                         <td><a onclick="cancelTransaction({{ entry.id }});"> cancel </a></td>
                         </tr>
@@ -60,6 +61,7 @@
                         <td>Currency</td>
                         <td>Start date</td>
                         <td>End date</td>
+                        <td>Confirmed</td>
                     </tr>
                 </thead>
                 <tbody>
@@ -72,6 +74,7 @@
                         <td>{{ entry.product.currency }}</td>
                         <td>{{ entry.dateCreated }}</td>
                         <td>{{ entry.dateExpires }}</td>
+                        <td>{% if entry.buyerConfirm == 1 %} yes {% else %} no {% endif %}</td>
                         <td><a onclick="confirmTransaction({{ entry.id }});"> confirm </a></td>
                         <td><a onclick="cancelTransaction({{ entry.id }});"> cancel </a></td>
                         </tr>

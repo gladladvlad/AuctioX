@@ -183,14 +183,11 @@ class productController():
 
 
     def confirmTransaction(self, userID, transID):
-        logger.info('==============================')
-        logger.info('==============================')
-        logger.info('==============================')
-        logger.info('==============================')
         from userController import userController
+
         transaction = userController.getTransactionInstanceById(transID)
-        logger.info('done')
         product = productController.getProductInstanceById(transaction.productId)
+
         if product.ownerID == userID:
             databaseController.setSellerConfirm(userID, product.productID)
         else:
@@ -203,7 +200,14 @@ class productController():
 
 
     def cancelTransaction(self, userID, transID):
-        print 'asd'
+        #from userController import userController
+
+        #transaction = userController.getTransactionInstanceById(transID)
+        #product = productController.getProductInstanceById(transaction.productId)
+
+        databaseController.setInactiveInTransaction(transID)
+
+        return 'Success! Transaction canceled!'
 
 
 

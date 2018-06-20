@@ -271,12 +271,7 @@ class userController():
 
         userBD = databaseController.getUserByUsername(key)
 
-        logger.debug("userBD:")
-        logger.debug(userBD)
         session = databaseController.getSessionById(userBD[USER_ID])
-
-        logger.debug("session:")
-        logger.debug(session)
 
         resultUser = user(userBD[USER_ID], session, userBD[USER_USERNAME], 50000, userBD[USER_SALT], userBD[USER_PASSWORD], userBD[USER_EMAIL], userBD[USER_CELL_NUMBER], userBD[USER_FIRST_NAME], userBD[USER_LAST_NAME], userBD[USER_COUNTRY], userBD[USER_STATE], userBD[USER_CITY], userBD[USER_ADRESS_1], userBD[USER_ADRESS_2], userBD[USER_ZIP_CODE], userBD[USER_CONTACT_INFO], userBD[USER_STATUS])
 
@@ -285,8 +280,11 @@ class userController():
 
 
     def getTransactionInstanceById(self, transID):
-        trans = databaseController.getTransactionById(transID)
-        return transaction(trans[TRANSACTION_ID], None, trans[TRANSACTION_SELLER_ID], trans[TRANSACTION_BUYER_ID], trans[TRANSACTION_PRODUCT_ID], trans[TRANSACTION_STATUS], trans[TRANSACTION_DATE_CREATED], trans[TRANSACTION_DATE_EXPIRES], trans[TRANSACTION_SELLER_CONFIRM], trans[TRANSACTION_BUYER_CONFIRM])
+        trans = databaseController.getTransactionById(transID)[0]
+
+        resTrans = transaction(trans[TRANSACTION_ID], None, trans[TRANSACTION_SELLER_ID], trans[TRANSACTION_BUYER_ID], trans[TRANSACTION_PRODUCT_ID], trans[TRANSACTION_STATUS], trans[TRANSACTION_DATE_CREATED], trans[TRANSACTION_DATE_EXPIRES], trans[TRANSACTION_SELLER_CONFIRM], trans[TRANSACTION_BUYER_CONFIRM])
+
+        return resTrans
 
 
 
