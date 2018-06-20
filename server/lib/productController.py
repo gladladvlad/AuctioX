@@ -110,7 +110,7 @@ class productController():
 
     def getHighestBidById(self, productID):
         logger.info('[START] getHighestBidById()')
-        highestBid = databaseController.executeSQLCommand('select value from userbid where product_id = {0} order by value desc'.format(productID), True)
+        highestBid = databaseController.getHighestBidValueById(productID)
 
         logger.info('for ' + str(productID) + ' bid is ' + str(highestBid))
 

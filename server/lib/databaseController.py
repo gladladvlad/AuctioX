@@ -212,6 +212,18 @@ class databaseController():
         result = mycursor.fetchall()
         return result[0]
 
+    def getUserBidsById(self, userId):
+        command = 'select * from userbid where user_id = {0} order by value desc'.format(userId)
+        mycursor.execute(command)
+        result = mycursor.fetchall()
+        return result
+
+    def getHighestBidValueById(self, productId):
+        command = 'select value from userbid where product_id = {0} order by value desc'.format(productId)
+        mycursor.execute(command)
+        result = mycursor.fetchall()
+        return result
+
     def getUserBidProduct(self,user_id):
         command = "select * from productdata join userbid on productdata.product_data_id= userbid.product_id where userbid.user_id={user_id}".format(user_id=user_id)
         print(command)
