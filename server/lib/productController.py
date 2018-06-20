@@ -1,6 +1,7 @@
 from view import *
 from databaseController import *
 from userController import *
+import datetime
 
 class product():
     def __init__(self, newOwnerID, newProductID, newStatus, newTitle, newDesc, newCategory, newSubCategory, newImages, newViews, newCondition, newCountry, newCity, newAuction, newPrice, newCurrency, newShippingType, newShippingPrice, newDateAdded, newDateExpires):
@@ -200,10 +201,16 @@ class productController():
 
 
     def cancelTransaction(self, userID, transID):
-        #from userController import userController
+        from userController import userController
 
-        #transaction = userController.getTransactionInstanceById(transID)
-        #product = productController.getProductInstanceById(transaction.productId)
+        transaction = userController.getTransactionInstanceById(transID)
+        if userID != transaction.sellerId and userID != transaction.buyerId:
+            return 'Fail! You cannot cancel someone else\'s transaction!'
+
+        product = productController.getProductInstanceById(transaction.productId)
+
+        if product.dateExpires > datetime.datetime.now():
+            databaseController.setActiveInProduct(transaction.productId)
 
         databaseController.setInactiveInTransaction(transID)
 

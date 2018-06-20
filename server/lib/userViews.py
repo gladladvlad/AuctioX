@@ -176,13 +176,26 @@ class myAccountView(view):
 
         self.setContentType('text/html')
 
-        if userController.validateUserSession(self) is None:
+        userId = userController.validateUserSession(self)
+        if userId is None:
             logger.warning("No active session. Redirecting to sign in.")
             self.switchView(userSignInView)
             return False
 
-        user = userController.getUserInstanceByUsername(self.sessionData['username'])
+        loggedUser = userController.getUserInstanceByUsername(self.sessionData['username'])
+        loggedUser.setAdmin()
+        self.addItemToContext(loggedUser, 'userlog', True)
 
+
+        usernameRequest = ''
+        if self.urlArgs.has_key('user'):
+            usernameRequest = self.urlArgs['user']
+        else:
+            usernameRequest = self.sessionData['username']
+
+
+        user = userController.getUserInstanceByUsername(usernameRequest)
+        self.addItemToContext(user, 'userreq', True)
 
 
         reportsFrom = userController.getReportsByFromUserId(user.UID)
@@ -223,8 +236,23 @@ class myAccountView(view):
         return content
 
 class cancelBidView(view):
-    def get():
-        return 'unexpected'
+    def get(self):
+        logger.info("[VIEW] cancelBidView")
+
+        if not self.urlArgs.has_key('bidid'):
+            return 'Fail! No bid provided!'
+
+        userId = userController.validateUserSession(self)
+        if userId is None:
+            return 'Fail! You must be logged in!'
+
+        bid = bidController.getBidById(int(self.urlArgs['bidid']))
+        if bid.userID != userId:
+            return 'Fail! You cannot cancel someone else\'s bid!'
+
+
+        answer = bidController.cancelBid(int(self.urlArgs['bidid']))
+        return answer
 
 class reportDashboardView(view):
 

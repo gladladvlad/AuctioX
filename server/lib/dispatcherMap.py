@@ -33,7 +33,7 @@ map = [
     ('^/conftrans', confirmTransactionView),
     ('^/canctrans', cancelTransactionView),
     ('^/cancprod', cancelProductView),
-    ('^/cancbid', cancelProductView),
+    ('^/cancbid', cancelBidView),
     ('^/reportdashboard', reportDashboardView),
     ('^/myaccount', myAccountView),
 

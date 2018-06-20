@@ -36,6 +36,10 @@ class user():
         self.zipCode = newZipCode
         self.contactInfo = newContactInfo
         self.status = newStatus
+        self.isAdmin = 0
+
+    def setAdmin(self):
+        self.isAdmin = databaseController.getIsAdminById(self.UID)[0]
 
     def asDict(self):
         result = dict()

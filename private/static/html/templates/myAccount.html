@@ -31,7 +31,9 @@
                         <td>{{ entry.details }}</td>
                         <td>{{ entry.resolved }}</td>
                         <td>{{ entry.dateResolved }}</td>
-                        <td><a onclick="cancelProduct({{ entry.productID }});"> cancel </a></td>
+                        {% if userlog.is_admin == 1 %}
+                        <td><a onclick="cancelReport({{ entry.id}});"> cancel </a></td>
+                        {% endif %}
                     </tr>
                 {% endfor %}
                 </tbody>
@@ -64,12 +66,15 @@
                         <td>{{ entry.details }}</td>
                         <td>{{ entry.resolved }}</td>
                         <td>{{ entry.dateResolved }}</td>
-                        <td><a onclick="cancelProduct({{ entry.productID }});"> cancel </a></td>
+                        {% if userlog.is_admin == 1 %}
+                        <td><a onclick="cancelReport({{ entry.id }});"> cancel </a></td>
+                        {% endif %}
                     </tr>
                 {% endfor %}
                 </tbody>
             </table>
 
+            {% if userlog.UID == userreq.UID or userlog.isAdmin == 1 %}
             <h3> Listings </h3>
             <table class="listingsTable">
                 <thead>
@@ -93,7 +98,7 @@
                         <td>{{ entry.currency }}</td>
                         <td>{{ entry.dateAdded }}</td>
                         <td>{{ entry.dateExpired }}</td>
-                        <td><a onclick="cancelProduct({{ entry.productID }});"> cancel </a></td>
+                        {#<td><a onclick="cancelProduct({{ entry.productID }});"> cancel </a></td>#}
                     </tr>
                 {% endfor %}
                 </tbody>
@@ -122,7 +127,7 @@
                         <td>{{ entry[1].status }}</td>
                         <td>{{ entry[1].dateAdded }}</td>
                         <td>{{ entry[1].dateExpires }}</td>
-                        <td><a onclick="cancelBid({{ entry[0].bidID }});"> cancel </a></td>
+                        {#<td><a onclick="cancelBid({{ entry[0].bidID }});"> cancel </a></td>-->#}
                     </tr>
                 {% endfor %}
                 </tbody>
@@ -192,6 +197,7 @@
                 {% endfor %}
                 </tbody>
             </table>
+            {% endif %}
         </div>
     </div>
 </div>

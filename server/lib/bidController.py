@@ -33,6 +33,29 @@ class bidController():
 
         return bidFinalList
 
+    def getBidById(self, bidId):
+        bidBD = databaseController.getBidById(bidId)
+
+        resBid = bid(bidBD[0], bidBD[1], bidBD[2], bidBD[3], bidBD[4])
+
+        return resBid
+
+    def cancelBid(self, bidId):
+        logger.info('done')
+        bid = self.getBidById(bidId)
+        logger.info('done')
+        highestBid = databaseController.getBiggestBidForProduct(bid.productID)[0]
+        logger.info('done')
+        logger.info(type(bid.productID))
+        logger.info(type(highestBid))
+        databaseController.setNewPrice(bid.productID, highestBid)
+        logger.info('done')
+
+        databaseController.stergeBid(bidId)
+        logger.info('done')
+
+        return "Success!"
+
 bidController = bidController()
 
 

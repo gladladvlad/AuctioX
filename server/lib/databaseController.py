@@ -201,6 +201,12 @@ class databaseController():
             list.append(i[0])
         return list
 
+    def getBidById(self, bidId):
+        command = "select * from userbid where current_bid_id = {0}".format(bidId)
+        mycursor.execute(command)
+        result = mycursor.fetchall()
+        return result[0]
+
     def getUserBidProduct(self,user_id):
         command = "select * from productdata join userbid on productdata.product_data_id= userbid.product_id where userbid.user_id={user_id}".format(user_id=user_id)
         print(command)
@@ -328,6 +334,11 @@ class databaseController():
         mycursor.execute(command)
         mariadb_connection.commit()
 
+    def setActiveInProduct(self, key):
+        command = "update productdata set status='ongoing' where product_data_id={key}".format(key=key)
+        mycursor.execute(command)
+        mariadb_connection.commit()
+
     """Setari in baza de date"""
 
     def setSellerConfirm(self,user,produs):
@@ -358,6 +369,13 @@ class databaseController():
         result = mycursor.fetchone()
         if result[0] == 1:
             self.setInactiveInTransaction(product)
+
+    def getIsAdminById(self, userId):
+        command = "select is_admin from user where user_id={0}".format(userId)
+        mycursor.execute(command)
+        result= mycursor.fetchone()
+        return result
+
 
     def setAdminPrivileges(self,id1,id2,what):
         command = "select user_id from user where user_id={id1} and is_admin=1".format(id1=id1)
