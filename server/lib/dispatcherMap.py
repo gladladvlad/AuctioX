@@ -33,6 +33,7 @@ map = [
     ('^/conftrans', confirmTransactionView),
     ('^/canctrans', cancelTransactionView),
     ('^/reportdashboard', reportDashboardView),
+    ('^/myaccount', myAccountView),
 
     # User Views END
 

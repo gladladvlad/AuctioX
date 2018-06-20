@@ -170,6 +170,50 @@ class userTransactionsView(view):
 
         return content
 
+class myAccountView(view):
+    def get(self):
+        logger.info("[VIEW] myAccountView")
+
+        self.setContentType('text/html')
+
+        if userController.validateUserSession(self) is None:
+            logger.warning("No active session. Redirecting to sign in.")
+            self.switchView(userSignInView)
+            return False
+
+        user = userController.getUserInstanceByUsername(self.sessionData['username'])
+
+
+        products = productController.getUserProductsById(user.UID)
+
+        self.addItemToContext(products, 'products', True)
+
+
+        bids = bidController.getUserBidInstancesById(user.UID)
+
+        bidProdList = []
+        for bid in bids:
+            bidProduct = productController.getProductInstanceById(bid.productID)
+
+            bidProdList.append((bid, bidProduct))
+
+        self.addItemToContext(user, 'user', True)
+        self.addItemToContext(bidProdList, 'bidprod', True)
+
+
+        transactionsSelling = userController.getTransactionsBySellerId(user.UID)
+        transactionsBuying = userController.getTransactionsByBuyerId(user.UID)
+        self.addItemToContext(transactionsSelling, 'transell', True)
+        self.addItemToContext(transactionsBuying, 'tranbuy', True)
+
+
+        self.addComponentToContext('myaccount_styles.html', 'style', True)
+        self.addComponentToContext('navbar.html', 'navbar', True)
+        self.addComponentToContext('footer.html', 'footer', True)
+        content = self.renderTemplate('myAccount.html')
+
+        return content
+
 class reportDashboardView(view):
 
     def get(self):

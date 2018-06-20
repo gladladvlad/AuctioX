@@ -2,23 +2,64 @@
 
 {% block content %}
 <div class="baseContainer">
-    <div class="title">
-        <h1>
-            My transactions
-        </h1>
-        <a href="/mybids">
-            My bids
-        </a>
-        <a href="#accountsettings">
-            Account settings
-        </a>
-        <a href="#help">
-            Help
-        </a>
-    </div>
-
     <div class="mainContainer">
         <div class="containerFull">
+            <h3> Listings </h3>
+            <table class="listingsTable">
+                <thead>
+                    <tr>
+                        <td>No.</td>
+                        <td>Title</td>
+                        <td>Type</td>
+                        <td>Current bid / Price</td>
+                        <td>Currency</td>
+                        <td>Start date</td>
+                        <td>End date</td>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for entry in products %}
+                    <tr>
+                        <td>{{ loop.index }}</td>
+                        <td>{{ entry.title }}</td>
+                        <td>{{ entry.auction }}</td>
+                        <td>{{ entry.price }}</td>
+                        <td>{{ entry.currency }}</td>
+                        <td>{{ entry.dateAdded }}</td>
+                        <td>{{ entry.dateExpired }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+            <h3> Bids </h3>
+            <table class="listingsTable">
+                <thead>
+                    <tr>
+                        <td>No.</td>
+                        <td>Title</td>
+                        <td>Your bid</td>
+                        <td>Currency</td>
+                        <td>Status</td>
+                        <td>Start date</td>
+                        <td>End date</td>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for entry in bidprod %}
+                    <tr>
+                        <td>{{ loop.index }}</td>
+                        <td>{{ entry[1].title }}</td>
+                        <td>{{ entry[0].value }}</td>
+                        <td>{{ entry[1].currency }}</td>
+                        <td>{{ entry[1].status }}</td>
+                        <td>{{ entry[1].dateAdded }}</td>
+                        <td>{{ entry[1].dateExpires }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
             <h3> Transactions - selling </h3>
             <table class="transactionsTable">
                 <thead>
